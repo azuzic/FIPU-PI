@@ -1,0 +1,20 @@
+<html>
+    <body>
+        <div id="app">
+            <button id="counterButton">
+                Count is: 0
+            </button>
+        </div>
+
+        <script>
+            const counterButton = document.getElementById('counterButton');
+
+            let count = 0;
+
+            counterButton.addEventListener('click', () => {
+                count++;
+                counterButton.textContent = `Count is: ${count}`
+            });
+        </script>
+    </body>
+</html>
