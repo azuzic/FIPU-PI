@@ -24,6 +24,7 @@
   <img alt="Fakultet informatike u Puli (materijali iz kolegija Programsko inženjerstvo - Alesandro Žužić)" 
        src="./Skripte/Logo/FIPU_UNIPU_white" width="300">
 </picture>
+
 ---
 
 Kolegij slušaju:
