@@ -10,6 +10,8 @@
   <img style="width: 64px; height: 64px;"
     src="https://github.com/user-attachments/assets/291508fa-ad61-42a3-8db6-967fbd4e0614">
   <img style="width: 64px; height: 64px;"
+    src="https://github.com/user-attachments/assets/461d55d9-cf90-4d03-a528-7feb9dba51fa">
+  <img style="width: 64px; height: 64px;"
     src="https://github.com/user-attachments/assets/694db151-c219-411d-939a-23c69e45c054">
 </div>
 
