@@ -1,6 +1,6 @@
 # Materijali iz kolegija: Programsko inženjerstvo (PI)
 
-<div style="display: flex; gap: 8px; flex-wrap: wrap;">
+<div >
   <img style="width: 64px; height: 64px;"
     src="https://github.com/user-attachments/assets/15437000-2cde-4b91-9e3c-a7bccc3343f0">
   <img style="width: 64px; height: 64px;"
@@ -18,6 +18,12 @@
 
 **Ustanova**: [Sveučilište Jurja Dobrile u Puli](https://www.unipu.hr/), [Fakultet informatike u Puli](https://fipu.unipu.hr/)
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./Skripte/Logo/FIPU_UNIPU_white.png">
+  <source media="(prefers-color-scheme: light)" srcset="./Skripte/Logo/FIPU_UNIPU">
+  <img alt="Fakultet informatike u Puli (materijali iz kolegija Programsko inženjerstvo - Alesandro Žužić)" 
+       src="./Skripte/Logo/FIPU_UNIPU_white" width="300">
+</picture>
 ---
 
 Kolegij slušaju:
