@@ -24,6 +24,10 @@
 			:not(code *) {
 				font-family: "Poppins", sans-serif;
 			}
+            html {
+                display: flex;
+                justify-content: center;
+            }
 			body {
 				font-family: var(
 					--vscode-markdown-font-family,
@@ -36,10 +40,16 @@
 					sans-serif
 				);
 				font-size: var(--vscode-markdown-font-size, 14px);
-				padding: 0 26px;
 				line-height: var(--vscode-markdown-line-height, 22px);
 				word-wrap: break-word;
 				color: #3b3b3b;
+                position: absolute;
+                display: flex;
+                justify-content: center;
+                width: full;
+			}
+			.body {
+                max-width: 1012px;
 			}
 
 			#code-csp-warning {
@@ -334,7 +344,6 @@ Visual Studio-like style based on original C# coloring by Jason Diamond <jason@d
 			body {
 				font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC",
 					"Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
-				padding: 0 12px;
 			}
 
 			pre {
@@ -393,6 +402,7 @@ Visual Studio-like style based on original C# coloring by Jason Diamond <jason@d
           : 'default'
     });
   </script>
+<div class="body">
 <h1 id="programsko-in%C5%BEenjerstvo">Programsko inženjerstvo</h1>
 <p><strong>Nositelj</strong>: doc. dr. sc. Nikola Tanković<br>
 <strong>Asistent</strong>: mag. inf. Alesandro Žužić</p>
@@ -487,6 +497,8 @@ Visual Studio-like style based on original C# coloring by Jason Diamond <jason@d
 <li><a href="#samostalni-zadatak-za-vje%C5%BEbu-1">Samostalni zadatak za vježbu 1</a></li>
 </ul>
 <!-- /TOC -->
+<br>
+<br>
 <h2 id="uvod">Uvod</h2>
 <p>Vue.js je JavaScript okvir koji se koristi za izradu dinamičkih i interaktivnih web aplikacija temeljenih na promjenjivim podacima (data-driven). Omogućuje učinkovito ažuriranje korisničkog sučelja bez potrebe za ponovnim učitavanjem cijele stranice.</p>
 <h3 id="single-page-application-spa">Single Page Application (SPA)</h3>
@@ -499,6 +511,7 @@ Visual Studio-like style based on original C# coloring by Jason Diamond <jason@d
 <li>Vuex ili Pinia mogu se koristiti za upravljanje stanjem aplikacije kako bi podaci ostali dosljedni kroz cijelu aplikaciju.</li>
 </ul>
 <p>Ovakav pristup poboljšava korisničko iskustvo jer aplikacija radi brzo i fluidno, bez zastoja uzrokovanih ponovnim učitavanjem stranice.</p>
+<div class="page"></div>
 <hr>
 <h4 id="primjer-jednostavne-vounter-aplikacije">Primjer jednostavne vounter aplikacije</h4>
 <p><em>U sljedećem primjeru implementiran je jednostavan brojač koji se inkrementira klikom na gumb:</em></p>
@@ -535,6 +548,7 @@ Visual Studio-like style based on original C# coloring by Jason Diamond <jason@d
 <li>dodavanje <strong>event listenera</strong> za <em>&quot;click&quot;</em></li>
 <li>ažuriranje <em>vrijednosti</em> unutar <strong>DOM-a</strong></li>
 </ul>
+<div class="page"></div>
 <hr>
 <h4 id="minimalni-primjer-vue-aplikacije">Minimalni primjer Vue aplikacije</h4>
 <p><em>Ako bismo istu funkcionalnost implementirali pomoću <strong>Vue.js</strong>, onda ne moramo ručno ažurirati DOM:</em></p>
@@ -598,6 +612,7 @@ Visual Studio-like style based on original C# coloring by Jason Diamond <jason@d
 <blockquote>
 <p>Komponente se obično pišu u formatu koji nalikuje HTML-u, poznatom kao <strong>Single-File Component</strong> <em>(SFC)</em>, odnosno <code>*.vue</code> datoteke. Kao što ime sugerira, SFC encapsulira logiku komponente (JavaScript), predložak (HTML) i stilove (CSS) u jednoj datoteci.</p>
 </blockquote>
+<div class="page"></div>
 <h3 id="primjer-liste-vo%C4%87a-i-liste-povr%C4%87a-koriste%C4%87i-vue-i-komponente">Primjer liste voća i liste povrća koristeći Vue i komponente</h3>
 <p><img src="Slike/VueMultipleList.png" alt="alt text"></p>
 <h1 id="postavljanje-aplikacijeprojekta">Postavljanje aplikacije/projekta</h1>
@@ -711,6 +726,8 @@ Visual Studio-like style based on original C# coloring by Jason Diamond <jason@d
 <p><em>Struktura novokreiranog projekta izgleda kao što je prikazano na slici ispod:</em></p>
 <img src="Slike/VueCreateFileStructure.png" width="640"/>
 <p>Trenutno projekt sadrži unaprijed definirane datoteke i komponente koje služe kao primjer jednostavne aplikacije s linkovima na dokumentaciju i druge korisne materijale. Budući da nam za početak treba čisti kostur aplikacije, izvršit ćemo sljedeće korake unuta <code>src</code> mape:</p>
+
+<div class="page"></div>
 <ol>
 <li>
 <p><strong>Uklanjanje suvišnih datoteka i mapa</strong></p>
@@ -787,6 +804,8 @@ createApp(App).mount(<span class="hljs-string">'#app'</span>)    <span class="hl
 </div></code></pre>
 <p>Vidimo da dokument sadrži <code>div</code> s <strong>id</strong>-jem <code>#app</code>, na koji <em>Vue</em> montira komponentu <code>App.vue</code>. Također, sadrži <code>module script</code> koji učitava <code>main.js</code>, čime se pokreće sama aplikacija.</p>
 <p>Iako Vue omogućuje kreiranje i montiranje više instanci istovremeno, u praksi se obično koristi samo jedna. Također, ime glavne komponente i <code>id</code> elementa na koji se montira mogu biti proizvoljni, ali se pridržavamo standardne konvencije.</p>
+
+<div class="page"></div>
 <p><em>Primjer s dvije instance:</em></p>
 <pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">""</span>&gt;</span>
@@ -825,6 +844,7 @@ createApp(MojApp).mount(<span class="hljs-string">'#druga_app'</span>)
     <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>;
 }
 </div></code></pre>
+<div class="page"></div>
 <h1 id="tailwind">Tailwind</h1>
 <div style="display: flex; justify-content: space-between; text-align: justify; gap: 32px;">
     <p>
@@ -900,6 +920,7 @@ createApp(MojApp).mount(<span class="hljs-string">'#druga_app'</span>)
 <p>Smanjuje potrebu za pisanjem dodatnih CSS datoteka i olakšava održavanje kôda. Nema potrebe za traženjem gdje su definirani stilovi za određeni element jer se svi stilovi nalaze unutar <code>class</code> atributa tog elementa. Budući da svaka Tailwind klasa primjenjuje samo jedno svojstvo, stilizacija je jasna, modularna i lako prilagodljiva.</p>
 <h3 id="jednostavna-responzivnost">Jednostavna responzivnost</h3>
 <p>Tailwind nudi jednostavan sustav za prilagodbu različitim veličinama ekrana pomoću prefiksa (<code>sm:</code>, <code>md:</code>, <code>lg:</code>, <code>xl:</code>). Nema potrebe za pisanjem posebnih <code>@media</code> upita – sve se rješava unutar <code>class</code> atributa</p>
+<div class="page"></div>
 <p><em>Koristeći tradicionalan media query:</em></p>
 <pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"mojDiv"</span>&gt;</span>
@@ -948,6 +969,7 @@ createApp(MojApp).mount(<span class="hljs-string">'#druga_app'</span>)
     }
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
 </div></code></pre>
+<div class="page"></div>
 <p><em>Koristeći Tailwind responzivni dizajn:</em></p>
 <pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"h-screen flex justify-center items-center bg-gray-800"</span>&gt;</span>
@@ -988,6 +1010,7 @@ createApp(MojApp).mount(<span class="hljs-string">'#druga_app'</span>)
 </ul>
 </li>
 <li>
+<div class="page"></div>
 <p>Konfiguracija Vite plugina</p>
 <ul>
 <li>unutar Vite konfiguracijske dadoteke <code>vite.config.js</code> dodajemo sljedeći kôd</li>
@@ -1048,6 +1071,7 @@ createApp(MojApp).mount(<span class="hljs-string">'#druga_app'</span>)
 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 </div></code></pre>
 <p><img src="Slike/TailwindColorsExample.png" alt="alt text"></p>
+<div class="page"></div>
 <h5 id="lista-svih-boja">Lista svih boja:</h5>
 <div style="display: flex; flex-direction: column; gap: 2px; font-size: 12px;">
 <div style="display: flex; gap: 4px;">
@@ -1390,6 +1414,7 @@ createApp(MojApp).mount(<span class="hljs-string">'#druga_app'</span>)
     Some text
 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 </div></code></pre>
+<div class="page"></div>
 <h3 id="text">Text</h3>
 <p>Najčešće korišteni podatak u bilo kojoj aplikaciji, koji čini većinu web stranice, jest tekst. Zato je važno da je pravilno oblikovan te da se jasno razlikuju različiti tipovi teksta, poput naslova, zaglavlja, tijela, sekcija itd.</p>
 <p>Ključni stilovi koji se najčešće koriste za oblikovanje teksta su:</p>
@@ -1475,6 +1500,7 @@ createApp(MojApp).mount(<span class="hljs-string">'#druga_app'</span>)
 </tbody>
 </table>
 <br>
+<div class="page"></div>
 <div style="line-height: calc(1 / 0.75); font-size: 12px;">text-xs</div>
 <div style="line-height: calc(1.25 / 0.875); font-size: 14px;">text-sm</div>
 <div style="line-height: calc(1.5 / 1); font-size: 16px;">text-base</div>
@@ -1502,6 +1528,7 @@ createApp(MojApp).mount(<span class="hljs-string">'#druga_app'</span>)
   <div style="font-weight: bold;">font-bold</div>
 </li>
 </ul>
+<div class="page"></div>
 <h4 id="poravnanje-teksta">Poravnanje teksta</h4>
 <ul>
 <li>Pod poravnanje teksta spadaju klase: <em>lijevo, centrirano, desno i obostrano</em></li>
@@ -1544,6 +1571,9 @@ createApp(MojApp).mount(<span class="hljs-string">'#druga_app'</span>)
 <hr>
 <div style="text-align: center;">Diam et duo accusam lorem sed et at tempor est clita. Gubergren invidunt at rebum eos et est sanctus.</div>
 </div>
+</div>
+<br>
+<div style="display: flex; flex-wrap: wrap; gap: 16px;">
 <div style="width: 180px; text-align: right; background:rgba(60, 60, 60, 0.2); border-radius: 8px; padding: 8px;">
 <b>text-right</b>
 <hr>
@@ -1586,6 +1616,7 @@ createApp(MojApp).mount(<span class="hljs-string">'#druga_app'</span>)
 </tbody>
 </table>
 <br>
+<div class="page"></div>
 <div style="display: flex; flex-wrap: wrap; gap: 16px;">
 <div style="background:rgba(60, 60, 60, 0.2); border-radius: 8px; padding: 8px;">
 <b>text-wrap</b>
@@ -1597,6 +1628,9 @@ createApp(MojApp).mount(<span class="hljs-string">'#druga_app'</span>)
 <hr>
 <div style="width: 180px;text-wrap: nowrap;">Vero dolore sanctus est diam sed</div>
 </div>
+</div>
+<br>
+<div style="display: flex; flex-wrap: wrap; gap: 16px;">
 <div style="background:rgba(60, 60, 60, 0.2); border-radius: 8px; padding: 8px;">
 <b>text-balance</b>
 <hr>
@@ -1660,6 +1694,7 @@ createApp(MojApp).mount(<span class="hljs-string">'#druga_app'</span>)
 </table>
 <br>
 <br>
+<div class="page"></div>
 <p><em>Primjer fiksne veličine <code>w-&lt;veličina&gt;</code> (veličina * 4px):</em></p>
 <div style="display: flex; flex-direction: column; gap: 4px; padding: 8px; width: fit-content; background: rgba(60, 60, 60, 0.2); border-radius: 16px;">
 <div style="width: 384px; text-wrap: wrap; background: #3c3c3c; color: #cccccc; border-radius: 8px; text-align: center;">w-96</div>
@@ -1668,7 +1703,6 @@ createApp(MojApp).mount(<span class="hljs-string">'#druga_app'</span>)
 <div style="width: 80px; text-wrap: wrap; background: #3c3c3c; color: #cccccc; border-radius: 8px; text-align: center;">w-20</div>
 <div style="width: 32px; text-wrap: wrap; background: #3c3c3c; color: #cccccc; border-radius: 8px; text-align: center;">w-8</div>
 </div>
-<br>
 <br>
 <p><em>Primjer omjera <code>w-&lt;omjer&gt;</code>:</em></p>
 <div style="display: flex; flex-direction: column; gap: 4px; padding: 8px; background:rgba(60, 60, 60, 0.2); border-radius: 16px;">
@@ -1679,7 +1713,6 @@ createApp(MojApp).mount(<span class="hljs-string">'#druga_app'</span>)
 <div style="width: 33%; text-wrap: wrap; background: #3c3c3c; color: #cccccc; border-radius: 8px; text-align: center;">w-1/3</div>
 <div style="width: 12.5%; text-wrap: wrap; background: #3c3c3c; color: #cccccc; border-radius: 8px; text-align: center;">w-1/8</div>
 </div>
-<br>
 <br>
 <p><em>Primjer predefiniranih klasa:</em></p>
 <div style="display: flex; width: 500px; flex-direction: column; gap: 4px; padding: 8px; background:rgba(60, 60, 60, 0.2); border-radius: 16px;">
@@ -1695,10 +1728,9 @@ createApp(MojApp).mount(<span class="hljs-string">'#druga_app'</span>)
 <div style="padding: 0px 4px;width: fit-content; background: #3c3c3c; color: #cccccc; border-radius: 8px;">Diam et duo accusam lorem sed et at tempor est clita. Gubergren invidunt at rebum eos et est sanctus.</div>
 <div style="padding: 0px 4px;width: fit-content; background: #3c3c3c; color: #cccccc; border-radius: 8px;">Diam et duo accusam lorem sed et at tempor est clita.</div>
 <span style="margin-top: 8px;"><b>w-min</b> - zauzima minimalnu veličinu sadržaja</span>
-<div style="padding: 0px 4px; width: min-content; background: #3c3c3c; color: #cccccc; border-radius: 8px;">Diam et duo accusam lorem sed et at tempor est clita.</div>
+<div style="padding: 0px 4px; width: min-content; background: #3c3c3c; color: #cccccc; border-radius: 8px;">Diam et duo accusam lorem</div>
 </div>
 <br>
-<hr>
 <p><em>Primjer prilagođenih veličina:</em></p>
 <div style="display: flex; flex-direction: column; gap: 4px; padding: 8px; background:rgba(60, 60, 60, 0.2); border-radius: 16px;">
 <div style="width: 255px; text-wrap: wrap; background: #3c3c3c; color: #cccccc; border-radius: 8px; text-align: center;">w-[255px]</div>
@@ -1711,6 +1743,7 @@ createApp(MojApp).mount(<span class="hljs-string">'#druga_app'</span>)
 <div style="width: 168px; height: 168px; background: #3c3c3c; color: #cccccc; border-radius: 8px; text-align: center; align-content: center;">size-42</div>
 <div style="width: 50%; height: 50%; background: #3c3c3c; color: #cccccc; border-radius: 8px; text-align: center; align-content: center;">size-1/2</div>
 </div>
+<hr>
 <h3 id="razmaci">Razmaci</h3>
 <p>Kod stiliziranja elemenata često je potrebno definirati razmake između njih ili unutar njih. U Tailwindu, razmaci se mogu kontrolirati pomoću:</p>
 <ul>
@@ -1752,6 +1785,7 @@ createApp(MojApp).mount(<span class="hljs-string">'#druga_app'</span>)
 </tbody>
 </table>
 <br>
+<div class="page"></div>
 <p><em>Razmaci mogu biti primijenjeni na specifične strane:</em></p>
 <table>
 <thead>
@@ -1852,6 +1886,7 @@ createApp(MojApp).mount(<span class="hljs-string">'#druga_app'</span>)
     </div>
 </div>
 </div>
+<div class="page"></div>
 <h3 id="flex">Flex</h3>
 <p>Flexbox je moćan alat za raspoređivanje i poravnavanje elemenata. U Tailwindu, fleksibilni raspored se kontrolira pomoću klase <code>flex</code>:</p>
 <ul>
@@ -1891,8 +1926,7 @@ createApp(MojApp).mount(<span class="hljs-string">'#druga_app'</span>)
     <div style="width: fit-content; background: oklab(0.552 0.00439355 -0.015385 / 0.5); padding: 0px 16px; border-radius: 4px;"> 2 </div>
     <div style="width: fit-content; background: oklab(0.552 0.00439355 -0.015385 / 0.5); padding: 0px 16px; border-radius: 4px;"> 3 </div>
 </div>
-<br>
-<br>
+<div class="page"></div>
 <p><em>Poravnanje unutar flex elementa na glavnoj osi:</em></p>
 <table>
 <thead>
@@ -1979,8 +2013,6 @@ createApp(MojApp).mount(<span class="hljs-string">'#druga_app'</span>)
     </div>
 </div>
 </div>
-<br>
-<br>
 <p><em>Poravnanje unutar flex elementa na poprečnoj osi:</em></p>
 <table>
 <thead>
@@ -2034,9 +2066,9 @@ createApp(MojApp).mount(<span class="hljs-string">'#druga_app'</span>)
 <br>
 <br>
 <p>Kada imamo previše elemenata unutar roditelja i oni počnu izlaziti izvan njegovih granica, možemo koristiti svojstvo <strong><code>flex-wrap</code></strong> kako bismo omogućili elementima da pređu u novi red umjesto da izlaze van roditelja.</p>
+<div style="display: flex; justify-content: space-evenly; gap: 4px;">
 <div style="display: flex; flex-direction: column; gap: 4px;">
-<div style="display: flex; gap: 4px;">
-    <b style="width: 150px; display: flex; align-items: center;">flex-nowrap</b>
+    <b style="display: flex; justify-content: center;">flex-nowrap</b>
     <div style="width: 150px; display: flex; gap: 8px; background: oklab(0.552 0.00439355 -0.015385 / 0.5); padding: 8px; border-radius: 8px;">
         <div style="background: oklab(0.552 0.00439355 -0.015385 / 0.5); padding: 0px 16px; border-radius: 4px;"> 1 </div>
         <div style="background: oklab(0.552 0.00439355 -0.015385 / 0.5); padding: 0px 16px; border-radius: 4px;"> 2 </div>
@@ -2045,8 +2077,8 @@ createApp(MojApp).mount(<span class="hljs-string">'#druga_app'</span>)
         <div style="background: oklab(0.552 0.00439355 -0.015385 / 0.5); padding: 0px 16px; border-radius: 4px;"> 5 </div>
     </div>
 </div>
-<div style="display: flex; gap: 4px;">
-    <b style="width: 150px; display: flex; align-items: center;">flex-wrap</b>
+<div style="display: flex; flex-direction: column; gap: 4px;">
+    <b style="display: flex; justify-content: center;">flex-wrap</b>
     <div style="width: 150px; display: flex; flex-wrap: wrap; gap: 8px; background: oklab(0.552 0.00439355 -0.015385 / 0.5); padding: 8px; border-radius: 8px;">
         <div style="background: oklab(0.552 0.00439355 -0.015385 / 0.5); padding: 0px 16px; border-radius: 4px;"> 1 </div>
         <div style="background: oklab(0.552 0.00439355 -0.015385 / 0.5); padding: 0px 16px; border-radius: 4px;"> 2 </div>
@@ -2063,10 +2095,10 @@ createApp(MojApp).mount(<span class="hljs-string">'#druga_app'</span>)
     <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 </div></code></pre>
-<p><img src="Slike/flex-center-div-comic.png" alt="alt text"></p>
+<p><img src="Slike/flex-center-div-comic.png" alt="alt text" height="600px"></p>
 <br>
 <p>stanja, responzivnost i teme</p>
 <h1 id="samostalni-zadatak-za-vje%C5%BEbu-1">Samostalni zadatak za vježbu 1</h1>
-
+</div>
 </body>
 </html>
