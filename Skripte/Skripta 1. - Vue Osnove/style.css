@@ -22,6 +22,10 @@
 			:not(code *) {
 				font-family: "Poppins", sans-serif;
 			}
+            html {
+                display: flex;
+                justify-content: center;
+            }
 			body {
 				font-family: var(
 					--vscode-markdown-font-family,
@@ -34,10 +38,16 @@
 					sans-serif
 				);
 				font-size: var(--vscode-markdown-font-size, 14px);
-				padding: 0 26px;
 				line-height: var(--vscode-markdown-line-height, 22px);
 				word-wrap: break-word;
 				color: #3b3b3b;
+                position: absolute;
+                display: flex;
+                justify-content: center;
+                width: full;
+			}
+			.body {
+                max-width: 1012px;
 			}
 
 			#code-csp-warning {
@@ -332,7 +342,6 @@ Visual Studio-like style based on original C# coloring by Jason Diamond <jason@d
 			body {
 				font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC",
 					"Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
-				padding: 0 12px;
 			}
 
 			pre {

@@ -47,6 +47,8 @@
                 display: flex;
                 justify-content: center;
                 width: full;
+                max-width: screen;
+                overflow-x: hidden;
 			}
 			.body {
                 max-width: 1012px;
@@ -402,7 +404,7 @@ Visual Studio-like style based on original C# coloring by Jason Diamond <jason@d
           : 'default'
     });
   </script>
-<div class="body">
+  <div class="body">
 <h1 id="programsko-in%C5%BEenjerstvo">Programsko inženjerstvo</h1>
 <p><strong>Nositelj</strong>: doc. dr. sc. Nikola Tanković<br>
 <strong>Asistent</strong>: mag. inf. Alesandro Žužić</p>
@@ -418,7 +420,7 @@ Visual Studio-like style based on original C# coloring by Jason Diamond <jason@d
     </p>
     <img src="../Icons/Vue_1.svg" style="width: 96px; height: 96px; margin: 0px;"></img>
 </div>
-<p><strong>Posljednje ažurirano: 25.2.2025.</strong></p>
+<p><strong>Posljednje ažurirano:</strong> 9. ožujka 2025.</p>
 <h2 id="sadr%C5%BEaj">Sadržaj</h2>
 <!-- TOC -->
 <ul>
@@ -430,7 +432,7 @@ Visual Studio-like style based on original C# coloring by Jason Diamond <jason@d
 <ul>
 <li><a href="#single-page-application-spa">Single Page Application SPA</a>
 <ul>
-<li><a href="#primjer-jednostavne-vounter-aplikacije">Primjer jednostavne vounter aplikacije</a></li>
+<li><a href="#primjer-jednostavne-counter-aplikacije">Primjer jednostavne counter aplikacije</a></li>
 <li><a href="#minimalni-primjer-vue-aplikacije">Minimalni primjer Vue aplikacije</a></li>
 </ul>
 </li>
@@ -461,7 +463,7 @@ Visual Studio-like style based on original C# coloring by Jason Diamond <jason@d
 </li>
 <li><a href="#tailwind">Tailwind</a>
 <ul>
-<li><a href="#prednosti-tailwind-a">Prednosti Tailwind-a</a>
+<li><a href="#prednosti-tailwinda">Prednosti Tailwinda</a>
 <ul>
 <li><a href="#izravno-pisanje-u-class-atributu">Izravno pisanje u class atributu</a></li>
 <li><a href="#lak%C5%A1e-odr%C5%BEavanje-k%C3%B4da">Lakše održavanje kôda</a></li>
@@ -469,11 +471,15 @@ Visual Studio-like style based on original C# coloring by Jason Diamond <jason@d
 <li><a href="#konfiguracija">Konfiguracija</a></li>
 </ul>
 </li>
-<li><a href="#instalacija-tailwind-a">Instalacija Tailwind-a</a></li>
+<li><a href="#instalacija-tailwinda">Instalacija Tailwinda</a></li>
 <li><a href="#tailwind-osnove">Tailwind Osnove</a>
 <ul>
 <li><a href="#boje">Boje</a>
-- <a href="#lista-svih-boja">Lista svih boja:</a></li>
+- <a href="#lista-svih-boja">Lista svih boja:</a>
+<ul>
+<li><a href="#gradijenti">Gradijenti</a></li>
+</ul>
+</li>
 <li><a href="#text">Text</a>
 <ul>
 <li><a href="#boja-teksta">Boja teksta</a></li>
@@ -483,11 +489,23 @@ Visual Studio-like style based on original C# coloring by Jason Diamond <jason@d
 <li><a href="#prelom-teksta">Prelom teksta</a></li>
 </ul>
 </li>
-<li><a href="#veli%C4%8Dine">Veličine</a></li>
+<li><a href="#veli%C4%8Dine">Veličine</a>
+<ul>
+<li><a href="#zaobljenost">Zaobljenost</a></li>
+</ul>
+</li>
 <li><a href="#razmaci">Razmaci</a></li>
 <li><a href="#flex">Flex</a>
 <ul>
 <li><a href="#kako-centrirati-div">Kako centrirati div?</a></li>
+</ul>
+</li>
+<li><a href="#prikaz-slike">Prikaz slike</a></li>
+<li><a href="#prefiksi">Prefiksi</a>
+<ul>
+<li><a href="#stanja">Stanja</a></li>
+<li><a href="#responzivne-klase">Responzivne klase</a></li>
+<li><a href="#tamni-na%C4%8Din">Tamni način</a></li>
 </ul>
 </li>
 </ul>
@@ -497,8 +515,7 @@ Visual Studio-like style based on original C# coloring by Jason Diamond <jason@d
 <li><a href="#samostalni-zadatak-za-vje%C5%BEbu-1">Samostalni zadatak za vježbu 1</a></li>
 </ul>
 <!-- /TOC -->
-<br>
-<br>
+<div class="page"></div>
 <h2 id="uvod">Uvod</h2>
 <p>Vue.js je JavaScript okvir koji se koristi za izradu dinamičkih i interaktivnih web aplikacija temeljenih na promjenjivim podacima (data-driven). Omogućuje učinkovito ažuriranje korisničkog sučelja bez potrebe za ponovnim učitavanjem cijele stranice.</p>
 <h3 id="single-page-application-spa">Single Page Application (SPA)</h3>
@@ -512,8 +529,7 @@ Visual Studio-like style based on original C# coloring by Jason Diamond <jason@d
 </ul>
 <p>Ovakav pristup poboljšava korisničko iskustvo jer aplikacija radi brzo i fluidno, bez zastoja uzrokovanih ponovnim učitavanjem stranice.</p>
 <div class="page"></div>
-<hr>
-<h4 id="primjer-jednostavne-vounter-aplikacije">Primjer jednostavne vounter aplikacije</h4>
+<h4 id="primjer-jednostavne-counter-aplikacije">Primjer jednostavne counter aplikacije</h4>
 <p><em>U sljedećem primjeru implementiran je jednostavan brojač koji se inkrementira klikom na gumb:</em></p>
 <pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"hr"</span>&gt;</span>
@@ -549,9 +565,8 @@ Visual Studio-like style based on original C# coloring by Jason Diamond <jason@d
 <li>ažuriranje <em>vrijednosti</em> unutar <strong>DOM-a</strong></li>
 </ul>
 <div class="page"></div>
-<hr>
 <h4 id="minimalni-primjer-vue-aplikacije">Minimalni primjer Vue aplikacije</h4>
-<p><em>Ako bismo istu funkcionalnost implementirali pomoću <strong>Vue.js</strong>, onda ne moramo ručno ažurirati DOM:</em></p>
+<p><em>Ako bismo istu funkcionalnost implementirali s pomoću <strong>Vue.js</strong>, onda ne moramo ručno ažurirati DOM:</em></p>
 <pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"hr"</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
@@ -610,7 +625,7 @@ Visual Studio-like style based on original C# coloring by Jason Diamond <jason@d
 <p><img src="Slike/VueListComponent.png" alt="alt text"></p>
 <p>Na ovaj način izdvajamo kôd stavke u zasebnu Vue datoteku koju poslije možemo koristiti u drugim dijelovima aplikacije. Takve zasebne Vue datoteke nazivaju se Single-File Components.</p>
 <blockquote>
-<p>Komponente se obično pišu u formatu koji nalikuje HTML-u, poznatom kao <strong>Single-File Component</strong> <em>(SFC)</em>, odnosno <code>*.vue</code> datoteke. Kao što ime sugerira, SFC encapsulira logiku komponente (JavaScript), predložak (HTML) i stilove (CSS) u jednoj datoteci.</p>
+<p>Komponente se obično pišu u formatu koji nalikuje HTML-u, poznatom kao <strong>Single-File Component</strong> <em>(SFC)</em>, odnosno <code>*.vue</code> datoteke. Kao što ime sugerira, SFC enkapsulira logiku komponente (JavaScript), predložak (HTML) i stilove (CSS) u jednoj datoteci.</p>
 </blockquote>
 <div class="page"></div>
 <h3 id="primjer-liste-vo%C4%87a-i-liste-povr%C4%87a-koriste%C4%87i-vue-i-komponente">Primjer liste voća i liste povrća koristeći Vue i komponente</h3>
@@ -642,7 +657,7 @@ Visual Studio-like style based on original C# coloring by Jason Diamond <jason@d
 <p><strong>Instalacija Node.js</strong></p>
 <ul>
 <li>Potrebno je preuzet i instalirat Node.js verziju <code>&gt;=18.3</code> s <a href="https://nodejs.org">nodejs.org</a></li>
-<li>Instalacija se provjerava pomoću naredbe:<pre class="hljs"><code><div>npm -v
+<li>Instalacija se provjerava s pomoću naredbe:<pre class="hljs"><code><div>npm -v
 </div></code></pre>
 </li>
 </ul>
@@ -650,7 +665,7 @@ Visual Studio-like style based on original C# coloring by Jason Diamond <jason@d
 <li>
 <p><strong>Kreiranje Vue projekta</strong></p>
 <ul>
-<li>Vue projekt kreira se pomoću naredbe:<pre class="hljs"><code><div>npm create vue@latest
+<li>Vue projekt kreira se s pomoću naredbe:<pre class="hljs"><code><div>npm create vue@latest
 </div></code></pre>
 </li>
 </ul>
@@ -711,22 +726,21 @@ Visual Studio-like style based on original C# coloring by Jason Diamond <jason@d
 <ul>
 <li>
 <p><strong>Vue - Official</strong> - podrška za Vue sintaksu</p>
-<p><img src="Slike/VueOfficial.png" alt="alt text"></p>
+<p><img src="Slike/VueOfficial.png" width="360" alt="alt text"></p>
 </li>
 <li>
-<p><strong>vscode-icons</strong> - ikone dadoteka i mapa</p>
-<p><img src="Slike/vscode-icons.png" alt="alt text"></p>
+<p><strong>vscode-icons</strong> - ikone datoteka i mapa</p>
+<p><img src="Slike/vscode-icons.png" width="360" alt="alt text"></p>
 </li>
 <li>
 <p><strong>Tailwind CSS IntelliSense</strong></p>
-<p><img src="Slike/TailwindCSSIntelliSense.png" alt="alt text"></p>
+<p><img src="Slike/TailwindCSSIntelliSense.png" width="360" alt="alt text"></p>
 </li>
 </ul>
 <h2 id="struktura-projekta">Struktura projekta</h2>
 <p><em>Struktura novokreiranog projekta izgleda kao što je prikazano na slici ispod:</em></p>
 <img src="Slike/VueCreateFileStructure.png" width="640"/>
-<p>Trenutno projekt sadrži unaprijed definirane datoteke i komponente koje služe kao primjer jednostavne aplikacije s linkovima na dokumentaciju i druge korisne materijale. Budući da nam za početak treba čisti kostur aplikacije, izvršit ćemo sljedeće korake unuta <code>src</code> mape:</p>
-
+<p>Trenutačno projekt sadrži unaprijed definirane datoteke i komponente koje služe kao primjer jednostavne aplikacije s linkovima na dokumentaciju i druge korisne materijale. Budući da nam za početak treba čisti kostur aplikacije, izvršit ćemo sljedeće korake unutar <code>src</code> mape:</p>
 <div class="page"></div>
 <ol>
 <li>
@@ -752,7 +766,7 @@ Visual Studio-like style based on original C# coloring by Jason Diamond <jason@d
 <p><em><strong>Izgled <code>src</code> mape nakon izvršenih koraka:</strong></em></p>
 <p><img src="Slike/SrcCleared.png" alt="alt text"></p>
 <h3 id="appvue">App.vue</h3>
-<p><code>App.vue</code> je <strong>glavna vue komponenta</strong> koja se koristi za montira. Unutar nje ubacujemo sve druge komponente i rute na druge stranice aplikacije koje budemo kasnije radili pomoću <code>router</code> paketa.</p>
+<p><code>App.vue</code> je <strong>glavna vue komponenta</strong> koja se koristi za montira. Unutar nje ubacujemo sve druge komponente i rute na druge stranice aplikacije koje budemo kasnije radili s pomoću <code>router</code> paketa.</p>
 <p><em>Izgled <code>App.vue</code> nakon čišćenja:</em></p>
 <pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="actionscript">
     <span class="hljs-comment">// JS - logika komponente</span>
@@ -773,8 +787,8 @@ Visual Studio-like style based on original C# coloring by Jason Diamond <jason@d
 </div></code></pre>
 <p><img src="Slike/HelloWorld.png" alt="alt text"></p>
 <h3 id="mainjs">main.js</h3>
-<p><code>Main.js</code> je glavna <strong>JavaScript</strong> dadoteka unutar koje se inicijalizira i montira vue aplikacija.</p>
-<p><em>Struktura <code>main.js</code> dadoteke:</em></p>
+<p><code>Main.js</code> je glavna <strong>JavaScript</strong> datoteka unutar koje se inicijalizira i montira vue aplikacija.</p>
+<p><em>Struktura <code>main.js</code> datoteke:</em></p>
 <pre class="hljs"><code><div><span class="hljs-keyword">import</span> <span class="hljs-string">'./assets/main.css'</span>      <span class="hljs-comment">// učitavanje glavnog stila aplikacije</span>
                                 <span class="hljs-comment">// koji se primjenjuje nad cijelom aplikacijom</span>
 
@@ -784,7 +798,7 @@ Visual Studio-like style based on original C# coloring by Jason Diamond <jason@d
 createApp(App).mount(<span class="hljs-string">'#app'</span>)    <span class="hljs-comment">// kreiranje vue instance koristeći App.vue komponentu</span>
                                 <span class="hljs-comment">// montiranje komponente na div s id-em #app</span>
 </div></code></pre>
-<p><em>Ako pogledamo <code>index.html</code> dadoteku:</em></p>
+<p><em>Ako pogledamo <code>index.html</code> datoteku:</em></p>
 <pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">""</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
@@ -804,7 +818,6 @@ createApp(App).mount(<span class="hljs-string">'#app'</span>)    <span class="hl
 </div></code></pre>
 <p>Vidimo da dokument sadrži <code>div</code> s <strong>id</strong>-jem <code>#app</code>, na koji <em>Vue</em> montira komponentu <code>App.vue</code>. Također, sadrži <code>module script</code> koji učitava <code>main.js</code>, čime se pokreće sama aplikacija.</p>
 <p>Iako Vue omogućuje kreiranje i montiranje više instanci istovremeno, u praksi se obično koristi samo jedna. Također, ime glavne komponente i <code>id</code> elementa na koji se montira mogu biti proizvoljni, ali se pridržavamo standardne konvencije.</p>
-
 <div class="page"></div>
 <p><em>Primjer s dvije instance:</em></p>
 <pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
@@ -887,9 +900,11 @@ createApp(MojApp).mount(<span class="hljs-string">'#druga_app'</span>)
 <p><img src="Slike/HelloWorldFancy.gif" alt="alt text"></p>
 <p><em>Primjer koristeći <strong>Tailwind</strong>:</em></p>
 <pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-gradient-to-br from-indigo-950 to-gray-950 h-full flex justify-center items-center"</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"transition-all duration-300 ease-in-out text-gray-100 font-mono text-6xl font-bold
-            hover:text-cyan-400 hover:scale-125 hover:tracking-[0.25rem]"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-gradient-to-br from-indigo-950 to-gray-950 h-full
+        flex justify-center items-center"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hover:text-cyan-400 hover:scale-125 hover:tracking-[0.25rem]
+            text-gray-100 font-mono text-6xl font-bold
+            transition-all duration-300 ease-in-out"</span>&gt;</span>
             Hello, World!
         <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
@@ -899,7 +914,9 @@ createApp(MojApp).mount(<span class="hljs-string">'#druga_app'</span>)
 <span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
 </div></code></pre>
 <p>Možemo uočiti da smo u drugom primjer potpuno ispraznili style i pisali gotove dinamičke <em>Tailwind</em> <strong>klase</strong> direktno u <code>template</code>.</p>
-<h2 id="prednosti-tailwind-a">Prednosti Tailwind-a</h2>
+
+<div class="page"></div>
+<h2 id="prednosti-tailwinda">Prednosti Tailwinda</h2>
 <h3 id="izravno-pisanje-u-class-atributu">Izravno pisanje u class atributu</h3>
 <p>Tailwind omogućuje izravno stiliziranje u <code>class</code> atributu bez potrebe za pisanjem zasebnog CSS-a. Umjesto definiranja zasebnih CSS pravila za svaki element, Tailwind koristi unaprijed definirane klase.</p>
 <p><em>Ako pišemo CSS klasu za povećat veličinu fonta:</em></p>
@@ -919,7 +936,7 @@ createApp(MojApp).mount(<span class="hljs-string">'#druga_app'</span>)
 <h3 id="lak%C5%A1e-odr%C5%BEavanje-k%C3%B4da">Lakše održavanje kôda</h3>
 <p>Smanjuje potrebu za pisanjem dodatnih CSS datoteka i olakšava održavanje kôda. Nema potrebe za traženjem gdje su definirani stilovi za određeni element jer se svi stilovi nalaze unutar <code>class</code> atributa tog elementa. Budući da svaka Tailwind klasa primjenjuje samo jedno svojstvo, stilizacija je jasna, modularna i lako prilagodljiva.</p>
 <h3 id="jednostavna-responzivnost">Jednostavna responzivnost</h3>
-<p>Tailwind nudi jednostavan sustav za prilagodbu različitim veličinama ekrana pomoću prefiksa (<code>sm:</code>, <code>md:</code>, <code>lg:</code>, <code>xl:</code>). Nema potrebe za pisanjem posebnih <code>@media</code> upita – sve se rješava unutar <code>class</code> atributa</p>
+<p>Tailwind nudi jednostavan sustav za prilagodbu različitim veličinama ekrana s pomoću prefiksa (<code>sm:</code>, <code>md:</code>, <code>lg:</code>, <code>xl:</code>). Nema potrebe za pisanjem posebnih <code>@media</code> upita – sve se rješava unutar <code>class</code> atributa.</p>
 <div class="page"></div>
 <p><em>Koristeći tradicionalan media query:</em></p>
 <pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
@@ -973,7 +990,8 @@ createApp(MojApp).mount(<span class="hljs-string">'#druga_app'</span>)
 <p><em>Koristeći Tailwind responzivni dizajn:</em></p>
 <pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"h-screen flex justify-center items-center bg-gray-800"</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-white font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-white font-bold
+            text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl"</span>&gt;</span>
             Prilagodljiv tekst
         <span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
@@ -994,7 +1012,7 @@ createApp(MojApp).mount(<span class="hljs-string">'#druga_app'</span>)
     <span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
 </div></code></pre>
-<h2 id="instalacija-tailwind-a">Instalacija Tailwind-a</h2>
+<h2 id="instalacija-tailwinda">Instalacija Tailwinda</h2>
 <p>Tailwind ćemo integrirati i instalirati unutar našeg Vue projekta koristeći <strong>Vite</strong>, koji je već uključen prilikom kreiranja Vue aplikacije. Instalaciju Tailwinda možete i pratiti na njihovoj stranici: <a href="https://tailwindcss.com/docs/installation/using-vite">https://tailwindcss.com/docs/installation/using-vite</a></p>
 <p>Koraci za instalaciju:</p>
 <ol>
@@ -1006,14 +1024,16 @@ createApp(MojApp).mount(<span class="hljs-string">'#druga_app'</span>)
 <pre class="hljs"><code><div>npm install tailwindcss @tailwindcss/vite
 </div></code></pre>
 <ul>
-<li>instalacija se vrši pomoću naredbe <code>npm</code>, budući da zapravo instaliramo <strong>npm paket</strong>. U kasnijim predavanjima koristit ćemo isti postupak za instalaciju drugih paketa koje ćemo upotrebljavati u projektu.</li>
+<li>instalacija se vrši s pomoću naredbe <code>npm</code>, budući da zapravo instaliramo <strong>npm paket</strong>. U kasnijim predavanjima koristit ćemo isti postupak za instalaciju drugih paketa koje ćemo upotrebljavati u projektu.</li>
 </ul>
 </li>
-<li>
+</ol>
 <div class="page"></div>
+<ol start="2">
+<li>
 <p>Konfiguracija Vite plugina</p>
 <ul>
-<li>unutar Vite konfiguracijske dadoteke <code>vite.config.js</code> dodajemo sljedeći kôd</li>
+<li>unutar Vite konfiguracijske datoteke <code>vite.config.js</code> dodajemo sljedeći kôd</li>
 </ul>
 <pre class="hljs"><code><div><span class="hljs-keyword">import</span> { fileURLToPath, URL } <span class="hljs-keyword">from</span> <span class="hljs-string">'node:url'</span>
 
@@ -1038,7 +1058,7 @@ createApp(MojApp).mount(<span class="hljs-string">'#druga_app'</span>)
 <li>
 <p>Učitavanje Tailwind CSS-a</p>
 <ul>
-<li>unutar <code>main.css</code> dadoteke dodajemo sljedeću liniju kôda čime uključujemo Tailwind CSS</li>
+<li>unutar <code>main.css</code> datoteke dodajemo sljedeću liniju kôda čime uključujemo Tailwind CSS</li>
 </ul>
 <pre class="hljs"><code><div><span class="hljs-keyword">@import</span> <span class="hljs-string">"tailwindcss"</span>;
 </div></code></pre>
@@ -1050,20 +1070,22 @@ createApp(MojApp).mount(<span class="hljs-string">'#druga_app'</span>)
 <p>Fix za Tailwind CSS IntelliSense</p>
 <ul>
 <li>ako smo instalirali ekstenziju <code>Tailwind CSS IntelliSense</code> postoji velika šansa da neće raditi nakon prva 3 koraka</li>
-<li>da bi ekstenzija proradila potrebno je dodati praznu dadoteku <code>tailwind.config.js</code> u projekt</li>
-<li>nakon dodavanje ove dadoteke ekstenzija bi trebala raditi kako spada</li>
+<li>da bi ekstenzija proradila potrebno je dodati praznu datoteku <code>tailwind.config.js</code> u projekt</li>
+<li>nakon dodavanje ove datoteke ekstenzija bi trebala raditi kako spada</li>
 </ul>
 <p><img src="Slike/TailwindIntelliSense.png" alt="alt text"></p>
 </li>
 </ol>
+<br>
+<br>
 <h2 id="tailwind-osnove">Tailwind Osnove</h2>
 <p>U ovom djelu ćemo proći osnove Tailwind klasa kao što su <em>boje, text, veličine, razmaci, flex, stanja, responzivnost i teme</em>. Sva dokumentacija Tailwinda dostupna je na stranici: <a href="https://tailwindcss.com/docs/styling-with-utility-classes">https://tailwindcss.com/docs/styling-with-utility-classes</a></p>
 <h3 id="boje">Boje</h3>
-<p>Tailwind dolazi s mnogo predefiniranih boja koje se mogu direktno koristiti za oblikovanje teksta, pozadina, gradijenata i obruba. Za korištenje boje, koristi se <code>ime atributa</code>, <code>naziv boje</code> i <code>broj svjetline</code> (<em>manji broj označava svjetliju boju, veći broj tamniju</em>).</p>
+<p>Tailwind dolazi s mnogo predefiniranih boja koje se mogu direktno koristiti za oblikovanje teksta, pozadina, gradijenata i obruba. Za korištenje boje, koristi se <code>ime atributa</code>, <code>naziv boje</code>, <code>broj svjetline</code> (<em>manji broj označava svjetliju boju, veći broj tamniju</em>) i <code>opcionalna jačina prozirnosti u postocima</code> (<em>manji broj = prozirnije, 0 = potpuno prozirno, 100 = potpuno vidljivo</em>).</p>
 <p><em>Primjer korištenja boja:</em></p>
 <pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"
     text-lime-300
-    bg-zinc-800
+    bg-zinc-800/90
     border-sky-700
     border-2
 "</span>&gt;</span>
@@ -1415,6 +1437,67 @@ createApp(MojApp).mount(<span class="hljs-string">'#druga_app'</span>)
 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 </div></code></pre>
 <div class="page"></div>
+<h4 id="gradijenti">Gradijenti</h4>
+<p>Tailwind CSS omogućuje jednostavno korištenje <strong>linearnih gradijenata</strong> putem ugrađenih klasa. Gradijenti se definiraju s pomoću 2 osnovna svojstva:</p>
+<ol>
+<li><strong>Smjer gradijenta</strong> – određuje smjer gradijenta</li>
+<li><strong>Početna, prijelazna (opcionalno) i završna boja</strong> – definiraju boje gradijenta</li>
+</ol>
+<p><em>Smjer gradijenta određuje se s pomoću <code>bg-gradient-to-&lt;smjer&gt;</code>, gdje <code>&lt;smjer&gt;</code> može biti:</em></p>
+<table>
+<thead>
+<tr>
+<th>Klasa</th>
+<th>Opis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>bg-gradient-to-t</code></td>
+<td>Gradijent od dolje prema gore</td>
+</tr>
+<tr>
+<td><code>bg-gradient-to-r</code></td>
+<td>Gradijent s lijeva na desno</td>
+</tr>
+<tr>
+<td><code>bg-gradient-to-b</code></td>
+<td>Gradijent od gore prema dolje</td>
+</tr>
+<tr>
+<td><code>bg-gradient-to-l</code></td>
+<td>Gradijent s desna na lijevo</td>
+</tr>
+<tr>
+<td><code>bg-gradient-to-tr</code></td>
+<td>Dijagonalni gradijent (dolje lijevo → gore desno)</td>
+</tr>
+<tr>
+<td><code>bg-gradient-to-tl</code></td>
+<td>Dijagonalni gradijent (dolje desno → gore lijevo)</td>
+</tr>
+<tr>
+<td><code>bg-gradient-to-br</code></td>
+<td>Dijagonalni gradijent (gore lijevo → dolje desno)</td>
+</tr>
+<tr>
+<td><code>bg-gradient-to-bl</code></td>
+<td>Dijagonalni gradijent (gore desno → dolje lijevo)</td>
+</tr>
+</tbody>
+</table>
+<p>Boje gradijenta se definiraju s pomoću <code>from-&lt;boja&gt;</code> za početnu boju i <code>to-&lt;boja&gt;</code> za završnu boju. Opcionalno, može se koristiti <code>via-&lt;boja&gt;</code> za srednju boju.</p>
+<p><strong>Primjer:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"
+    bg-gradient-to-r 
+    from-blue-500 
+    via-violet-500
+    to-green-500"</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</div></code></pre>
+<div style="width: 100%; height: 100px; border-radius: 8px; background: linear-gradient(to right, oklch(65% 0.2 250), oklch(65% 0.25 280), oklch(65% 0.2 150));"></div>
+<br>
+<div class="page"></div>
 <h3 id="text">Text</h3>
 <p>Najčešće korišteni podatak u bilo kojoj aplikaciji, koji čini većinu web stranice, jest tekst. Zato je važno da je pravilno oblikovan te da se jasno razlikuju različiti tipovi teksta, poput naslova, zaglavlja, tijela, sekcija itd.</p>
 <p>Ključni stilovi koji se najčešće koriste za oblikovanje teksta su:</p>
@@ -1560,29 +1643,31 @@ createApp(MojApp).mount(<span class="hljs-string">'#druga_app'</span>)
 </tbody>
 </table>
 <br>
+<div style="display: flex; flex-direction: column; gap: 16px;">
 <div style="display: flex; flex-wrap: wrap; gap: 16px;">
-<div style="width: 180px; text-align: left; background:rgba(60, 60, 60, 0.2); border-radius: 8px; padding: 8px;">
+<div style="width: 220px; text-align: left; background:rgba(60, 60, 60, 0.2); border-radius: 8px; padding: 8px;">
 <b>text-left</b>
 <hr>
 <div style="text-align: left;">Diam et duo accusam lorem sed et at tempor est clita. Gubergren invidunt at rebum eos et est sanctus.</div>
 </div>
-<div style="width: 180px; text-align: center; background:rgba(60, 60, 60, 0.2); border-radius: 8px; padding: 8px;">
+<div style="width: 220px; text-align: center; background:rgba(60, 60, 60, 0.2); border-radius: 8px; padding: 8px;">
 <b>text-center</b>
 <hr>
 <div style="text-align: center;">Diam et duo accusam lorem sed et at tempor est clita. Gubergren invidunt at rebum eos et est sanctus.</div>
 </div>
 </div>
-<br>
+
 <div style="display: flex; flex-wrap: wrap; gap: 16px;">
-<div style="width: 180px; text-align: right; background:rgba(60, 60, 60, 0.2); border-radius: 8px; padding: 8px;">
+<div style="width: 220px; text-align: right; background:rgba(60, 60, 60, 0.2); border-radius: 8px; padding: 8px;">
 <b>text-right</b>
 <hr>
 <div style="text-align: right;">Diam et duo accusam lorem sed et at tempor est clita. Gubergren invidunt at rebum eos et est sanctus.</div>
 </div>
-<div style="width: 180px; text-align: justify; background:rgba(60, 60, 60, 0.2); border-radius: 8px; padding: 8px;">
+<div style="width: 220px; text-align: justify; background:rgba(60, 60, 60, 0.2); border-radius: 8px; padding: 8px;">
 <b>text-justify</b>
 <hr>
 <div style="text-align: justify;">Diam et duo accusam lorem sed et at tempor est clita. Gubergren invidunt at rebum eos et est sanctus.</div>
+</div>
 </div>
 </div>
 <h4 id="prelom-teksta">Prelom teksta</h4>
@@ -1615,33 +1700,38 @@ createApp(MojApp).mount(<span class="hljs-string">'#druga_app'</span>)
 </tr>
 </tbody>
 </table>
-<br>
 <div class="page"></div>
+<br>
+
+<div style="display: flex; flex-direction: column; gap: 16px;">
 <div style="display: flex; flex-wrap: wrap; gap: 16px;">
 <div style="background:rgba(60, 60, 60, 0.2); border-radius: 8px; padding: 8px;">
 <b>text-wrap</b>
 <hr>
-<div style="width: 180px; text-wrap: wrap;">Vero dolore sanctus est diam sed</div>
+<div style="width: 220px; text-wrap: wrap;">Vero dolore sanctus est diam sed</div>
 </div>
 <div style="background:rgba(60, 60, 60, 0.2); border-radius: 8px; padding: 8px;">
 <b>text-nowrap</b>
 <hr>
-<div style="width: 180px;text-wrap: nowrap;">Vero dolore sanctus est diam sed</div>
+<div style="width: 220px;text-wrap: nowrap;">Vero dolore sanctus est diam sed</div>
 </div>
 </div>
-<br>
+
 <div style="display: flex; flex-wrap: wrap; gap: 16px;">
 <div style="background:rgba(60, 60, 60, 0.2); border-radius: 8px; padding: 8px;">
 <b>text-balance</b>
 <hr>
-<div style="width: 180px;text-wrap: balance;">Vero dolore sanctus est diam sed</div>
+<div style="width: 220px;text-wrap: balance;">Vero dolore sanctus est diam sed</div>
 </div>
 <div style="background:rgba(60, 60, 60, 0.2); border-radius: 8px; padding: 8px;">
 <b>text-pretty</b>
 <hr>
-<div style="width: 180px;text-wrap: pretty;">Vero dolore sanctus est diam sed</div>
+<div style="width: 220px;text-wrap: pretty;">Vero dolore sanctus est diam sed</div>
 </div>
 </div>
+</div>
+<br>
+<hr>
 <h3 id="veli%C4%8Dine">Veličine</h3>
 <p>Svi elementi imaju svoju visinu i širinu, koje ponekad želimo prilagoditi prema potrebi. Elementima zato možemo namjestiti njihovu:</p>
 <ul>
@@ -1649,7 +1739,7 @@ createApp(MojApp).mount(<span class="hljs-string">'#druga_app'</span>)
 <li>maksimalnu visinu (<em>max-h</em>) i maksimalnu širinu (<em>max-w</em>)</li>
 <li>minimalnu visinu (<em>min-h</em>) i minimalnu širinu (<em>min-w</em>)</li>
 </ul>
-<p>U Tailwindu možemo na više načina mjenjati veličinu elementa, koristeći:</p>
+<p>U Tailwindu možemo na više načina mijenjati veličinu elementa, koristeći:</p>
 <ul>
 <li>fiksne veličine: <code>w-&lt;number&gt;</code>, npr. <code>w-16</code> <em>= 4 * 16 = 64px</em></li>
 <li>omjere: <code>w-&lt;fraction&gt;</code>, npr. <code>w-1/4</code> <em>= 25%</em></li>
@@ -1657,7 +1747,7 @@ createApp(MojApp).mount(<span class="hljs-string">'#druga_app'</span>)
 <li>prilagođene veličine: <code>w-[123px]</code>, <code>w-[55%]</code></li>
 </ul>
 <br>
-<p><em><code>Width</code>, <code>height</code> i <code>size</code> djele iste klase:</em></p>
+<p><em><code>Width</code>, <code>height</code> i <code>size</code> dijele iste klase:</em></p>
 <table>
 <thead>
 <tr>
@@ -1730,7 +1820,7 @@ createApp(MojApp).mount(<span class="hljs-string">'#druga_app'</span>)
 <span style="margin-top: 8px;"><b>w-min</b> - zauzima minimalnu veličinu sadržaja</span>
 <div style="padding: 0px 4px; width: min-content; background: #3c3c3c; color: #cccccc; border-radius: 8px;">Diam et duo accusam lorem</div>
 </div>
-<br>
+<div class="page"></div>
 <p><em>Primjer prilagođenih veličina:</em></p>
 <div style="display: flex; flex-direction: column; gap: 4px; padding: 8px; background:rgba(60, 60, 60, 0.2); border-radius: 16px;">
 <div style="width: 255px; text-wrap: wrap; background: #3c3c3c; color: #cccccc; border-radius: 8px; text-align: center;">w-[255px]</div>
@@ -1738,14 +1828,78 @@ createApp(MojApp).mount(<span class="hljs-string">'#druga_app'</span>)
 </div>
 <br>
 <br>
-<p>U slučaju da želimo primjeniti istu vrijednost visini i širini onda koristimo <code>size</code> klasu, npr. <code>size-24</code></p>
+<p>U slučaju da želimo primijeniti istu vrijednost visini i širini onda koristimo <code>size</code> klasu, npr. <code>size-24</code></p>
 <div style="display: flex; height: 168px; align-items: end; gap: 4px; padding: 8px; background:rgba(60, 60, 60, 0.2); border-radius: 16px;">
 <div style="width: 168px; height: 168px; background: #3c3c3c; color: #cccccc; border-radius: 8px; text-align: center; align-content: center;">size-42</div>
 <div style="width: 50%; height: 50%; background: #3c3c3c; color: #cccccc; border-radius: 8px; text-align: center; align-content: center;">size-1/2</div>
 </div>
-<hr>
+<br>
+<br>
+<h4 id="zaobljenost">Zaobljenost</h4>
+<p>Tailwind CSS omogućuje jednostavno postavljanje <strong>zaobljenih rubova</strong> (<code>border-radius</code>) s pomoću klasa <code>rounded-&lt;vrijednost&gt;</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Klasa</th>
+<th>Opis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rounded-none</code></td>
+<td><code>0px</code></td>
+</tr>
+<tr>
+<td><code>rounded-xs</code></td>
+<td><code>2px</code></td>
+</tr>
+<tr>
+<td><code>rounded-sm</code></td>
+<td><code>4px</code></td>
+</tr>
+<tr>
+<td><code>rounded-md</code></td>
+<td><code>6px</code></td>
+</tr>
+<tr>
+<td><code>rounded-lg</code></td>
+<td><code>8px</code></td>
+</tr>
+<tr>
+<td><code>rounded-xl</code></td>
+<td><code>12px</code></td>
+</tr>
+<tr>
+<td><code>rounded-2xl</code></td>
+<td><code>16px</code></td>
+</tr>
+<tr>
+<td><code>rounded-3xl</code></td>
+<td><code>24px</code></td>
+</tr>
+<tr>
+<td><code>rounded-full</code></td>
+<td><code>9999px</code>, koristi se za kružne oblike</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px;">
+    <div style="width: 64px; height: 64px; background: #3c3c3c; color: #cccccc; border-radius: 0px; text-align: center; align-content: center;">none</div>
+    <div style="width: 64px; height: 64px; background: #3c3c3c; color: #cccccc; border-radius: 2px; text-align: center; align-content: center;">xs</div>
+    <div style="width: 64px; height: 64px; background: #3c3c3c; color: #cccccc; border-radius: 4px; text-align: center; align-content: center;">sm</div>
+    <div style="width: 64px; height: 64px; background: #3c3c3c; color: #cccccc; border-radius: 6px; text-align: center; align-content: center;">md</div>
+    <div style="width: 64px; height: 64px; background: #3c3c3c; color: #cccccc; border-radius: 8px; text-align: center; align-content: center;">lg</div>
+    <div style="width: 64px; height: 64px; background: #3c3c3c; color: #cccccc; border-radius: 12px; text-align: center; align-content: center;">xl</div>
+    <div style="width: 64px; height: 64px; background: #3c3c3c; color: #cccccc; border-radius: 16px; text-align: center; align-content: center;">2xl</div>
+    <div style="width: 64px; height: 64px; background: #3c3c3c; color: #cccccc; border-radius: 24px; text-align: center; align-content: center;">3xl</div>
+    <div style="width: 64px; height: 64px; background: #3c3c3c; color: #cccccc; border-radius: 9999px; text-align: center; align-content: center;">full</div>
+</div>
+<br>
+<div class="page"></div>
 <h3 id="razmaci">Razmaci</h3>
-<p>Kod stiliziranja elemenata često je potrebno definirati razmake između njih ili unutar njih. U Tailwindu, razmaci se mogu kontrolirati pomoću:</p>
+<p>Kod stiliziranja elemenata često je potrebno definirati razmake između njih ili unutar njih. U Tailwindu, razmaci se mogu kontrolirati s pomoću:</p>
 <ul>
 <li><strong>margin</strong> (<em>m</em>) – vanjski razmak oko elementa</li>
 <li><strong>padding</strong> (<em>p</em>) – unutarnji razmak unutar elementa</li>
@@ -1756,7 +1910,6 @@ createApp(MojApp).mount(<span class="hljs-string">'#druga_app'</span>)
 <li>Predefinirane klase: <code>m-auto</code>, <code>p-0</code>, <code>p-px</code></li>
 <li>Prilagođene veličine: <code>m-[35px]</code></li>
 </ul>
-<br>
 <p><em>Primjena razmaka:</em></p>
 <table>
 <thead>
@@ -1785,7 +1938,6 @@ createApp(MojApp).mount(<span class="hljs-string">'#druga_app'</span>)
 </tbody>
 </table>
 <br>
-<div class="page"></div>
 <p><em>Razmaci mogu biti primijenjeni na specifične strane:</em></p>
 <table>
 <thead>
@@ -1821,8 +1973,7 @@ createApp(MojApp).mount(<span class="hljs-string">'#druga_app'</span>)
 </tr>
 </tbody>
 </table>
-<br>
-<hr>
+<div class="page"></div>
 <p><em>Primjer vanjskog razmaka:</em></p>
 <div style="display: flex;  flex-wrap: wrap; gap: 8px;">
 <div style="height: 180px; width: 180px; padding: 8px; background: rgba(60, 60, 60, 0.2); border-radius: 16px;">
@@ -1888,13 +2039,13 @@ createApp(MojApp).mount(<span class="hljs-string">'#druga_app'</span>)
 </div>
 <div class="page"></div>
 <h3 id="flex">Flex</h3>
-<p>Flexbox je moćan alat za raspoređivanje i poravnavanje elemenata. U Tailwindu, fleksibilni raspored se kontrolira pomoću klase <code>flex</code>:</p>
+<p>Flexbox je moćan alat za raspoređivanje i poravnavanje elemenata. U Tailwindu, fleksibilni raspored se kontrolira s pomoću klase <code>flex</code>:</p>
 <ul>
 <li><strong><code>flex</code></strong> – označava da je element fleksibilan</li>
 <li><strong><code>flex-row</code></strong> – postavlja smjer elemenata u horizontalno (<em>default</em>)</li>
 <li><strong><code>flex-col</code></strong> – postavlja smjer elemenata u vertikalno</li>
 </ul>
-<p>Razmak između elemenata unutar roditelja s flex klasom se definira pomoću klase <strong><code>gap</code></strong>:</p>
+<p>Razmak između elemenata unutar roditelja s flex klasom se definira s pomoću klase <strong><code>gap</code></strong>:</p>
 <ul>
 <li><code>gap-&lt;number&gt;</code> = number * 4px</li>
 <li>npr. <code>gap-2</code>, <code>gap-5</code> (razmak od 8px, 20px)</li>
@@ -1926,6 +2077,8 @@ createApp(MojApp).mount(<span class="hljs-string">'#druga_app'</span>)
     <div style="width: fit-content; background: oklab(0.552 0.00439355 -0.015385 / 0.5); padding: 0px 16px; border-radius: 4px;"> 2 </div>
     <div style="width: fit-content; background: oklab(0.552 0.00439355 -0.015385 / 0.5); padding: 0px 16px; border-radius: 4px;"> 3 </div>
 </div>
+<br>
+<br>
 <div class="page"></div>
 <p><em>Poravnanje unutar flex elementa na glavnoj osi:</em></p>
 <table>
@@ -2013,6 +2166,7 @@ createApp(MojApp).mount(<span class="hljs-string">'#druga_app'</span>)
     </div>
 </div>
 </div>
+<br>
 <p><em>Poravnanje unutar flex elementa na poprečnoj osi:</em></p>
 <table>
 <thead>
@@ -2065,10 +2219,10 @@ createApp(MojApp).mount(<span class="hljs-string">'#druga_app'</span>)
 </div>
 <br>
 <br>
-<p>Kada imamo previše elemenata unutar roditelja i oni počnu izlaziti izvan njegovih granica, možemo koristiti svojstvo <strong><code>flex-wrap</code></strong> kako bismo omogućili elementima da pređu u novi red umjesto da izlaze van roditelja.</p>
-<div style="display: flex; justify-content: space-evenly; gap: 4px;">
+<p>Kada imamo previše elemenata unutar roditelja i oni počnu izlaziti izvan njegovih granica, možemo koristiti svojstvo <strong><code>flex-wrap</code></strong> kako bismo omogućili elementima da pređu u novi red umjesto da izlaze roditelja.</p>
 <div style="display: flex; flex-direction: column; gap: 4px;">
-    <b style="display: flex; justify-content: center;">flex-nowrap</b>
+<div style="display: flex; gap: 4px;">
+    <b style="width: 150px; display: flex; align-items: center;">flex-nowrap</b>
     <div style="width: 150px; display: flex; gap: 8px; background: oklab(0.552 0.00439355 -0.015385 / 0.5); padding: 8px; border-radius: 8px;">
         <div style="background: oklab(0.552 0.00439355 -0.015385 / 0.5); padding: 0px 16px; border-radius: 4px;"> 1 </div>
         <div style="background: oklab(0.552 0.00439355 -0.015385 / 0.5); padding: 0px 16px; border-radius: 4px;"> 2 </div>
@@ -2077,8 +2231,8 @@ createApp(MojApp).mount(<span class="hljs-string">'#druga_app'</span>)
         <div style="background: oklab(0.552 0.00439355 -0.015385 / 0.5); padding: 0px 16px; border-radius: 4px;"> 5 </div>
     </div>
 </div>
-<div style="display: flex; flex-direction: column; gap: 4px;">
-    <b style="display: flex; justify-content: center;">flex-wrap</b>
+<div style="display: flex; gap: 4px;">
+    <b style="width: 150px; display: flex; align-items: center;">flex-wrap</b>
     <div style="width: 150px; display: flex; flex-wrap: wrap; gap: 8px; background: oklab(0.552 0.00439355 -0.015385 / 0.5); padding: 8px; border-radius: 8px;">
         <div style="background: oklab(0.552 0.00439355 -0.015385 / 0.5); padding: 0px 16px; border-radius: 4px;"> 1 </div>
         <div style="background: oklab(0.552 0.00439355 -0.015385 / 0.5); padding: 0px 16px; border-radius: 4px;"> 2 </div>
@@ -2088,6 +2242,7 @@ createApp(MojApp).mount(<span class="hljs-string">'#druga_app'</span>)
     </div>
 </div>
 </div>
+<br>
 <h4 id="kako-centrirati-div">Kako centrirati div?</h4>
 <pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"flex justify-center items-center"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
@@ -2095,10 +2250,184 @@ createApp(MojApp).mount(<span class="hljs-string">'#druga_app'</span>)
     <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 </div></code></pre>
-<p><img src="Slike/flex-center-div-comic.png" alt="alt text" height="600px"></p>
+<p><img src="Slike/flex-center-div-comic.png" alt="alt text" height="600"></p>
 <br>
-<p>stanja, responzivnost i teme</p>
+<h3 id="prikaz-slike">Prikaz slike</h3>
+<p>Prilagođavanje prikaza slika vrši se s pomoću <code>object-fit</code> svojstava. Ove klase određuju kako se sadržaj slike prilagođava unutar okvira.</p>
+<table>
+<thead>
+<tr>
+<th>Klasa</th>
+<th>Opis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>object-contain</code></td>
+<td>Slika se prilagođava kako bi cijela stala unutar okvira, zadržavajući omjer stranica.</td>
+</tr>
+<tr>
+<td><code>object-cover</code></td>
+<td>Slika ispunjava cijeli okvir i može biti izrezana kako bi zadržala omjer stranica.</td>
+</tr>
+<tr>
+<td><code>object-fill</code></td>
+<td>Slika se rasteže tako da ispuni cijeli okvir, bez zadržavanja omjera stranica.</td>
+</tr>
+<tr>
+<td><code>object-none</code></td>
+<td>Slika zadržava izvornu veličinu i ne prilagođava se okviru.</td>
+</tr>
+</tbody>
+</table>
+<div style="width: 100%; justify-content: flex-start; display: flex; gap: 8px;">
+<div style="justify-content: flex-start; display: flex; flex-direction: column; gap: 4px;">
+<span style="width: 100%; text-align: center;">object-contain</span>
+<img style="background: rgba(60, 60, 60, 0.2); border-radius: 4px;
+    height: 100px; width: 250px;
+    object-fit: contain;" src="./Slike/ObjectFitImage.png">
+</div>
+<div style="justify-content: flex-start; display: flex; flex-direction: column; gap: 4px;">
+<span style="width: 100%; text-align: center;">object-cover</span>
+<img style="background: rgba(60, 60, 60, 0.2); border-radius: 4px;
+    height: 100px; width: 250px;
+    object-fit: cover;" src="./Slike/ObjectFitImage.png">
+</div>
+<div style="justify-content: flex-start; display: flex; flex-direction: column; gap: 4px;">
+<span style="width: 100%; text-align: center;">object-fill</span>
+<img style="background: rgba(60, 60, 60, 0.2); border-radius: 4px;
+    height: 100px; width: 250px;
+    object-fit: fill;" src="./Slike/ObjectFitImage.png">
+</div>
+<div style="justify-content: flex-start; display: flex; flex-direction: column; gap: 4px;">
+<span style="width: 100%; text-align: center;">object-none</span>
+<img style="background: rgba(60, 60, 60, 0.2); border-radius: 4px;
+    height: 100px; width: 250px;
+    object-fit: none;" src="./Slike/ObjectFitImage.png">
+</div>
+</div>
+<br>
+<h3 id="prefiksi">Prefiksi</h3>
+<p>Tailwind omogućuje definiranje <strong>interaktivnih stanja</strong>, <strong>responzivnih klasa</strong> i <strong>tematskih prilagodbi</strong> s pomoću <strong>prefiksa</strong>.</p>
+<h4 id="stanja">Stanja</h4>
+<table>
+<thead>
+<tr>
+<th>Prefiks</th>
+<th>Opis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>hover:</code></td>
+<td>Aktivira se kada korisnik pređe mišem preko elementa</td>
+</tr>
+<tr>
+<td><code>focus:</code></td>
+<td>Aktivira se kada element dobije fokus (npr. klikom ili <code>Tab</code> tipkom)</td>
+</tr>
+<tr>
+<td><code>active:</code></td>
+<td>Aktivira se kada je element trenutačno pritisnut (kliknut)</td>
+</tr>
+<tr>
+<td><code>disabled:</code></td>
+<td>Aktivira se kada je element onemogućen (<code>disabled</code> atribut)</td>
+</tr>
+</tbody>
+</table>
+<p><em>Primjer: Dugme s hover efektom</em></p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"</span>&gt;</span>
+  Klikni me
+<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+</div></code></pre>
+<ul>
+<li>Kada korisnik prijeđe mišem, boja pozadine postaje tamnoplava</li>
+</ul>
+<h4 id="responzivne-klase">Responzivne klase</h4>
+<p>Tailwind koristi <strong>mobilni pristup</strong> (<em>mobile-first</em>), što znači da su osnovne klase primjenjive na sve uređaje, a <code>sm:</code>, <code>md:</code>, <code>lg:</code> služe za prilagodbu na većim ekranima</p>
+<table>
+<thead>
+<tr>
+<th>Prefiks</th>
+<th>Širina ekrana</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sm:</code></td>
+<td>min. 640px</td>
+</tr>
+<tr>
+<td><code>md:</code></td>
+<td>min. 768px</td>
+</tr>
+<tr>
+<td><code>lg:</code></td>
+<td>min. 1024px</td>
+</tr>
+<tr>
+<td><code>xl:</code></td>
+<td>min. 1280px</td>
+</tr>
+<tr>
+<td><code>2xl:</code></td>
+<td>min. 1536px</td>
+</tr>
+</tbody>
+</table>
+<p><em>Primjer: Responzivno podešavanje veličine teksta</em></p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl"</span>&gt;</span>
+  Ovaj tekst raste na većim ekranima.
+<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+</div></code></pre>
+<ul>
+<li>Tekst se povećava ovisno o veličini ekrana</li>
+</ul>
+<h4 id="tamni-na%C4%8Din">Tamni način</h4>
+<p>Tailwind omogućuje jednostavno definiranje stilova za tamni način s pomoću <code>dark:</code> prefiksa. Da biste aktivirali tamni stil, dodajte klasu <code>dark</code> na najviši DOM element. Klasa <code>dark</code> može se dinamički dodavati i uklanjati za prebacivanje između tamne i svijetle teme.</p>
+<p>Također treba uključiti podršku za tamni način u <code>main.css</code>:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">@import</span> <span class="hljs-string">"tailwindcss"</span>;
+<span class="hljs-keyword">@custom-variant</span> dark (&amp;:where(.dark, .dark *)); //<span class="hljs-selector-tag">podr</span>š<span class="hljs-selector-tag">ka</span> <span class="hljs-selector-tag">za</span> <span class="hljs-selector-tag">tamni</span> <span class="hljs-selector-tag">na</span>č<span class="hljs-selector-tag">in</span>
+</div></code></pre>
+<p><em>Vue primjer promjene tamne i svijetle teme</em></p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">"dark"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">""</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"$refs.dark.classList.toggle('dark');"</span>
+        <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-gray-100 text-gray-800 dark:bg-gray-950 dark:text-gray-300 p-4"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">b</span>&gt;</span>Pritiskom se mijenja tema<span class="hljs-tag">&lt;/<span class="hljs-name">b</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</div></code></pre>
+<div class="page"></div>
 <h1 id="samostalni-zadatak-za-vje%C5%BEbu-1">Samostalni zadatak za vježbu 1</h1>
+<blockquote>
+<p>Zadatak za dodatni bod</p>
+</blockquote>
+<ol>
+<li>
+<p>Kreirajte novi Vue projekt prema uputama iz poglavlja <a href="#postavljanje-aplikacijeprojekta">Postavljanje aplikacije/projekta</a></p>
+</li>
+<li>
+<p>Instalirajte Tailwind CSS</p>
+</li>
+<li>
+<p>U datoteci <code>App.vue</code>, unutar <code>&lt;template&gt;</code> bloka, pomoću osnovnih HTML elemenata i Tailwind klasa rekreirajte prikaz sa slike:</p>
+<p><img src="Slike/SamostalniZadatakInfo.png" alt="alt text"></p>
+<ul>
+<li>Boje, veličine i razmaci mogu biti proizvoljni</li>
+</ul>
+</li>
+<li>
+<p>Izradite GitHub repozitorij i spremite projekt</p>
+</li>
+</ol>
+<br>
+<blockquote>
+<p>[<strong>Bonus</strong>] Zadatak za dodatni bod</p>
+</blockquote>
+<ul>
+<li>Napravite responzivnost za mobitel i tamnu/svijetlu temu</li>
+</ul>
 </div>
 </body>
 </html>
