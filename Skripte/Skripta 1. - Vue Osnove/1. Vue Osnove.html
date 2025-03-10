@@ -420,7 +420,7 @@ Visual Studio-like style based on original C# coloring by Jason Diamond <jason@d
     </p>
     <img src="../Icons/Vue_1.svg" style="width: 96px; height: 96px; margin: 0px;"></img>
 </div>
-<p><strong>Posljednje ažurirano:</strong> 9. ožujka 2025.</p>
+<p><strong>Posljednje ažurirano:</strong> 10. ožujka 2025.</p>
 <h2 id="sadr%C5%BEaj">Sadržaj</h2>
 <!-- TOC -->
 <ul>
@@ -621,6 +621,7 @@ Visual Studio-like style based on original C# coloring by Jason Diamond <jason@d
 <p><img src="Slike/VueListNoComponent.png" alt="alt text"></p>
 <p>Možemo primijetiti da smo, umjesto da HTML kôd smjestimo unutar skripte, sada integrirali JavaScript unutar HTML-a. Korištenjem Vue ugrađenih direktiva, uspjeli smo pojednostaviti i učiniti kôd čitljivijim, a u isto vrijeme sačuvali istu funkcionalnost kao i prije.</p>
 <p>Sljedeći korak koji možemo poduzeti je pretvoriti pojedinačnu stavku voća u zasebnu komponentu.</p>
+<div class="page"></div>
 <h3 id="primjer-liste-vo%C4%87a-koriste%C4%87i-vue-i-komponentu">Primjer liste voća koristeći Vue i komponentu</h3>
 <p><img src="Slike/VueListComponent.png" alt="alt text"></p>
 <p>Na ovaj način izdvajamo kôd stavke u zasebnu Vue datoteku koju poslije možemo koristiti u drugim dijelovima aplikacije. Takve zasebne Vue datoteke nazivaju se Single-File Components.</p>
@@ -1045,7 +1046,8 @@ createApp(MojApp).mount(<span class="hljs-string">'#druga_app'</span>)
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> defineConfig({
     <span class="hljs-attr">plugins</span>: [
         vue(),
-        vueDevTools() <span class="hljs-comment">// &lt;- dodan plugin</span>
+        vueDevTools() <span class="hljs-comment">
+        tailwindcss() <span class="hljs-comment">// &lt;- dodati plugin</span>
     ],
     <span class="hljs-attr">resolve</span>: {
         <span class="hljs-attr">alias</span>: {
@@ -2033,7 +2035,7 @@ createApp(MojApp).mount(<span class="hljs-string">'#druga_app'</span>)
 <div style="display: flex; flex-direction: column; gap: 8px;">
     <div style="display: flex; justify-content: center;"><b>px-8</b></div>
     <div style="height: fit-content; padding: 8px 32px 8px 32px; background: rgba(60, 60, 60, 0.2); border-radius: 16px;"> 
-    <div style="display: flex; justify-content: center; align-items: center; height: 50px; width: 50px; background: rgba(60, 60, 60, 0.75); color: #cccccc; border-radius: 8px;"></div>
+    <div style="display: flex; justify-content: center; align-items: center; height: 50px; width: 50px; background: #3c3c3c; color: #cccccc; border-radius: 8px;"></div>
     </div>
 </div>
 </div>
