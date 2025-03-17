@@ -34,4 +34,4 @@ Kolegij slušaju:
 
 ## YouTube 📺
 
-To be recorded...
+1. [Uvod u Vue.js + Tailwind](https://www.youtube.com/watch?v=GxQ_rrqtgbo&list=PL3KdD7QwiDWqKtgfc-1WSPQaJB-MC_9oN) ([PI1](https://github.com/azuzic/FIPU-PI/tree/main/Skripte/Skripta%201.%20-%20Vue%20Osnove))
