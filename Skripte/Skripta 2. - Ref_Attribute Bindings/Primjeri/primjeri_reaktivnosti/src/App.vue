@@ -3,7 +3,7 @@
 </script>
 
 <template>
-    <div :class="calculatedClass()">
-        Složeni stilovi
+    <div>
+        
     </div>
 </template>
