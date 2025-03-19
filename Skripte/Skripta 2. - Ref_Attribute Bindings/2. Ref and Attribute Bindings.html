@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>1. Vue Osnove.md</title>
+		<meta
+			http-equiv="Content-type"
+			content="text/html;charset=UTF-8" />
+		<link
+			rel="preconnect"
+			href="https://fonts.googleapis.com" />
+		<link
+			rel="preconnect"
+			href="https://fonts.gstatic.com"
+			crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+			rel="stylesheet" />
+		<style>
+			/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+			/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+			:not(code *) {
+				font-family: "Poppins", sans-serif;
+			}
+            html {
+                display: flex;
+                justify-content: center;
+            }
+			body {
+				font-family: var(
+					--vscode-markdown-font-family,
+					-apple-system,
+					BlinkMacSystemFont,
+					"Segoe WPC",
+					"Segoe UI",
+					"Ubuntu",
+					"Droid Sans",
+					sans-serif
+				);
+				font-size: var(--vscode-markdown-font-size, 14px);
+				line-height: var(--vscode-markdown-line-height, 22px);
+				word-wrap: break-word;
+				color: #3b3b3b;
+                position: absolute;
+                display: flex;
+                justify-content: center;
+                width: full;
+			}
+			.body {
+                max-width: 1012px;
+			}
+
+			#code-csp-warning {
+				position: fixed;
+				top: 0;
+				right: 0;
+				color: white;
+				margin: 16px;
+				text-align: center;
+				font-size: 12px;
+				font-family: sans-serif;
+				background-color: #444444;
+				cursor: pointer;
+				padding: 6px;
+				box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
+			}
+
+			#code-csp-warning:hover {
+				text-decoration: none;
+				background-color: #007acc;
+				box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+			}
+
+			body.scrollBeyondLastLine {
+				margin-bottom: calc(100vh - 22px);
+			}
+
+			body.showEditorSelection .code-line {
+				position: relative;
+			}
+
+			body.showEditorSelection .code-active-line:before,
+			body.showEditorSelection .code-line:hover:before {
+				content: "";
+				display: block;
+				position: absolute;
+				top: 0;
+				left: -12px;
+				height: 100%;
+			}
+
+			body.showEditorSelection li.code-active-line:before,
+			body.showEditorSelection li.code-line:hover:before {
+				left: -30px;
+			}
+
+			.vscode-light.showEditorSelection .code-active-line:before {
+				border-left: 3px solid rgba(0, 0, 0, 0.15);
+			}
+
+			.vscode-light.showEditorSelection .code-line:hover:before {
+				border-left: 3px solid rgba(0, 0, 0, 0.4);
+			}
+
+			.vscode-light.showEditorSelection
+				.code-line
+				.code-line:hover:before {
+				border-left: none;
+			}
+
+			.vscode-dark.showEditorSelection .code-active-line:before {
+				border-left: 3px solid rgba(255, 255, 255, 0.4);
+			}
+
+			.vscode-dark.showEditorSelection .code-line:hover:before {
+				border-left: 3px solid rgba(255, 255, 255, 0.6);
+			}
+
+			.vscode-dark.showEditorSelection
+				.code-line
+				.code-line:hover:before {
+				border-left: none;
+			}
+
+			.vscode-high-contrast.showEditorSelection .code-active-line:before {
+				border-left: 3px solid rgba(255, 160, 0, 0.7);
+			}
+
+			.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+				border-left: 3px solid rgba(255, 160, 0, 1);
+			}
+
+			.vscode-high-contrast.showEditorSelection
+				.code-line
+				.code-line:hover:before {
+				border-left: none;
+			}
+
+			img {
+				max-width: 100%;
+				max-height: 100%;
+				border-radius: 8px;
+				filter: drop-shadow(-0 2px 2px rgba(0, 0, 0, 0.07));
+			}
+
+			a {
+				text-decoration: none;
+			}
+
+			a:hover {
+				text-decoration: underline;
+			}
+
+			a:focus,
+			input:focus,
+			select:focus,
+			textarea:focus {
+				outline: 1px solid -webkit-focus-ring-color;
+				outline-offset: -1px;
+			}
+
+			hr {
+				border: 0;
+				height: 2px;
+				border-bottom: 2px solid;
+			}
+
+			h1 {
+				padding-bottom: 0.3em;
+				line-height: 1.2;
+				border-bottom-width: 1px;
+				border-bottom-style: solid;
+			}
+
+			h1,
+			h2,
+			h3 {
+				font-weight: normal;
+			}
+
+			table {
+				border-collapse: collapse;
+			}
+
+			table > thead > tr > th {
+				text-align: left;
+				border-bottom: 1px solid;
+			}
+
+			table > thead > tr > th,
+			table > thead > tr > td,
+			table > tbody > tr > th,
+			table > tbody > tr > td {
+				padding: 5px 10px;
+			}
+
+			table > tbody > tr + tr > td {
+				border-top: 1px solid;
+			}
+
+			blockquote {
+				margin: 0 7px 0 5px;
+				padding: 0 16px 0 10px;
+				border-left-width: 5px;
+				border-left-style: solid;
+			}
+
+			code {
+				font-family: Menlo, Monaco, Consolas, "Droid Sans Mono",
+					"Courier New", monospace, "Droid Sans Fallback";
+				font-size: 1em;
+				line-height: 1.357em;
+			}
+
+			body.wordWrap pre {
+				white-space: pre-wrap;
+			}
+
+			pre:not(.hljs),
+			pre.hljs code > div {
+				padding: 16px;
+				border-radius: 3px;
+				overflow: auto;
+			}
+
+			pre code {
+				color: var(--vscode-editor-foreground);
+				tab-size: 4;
+			}
+
+			/** Theming */
+
+			.vscode-light pre {
+				background-color: rgba(220, 220, 220, 0.4);
+			}
+
+			.vscode-dark pre {
+				background-color: rgba(10, 10, 10, 0.4);
+			}
+
+			.vscode-high-contrast pre {
+				background-color: rgb(0, 0, 0);
+			}
+
+			.vscode-high-contrast h1 {
+				border-color: rgb(0, 0, 0);
+			}
+
+			.vscode-light table > thead > tr > th {
+				border-color: rgba(0, 0, 0, 0.69);
+			}
+
+			.vscode-dark table > thead > tr > th {
+				border-color: rgba(255, 255, 255, 0.69);
+			}
+
+			.vscode-light h1,
+			.vscode-light hr,
+			.vscode-light table > tbody > tr + tr > td {
+				border-color: rgba(0, 0, 0, 0.18);
+			}
+
+			.vscode-dark h1,
+			.vscode-dark hr,
+			.vscode-dark table > tbody > tr + tr > td {
+				border-color: rgba(255, 255, 255, 0.18);
+			}
+		</style>
+
+		<style>
+			/*
+
+Visual Studio-like style based on original C# coloring by Jason Diamond <jason@diamond.name>
+
+*/
+			.hljs {
+				background: white;
+				color: black;
+			}
+
+			.hljs-comment,
+			.hljs-quote,
+			.hljs-variable {
+				color: #008000;
+			}
+
+			.hljs-keyword,
+			.hljs-selector-tag,
+			.hljs-built_in,
+			.hljs-name,
+			.hljs-tag {
+				color: #00f;
+			}
+
+			.hljs-string,
+			.hljs-title,
+			.hljs-section,
+			.hljs-attribute,
+			.hljs-literal,
+			.hljs-template-tag,
+			.hljs-template-variable,
+			.hljs-type,
+			.hljs-addition {
+				color: #a31515;
+			}
+
+			.hljs-deletion,
+			.hljs-selector-attr,
+			.hljs-selector-pseudo,
+			.hljs-meta {
+				color: #2b91af;
+			}
+
+			.hljs-doctag {
+				color: #808080;
+			}
+
+			.hljs-attr {
+				color: #f00;
+			}
+
+			.hljs-symbol,
+			.hljs-bullet,
+			.hljs-link {
+				color: #00b0e8;
+			}
+
+			.hljs-emphasis {
+				font-style: italic;
+			}
+
+			.hljs-strong {
+				font-weight: bold;
+			}
+		</style>
+
+		<style>
+			/*
+ * Markdown PDF CSS
+ */
+
+			body {
+				font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC",
+					"Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+			}
+
+			pre {
+				background-color: #f8f8f8;
+				border: 1px solid #cccccc;
+				border-radius: 3px;
+				overflow-x: auto;
+				white-space: pre-wrap;
+				overflow-wrap: break-word;
+			}
+
+			pre:not(.hljs) {
+				padding: 23px;
+				line-height: 19px;
+			}
+
+			blockquote {
+				background: rgba(127, 127, 127, 0.1);
+				border-color: rgba(0, 122, 204, 0.5);
+			}
+
+			.emoji {
+				height: 1.4em;
+			}
+
+			code {
+				font-size: 14px;
+				line-height: 19px;
+			}
+
+			/* for inline code */
+			:not(pre):not(.hljs) > code {
+				color: #3b3b3b; /* Change the old color so it seems less like an error */
+				font-size: inherit;
+				background: #e0e0e0;
+				border-radius: 4px;
+				padding: 1px 2px;
+				margin: -1px -2px;
+			}
+
+			/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+			.page {
+				page-break-after: always;
+			}
+		</style>
+
+		<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+	</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<div class="body">
+<h1 id="programsko-in%C5%BEenjerstvo">Programsko inženjerstvo</h1>
+<p><strong>Nositelj</strong>: doc. dr. sc. Nikola Tanković<br>
+<strong>Asistent</strong>: mag. inf. Alesandro Žužić</p>
+<p><strong>Ustanova</strong>: Sveučilište Jurja Dobrile u Puli, Fakultet informatike u Puli</p>
+<p style="float: clear; display: flex; gap: 8px; align-items: center;" class="font-brioni text-sm whitespace-nowrap">
+    <img src="../Logo/fipu_logo.svg" style="height: 96px; box-shadow: none !important;" class="mr-4"></img>
+    Fakultet informatike u Puli
+</p>
+<h1 id="2-ref--attribute-bindings">[2] Ref &amp; Attribute Bindings</h1>
+<div style="display: flex; justify-content: space-between; text-align: justify; gap: 32px;">
+    <p>
+        Vue.js omogućuje jednostavno povezivanje podataka s HTML elementima kroz <b>reaktivne varijable</b> i <b>vezivanje atributa</b>. Ove funkcionalnosti omogućuju dinamičko ažuriranje korisničkog sučelja na temelju promjena u podacima.
+    </p>
+    <img src="../Icons/Vue_2.svg" style="width: 96px; height: 96px; margin: 0px;"></img>
+</div>
+<p><strong>Posljednje ažurirano:</strong> 19. ožujka 2025.</p>
+<!-- TOC -->
+<ul>
+<li><a href="#programsko-in%C5%BEenjerstvo">Programsko inženjerstvo</a></li>
+<li><a href="#2-ref--attribute-bindings">[2] Ref &amp; Attribute Bindings</a>
+<ul>
+<li><a href="#osnove-reaktivnosti">Osnove reaktivnosti</a>
+<ul>
+<li><a href="#%C5%A1to-je-to-to%C4%8Dno-reaktivnost">Što je to točno &quot;reaktivnost&quot;?</a></li>
+<li><a href="#kako-reaktivnost-radi-kod-vue">Kako reaktivnost radi kod Vue?</a></li>
+<li><a href="#dubinska-i-plitka-reaktivnost-shallowref">Dubinska i plitka reaktivnost shallowRef</a></li>
+<li><a href="#reactive">reactive</a></li>
+</ul>
+</li>
+<li><a href="#sintaksa-predlo%C5%A1ka-template-syntax">Sintaksa predloška Template Syntax</a>
+<ul>
+<li><a href="#v-html">v-html</a></li>
+<li><a href="#javascript-izrazi">JavaScript izrazi</a></li>
+</ul>
+</li>
+<li><a href="#povezivanje-atributa-attribute-bindings">Povezivanje atributa Attribute Bindings</a>
+<ul>
+<li><a href="#direktiva-v-bind-skra%C4%87eno-">Direktiva v-bind skraćeno :</a></li>
+<li><a href="#povezivanje-klasa-i-stilova">Povezivanje klasa i stilova</a></li>
+</ul>
+</li>
+<li><a href="#samostalni-zadatak-za-vje%C5%BEbu-2">Samostalni zadatak za vježbu 2</a></li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+<div class="page"></div>
+<h2 id="osnove-reaktivnosti">Osnove reaktivnosti</h2>
+<p><code>ref()</code> je funkcija u Vue.js koja se koristi za kreiranje <strong>reaktivnih varijabli</strong>. Ova funkcija omogućuje praćenje promjena u podacima i automatsko ažuriranje korisničkog sučelja kada se podaci promijene.</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> { ref } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>;
+<span class="hljs-comment">// da bi koristili reaktivne varijable potrebno je učitati ref iz vue paketa</span>
+
+<span class="hljs-keyword">const</span> count = ref(<span class="hljs-number">0</span>);
+<span class="hljs-comment">// svaki put kada se varijabla count promijeni</span>
+<span class="hljs-comment">// DOM se ažurira</span>
+</div></code></pre>
+<p><code>ref()</code> uzima proslijeđeni <em>argument</em> i vraća ga umotanog unutar <em>ref objekta</em> s <code>.value</code> funkcijom:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">const</span> count = ref(<span class="hljs-number">0</span>);
+
+<span class="hljs-built_in">console</span>.log(count); <span class="hljs-comment">// { value: 0 }</span>
+<span class="hljs-built_in">console</span>.log(count.value); <span class="hljs-comment">// 0</span>
+
+count.value++;
+<span class="hljs-built_in">console</span>.log(count.value); <span class="hljs-comment">// 1</span>
+</div></code></pre>
+<br>
+<p><em>Behind the scenes:</em></p>
+<pre class="hljs"><code><div>{
+  <span class="hljs-string">"dep"</span>: {
+    <span class="hljs-string">"version"</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-string">"sc"</span>: <span class="hljs-number">0</span>
+  },
+  <span class="hljs-string">"__v_isRef"</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-string">"__v_isShallow"</span>: <span class="hljs-literal">false</span>,
+  <span class="hljs-string">"_rawValue"</span>: <span class="hljs-number">1</span>,
+  <span class="hljs-string">"_value"</span>: <span class="hljs-number">1</span>
+}
+</div></code></pre>
+<div class="page"></div>
+<h3 id="%C5%A1to-je-to-to%C4%8Dno-%22reaktivnost%22">Što je to točno &quot;reaktivnost&quot;?</h3>
+<p>Reaktivnost je programska paradigma koja nam omogućuje prilagodbu promjenama na deklarativan način.</p>
+<p><em>Najjednostavniji primjer gdje možemo prikazati reaktivnost je kod excel tablice:</em></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><strong>A</strong></th>
+<th><strong>B</strong></th>
+<th><strong>C</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>0</strong></td>
+<td>2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>1</strong></td>
+<td>8</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>2</strong></td>
+<td>10</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>U ovom primjeru, ćelija <em>A2</em> sadrži formulu <code>= A0 + A1</code>, gdje ako mijenjamo ćelije <em>A0</em> ili <em>A1</em>, primijetit ćemo da se automagično (automagically) mijenja i vrijednost ćelije <em>A3</em></p>
+<blockquote>
+<p><em>automagically</em> = automatically and in a way that seems magical</p>
+</blockquote>
+<p>Naravno JavaScript se ne ponaša na ovaj način. Ako bi napisali kôd koji je usporediv u JavaScriptu:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">let</span> A0 = <span class="hljs-number">1</span>
+<span class="hljs-keyword">let</span> A1 = <span class="hljs-number">2</span>
+<span class="hljs-keyword">let</span> A2 = A0 + A1
+
+<span class="hljs-built_in">console</span>.log(A2) <span class="hljs-comment">// 3</span>
+
+A0 = <span class="hljs-number">2</span>
+<span class="hljs-built_in">console</span>.log(A2) <span class="hljs-comment">// Still 3</span>
+</div></code></pre>
+<p>Kada mijenjamo <code>A0</code>, <code>A2</code> se neće automatski promijeniti. Tako da, ako želimo to postići, moramo prvo ponovno pokrenuti kôd koji će ažurirati <em>A2</em>, pa ćemo onda staviti kôd unutar funkcije.</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">let</span> A2
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">update</span>(<span class="hljs-params"></span>) </span>{
+    A2 = A0 + A1
+}
+</div></code></pre>
+<p>Sada je bitno definirati nekoliko ključnih stvari:</p>
+<ul>
+<li><code>update()</code> funkcija stvara nuspojavu (<em>side effect</em>), to jest je učinak (<em>effect</em>), zato što mijenja stanje programa.</li>
+<li><code>A0</code> i <code>A1</code> se smatraju zavisnim varijablama kod učinka, jer se njihove vrijednosti koriste za pokretanje tog učinka. Tako da možemo i reći da se taj učinak preplatio na svoje zavisne varijable.</li>
+</ul>
+<p>Ono što nam sada treba je nekakva magična funkcija koja može pozvati <code>update()</code> učinak kad god se <code>A0</code> ili <code>A1</code> zavisne varijable promjene.</p>
+<pre class="hljs"><code><div>whenDepsChange(update)
+</div></code></pre>
+<p>Ova <code>whenDepsChange()</code> funkcija ima sljedeće zadatke:</p>
+<ol>
+<li>Prati kada se varijable čitaju, na primjer kod evaluacije <code>A0 + A1</code>, čitamo obje <code>A0</code> i <code>A1</code> varijable.</li>
+<li>Ako čitamo varijablu dok je pokrenut učinak, onda će se taj učinak preplatiti na tu varijablu. Na primjer kada čitamo <code>A0</code> i <code>A1</code> kada pokrenemo <code>update()</code> funkciju, onda se ta funkcija preplati na obje <code>A0</code> i <code>A1</code> varijable nakon prvog poziva.</li>
+<li>Detektirati kada se varijabla promjeni. Na primjer kada se <code>A0</code> varijabli dodijeli nova vrijednost, treba obavijestiti sve svoje pretplatnike da se ponovno pokrenu, u ovom slučaju samo <code>update()</code> pretplatnika da se ponovno evaluira.</li>
+</ol>
+<h3 id="kako-reaktivnost-radi-kod-vue">Kako reaktivnost radi kod Vue?</h3>
+<p>U JavaScriptu ne možemo pratiti čitanje i pisanje lokalnih varijabli, ali možemo presresti pristup svojstvima objekata pomoću <em>getter/setter</em> i <em>Proxy</em>. Vue koristi <em>Proxy</em> za reaktivne objekte, dok se <em>getter/setter</em> koriste za <em>ref</em>.</p>
+<p><em>Pseudo kod za ref():</em></p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ref</span>(<span class="hljs-params">value</span>) </span>{
+    <span class="hljs-keyword">const</span> refObject = {
+        <span class="hljs-keyword">get</span> value() {
+            track(refObject, <span class="hljs-string">'value'</span>)
+            <span class="hljs-keyword">return</span> value
+        },
+        <span class="hljs-keyword">set</span> value(newValue) {
+            value = newValue
+            trigger(refObject, <span class="hljs-string">'value'</span>)
+        }
+    }
+    <span class="hljs-keyword">return</span> refObject
+}
+</div></code></pre>
+<p><strong>track()</strong> funkcija prati trenutačno aktivni učinak. Ako postoji, pretražujemo pretplaćene učinke za praćeno svojstvo i dodajemo učinak u taj skup. Ako za svojstvo nije pronađen pretplaćen učinak (jer se prati prvi put), onda se stvara.</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">track</span>(<span class="hljs-params">target, key</span>) </span>{
+    <span class="hljs-keyword">if</span> (activeEffect) {
+        <span class="hljs-keyword">const</span> effects = getSubscribersForProperty(target, key)
+        effects.add(activeEffect)
+    }
+}
+</div></code></pre>
+<p>Unutar <strong>trigger()</strong> funkcije ponovno pretražujemo pretplaćene učinke za praćeno svojstvo, no ovog puta aktivira sve učinke preplaćene na varijablu koja se mijenja:</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">trigger</span>(<span class="hljs-params">target, key</span>) </span>{
+    <span class="hljs-keyword">const</span> effects = getSubscribersForProperty(target, key)
+    effects.forEach(<span class="hljs-function">(<span class="hljs-params">effect</span>) =&gt;</span> effect())
+}
+</div></code></pre>
+<p><em>Sada se možemo vratiti na funkciju <code>whenDepsChange()</code>:</em></p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">whenDepsChange</span>(<span class="hljs-params">update</span>) </span>{
+    <span class="hljs-keyword">const</span> effect = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+        activeEffect = effect
+        update()
+        activeEffect = <span class="hljs-literal">null</span>
+    }
+    effect()
+}
+</div></code></pre>
+<p>Ona omotava <code>update()</code> funkciju u učinak koja se prije pokretanja postavlja kao <strong>trenutačno aktivni učinak</strong>. Time se omogućuje pozivanje <strong>track()</strong> funkcije pri ažuriranju da pronađe trenutačno aktivni učinak.</p>
+<p>Tako stvaramo <em>reaktivni učinak</em> – funkcija koja automatski prati svoje ovisnosti i ponovno se pokreće kada se one promijene.</p>
+<hr>
+<p>Vue pruža <code>watchEffect()</code> za praćenje promjena i <code>computed()</code> za deklarativno računanje vrijednosti koji se ponašaju kao reaktivni učinci:</p>
+<p><em>Primjer koristeći <code>watchEffect()</code>:</em></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> { ref, watchEffect } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
+
+<span class="hljs-keyword">const</span> A0 = ref(<span class="hljs-number">0</span>)
+<span class="hljs-keyword">const</span> A1 = ref(<span class="hljs-number">1</span>)
+<span class="hljs-keyword">const</span> A2 = ref()
+
+watchEffect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-comment">// prate se A0 i A1 varijable</span>
+  A2.value = A0.value + A1.value
+})
+
+<span class="hljs-comment">// pokreće učinak</span>
+A0.value = <span class="hljs-number">2</span>
+</div></code></pre>
+<div class="page"></div>
+<p><code>Ili na deklarativni način koristeći </code>computed()<code>:</code></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> { ref, computed } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
+
+<span class="hljs-keyword">const</span> A0 = ref(<span class="hljs-number">0</span>)
+<span class="hljs-keyword">const</span> A1 = ref(<span class="hljs-number">1</span>)
+<span class="hljs-keyword">const</span> A2 = computed(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> A0.value + A1.value)
+
+A0.value = <span class="hljs-number">2</span>
+</div></code></pre>
+<p><strong>Reaktivni učinci</strong> omogućuju automatsko praćenje i ažuriranje podataka gdje Vue komponente koriste ove tehnike za ažuriranje DOM-a na učinkovit način.</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> { ref, watchEffect } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
+
+<span class="hljs-keyword">const</span> count = ref(<span class="hljs-number">0</span>)
+
+watchEffect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-built_in">document</span>.body.innerHTML = <span class="hljs-string">`Count is: <span class="hljs-subst">${count.value}</span>`</span>
+})
+
+<span class="hljs-comment">// automatski ažurira DOM</span>
+count.value++
+</div></code></pre>
+<p>Ovo je zapravo slično načinu na koji Vue komponente održavaju sinkronizaciju stanja i DOM-a. Svaka komponenta stvara <em>reaktivni učinak</em> za prikazivanje i ažuriranje DOM-a, iako Vue koristi učinkovitije metode od <em>innerHTML</em>.</p>
+<h3 id="dubinska-i-plitka-reaktivnost-shallowref">Dubinska i plitka reaktivnost <code>shallowRef</code></h3>
+<p><code>ref()</code> automatski prati promjene unutar objekata i nizova, što znači da su svi unutarnji elementi također reaktivni.</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> { ref } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
+<span class="hljs-keyword">const</span> obj = ref({
+    <span class="hljs-attr">nested</span>: { <span class="hljs-attr">count</span>: <span class="hljs-number">0</span> },
+    <span class="hljs-attr">arr</span>: [<span class="hljs-string">'foo'</span>, <span class="hljs-string">'bar'</span>]
+})
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mutateDeeply</span>(<span class="hljs-params"></span>) </span>{
+    obj.value.nested.count++
+    obj.value.arr.push(<span class="hljs-string">'baz'</span>)
+}
+</div></code></pre>
+<div class="page"></div>
+<p><em>Ako želimo izbjeći dubinsku reaktivnost, onda koristimo <code>shallowRef</code>:</em></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">const</span> state = shallowRef({ <span class="hljs-attr">count</span>: <span class="hljs-number">1</span> })
+
+<span class="hljs-comment">// NE pokreće promjenu</span>
+state.value.count = <span class="hljs-number">2</span>
+
+<span class="hljs-comment">// pokreće promjenu</span>
+state.value = { <span class="hljs-attr">count</span>: <span class="hljs-number">2</span> }
+</div></code></pre>
+<h3 id="reactive"><code>reactive()</code></h3>
+<p>Osim <code>ref()</code>, reaktivno stanje možemo deklarirati s pomoću <code>reactive()</code>, koja čini cijeli objekt reaktivnim:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> { ref, reactive } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
+
+<span class="hljs-keyword">const</span> state_1 = ref({ <span class="hljs-attr">count</span>: <span class="hljs-number">8</span> })
+<span class="hljs-keyword">const</span> state_2 = reactive({ <span class="hljs-attr">count</span>: <span class="hljs-number">8</span> })
+
+<span class="hljs-built_in">console</span>.log(state_1.value);       <span class="hljs-comment">// { count: 8 }</span>
+<span class="hljs-built_in">console</span>.log(state_2);             <span class="hljs-comment">// { count: 8 }</span>
+
+<span class="hljs-built_in">console</span>.log(state_1.value.count); <span class="hljs-comment">// 8</span>
+<span class="hljs-built_in">console</span>.log(state_2.count);       <span class="hljs-comment">// 8</span>
+</div></code></pre>
+<p><code>reactive()</code> vs <code>ref()</code>:</p>
+<ul>
+<li><code>reactive()</code> se koristi za reaktivne objekte, ali se preporučuje korištenje <code>ref()</code> za jednostavniju i fleksibilniju upotrebu</li>
+<li><code>ref()</code> se može koristiti za bilo koju vrstu podataka, dok <code>reactive()</code> radi samo s objektima</li>
+</ul>
+<blockquote>
+<p>Vue automatski ažurira DOM kada se promijeni reaktivna varijabla. Ovo se događa asinkrono, što znači da se ažuriranja grupiraju radi boljih performansi.</p>
+</blockquote>
+<div class="page"></div>
+<h2 id="sintaksa-predlo%C5%A1ka-template-syntax">Sintaksa predloška (<em>Template Syntax</em>)</h2>
+<p>Sintaksa predloška u Vue.js omogućuje dinamičko povezivanje podataka s HTML-om. Koristi se za prikazivanje podataka i izvršavanje JavaScript izraza unutar HTML-a.</p>
+<p>Za prikazivanje reaktivnih podataka koristite dvostruke vitičaste zagrade <code>{{ }}</code>.</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+<span class="hljs-keyword">import</span> { ref } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
+
+<span class="hljs-keyword">const</span> tekst = ref(<span class="hljs-string">"Hello, world!"</span>)
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+        {{ tekst }}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<h3 id="v-html"><code>v-html</code></h3>
+<p>Ako želimo prikazati HTML, onda koristimo direktivu <code>v-html</code>.</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>{{ htmlKod }}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">v-html</span>=<span class="hljs-string">"htmlKod"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<p>&lt;b&gt;Hello&lt;/b&gt;
+<strong>Hello</strong></p>
+<blockquote>
+<p>Nikada ne koristite <code>v-html</code> s neprovjerenim korisničkim podacima jer može dovesti do sigurnosnih rizika kao što su XSS napadi</p>
+</blockquote>
+<div class="page"></div>
+<h3 id="javascript-izrazi">JavaScript izrazi</h3>
+<p>Unutar vitičastih zagrada možemo koristiti jednostavne JavaScript izraze.</p>
+<p><em>Primjer 1:</em></p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+<span class="hljs-keyword">import</span> { ref } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
+
+<span class="hljs-keyword">const</span> tekst = ref(<span class="hljs-string">"Hello, world!"</span>)
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+        {{ tekst.toUpperCase() }}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<p><strong>Output</strong>: HELLO, WORLD!</p>
+<hr>
+<p><em>Primjer 2:</em></p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+<span class="hljs-keyword">import</span> { ref } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
+
+<span class="hljs-keyword">const</span> velikaSlova = ref(<span class="hljs-literal">false</span>);
+<span class="hljs-keyword">const</span> text = ref(<span class="hljs-string">"Hello"</span>)
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"h-full flex justify-center items-center"</span>&gt;</span>
+        {{ velikaSlova ? text.toUpperCase() : text.toLowerCase() }}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<p><strong>Output</strong>: hello, world!</p>
+<h2 id="povezivanje-atributa-attribute-bindings">Povezivanje atributa (<em>Attribute Bindings</em>)</h2>
+<p>Povezivanje atributa omogućuje dinamičko postavljanje vrijednosti HTML atributa na temelju reaktivnih podataka.</p>
+<ul>
+<li>Vitičaste zagrade se koriste za interpolaciju teksta, ali <strong>NE</strong> rade unutar HTML <em>atributa</em>. Umjesto toga, koristite direktivu <code>v-bind</code>.</li>
+</ul>
+<h3 id="direktiva-v-bind-skra%C4%87eno">Direktiva <code>v-bind</code> (skraćeno <code>:</code>)</h3>
+<p>Direktiva <code>v-bind</code> omogućuje povezivanje vrijednosti atributa s reaktivnim podacima.</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">:href</span>=<span class="hljs-string">"url"</span>&gt;</span>Link<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+</div></code></pre>
+<p><em>Boolean atributi (npr. <code>disabled</code>, <code>checked</code>) mogu se dinamički kontrolirati:</em></p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">:disabled</span>=<span class="hljs-string">"isDisabled"</span>&gt;</span>
+    Klikni me
+<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+</div></code></pre>
+<p><em>Možemo dinamički postaviti više atributa koristeći objekt:</em></p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">v-bind</span>=<span class="hljs-string">"{ id: dynamicId, class: dynamicClass }"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</div></code></pre>
+<p><em>Unutar <code>v-bind</code> možemo koristiti JavaScript izraze:</em></p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">:class</span>=<span class="hljs-string">"isActive ? 'active' : 'inactive'"</span>&gt;</span>Status<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+</div></code></pre>
+<p><em>Isto tako možemo pozivati funkcije unutar <code>v-bind</code>:</em></p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">:style</span>=<span class="hljs-string">"getStyle()"</span>&gt;</span>Dinamički stil<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+</div></code></pre>
+<h3 id="povezivanje-klasa-i-stilova">Povezivanje klasa i stilova</h3>
+<p>Vue omogućuje dinamičko upravljanje klasama i stilovima s pomoću <strong>v-bind (:class i :style)</strong>. Možemo koristiti <strong>objekte</strong>, <strong>nizove</strong> ili <strong>funkcije</strong> za definiranje uvjetnih stilova.</p>
+<p><strong>1. Korištenje objekata</strong><br>
+Jedan način je korištenje <strong>objekata</strong>, gdje su ključevi nazivi klasa, a vrijednosti <em>boolean</em> varijable koje određuju hoće li se klasa primijeniti.</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+<span class="hljs-keyword">import</span> { ref } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
+
+<span class="hljs-keyword">const</span> hasUnderline = ref(<span class="hljs-literal">false</span>)
+<span class="hljs-keyword">const</span> hasError = ref(<span class="hljs-literal">true</span>)
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">:class</span>=<span class="hljs-string">"{ underline: hasUnderline, 'text-red-600': hasError }"</span>&gt;</span>
+        Dinamične klase
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<ul>
+<li>Ako je <code>hasUnderline = true</code>, <code>&lt;div&gt;</code> će dobiti klasu <code>&quot;underline&quot;</code></li>
+<li>Ako je <code>hasError = true</code>, dobit će i <code>&quot;text-red-600&quot;</code></li>
+</ul>
+<hr>
+<p><strong>2. Korištenje polja</strong><br>
+Kad želimo primijeniti više klasa, možemo koristiti <strong>polje</strong>.</p>
+<pre class="hljs"><code><div>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+<span class="hljs-keyword">import</span> { ref } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
+
+<span class="hljs-keyword">const</span> activeClass = ref(<span class="hljs-string">'font-bold'</span>)
+<span class="hljs-keyword">const</span> errorClass = ref(<span class="hljs-string">'text-red-600'</span>)
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">:class</span>=<span class="hljs-string">"[activeClass, errorClass]"</span>&gt;</span>Dinamične klase<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<ul>
+<li>Vue će automatski spojiti klase u <strong>&quot;font-bold text-red-600&quot;</strong>.</li>
+<li>Možemo dinamički mijenjati pojedine elemente niza</li>
+</ul>
+<p>Ako želimo dodati uvjete unutar niza:</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+<span class="hljs-keyword">import</span> { ref } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
+
+<span class="hljs-keyword">const</span> isActive = ref(<span class="hljs-literal">false</span>)
+<span class="hljs-keyword">const</span> hasError = ref(<span class="hljs-literal">false</span>)
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">:class</span>=<span class="hljs-string">"['text-lg', 
+            isActive ? 'font-bold' : 'font-normal', 
+            hasError ? 'text-red-600' : 'text-black']"</span>&gt;</span>
+        Kombinacija niza i uvjeta
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<hr>
+<p><strong>3. Dinamičko povezivanje stilova</strong>
+Svojstva možemo definirati kao <em>objekte</em> unutar <code>:style</code> atributa.</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+<span class="hljs-keyword">import</span> { ref } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
+
+<span class="hljs-keyword">const</span> activeColor = ref(<span class="hljs-string">'blue'</span>)
+<span class="hljs-keyword">const</span> fontSize = ref(<span class="hljs-number">20</span>)
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">:style</span>=<span class="hljs-string">"{ color: activeColor, fontSize: fontSize + 'px' }"</span>&gt;</span>
+        Dinamični stilovi
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<ul>
+<li><em>Boja i veličina fonta se ažuriraju dinamički</em></li>
+</ul>
+<hr>
+<p><strong>4. Korištenje funkcija za izračunavanje klasa i stilova</strong></p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+<span class="hljs-keyword">import</span> { ref } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
+
+<span class="hljs-keyword">const</span> isActive = ref(<span class="hljs-literal">false</span>)
+<span class="hljs-keyword">const</span> hasError = ref(<span class="hljs-literal">true</span>)
+
+<span class="hljs-keyword">const</span> calculatedClass = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({
+    <span class="hljs-string">'underline'</span>: isActive.value,
+    <span class="hljs-string">'text-red-600'</span>: hasError.value
+})
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">:class</span>=<span class="hljs-string">"calculatedClass()"</span>&gt;</span>
+        Složeni stilovi
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<ul>
+<li><em>Vue automatski ažurira klase i stilove kada se varijable promijene</em></li>
+</ul>
+<div class="page"></div>
+<h2 id="samostalni-zadatak-za-vje%C5%BEbu-2">Samostalni zadatak za vježbu 2</h2>
+<blockquote>
+<p>Zadatak za dodatni bod</p>
+</blockquote>
+<p>Korištenjem priloženih podataka u JSON formatu potrebno je implementirati prikaz korisničkih podataka i sadržaja košarice u HTML-u. (<em>bez korištenja direktiva v-for i v-if</em>)</p>
+<p><strong>1. Prikaz korisničkih podataka</strong></p>
+<ul>
+<li>Prikazati ime, prezime, adresu i broj telefona korisnika</li>
+<li>Ako je korisnik administrator (<em>jeAdmin: true</em>), tekst korisničkih podataka treba biti obojen plavom bojom. U suprotnom, koristiti crnu boju.</li>
+</ul>
+<p><strong>2. Prikaz sadržaja košarice</strong></p>
+<ul>
+<li>Svaka stavka iz košarice treba biti prikazana u obliku liste</li>
+<li>Za svaku stavku prikazati:
+<ul>
+<li>Naziv proizvoda</li>
+<li>Slika proizvoda</li>
+<li>Jediničnu cijenu</li>
+<li>Količinu</li>
+<li>Ukupnu cijenu stavke (<em>jedinična cijena × količina</em>)</li>
+</ul>
+</li>
+<li>Implementirati funckije:
+<ul>
+<li><code>dohvatiCijenu(naziv)</code> koja vraća cijenu proizvoda po nazivu</li>
+<li><code>sveukupnaCijena()</code> koja vraća ukupnu cijenu svih proizvoda u košarici</li>
+<li><code>najskupljaStavka()</code> koja vraća naziv stavke s najvećom ukupnom cijenom</li>
+</ul>
+</li>
+<li>Stavku s najvećom ukupnom cijenom obojiti crvenom bojom</li>
+</ul>
+<p><em>JSON podaci:</em></p>
+<pre class="hljs"><code><div>slike = {
+    <span class="hljs-string">"Jabuka"</span>: <span class="hljs-string">"https://www.svgrepo.com/show/530203/apple.svg"</span>,
+    <span class="hljs-string">"Mrkva"</span>: <span class="hljs-string">"https://www.svgrepo.com/show/530216/carrot.svg"</span>,
+    <span class="hljs-string">"Sir"</span>: <span class="hljs-string">"https://www.svgrepo.com/show/530219/cake.svg"</span>,
+    <span class="hljs-string">"Kruh"</span>: <span class="hljs-string">"https://www.svgrepo.com/show/530223/bread.svg"</span>,
+}
+
+proizvodi = [
+    { <span class="hljs-attr">naziv</span>: <span class="hljs-string">"Jabuka"</span>, <span class="hljs-attr">cijena</span>: <span class="hljs-number">0.25</span> },
+    { <span class="hljs-attr">naziv</span>: <span class="hljs-string">"Mrkva"</span>, <span class="hljs-attr">cijena</span>: <span class="hljs-number">0.12</span> },
+    { <span class="hljs-attr">naziv</span>: <span class="hljs-string">"Kruh"</span>, <span class="hljs-attr">cijena</span>: <span class="hljs-number">2.00</span> },
+    { <span class="hljs-attr">naziv</span>: <span class="hljs-string">"Sir"</span>, <span class="hljs-attr">cijena</span>: <span class="hljs-number">4.48</span> }
+]
+
+korisnik = {
+    <span class="hljs-attr">jeAdmin</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">osobni_podaci</span>: {
+        <span class="hljs-attr">ime</span>: <span class="hljs-string">"Marko"</span>,
+        <span class="hljs-attr">prezime</span>: <span class="hljs-string">"Krivić"</span>,
+        <span class="hljs-attr">adresa</span>: {
+            <span class="hljs-attr">grad</span>: <span class="hljs-string">"Pula"</span>,
+            <span class="hljs-attr">ulica</span>: <span class="hljs-string">"Veruda"</span>,
+            <span class="hljs-attr">broj</span>: <span class="hljs-number">32</span>
+        },
+        <span class="hljs-attr">broj_telefona</span>: <span class="hljs-string">"+091-123-456"</span>
+    },
+    <span class="hljs-attr">kosarica</span>: [
+        { <span class="hljs-attr">naziv</span>: <span class="hljs-string">"Jabuka"</span>, količina: <span class="hljs-number">4</span> },
+        { <span class="hljs-attr">naziv</span>: <span class="hljs-string">"Mrkva"</span>, količina: <span class="hljs-number">12</span> },
+        { <span class="hljs-attr">naziv</span>: <span class="hljs-string">"Sir"</span>, količina: <span class="hljs-number">1</span> },
+        { <span class="hljs-attr">naziv</span>: <span class="hljs-string">"Kruh"</span>, količina: <span class="hljs-number">3</span> },
+    ]
+}
+</div></code></pre>
+<p><em>Primjer rješenja:</em></p>
+<p><img src="Slike/solution.png" alt="solution"></p>
+
+</body>
+</html>
