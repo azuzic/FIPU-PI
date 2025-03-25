@@ -39,6 +39,28 @@ export const primjeri = [
     },
 
     { 
+        title: "v-model", 
+        code:
+`<script setup>
+    import { ref } from "vue";
+
+    const unos = ref("");
+    const potvrda = ref(false);
+</script>
+
+<template>
+    <input v-model="unos" type="text" class="border p-1 rounded" placeholder="Upiši nešto...">
+    <p><b>Text:</b> {{ unos }}</p> <br>
+    
+    <label>
+        <input type="checkbox" v-model="potvrda">
+        Prihvaćam uvjete
+    </label>
+    <p><b>Potvrda:</b> {{ potvrda ? "Prihvaćeno" : "Odbijeno" }}</p>
+</template>`
+    },
+
+    { 
         title: "v-bind", 
         code:
 `<script setup>
@@ -86,7 +108,7 @@ export const primjeri = [
     },
 
     {
-        title: "v-bind2", 
+        title: "v-bind use", 
         code:
 `<script setup>
     import { ref } from "vue";
@@ -192,49 +214,265 @@ export const primjeri = [
     },
 
     { 
-        title: "v-model", 
+        title: "v-for", 
         code:
 `<script setup>
     import { ref } from "vue";
 
-    const unos = ref("");
-    const potvrda = ref(false);
+    const items = ref([
+        "banana",
+        "jabuka",
+        "kruška",
+        "lubenica",
+        "limun"
+    ]);
 </script>
 
 <template>
-    <input v-model="unos" type="text" class="border p-1 rounded" placeholder="Upiši nešto...">
-    <p><b>Text:</b> {{ unos }}</p> <br>
-    
-    <label>
-        <input type="checkbox" v-model="potvrda">
-        Prihvaćam uvjete
-    </label>
-    <p><b>Potvrda:</b> {{ potvrda ? "Prihvaćeno" : "Odbijeno" }}</p>
+    <li v-for="item in items">
+        {{ item }}
+    </li>
 </template>`
     },
 
     { 
-        title: "v-for", 
+        title: "v-for with index", 
         code:
-``
+`<script setup>
+    import { ref } from "vue";
+
+    const items = ref([
+        "banana",
+        "jabuka",
+        "kruška",
+        "lubenica",
+        "limun"
+    ]);
+</script>
+
+<template>
+    <li v-for="(item, index) in items">
+        {{ index }} - {{ item }}
+    </li>
+</template>`
     },
 
     { 
-        title: "v-on", 
+        title: "v-for & v-if", 
         code:
-``
+`<script setup>
+    import { ref } from "vue";
+
+    const brojevi = ref([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+</script>
+
+<template>
+    <h2>Parni brojevi:</h2>
+    
+    <div v-for="broj in brojevi">
+        <div v-if="broj % 2 === 0">
+            - {{ broj }}
+        </div>
+    </div>
+</template>`
+    },
+
+    { 
+        title: "v-for | list of objects", 
+        code:
+`<script setup>
+    import { ref } from "vue";
+
+    const korisnici = ref([
+        { ime: "Ivan", prezime: "Horvat", godine: 25 },
+        { ime: "Ana", prezime: "Kovač", godine: 30 },
+        { ime: "Marko", prezime: "Babić", godine: 22 }
+    ]);
+</script>
+
+<template>
+    <ul>
+        <li v-for="korisnik in korisnici">
+            {{ korisnik.ime }} {{ korisnik.prezime }} - {{ korisnik.godine }} godina
+        </li>
+    </ul>
+</template>`
+    },
+
+    { 
+        title: "v-for | object", 
+        code:
+`<script setup>
+    import { ref } from "vue";
+
+    const korisnik = ref(
+        { ime: "Ivan", prezime: "Ivanić", godine: 25 },
+    );
+</script>
+
+<template>
+    <ul>
+        <li v-for="(value, key, index) in korisnik">
+            {{index}} > <b>{{ key }}:</b> {{ value }}
+        </li>
+    </ul>
+</template>`
+    },
+
+    { 
+        title: "v-for | range", 
+        code:
+`<template>
+    <li v-for="n in 5">{{ n }}</li>
+</template>`
+    },
+
+    { 
+        title: "v-for | nested", 
+        code:
+`<script setup>
+    import { ref } from "vue";
+
+    const kategorije = ref([
+        { naziv: "Voće", proizvodi: ["Jabuka", "Banana", "Jagoda"] },
+        { naziv: "Povrće", proizvodi: ["Mrkva", "Krumpir", "Rajčica"] },
+    ]);
+</script>
+
+<template>
+    <div class="flex gap-8">
+        <div v-for="kategorija in kategorije">
+            <b>{{ kategorija.naziv }}</b>
+            <hr class="my-1">
+            <p v-for="proizvod in kategorija.proizvodi" class="text-sm">
+                - {{ proizvod }}
+            </p>
+        </div>
+    </div>
+</template>`
+    },
+
+    { 
+        title: "v-for | filter", 
+        code:
+`<script setup>
+    import { ref } from "vue";
+
+    const ucenici = ref([
+        { ime: "Ana", bodovi: 85 },
+        { ime: "Marko", bodovi: 92 },
+        { ime: "Petra", bodovi: 78 },
+        { ime: "Ivan", bodovi: 60 }
+    ]);
+
+    const minBodovi = ref(70);
+
+    function sortirajPoBodovima(ulazno) {
+        ucenici.value.sort((a, b) => ulazno ? b.bodovi - a.bodovi : a.bodovi - b.bodovi);
+    }
+</script>
+
+<template>
+    <label>
+        Minimalan broj bodova:
+        <input type="number" v-model="minBodovi" class="border p-1 rounded">
+    </label>
+
+    <button @click="sortirajPoBodovima(true)" 
+        class="ml-2 p-1 bg-blue-200 hover:bg-green-200 cursor-pointer rounded">
+        Sortiraj Uzlazno
+    </button>
+
+    <button @click="sortirajPoBodovima(false)" 
+        class="ml-2 p-1 bg-blue-200 hover:bg-green-200 cursor-pointer rounded">
+        Sortiraj Silazno
+    </button>
+
+    <div v-for="ucenik in ucenici.filter(u => u.bodovi >= minBodovi)">
+        <b>{{ ucenik.ime }}</b> - {{ ucenik.bodovi }} bodova
+    </div>
+</template>`
+    },
+
+    { 
+        title: "v-for | mutate", 
+        code:
+`<script setup>
+    import { ref } from "vue";
+
+    const newName = ref('')
+
+    const names = ref([
+        "Ana",
+        "Marko",
+        "Petra",
+        "Ivan"
+    ]);
+</script>
+
+<template>
+    <div class="flex flex-wrap gap-2">
+        <input type="text" v-model="newName" class="border px-1 w-32 rounded" placeholder="Novo ime...">
+        <button @click="names.push(newName)"
+            class="p-1 bg-blue-200 hover:bg-green-200 cursor-pointer rounded">
+            push()
+        </button>
+        <button @click="names.pop()"
+            class="p-1 bg-blue-200 hover:bg-green-200 cursor-pointer rounded">
+            pop()
+        </button>
+        <button @click="names.unshift(newName)"
+            class="p-1 bg-blue-200 hover:bg-green-200 cursor-pointer rounded">
+            unshift()
+        </button>
+        <button @click="names.shift()"
+            class="p-1 bg-blue-200 hover:bg-green-200 cursor-pointer rounded">
+            shift()
+        </button>
+        <button @click="names.reverse()"
+            class="p-1 bg-blue-200 hover:bg-green-200 cursor-pointer rounded">
+            reverse()
+        </button>
+        <button @click="names.sort()"
+            class="p-1 bg-blue-200 hover:bg-green-200 cursor-pointer rounded">
+            sort()
+        </button>
+    </div>
+
+    <hr class="my-2">
+
+    <div class="flex flex-col gap-1 text-sm">
+        <div v-for="(name, index) in names" class="px-1 rounded w-fit">
+            <b>{{index}}.</b> {{ name }}
+        </div>
+    </div>
+</template>`
     },
 
     {
         title: "v-pre & v-once", 
         code:
-``
-    },
+`<script setup>
+    import { ref } from 'vue';
 
-    {
-        title: "v-slot", 
-        code:
-``
+    const text = ref("Lorem ipsum")
+</script>
+
+<template>
+    <input type="text" v-model="text" class="border px-1 rounded">
+
+    <div>
+        <b>Normal:</b> {{ text }}
+    </div>
+
+    <div v-once>
+        <b>v-once:</b> {{ text }}
+    </div>
+
+    <div v-pre>
+        <b>v-pre:</b> {{ text }}
+    </div>
+</template>`
     },
 
 ]

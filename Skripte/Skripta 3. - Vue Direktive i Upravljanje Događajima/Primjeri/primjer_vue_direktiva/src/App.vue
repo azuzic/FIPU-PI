@@ -1,16 +1,26 @@
 <script setup>
 import { ref } from "vue";
 import MonacoEditorWrapper from "@/components/MonacoEditorWrapper.vue";
-import Primjer_1_v_html_and_v_text from "@/components/Primjer_1_v_html_and_v_text.vue";
-import Primjer_2_template_syntax_v_text from "@/components/Primjer_2_template_syntax_v_text.vue";
-import Primjer_3_v_bind from "@/components/Primjer_3_v_bind.vue";
-import Primjer_4_v_bind2 from "@/components/Primjer_4_v_bind2.vue";
-import Primjer_5_v_if from "@/components/Primjer_5_v_if.vue";
-import Primjer_6_v_show from "@/components/Primjer_6_v_show.vue";
-import Primjer_7_v_model from "@/components/Primjer_7_v_model.vue";
+import Primjer_v_html_and_v_text from "@/components/Primjer_v_html_and_v_text.vue";
+import Primjer_template_syntax_v_text from "@/components/Primjer_template_syntax_v_text.vue";
+import Primjer_v_bind from "@/components/Primjer_v_bind.vue";
+import Primjer_v_bind2 from "@/components/Primjer_v_bind2.vue";
+import Primjer_v_if from "@/components/Primjer_v_if.vue";
+import Primjer_v_show from "@/components/Primjer_v_show.vue";
+import Primjer_v_model from "@/components/Primjer_v_model.vue";
+import Primjer_v_for from "@/components/Primjer_v_for.vue";
+import Primjer_v_for_index from "@/components/Primjer_v_for_index.vue";
+import Primjer_v_for_list_of_objects from "@/components/Primjer_v_for_list_of_objects.vue";
+import Primjer_v_for_object from "@/components/Primjer_v_for_object.vue";
+import Primjer_v_for_range from "@/components/Primjer_v_for_range.vue";
+import Primjer_v_for_v_if from "@/components/Primjer_v_for_v_if.vue";
+import Primjer_v_for_nested from "@/components/Primjer_v_for_nested.vue";
+import Primjer_v_for_filter from "@/components/Primjer_v_for_filter.vue";
+import Primjer_v_for_mutate from "@/components/Primjer_v_for_mutate.vue";
+import Primjer_v_pre_v_once from "@/components/Primjer_v_pre_v_once.vue";
 import { primjeri }  from "@/utils/primjeri.js"; 
 
-const trenutniPrimjer = ref(5);
+const trenutniPrimjer = ref(16);
 </script>
 
 <template>
@@ -30,14 +40,23 @@ const trenutniPrimjer = ref(5);
         <div class="grid grid-cols-2 h-full place-items-center overflow-auto">
 
             <MonacoEditorWrapper :code="primjeri[trenutniPrimjer].code"/>
-            <Primjer_1_v_html_and_v_text v-if="trenutniPrimjer == 0"/>
-            <Primjer_2_template_syntax_v_text v-if="trenutniPrimjer == 1"/>
-            <Primjer_3_v_bind v-if="trenutniPrimjer == 2"/>
-            <Primjer_4_v_bind2 v-if="trenutniPrimjer == 3"/>
-            <Primjer_5_v_if v-if="trenutniPrimjer == 4"/>
-            <Primjer_6_v_show v-if="trenutniPrimjer == 5"/>
-            <Primjer_7_v_model v-if="trenutniPrimjer == 6"/>
-
+            <Primjer_v_html_and_v_text v-if="trenutniPrimjer == 0"/>
+            <Primjer_template_syntax_v_text v-if="trenutniPrimjer == 1"/>
+            <Primjer_v_model v-if="trenutniPrimjer == 2"/>
+            <Primjer_v_bind v-if="trenutniPrimjer == 3"/>
+            <Primjer_v_bind2 v-if="trenutniPrimjer == 4"/>
+            <Primjer_v_if v-if="trenutniPrimjer == 5"/>
+            <Primjer_v_show v-if="trenutniPrimjer == 6"/>
+            <Primjer_v_for v-if="trenutniPrimjer == 7"/>
+            <Primjer_v_for_index v-if="trenutniPrimjer == 8"/>
+            <Primjer_v_for_v_if v-if="trenutniPrimjer == 9"/>
+            <Primjer_v_for_list_of_objects v-if="trenutniPrimjer == 10"/>
+            <Primjer_v_for_object v-if="trenutniPrimjer == 11"/>
+            <Primjer_v_for_range v-if="trenutniPrimjer == 12"/>
+            <Primjer_v_for_nested v-if="trenutniPrimjer == 13"/>
+            <Primjer_v_for_filter v-if="trenutniPrimjer == 14"/>
+            <Primjer_v_for_mutate v-if="trenutniPrimjer == 15"/>
+            <Primjer_v_pre_v_once v-if="trenutniPrimjer == 16"/>
         </div>
     </div>
 </template>
