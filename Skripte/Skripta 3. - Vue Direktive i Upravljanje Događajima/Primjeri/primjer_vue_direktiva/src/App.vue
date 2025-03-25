@@ -20,7 +20,7 @@ import Primjer_v_for_mutate from "@/components/Primjer_v_for_mutate.vue";
 import Primjer_v_pre_v_once from "@/components/Primjer_v_pre_v_once.vue";
 import { primjeri }  from "@/utils/primjeri.js"; 
 
-const trenutniPrimjer = ref(16);
+const trenutniPrimjer = ref(0);
 </script>
 
 <template>

@@ -20,7 +20,7 @@
 
         <label>
             Minimalan broj bodova:
-            <input type="number" v-model="minBodovi" class="border p-1 rounded">
+            <input type="number" v-model="minBodovi" class="border p-1 rounded w-32">
         </label>
 
         <button @click="sortirajPoBodovima(true)" 

@@ -1,0 +1,1476 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>1. Vue Osnove.md</title>
+		<meta
+			http-equiv="Content-type"
+			content="text/html;charset=UTF-8" />
+		<link
+			rel="preconnect"
+			href="https://fonts.googleapis.com" />
+		<link
+			rel="preconnect"
+			href="https://fonts.gstatic.com"
+			crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+			rel="stylesheet" />
+		<style>
+			/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+			/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+			:not(code *) {
+				font-family: "Poppins", sans-serif;
+			}
+            html {
+                display: flex;
+                justify-content: center;
+            }
+			body {
+				font-family: var(
+					--vscode-markdown-font-family,
+					-apple-system,
+					BlinkMacSystemFont,
+					"Segoe WPC",
+					"Segoe UI",
+					"Ubuntu",
+					"Droid Sans",
+					sans-serif
+				);
+				font-size: var(--vscode-markdown-font-size, 14px);
+				line-height: var(--vscode-markdown-line-height, 22px);
+				word-wrap: break-word;
+				color: #3b3b3b;
+                position: absolute;
+                display: flex;
+                justify-content: center;
+                width: full;
+			}
+			.body {
+                max-width: 1012px;
+			}
+
+			#code-csp-warning {
+				position: fixed;
+				top: 0;
+				right: 0;
+				color: white;
+				margin: 16px;
+				text-align: center;
+				font-size: 12px;
+				font-family: sans-serif;
+				background-color: #444444;
+				cursor: pointer;
+				padding: 6px;
+				box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
+			}
+
+			#code-csp-warning:hover {
+				text-decoration: none;
+				background-color: #007acc;
+				box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+			}
+
+			body.scrollBeyondLastLine {
+				margin-bottom: calc(100vh - 22px);
+			}
+
+			body.showEditorSelection .code-line {
+				position: relative;
+			}
+
+			body.showEditorSelection .code-active-line:before,
+			body.showEditorSelection .code-line:hover:before {
+				content: "";
+				display: block;
+				position: absolute;
+				top: 0;
+				left: -12px;
+				height: 100%;
+			}
+
+			body.showEditorSelection li.code-active-line:before,
+			body.showEditorSelection li.code-line:hover:before {
+				left: -30px;
+			}
+
+			.vscode-light.showEditorSelection .code-active-line:before {
+				border-left: 3px solid rgba(0, 0, 0, 0.15);
+			}
+
+			.vscode-light.showEditorSelection .code-line:hover:before {
+				border-left: 3px solid rgba(0, 0, 0, 0.4);
+			}
+
+			.vscode-light.showEditorSelection
+				.code-line
+				.code-line:hover:before {
+				border-left: none;
+			}
+
+			.vscode-dark.showEditorSelection .code-active-line:before {
+				border-left: 3px solid rgba(255, 255, 255, 0.4);
+			}
+
+			.vscode-dark.showEditorSelection .code-line:hover:before {
+				border-left: 3px solid rgba(255, 255, 255, 0.6);
+			}
+
+			.vscode-dark.showEditorSelection
+				.code-line
+				.code-line:hover:before {
+				border-left: none;
+			}
+
+			.vscode-high-contrast.showEditorSelection .code-active-line:before {
+				border-left: 3px solid rgba(255, 160, 0, 0.7);
+			}
+
+			.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+				border-left: 3px solid rgba(255, 160, 0, 1);
+			}
+
+			.vscode-high-contrast.showEditorSelection
+				.code-line
+				.code-line:hover:before {
+				border-left: none;
+			}
+
+			img {
+				max-width: 100%;
+				max-height: 100%;
+				border-radius: 8px;
+				filter: drop-shadow(-0 2px 2px rgba(0, 0, 0, 0.07));
+			}
+
+			a {
+				text-decoration: none;
+			}
+
+			a:hover {
+				text-decoration: underline;
+			}
+
+			a:focus,
+			input:focus,
+			select:focus,
+			textarea:focus {
+				outline: 1px solid -webkit-focus-ring-color;
+				outline-offset: -1px;
+			}
+
+			hr {
+				border: 0;
+				height: 2px;
+				border-bottom: 2px solid;
+			}
+
+			h1 {
+				padding-bottom: 0.3em;
+				line-height: 1.2;
+				border-bottom-width: 1px;
+				border-bottom-style: solid;
+			}
+
+			h1,
+			h2,
+			h3 {
+				font-weight: normal;
+			}
+
+			table {
+                width: 100%;
+				border-collapse: collapse;
+			}
+
+			table > thead > tr > th {
+				text-align: left;
+				border-bottom: 1px solid;
+			}
+
+			table > thead > tr > th,
+			table > thead > tr > td,
+			table > tbody > tr > th,
+			table > tbody > tr > td {
+				padding: 5px 10px;
+			}
+
+			table > tbody > tr + tr > td {
+				border-top: 1px solid;
+			}
+
+            td > code {
+                word-break: break-all;
+            }
+
+			blockquote {
+				margin: 0 7px 0 5px;
+				padding: 0 16px 0 10px;
+				border-left-width: 5px;
+				border-left-style: solid;
+			}
+
+			code {
+				font-family: Menlo, Monaco, Consolas, "Droid Sans Mono",
+					"Courier New", monospace, "Droid Sans Fallback";
+				font-size: 1em;
+				line-height: 1.357em;
+			}
+
+			body.wordWrap pre {
+				white-space: pre-wrap;
+			}
+
+			pre:not(.hljs),
+			pre.hljs code > div {
+				padding: 16px;
+				border-radius: 3px;
+				overflow: auto;
+			}
+
+			pre code {
+				color: var(--vscode-editor-foreground);
+				tab-size: 4;
+			}
+
+			/** Theming */
+
+			.vscode-light pre {
+				background-color: rgba(220, 220, 220, 0.4);
+			}
+
+			.vscode-dark pre {
+				background-color: rgba(10, 10, 10, 0.4);
+			}
+
+			.vscode-high-contrast pre {
+				background-color: rgb(0, 0, 0);
+			}
+
+			.vscode-high-contrast h1 {
+				border-color: rgb(0, 0, 0);
+			}
+
+			.vscode-light table > thead > tr > th {
+				border-color: rgba(0, 0, 0, 0.69);
+			}
+
+			.vscode-dark table > thead > tr > th {
+				border-color: rgba(255, 255, 255, 0.69);
+			}
+
+			.vscode-light h1,
+			.vscode-light hr,
+			.vscode-light table > tbody > tr + tr > td {
+				border-color: rgba(0, 0, 0, 0.18);
+			}
+
+			.vscode-dark h1,
+			.vscode-dark hr,
+			.vscode-dark table > tbody > tr + tr > td {
+				border-color: rgba(255, 255, 255, 0.18);
+			}
+		</style>
+
+		<style>
+			/*
+
+Visual Studio-like style based on original C# coloring by Jason Diamond <jason@diamond.name>
+
+*/
+			.hljs {
+				background: white;
+				color: black;
+			}
+
+			.hljs-comment,
+			.hljs-quote,
+			.hljs-variable {
+				color: #008000;
+			}
+
+			.hljs-keyword,
+			.hljs-selector-tag,
+			.hljs-built_in,
+			.hljs-name,
+			.hljs-tag {
+				color: #00f;
+			}
+
+			.hljs-string,
+			.hljs-title,
+			.hljs-section,
+			.hljs-attribute,
+			.hljs-literal,
+			.hljs-template-tag,
+			.hljs-template-variable,
+			.hljs-type,
+			.hljs-addition {
+				color: #a31515;
+			}
+
+			.hljs-deletion,
+			.hljs-selector-attr,
+			.hljs-selector-pseudo,
+			.hljs-meta {
+				color: #2b91af;
+			}
+
+			.hljs-doctag {
+				color: #808080;
+			}
+
+			.hljs-attr {
+				color: #f00;
+			}
+
+			.hljs-symbol,
+			.hljs-bullet,
+			.hljs-link {
+				color: #00b0e8;
+			}
+
+			.hljs-emphasis {
+				font-style: italic;
+			}
+
+			.hljs-strong {
+				font-weight: bold;
+			}
+		</style>
+
+		<style>
+			/*
+ * Markdown PDF CSS
+ */
+
+			body {
+				font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC",
+					"Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+			}
+
+			pre {
+				background-color: #f8f8f8;
+				border: 1px solid #cccccc;
+				border-radius: 3px;
+				overflow-x: auto;
+				white-space: pre-wrap;
+				overflow-wrap: break-word;
+			}
+
+			pre:not(.hljs) {
+				padding: 23px;
+				line-height: 19px;
+			}
+
+			blockquote {
+				background: rgba(127, 127, 127, 0.1);
+				border-color: rgba(0, 122, 204, 0.5);
+			}
+
+			.emoji {
+				height: 1.4em;
+			}
+
+			code {
+				font-size: 14px;
+				line-height: 19px;
+			}
+
+			/* for inline code */
+			:not(pre):not(.hljs) > code {
+				color: #3b3b3b; /* Change the old color so it seems less like an error */
+				font-size: inherit;
+				background: #e0e0e0;
+				border-radius: 4px;
+				padding: 1px 2px;
+				margin: -1px -2px;
+			}
+
+			/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+			.page {
+				page-break-after: always;
+			}
+		</style>
+
+		<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+	</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<div class="body">
+<h1 id="programsko-in%C5%BEenjerstvo">Programsko inženjerstvo</h1>
+<p><strong>Nositelj</strong>: doc. dr. sc. Nikola Tanković<br>
+<strong>Asistent</strong>: mag. inf. Alesandro Žužić</p>
+<p><strong>Ustanova</strong>: Sveučilište Jurja Dobrile u Puli, Fakultet informatike u Puli</p>
+<p style="float: clear; display: flex; gap: 8px; align-items: center;" class="font-brioni text-sm whitespace-nowrap">
+    <img src="../Logo/fipu_logo.svg" style="height: 96px; box-shadow: none !important;" class="mr-4"></img>
+    Fakultet informatike u Puli
+</p>
+<h1 id="3-vue-direktive--upravljanje-doga%C4%91ajima">[3] Vue Direktive &amp; Upravljanje Događajima</h1>
+<div style="display: flex; justify-content: space-between; text-align: justify; gap: 32px;">
+    <p>  
+        Vue omogućuje dinamičku kontrolu DOM-a pomoću <b>direktiva</b> i upravljanje korisničkim interakcijama kroz <b>događaje</b>.  
+        Direktive poput <code>v-bind</code>, <code>v-if</code> i <code>v-for</code> omogućuju automatsko ažuriranje sučelja na temelju promjena podataka,  
+        dok <code>v-on</code> omogućuje izvođenje radnji na korisničke akcije, poput klika ili unosa teksta.
+    </p>
+    <img src="../Icons/Vue_3.svg" style="width: 96px; height: 96px; margin: 0px;"></img>
+</div>
+<p style="margin-top: -4px; margin-bottom: -4px;"><strong>Posljednje ažurirano:</strong> 25. ožujka 2025.</p>
+<!-- TOC -->
+<ul>
+<li><a href="#programsko-in%C5%BEenjerstvo">Programsko inženjerstvo</a></li>
+<li><a href="#3-vue-direktive--upravljanje-doga%C4%91ajima">[3] Vue Direktive &amp; Upravljanje Događajima</a>
+<ul>
+<li><a href="#vue-direktive">Vue Direktive</a>
+<ul>
+<li><a href="#v-html-i-v-text">v-html i v-text</a></li>
+<li><a href="#v-model">v-model</a></li>
+<li><a href="#v-bind">v-bind</a></li>
+<li><a href="#v-if-v-else-v-else-if">v-if, v-else, v-else-if</a>
+<ul>
+<li><a href="#zadatak-provjera-sigurnosti-lozinke">Zadatak: Provjera sigurnosti lozinke</a></li>
+</ul>
+</li>
+<li><a href="#v-show">v-show</a></li>
+<li><a href="#v-for">v-for</a>
+<ul>
+<li><a href="#zadatak-galerija-slika">Zadatak: Galerija slika</a></li>
+<li><a href="#v-for--v-if">v-for + v-if</a></li>
+<li><a href="#iteracija-kroz-polje-objekata">Iteracija kroz polje objekata</a>
+<ul>
+<li><a href="#zadatak-popis-proizvoda">Zadatak: Popis proizvoda</a></li>
+</ul>
+</li>
+<li><a href="#iteracija-kroz-objekt">Iteracija kroz objekt</a></li>
+<li><a href="#iteracija-kroz-raspon-range">Iteracija kroz raspon range</a></li>
+<li><a href="#ugnije%C5%BE%C4%91eni-v-for">Ugniježđeni v-for</a></li>
+<li><a href="#modificiranje-polja-filtriranjesortiranje">Modificiranje polja, filtriranje/sortiranje</a>
+<ul>
+<li><a href="#zadatak-dinami%C4%8Dko-filtriranje-studenata">Zadatak: Dinamičko filtriranje studenata</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#v-pre--v-once">v-pre &amp; v-once</a></li>
+</ul>
+</li>
+<li><a href="#upravljanje-doga%C4%91ajima">Upravljanje događajima</a>
+<ul>
+<li><a href="#modificiranje-doga%C4%91aja">Modificiranje događaja</a></li>
+<li><a href="#pristupanje-event-argumentu">Pristupanje event argumentu</a></li>
+</ul>
+</li>
+<li><a href="#samostalni-zadatak-za-vje%C5%BEbu-3">Samostalni zadatak za vježbu 3</a></li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+<div class="page"></div>
+<h2 id="vue-direktive">Vue Direktive</h2>
+<p>Vue.js nudi širok spektar ugrađenih direktiva koje pojednostavljuju manipulaciju sadržajem na stranici. Sve direktive u Vue-u započinju s prefiksom <code>v-</code>, čime označavaju specifičnu funkcionalnost unutar aplikacije.</p>
+<p>Popis najvažnijih Vue direktiva:</p>
+<table>
+<thead>
+<tr>
+<th>Direktiva</th>
+<th>Opis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>v-text</code></td>
+<td>Dinamički postavlja tekst unutar elementa, zamjenjujući sadržaj</td>
+</tr>
+<tr>
+<td><code>v-html</code></td>
+<td>Dinamički postavlja HTML unutar elementa, omogućujući renderiranje HTML-a</td>
+</tr>
+<tr>
+<td><code>v-model</code></td>
+<td>Povezuje varijable s input poljima za dvosmjerno vezivanje podataka</td>
+</tr>
+<tr>
+<td><code>v-bind</code></td>
+<td>Dinamički veže atribute ili svojstva DOM elemenata na varijable</td>
+</tr>
+<tr>
+<td><code>v-if</code></td>
+<td>Uvjetno prikazuje elemente u DOM-u</td>
+</tr>
+<tr>
+<td><code>v-else</code></td>
+<td>Uvjetno prikazuje elemente kada <code>v-if</code> uvjet nije ispunjen</td>
+</tr>
+<tr>
+<td><code>v-else-if</code></td>
+<td>Alternativa za uvjet <code>v-else</code> za dodatne uvjete</td>
+</tr>
+<tr>
+<td><code>v-show</code></td>
+<td>Kontrolira vidljivost elementa bez uklanjanja iz DOM-a</td>
+</tr>
+<tr>
+<td><code>v-for</code></td>
+<td>Ponavlja elemente na temelju liste ili objekta</td>
+</tr>
+<tr>
+<td><code>v-pre</code></td>
+<td>Omogućuje Vue-u da preskoči kompilaciju sadržaja unutar elementa</td>
+</tr>
+<tr>
+<td><code>v-once</code></td>
+<td>Postavlja element samo jednom, bez ponovnog Postavljanja.</td>
+</tr>
+<tr>
+<td><code>v-on</code></td>
+<td>Priključuje event listener (npr. <code>click</code>, <code>input</code>)</td>
+</tr>
+<tr>
+<td><code>v-slot</code></td>
+<td>Definira &quot;slot&quot; za dinamično dodavanje sadržaja u komponente</td>
+</tr>
+</tbody>
+</table>
+<h3 id="v-html-i-v-text"><code>v-html</code> i <code>v-text</code></h3>
+<p>U prethodnoj skripti spomenuli smo direktivu <code>v-html</code>, koja omogućuje prikaz HTML sadržaja unutar DOM elementa. Također, postoji i direktiva <code>v-text</code> koja omogućuje prikaz običnog teksta unutar elementa.</p>
+<p>Direktiva <code>v-text</code> postavlja <code>textContent</code> svojstvo elementa, što znači da će zamijeniti bilo koji postojeći sadržaj unutar tog elementa.</p>
+<div class="page"></div>
+<p><em>Primjer:</em></p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="handlebars"><span class="xml">
+    const sadrzaj = "<span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span> Ovo je <span class="hljs-tag">&lt;<span class="hljs-name">b</span>&gt;</span>span<span class="hljs-tag">&lt;/<span class="hljs-name">b</span>&gt;</span> element <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>";
+</span></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">v-html</span>=<span class="hljs-string">"sadrzaj"</span>&gt;</span> 
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">v-text</span>=<span class="hljs-string">"sadrzaj"</span>&gt;</span> 
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span> 
+        {{ sadrzaj }}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<p><img src="Slike/vhtml_vtext.png" alt="alt text"></p>
+<p><em>Ako treba ažurirati samo dio sadržaja, bolje je koristiti template syntax:</em></p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+    <span class="hljs-keyword">const</span> ime = <span class="hljs-string">"Marko"</span>;
+    <span class="hljs-keyword">const</span> prezime = <span class="hljs-string">"Markić"</span>;
+    <span class="hljs-keyword">const</span> sadrzaj = <span class="hljs-string">`Pozdrav, ja sam <span class="hljs-subst">${ime}</span> <span class="hljs-subst">${prezime}</span>`</span>;
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>     
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">v-text</span>=<span class="hljs-string">"sadrzaj"</span>&gt;</span> 
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span> 
+        Pozdrav, ja sam {{ime}} {{prezime}}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<p>Sadržaj unutar <code>v-html</code> se ubacuje kao obični HTML – <strong>Vue sintaksa neće biti obrađena</strong>. Ako želimo koristiti <code>v-html</code> za dinamičko sastavljanje predložaka, onda se za to koriste komponente.</p>
+<blockquote>
+<p>Kod SFC (<em>Single-File Components</em>), stilovi koji su ograničeni (<em>scoped styles</em>) neće se primjenjivati na sadržaj unutar <code>v-html</code>, jer Vue predložak nije obradio taj HTML.</p>
+</blockquote>
+<div class="page"></div>
+<h3 id="v-model"><code>v-model</code></h3>
+<p>Direktiva <code>v-model</code> omogućuje dvosmjerno povezivanje podataka između varijable i HTML elementa. Najčešće se koristi s formama kako bi automatski ažurirala vrijednosti u stanju aplikacije kada korisnik unese podatke.</p>
+<p><em>Primjer (Text Input &amp; Checkbox):</em></p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+    <span class="hljs-keyword">import</span> { ref } <span class="hljs-keyword">from</span> <span class="hljs-string">"vue"</span>;
+
+    <span class="hljs-keyword">const</span> unos = ref(<span class="hljs-string">""</span>);
+    <span class="hljs-keyword">const</span> potvrda = ref(<span class="hljs-literal">false</span>);
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">"unos"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"border p-1 rounded"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Upiši nešto..."</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">b</span>&gt;</span>Text:<span class="hljs-tag">&lt;/<span class="hljs-name">b</span>&gt;</span> {{ unos }}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"checkbox"</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">"potvrda"</span>&gt;</span>
+        Prihvaćam uvjete
+    <span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">b</span>&gt;</span>Potvrda:<span class="hljs-tag">&lt;/<span class="hljs-name">b</span>&gt;</span> {{ potvrda ? "Prihvaćeno" : "Odbijeno" }}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<ul>
+<li><code>v-model</code> direktivu ćemo detaljnije proći u sljedećoj skripti</li>
+</ul>
+<h3 id="v-bind"><code>v-bind</code></h3>
+<p>Direktiva koju smo također prošli u prošloj skripti <code>v-bind</code> omogućuje dinamičko vezivanje atributa ili svojstava DOM elemenata na vrijednosti. Tako, kada se vrijednost promijeni, atribut se automatski ažurira.</p>
+<p>Koristi se tako da se ispred atributa napiše <code>v-bind:</code> ili skraćeno samo <code>:</code>.</p>
+<div class="page"></div>
+<p><strong>Primjeri vezivanja:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+    <span class="hljs-keyword">const</span> slikaURL = <span class="hljs-string">"https://www.svgrepo.com/show/179114/painting-painting.svg"</span>;
+    <span class="hljs-keyword">const</span> link = <span class="hljs-string">"https://vuejs.org/guide/essentials/class-and-style.html"</span>;
+    <span class="hljs-keyword">const</span> disabledDugme = <span class="hljs-literal">true</span>;
+    <span class="hljs-keyword">const</span> stil = {
+        <span class="hljs-attr">color</span>: <span class="hljs-string">"red"</span>,
+        <span class="hljs-attr">fontSize</span>: <span class="hljs-string">"20px"</span>
+    };
+    <span class="hljs-keyword">const</span> atributi = {
+        <span class="hljs-attr">class</span>: <span class="hljs-string">"rounded hover:bg-green-100"</span>,
+        <span class="hljs-attr">placeholder</span>: <span class="hljs-string">"Upiši text..."</span>
+    };
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- Vezivanje href atributa --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">:href</span>=<span class="hljs-string">"link"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"underline hover:text-blue-600"</span> <span class="hljs-attr">target</span>=<span class="hljs-string">"_blank"</span>&gt;</span>Vue Docs Link<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+    
+    <span class="hljs-comment">&lt;!-- Vezivanje src atributa --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">:src</span>=<span class="hljs-string">"slikaURL"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"w-16"</span>&gt;</span> <span class="hljs-comment">&lt;!-- Kraći zapis --&gt;</span>
+
+    <span class="hljs-comment">&lt;!-- Vezivanje boolean atributa --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">:disabled</span>=<span class="hljs-string">"disabledDugme"</span> 
+        <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-gray-300 p-1 rounded disabled:opacity-25 disabled:cursor-not-allowed"</span>&gt;</span>
+        Onemogućeno dugme
+    <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+
+    <span class="hljs-comment">&lt;!-- Vezivanje stila --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">:style</span>=<span class="hljs-string">"stil"</span>&gt;</span>Ovaj tekst je crven i ima veličinu 20px<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+
+    <span class="hljs-comment">&lt;!-- Vezivanje više atributa odjednom --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">v-bind</span>=<span class="hljs-string">"atributi"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"border p-2"</span>&gt;</span>
+
+    <span class="hljs-comment">&lt;!-- Dinamička klasa --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">:class</span>=<span class="hljs-string">"[
+            bold, 
+            { 'text-rose-700' : hasError}, 
+            isActive ? 'border-2 border-orange-400/75 rounded p-1 m-1 w-fit' : ''
+        ]"</span>&gt;</span>
+        Dinamička klasa
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<div class="page"></div>
+<p><em>Primjeri korištenja:</em></p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+<span class="hljs-keyword">import</span> { ref } <span class="hljs-keyword">from</span> <span class="hljs-string">"vue"</span>;
+
+<span class="hljs-keyword">const</span> size = ref(<span class="hljs-string">"24"</span>);
+<span class="hljs-keyword">const</span> selected = ref(<span class="hljs-literal">false</span>);
+<span class="hljs-keyword">const</span> style = ref(<span class="hljs-string">""</span>);
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"range"</span> <span class="hljs-attr">min</span>=<span class="hljs-string">"12"</span> <span class="hljs-attr">max</span>=<span class="hljs-string">"36"</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">"size"</span>/&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">:style</span>=<span class="hljs-string">"`font-size: ${size}px;`"</span>&gt;</span>
+        font-size: {{size}}px
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"checkbox"</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">"selected"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"mr-2"</span>/&gt;</span> 
+    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">:class</span>=<span class="hljs-string">"selected ? 'opacity-100 text-green-700': 'opacity-50 text-red-700'"</span>&gt;</span>
+        {{selected}}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">textarea</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"border"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">:style</span>=<span class="hljs-string">"style"</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">"style"</span> <span class="hljs-attr">:rows</span>=<span class="hljs-string">"8"</span>/&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<div class="page"></div>
+<h3 id="v-if-v-else-v-else-if"><code>v-if</code>, <code>v-else</code>, <code>v-else-if</code></h3>
+<p>Ove direktive omogućuju uvjetno prikazivanje elemenata:</p>
+<ul>
+<li><code>v-if</code> – Prikazuje element u DOM-u samo ako je uvjet ispunjen</li>
+<li><code>v-else</code> – Prikazuje element ako prethodni <code>v-if</code> uvjet nije ispunjen</li>
+<li><code>v-else-if</code> – Dodaje dodatne uvjete kao alternativa <code>v-else</code></li>
+</ul>
+<p><em>Primjer:</em></p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+    <span class="hljs-keyword">import</span> { ref } <span class="hljs-keyword">from</span> <span class="hljs-string">"vue"</span>;
+
+    <span class="hljs-keyword">const</span> broj = ref(<span class="hljs-number">6</span>)
+    <span class="hljs-keyword">const</span> prikazi = ref(<span class="hljs-literal">false</span>)
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">b</span>&gt;</span>Prikaži:<span class="hljs-tag">&lt;/<span class="hljs-name">b</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"checkbox"</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">"prikazi"</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">"prikazi"</span>&gt;</span>
+        Hello!
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">br</span>/&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>/&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">b</span>&gt;</span>Broj:<span class="hljs-tag">&lt;/<span class="hljs-name">b</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"number"</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">"broj"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"border p-1 rounded"</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">"broj%2==0 &amp;&amp; broj%3==0"</span>&gt;</span>
+        Broj {{ broj }} je djeljiv sa 2 i 3
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">v-else-if</span>=<span class="hljs-string">"broj%2==0"</span>&gt;</span>
+        Broj {{ broj }} je djeljiv 2
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">v-else-if</span>=<span class="hljs-string">"broj%3==0"</span>&gt;</span>
+        Broj {{ broj }} je djeljiv 3
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">v-else</span>&gt;</span>
+        Broj {{ broj }} <span class="hljs-tag">&lt;<span class="hljs-name">b</span>&gt;</span>nije<span class="hljs-tag">&lt;/<span class="hljs-name">b</span>&gt;</span> djeljiv sa 2 i 3
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<h4 id="zadatak-provjera-sigurnosti-lozinke"><strong>Zadatak: Provjera sigurnosti lozinke</strong></h4>
+<p>Napišite Vue.js kôd koji omogućuje korisniku unos lozinke i provjerava njezinu sigurnost prema sljedećim kriterijima:</p>
+<ul>
+<li>Minimalno 8 znakova</li>
+<li>Najmanje jedno veliko slovo</li>
+<li>Najmanje jedan specijalni znak (<em>npr. @, #, $, %...</em>)</li>
+<li>Najmanje jedna brojka</li>
+</ul>
+<p>Za svaki neispunjeni uvjet prikazati odgovarajuće upozorenje. Kada su svi uvjeti ispunjeni, prikazuje se poruka: <em>&quot;Lozinka je sigurna!&quot;</em></p>
+<p>Osim tekstualne provjere, implementirati i <em>indikator jačine lozinke</em> (<em>progress bar</em>), koji vizualno prikazuje razinu sigurnosti lozinke:</p>
+<ul>
+<li>10% (crveno) – Nijedan uvjet nije ispunjen</li>
+<li>25% (narančasto) – Ispunjen jedan uvjet</li>
+<li>50% (žuto) – Ispunjena dva uvjeta</li>
+<li>75% (zeleno-žuto) – Ispunjena tri uvjeta</li>
+<li>100% (zeleno) – Svi uvjeti su ispunjeni</li>
+</ul>
+<p>Korisničko sučelje treba omogućiti dinamičko ažuriranje poruka i indikatora sigurnosti lozinke u realnom vremenu.</p>
+<p><img src="Slike/password_bad.png" alt="alt text">
+<img src="Slike/password_good.png" alt="alt text"></p>
+<div class="page"></div>
+<h3 id="v-show"><code>v-show</code></h3>
+<p>Direktiva <code>v-show</code> omogućuje uvjetno prikazivanje elemenata, ali umjesto uklanjanja iz DOM-a (kao <code>v-if</code>), ona samo mijenja <code>display</code> stil elementa. To znači da je <code>v-show</code> efikasniji za čestu promjenu vidljivosti, dok je <code>v-if</code> bolji za elemente koji se rijetko prikazuju.</p>
+<p><strong>Primjer:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+    <span class="hljs-keyword">import</span> { ref } <span class="hljs-keyword">from</span> <span class="hljs-string">"vue"</span>;
+    
+    <span class="hljs-keyword">const</span> hide = ref(<span class="hljs-literal">false</span>);
+    <span class="hljs-keyword">const</span> element = ref();
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">dohvati</span>(<span class="hljs-params">id</span>) </span>{
+        element.value = <span class="hljs-built_in">document</span>.getElementById(id);
+    }
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+    Sakrij: <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"checkbox"</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">"hide"</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"div_if"</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">"!hide"</span>&gt;</span>
+        Element sakriven sa v-if
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"div_show"</span> <span class="hljs-attr">v-show</span>=<span class="hljs-string">"!hide"</span>&gt;</span>
+        Element sakriven sa v-show
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"flex gap-2"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"dohvati('div_if')"</span> 
+            <span class="hljs-attr">class</span>=<span class="hljs-string">"p-1 bg-sky-200 hover:bg-green-200 rounded cursor-pointer"</span>&gt;</span>
+            Dohvati element sakriven sa v-if
+        <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"dohvati('div_show')"</span>
+            <span class="hljs-attr">class</span>=<span class="hljs-string">"p-1 bg-sky-200 hover:bg-green-200 rounded cursor-pointer"</span>&gt;</span>
+            Dohvati element sakriven sa v-show
+        <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">b</span>&gt;</span>Element:<span class="hljs-tag">&lt;/<span class="hljs-name">b</span>&gt;</span> {{ element ? element.outerHTML : 'null' }}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<p>U ovom primjeru možemo sakriti elemente i dohvatiti ih s pomoću njihovog <em>id-ja</em>. Ako sakrijemo element i pokušamo ga dohvatiti, primijetit ćemo razliku između <code>v-if</code> i <code>v-show</code>.</p>
+<p>Element sakriven s <code>v-if</code> neće postojati u DOM-u, pa će rezultat dohvaćanja biti <code>null</code>. S druge strane, element sakriven s <code>v-show</code> i dalje postoji u DOM-u, samo mu je postavljen stil <code>display: none;</code>.</p>
+<h3 id="v-for"><code>v-for</code></h3>
+<p>Direktiva <code>v-for</code> koristi se za prikaz popisa elemenata na temelju niza. Sintaksa je <code>item in items</code>, gdje <code>items</code> predstavlja podatke, a <code>item</code> je trenutačna stavka u iteraciji.</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+    <span class="hljs-keyword">import</span> { ref } <span class="hljs-keyword">from</span> <span class="hljs-string">"vue"</span>;
+
+    <span class="hljs-keyword">const</span> items = ref([
+        <span class="hljs-string">"banana"</span>,
+        <span class="hljs-string">"jabuka"</span>,
+        <span class="hljs-string">"kruška"</span>,
+        <span class="hljs-string">"lubenica"</span>,
+        <span class="hljs-string">"limun"</span>
+    ]);
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">"item in items"</span>&gt;</span>
+        {{ item.message }}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<p><em>Unutar <code>v-for</code> izraza moguće je koristiti i <strong>indeks</strong> trenutačne stavke.  koristeći sintaksu <code>(item, index) in items</code>:</em></p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+    <span class="hljs-keyword">import</span> { ref } <span class="hljs-keyword">from</span> <span class="hljs-string">"vue"</span>;
+
+    <span class="hljs-keyword">const</span> items = ref([
+        <span class="hljs-string">"banana"</span>,
+        <span class="hljs-string">"jabuka"</span>,
+        <span class="hljs-string">"kruška"</span>,
+        <span class="hljs-string">"lubenica"</span>,
+        <span class="hljs-string">"limun"</span>
+    ]);
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">"(item, index) in items"</span>&gt;</span>
+        {{ index }} - {{ item }}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<blockquote>
+<p>Alternativno se može koristiti <code>of</code> umjesto <code>in</code>: <code>item of items</code></p>
+</blockquote>
+<div class="page"></div>
+<h4 id="zadatak-galerija-slika">Zadatak: Galerija slika</h4>
+<p>Napišite Vue kôd koji prikazuje galeriju slika koristeći <code>v-for</code>. Polje slika sadrži URL-ove slika koje se prikazuju kao popis koristeći <code>&lt;img&gt;</code> element.</p>
+<p><em>Podaci:</em></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">const</span> slike = [
+    <span class="hljs-string">"https://1209k.com/bobross/images/4243768.jpg"</span>,
+    <span class="hljs-string">"https://1209k.com/bobross/images/4243770.jpg"</span>,
+    <span class="hljs-string">"https://1209k.com/bobross/images/4066911.jpg"</span>,
+    <span class="hljs-string">"https://1209k.com/bobross/images/4067001.jpg"</span>,
+    <span class="hljs-string">"https://1209k.com/bobross/images/2264861.jpg"</span>,
+    <span class="hljs-string">"https://1209k.com/bobross/images/1775771.jpg"</span>,
+    <span class="hljs-string">"https://1209k.com/bobross/images/1775851.jpg"</span>,
+    <span class="hljs-string">"https://1209k.com/bobross/images/1775881.jpg"</span>,
+    <span class="hljs-string">"https://1209k.com/bobross/images/1691651.jpg"</span>,
+    <span class="hljs-string">"https://1209k.com/bobross/images/1691621.jpg"</span>
+];
+</div></code></pre>
+<p><img src="Slike/paintings.png" alt="alt text"></p>
+<div class="page"></div>
+<h4 id="v-for--v-if"><code>v-for</code> + <code>v-if</code></h4>
+<p>Direktive <code>v-for</code> i <code>v-if</code> mogu se koristiti zajedno kako bismo filtrirali ili selektivno prikazali elemente unutar petlje.</p>
+<p><em>Primjer:</em></p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+    <span class="hljs-keyword">import</span> { ref } <span class="hljs-keyword">from</span> <span class="hljs-string">"vue"</span>;
+
+    <span class="hljs-keyword">const</span> brojevi = ref([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>, <span class="hljs-number">10</span>]);
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>Parni brojevi:<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+    
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">"broj in brojevi"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">"broj % 2 === 0"</span>&gt;</span>
+            - {{ broj }}
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<p><em>Ako napišemo:</em></p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">"broj in brojevi"</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">"broj % 2 === 0"</span>&gt;</span>
+    - {{ broj }}
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</div></code></pre>
+<p>To neće raditi jer <code>v-if</code> ne može pročitati <code>broj</code> iz <code>v-for</code>.</p>
+<blockquote>
+<p>U pravilu <code>v-for</code> i <code>v-if</code> se ne pišu zajedno na istom elementu.</p>
+</blockquote>
+<div class="page"></div>
+<h4 id="iteracija-kroz-polje-objekata">Iteracija kroz polje objekata</h4>
+<p>Osim što možemo iterirati kroz jednostavno polje brojeva ili riječi, često radimo s poljima objekata, pri čemu svojstvima svakog objekta pristupamo na isti način kao u običnom JavaScriptu.</p>
+<p><em>Primjer:</em></p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+    <span class="hljs-keyword">import</span> { ref } <span class="hljs-keyword">from</span> <span class="hljs-string">"vue"</span>;
+
+    <span class="hljs-keyword">const</span> korisnici = ref([
+        { <span class="hljs-attr">ime</span>: <span class="hljs-string">"Ivan"</span>, <span class="hljs-attr">prezime</span>: <span class="hljs-string">"Horvat"</span>, <span class="hljs-attr">godine</span>: <span class="hljs-number">25</span> },
+        { <span class="hljs-attr">ime</span>: <span class="hljs-string">"Ana"</span>, <span class="hljs-attr">prezime</span>: <span class="hljs-string">"Kovač"</span>, <span class="hljs-attr">godine</span>: <span class="hljs-number">30</span> },
+        { <span class="hljs-attr">ime</span>: <span class="hljs-string">"Marko"</span>, <span class="hljs-attr">prezime</span>: <span class="hljs-string">"Babić"</span>, <span class="hljs-attr">godine</span>: <span class="hljs-number">22</span> }
+    ]);
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">"korisnik in korisnici"</span>&gt;</span>
+            {{ korisnik.ime }} {{ korisnik.prezime }} - {{ korisnik.godine }} godina
+        <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<h5 id="zadatak-popis-proizvoda">Zadatak: Popis proizvoda</h5>
+<p>U ovom zadatku, treba napisati kôd za prikaz popisa proizvoda u trgovini, iterirati kroz polje  proizvoda i prikazati svaki proizvod u popisu. Imamo polje objekata koji predstavljaju proizvode. Svaki objekt ima svojstva: <code>naziv</code> (<em>ime proizvoda</em>), <code>cijena</code> (<em>cijena proizvoda</em>), <code>slika</code> (<em>url slike</em>),  i <code>dostupnost</code> (<em>boolean koji označava je li proizvod dostupan</em>).</p>
+<ol>
+<li>Uz svaki proizvod, treba prikazati:
+<ul>
+<li>Naziv proizvoda</li>
+<li>Cijenu proizvoda</li>
+<li>Sliku proizvoda</li>
+<li>Status dostupnosti (ako je dostupan, napisati &quot;Dostupno&quot;, ako nije, &quot;Nema na skladištu&quot;)</li>
+</ul>
+</li>
+<li>Proizvode koji nisu dostupni treba označiti crvenom bojom</li>
+</ol>
+<div class="page"></div>
+<p><em>Podaci:</em></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">const</span> proizvodi = [
+    { <span class="hljs-attr">naziv</span>: <span class="hljs-string">'Laptop'</span>, <span class="hljs-attr">cijena</span>: <span class="hljs-number">1200</span>, <span class="hljs-attr">dostupnost</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">slika</span>: <span class="hljs-string">'https://www.svgrepo.com/show/474385/laptop1.svg'</span> },
+    { <span class="hljs-attr">naziv</span>: <span class="hljs-string">'Slušalice'</span>, <span class="hljs-attr">cijena</span>: <span class="hljs-number">150</span>, <span class="hljs-attr">dostupnost</span>: <span class="hljs-literal">false</span>, <span class="hljs-attr">slika</span>: <span class="hljs-string">'https://www.svgrepo.com/show/268045/headphones.svg'</span> },
+    { <span class="hljs-attr">naziv</span>: <span class="hljs-string">'Mobitel'</span>, <span class="hljs-attr">cijena</span>: <span class="hljs-number">240</span>, <span class="hljs-attr">dostupnost</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">slika</span>: <span class="hljs-string">'https://www.svgrepo.com/show/260093/smartphone.svg'</span> },
+    { <span class="hljs-attr">naziv</span>: <span class="hljs-string">'TV'</span>, <span class="hljs-attr">cijena</span>: <span class="hljs-number">360</span>, <span class="hljs-attr">dostupnost</span>: <span class="hljs-literal">false</span>, <span class="hljs-attr">slika</span>: <span class="hljs-string">'https://www.svgrepo.com/show/501835/tv.svg'</span> }
+];
+</div></code></pre>
+<p><img src="Slike/proizvodi.png" alt="alt text"></p>
+<div class="page"></div>
+<h4 id="iteracija-kroz-objekt">Iteracija kroz objekt</h4>
+<p>Osim iteracije kroz polja, <code>v-for</code> omogućuje i iteraciju kroz svojstva objekta. U tom slučaju, možemo pristupiti ključu, vrijednosti i indeksu svakog svojstva koristeći sintaksu <code>(value, key, index) in object</code>.</p>
+<p><em>Primjer:</em></p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+    <span class="hljs-keyword">import</span> { ref } <span class="hljs-keyword">from</span> <span class="hljs-string">"vue"</span>;
+
+    <span class="hljs-keyword">const</span> korisnik = ref(
+        { <span class="hljs-attr">ime</span>: <span class="hljs-string">"Ivan"</span>, <span class="hljs-attr">prezime</span>: <span class="hljs-string">"Ivanić"</span>, <span class="hljs-attr">godine</span>: <span class="hljs-number">25</span> },
+    );
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">"(value, key, index) in korisnik"</span>&gt;</span>
+            {{index}} &gt; <span class="hljs-tag">&lt;<span class="hljs-name">b</span>&gt;</span>{{ key }}:<span class="hljs-tag">&lt;/<span class="hljs-name">b</span>&gt;</span> {{ value }}
+        <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<h4 id="iteracija-kroz-raspon-range">Iteracija kroz raspon (range)</h4>
+<p><code>v-for</code> omogućuje ponavljanje elemenata određen broj puta koristeći raspon brojeva.</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">"n in 5"</span>&gt;</span>{{ n }}<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<p>Ovaj primjer će generirati pet <code>&lt;li&gt;</code> elemenata s vrijednostima od 1 do 5.</p>
+<div class="page"></div>
+<h4 id="ugnije%C5%BE%C4%91eni-v-for">Ugniježđeni <code>v-for</code></h4>
+<p>Direktiva <code>v-for</code> može se koristiti unutar druge <code>v-for</code> petlje kako bi se iteriralo kroz ugniježđene podatke, poput polja unutar polja.</p>
+<p><em>Primjer:</em></p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+    <span class="hljs-keyword">import</span> { ref } <span class="hljs-keyword">from</span> <span class="hljs-string">"vue"</span>;
+
+    <span class="hljs-keyword">const</span> kategorije = ref([
+        { <span class="hljs-attr">naziv</span>: <span class="hljs-string">"Voće"</span>, <span class="hljs-attr">proizvodi</span>: [<span class="hljs-string">"Jabuka"</span>, <span class="hljs-string">"Banana"</span>, <span class="hljs-string">"Jagoda"</span>] },
+        { <span class="hljs-attr">naziv</span>: <span class="hljs-string">"Povrće"</span>, <span class="hljs-attr">proizvodi</span>: [<span class="hljs-string">"Mrkva"</span>, <span class="hljs-string">"Krumpir"</span>, <span class="hljs-string">"Rajčica"</span>] },
+    ]);
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"flex gap-8"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">"kategorija in kategorije"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">b</span>&gt;</span>{{ kategorija.naziv }}<span class="hljs-tag">&lt;/<span class="hljs-name">b</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">hr</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"my-1"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">"proizvod in kategorija.proizvodi"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-sm"</span>&gt;</span>
+                - {{ proizvod }}
+            <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<p>U ovom primjeru:</p>
+<ul>
+<li>Iteriramo kroz kategorije proizvoda</li>
+<li>Svaka kategorija sadrži polje proizvoda</li>
+<li>Unutar svake kategorije, s pomoću ugniježđene <code>v-for</code> petlje, iteriramo kroz proizvode i prikazujemo ih</li>
+</ul>
+<div class="page"></div>
+<h4 id="modificiranje-polja-filtriranjesortiranje">Modificiranje polja, filtriranje/sortiranje</h4>
+<p>U Vue.js možemo dinamički mijenjati polja s pomoću metoda poput <strong>sort()</strong>, <strong>filter()</strong> i <strong>map()</strong>, te ih koristiti unutar <code>v-for</code>.</p>
+<p><em>Primjer filtriranja i sortiranja učenika:</em></p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+    <span class="hljs-keyword">import</span> { ref } <span class="hljs-keyword">from</span> <span class="hljs-string">"vue"</span>;
+
+    <span class="hljs-keyword">const</span> ucenici = ref([
+        { <span class="hljs-attr">ime</span>: <span class="hljs-string">"Ana"</span>, <span class="hljs-attr">bodovi</span>: <span class="hljs-number">85</span> },
+        { <span class="hljs-attr">ime</span>: <span class="hljs-string">"Marko"</span>, <span class="hljs-attr">bodovi</span>: <span class="hljs-number">92</span> },
+        { <span class="hljs-attr">ime</span>: <span class="hljs-string">"Petra"</span>, <span class="hljs-attr">bodovi</span>: <span class="hljs-number">78</span> },
+        { <span class="hljs-attr">ime</span>: <span class="hljs-string">"Ivan"</span>, <span class="hljs-attr">bodovi</span>: <span class="hljs-number">60</span> }
+    ]);
+
+    <span class="hljs-keyword">const</span> minBodovi = ref(<span class="hljs-number">70</span>);
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sortirajPoBodovima</span>(<span class="hljs-params">ulazno</span>) </span>{
+        ucenici.value.sort(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> ulazno ? b.bodovi - a.bodovi : a.bodovi - b.bodovi);
+    }
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>
+        Minimalan broj bodova:
+        <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"number"</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">"minBodovi"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"border p-1 rounded"</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"sortirajPoBodovima(true)"</span> 
+        <span class="hljs-attr">class</span>=<span class="hljs-string">"ml-2 p-1 bg-blue-200 hover:bg-green-200 cursor-pointer rounded"</span>&gt;</span>
+        Sortiraj Uzlazno
+    <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"sortirajPoBodovima(false)"</span> 
+        <span class="hljs-attr">class</span>=<span class="hljs-string">"ml-2 p-1 bg-blue-200 hover:bg-green-200 cursor-pointer rounded"</span>&gt;</span>
+        Sortiraj Silazno
+    <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">"ucenik in ucenici.filter(u =&gt; u.bodovi &gt;= minBodovi)"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">b</span>&gt;</span>{{ ucenik.ime }}<span class="hljs-tag">&lt;/<span class="hljs-name">b</span>&gt;</span> - {{ ucenik.bodovi }} bodova
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<ul>
+<li>Polje učenika može se filtrirati tako da prikazuje samo one s minimalnim brojem bodova</li>
+<li>Klikom na gumb učenici se sortiraju ulazno ili silazno po bodovima</li>
+<li><code>v-model</code> omogućuje unos minimalnog broja bodova u stvarnom vremenu</li>
+</ul>
+<div class="page"></div>
+<p><em>Vue može detektirati reaktivne mutacije polja:</em></p>
+<table>
+<thead>
+<tr>
+<th>Metoda</th>
+<th>Opis</th>
+<th>Primjer korištenja</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>push()</strong></td>
+<td>Dodaje jedan ili više elemenata na kraj polja</td>
+<td><code>polje.push(5);</code></td>
+</tr>
+<tr>
+<td><strong>pop()</strong></td>
+<td>Uklanja posljednji element iz polja i vraća ga</td>
+<td><code>let zadnji = polje.pop();</code></td>
+</tr>
+<tr>
+<td><strong>shift()</strong></td>
+<td>Uklanja prvi element iz polja i pomiče preostale ulijevo</td>
+<td><code>let prvi = polje.shift();</code></td>
+</tr>
+<tr>
+<td><strong>unshift()</strong></td>
+<td>Dodaje jedan ili više elemenata na početak polja</td>
+<td><code>polje.unshift(10);</code></td>
+</tr>
+<tr>
+<td><strong>splice()</strong></td>
+<td>Dodaje, uklanja ili mijenja elemente unutar polja</td>
+<td><code>polje.splice(1, 2, &quot;novi&quot;);</code></td>
+</tr>
+<tr>
+<td><strong>sort()</strong></td>
+<td>Sortira elemente polja (po defaultu leksikografski)</td>
+<td><code>polje.sort((a, b) =&gt; a - b);</code></td>
+</tr>
+<tr>
+<td><strong>reverse()</strong></td>
+<td>Obrće redoslijed elemenata u polju</td>
+<td><code>polje.reverse();</code></td>
+</tr>
+</tbody>
+</table>
+<p><em>Primjer:</em></p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+    <span class="hljs-keyword">import</span> { ref } <span class="hljs-keyword">from</span> <span class="hljs-string">"vue"</span>;
+
+    <span class="hljs-keyword">const</span> newName = ref(<span class="hljs-string">''</span>)
+
+    <span class="hljs-keyword">const</span> names = ref([
+        <span class="hljs-string">"Ana"</span>,
+        <span class="hljs-string">"Marko"</span>,
+        <span class="hljs-string">"Petra"</span>,
+        <span class="hljs-string">"Ivan"</span>
+    ]);
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"flex flex-wrap gap-2"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">"newName"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"border px-1 w-32 rounded"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Novo ime..."</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"names.push(newName)"</span>
+            <span class="hljs-attr">class</span>=<span class="hljs-string">"p-1 bg-blue-200 hover:bg-green-200 cursor-pointer rounded"</span>&gt;</span>
+            push()
+        <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"names.pop()"</span>
+            <span class="hljs-attr">class</span>=<span class="hljs-string">"p-1 bg-blue-200 hover:bg-green-200 cursor-pointer rounded"</span>&gt;</span>
+            pop()
+        <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"names.unshift(newName)"</span>
+            <span class="hljs-attr">class</span>=<span class="hljs-string">"p-1 bg-blue-200 hover:bg-green-200 cursor-pointer rounded"</span>&gt;</span>
+            unshift()
+        <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"names.shift()"</span>
+            <span class="hljs-attr">class</span>=<span class="hljs-string">"p-1 bg-blue-200 hover:bg-green-200 cursor-pointer rounded"</span>&gt;</span>
+            shift()
+        <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"names.reverse()"</span>
+            <span class="hljs-attr">class</span>=<span class="hljs-string">"p-1 bg-blue-200 hover:bg-green-200 cursor-pointer rounded"</span>&gt;</span>
+            reverse()
+        <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"names.sort()"</span>
+            <span class="hljs-attr">class</span>=<span class="hljs-string">"p-1 bg-blue-200 hover:bg-green-200 cursor-pointer rounded"</span>&gt;</span>
+            sort()
+        <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">hr</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"my-2"</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"flex flex-col gap-1 text-sm"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">"(name, index) in names"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"px-1 rounded w-fit"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">b</span>&gt;</span>{{index}}.<span class="hljs-tag">&lt;/<span class="hljs-name">b</span>&gt;</span> {{ name }}
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<h5 id="zadatak-dinami%C4%8Dko-filtriranje-studenata">Zadatak: Dinamičko filtriranje studenata</h5>
+<p>Treba napraviti popis studenata i omogućiti filtriranje prema imenu, prezimenu i ocjenama iz pojedinih predmeta.</p>
+<ol>
+<li>Prikazati popis studenata, gdje svaki student ima listu položenih predmeta s ocjenama</li>
+<li>Omogućiti filtriranje studenata prema imenu i prezimenu</li>
+<li>Omogućiti filtriranje studenata prema minimalnoj ili maksimalnoj ocjeni iz odabranog predmeta</li>
+<li>Omogućiti filtriranje studenata prema prosječnoj ocjeni</li>
+</ol>
+<p><em>Podaci:</em></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">const</span> studenti = ref([
+    { 
+        <span class="hljs-attr">ime</span>: <span class="hljs-string">"Ana"</span>, 
+        <span class="hljs-attr">prezime</span>: <span class="hljs-string">"Anić"</span>, 
+        <span class="hljs-attr">predmeti</span>: [
+            { <span class="hljs-attr">naziv</span>: <span class="hljs-string">"Matematika"</span>, <span class="hljs-attr">ocjena</span>: <span class="hljs-number">4</span> },
+            { <span class="hljs-attr">naziv</span>: <span class="hljs-string">"Programiranje"</span>, <span class="hljs-attr">ocjena</span>: <span class="hljs-number">5</span> },
+            { <span class="hljs-attr">naziv</span>: <span class="hljs-string">"Baze podataka"</span>, <span class="hljs-attr">ocjena</span>: <span class="hljs-number">3</span> }
+        ]
+    },
+    { 
+        <span class="hljs-attr">ime</span>: <span class="hljs-string">"Marko"</span>, 
+        <span class="hljs-attr">prezime</span>: <span class="hljs-string">"Markić"</span>, 
+        <span class="hljs-attr">predmeti</span>: [
+            { <span class="hljs-attr">naziv</span>: <span class="hljs-string">"Matematika"</span>, <span class="hljs-attr">ocjena</span>: <span class="hljs-number">3</span> },
+            { <span class="hljs-attr">naziv</span>: <span class="hljs-string">"Programiranje"</span>, <span class="hljs-attr">ocjena</span>: <span class="hljs-number">4</span> },
+            { <span class="hljs-attr">naziv</span>: <span class="hljs-string">"Baze podataka"</span>, <span class="hljs-attr">ocjena</span>: <span class="hljs-number">5</span> }
+        ]
+    },
+    { 
+        <span class="hljs-attr">ime</span>: <span class="hljs-string">"Petra"</span>, 
+        <span class="hljs-attr">prezime</span>: <span class="hljs-string">"Petrić"</span>, 
+        <span class="hljs-attr">predmeti</span>: [
+            { <span class="hljs-attr">naziv</span>: <span class="hljs-string">"Matematika"</span>, <span class="hljs-attr">ocjena</span>: <span class="hljs-number">5</span> },
+            { <span class="hljs-attr">naziv</span>: <span class="hljs-string">"Programiranje"</span>, <span class="hljs-attr">ocjena</span>: <span class="hljs-number">5</span> },
+            { <span class="hljs-attr">naziv</span>: <span class="hljs-string">"Baze podataka"</span>, <span class="hljs-attr">ocjena</span>: <span class="hljs-number">4</span> }
+        ]
+    },
+    { 
+        <span class="hljs-attr">ime</span>: <span class="hljs-string">"Ivan"</span>, 
+        <span class="hljs-attr">prezime</span>: <span class="hljs-string">"Ivanić"</span>, 
+        <span class="hljs-attr">predmeti</span>: [
+            { <span class="hljs-attr">naziv</span>: <span class="hljs-string">"Matematika"</span>, <span class="hljs-attr">ocjena</span>: <span class="hljs-number">2</span> },
+            { <span class="hljs-attr">naziv</span>: <span class="hljs-string">"Programiranje"</span>, <span class="hljs-attr">ocjena</span>: <span class="hljs-number">3</span> },
+            { <span class="hljs-attr">naziv</span>: <span class="hljs-string">"Baze podataka"</span>, <span class="hljs-attr">ocjena</span>: <span class="hljs-number">4</span> }
+        ]
+    },
+]);
+</div></code></pre>
+<p><img src="Slike/studenti.png" alt="alt text"></p>
+<h3 id="v-pre--v-once"><code>v-pre</code> &amp; <code>v-once</code></h3>
+<ul>
+<li>
+<p>Direktiva <code>v-pre</code> sprečava Vue.js da procesira sadržaj unutar označenog elementa, pa se koristi za statički tekst koji ne treba biti reaktivno obrađen.</p>
+</li>
+<li>
+<p>Direktiva <code>v-once</code> osigurava da će sadržaj unutar elementa biti renderiran samo jednom, bez ponovnog renderiranja.</p>
+</li>
+</ul>
+<p><em>Primjer:</em></p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+    <span class="hljs-keyword">import</span> { ref } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>;
+
+    <span class="hljs-keyword">const</span> text = ref(<span class="hljs-string">"Lorem ipsum"</span>)
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"border px-1 rounded"</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">b</span>&gt;</span>Normal:<span class="hljs-tag">&lt;/<span class="hljs-name">b</span>&gt;</span> {{ text }}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">v-once</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">b</span>&gt;</span>v-once:<span class="hljs-tag">&lt;/<span class="hljs-name">b</span>&gt;</span> {{ text }}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">v-pre</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">b</span>&gt;</span>v-pre:<span class="hljs-tag">&lt;/<span class="hljs-name">b</span>&gt;</span> {{ text }}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<ul>
+<li><em>normal</em>: će se ažurirati promjenom varijable text</li>
+<li><em>v-once</em>: će se ažurirat samo pri inicijalizaciji</li>
+<li><em>v-pre</em>: neće procesirati sadržaj</li>
+</ul>
+<div class="page"></div>
+<h2 id="upravljanje-doga%C4%91ajima"><strong>Upravljanje događajima</strong></h2>
+<p>U Vue.js, događaji se mogu koristiti za interakciju s korisnicima i upravljanje aplikacijom. Vue nudi jednostavan način za preslušavanje i rukovanje događajima putem direktiva <code>v-on</code>.</p>
+<p><em>Direktiva <code>v-on</code> omogućuje preslušavanje događaja na elementima tako da ga stavimo ispred događaja koji želimo slušat <code>v-on:&lt;event&gt;</code>:</em></p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">v-on:click</span>=<span class="hljs-string">"metoda"</span>&gt;</span>Klikni me<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+</div></code></pre>
+<ul>
+<li>Metoda može biti funkcija ili JavaScript kôd.</li>
+</ul>
+<p>Direktiva <code>v-on</code> se može skratiti koristeći <code>@</code> symbol <code>@event</code>:</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"metoda"</span>&gt;</span>Klikni me<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+</div></code></pre>
+<p><em>Primjeri rukovanja događajima:</em></p>
+<ol>
+<li><strong>Preslušavanje jednog događaja</strong> - Kada korisnik klikne na gumb, poziva se metoda</li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="actionscript">
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">pozdrav</span><span class="hljs-params">()</span> </span>{
+        alert(<span class="hljs-string">'Pozdrav iz Vue.js!'</span>);
+    }
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"pozdrav"</span>&gt;</span>Klikni me<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<ol start="2">
+<li><strong>Preslušavanje više događaja</strong> - možemo preslušavati više događaja na istom elementu:</li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">pokaziPoruku</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Miš je preko'</span>);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sakrijPoruku</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Miš je van'</span>);
+    }
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">mouseover</span>=<span class="hljs-string">"pokaziPoruku"</span> @<span class="hljs-attr">mouseout</span>=<span class="hljs-string">"sakrijPoruku"</span>&gt;</span>Hover me<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<h3 id="modificiranje-doga%C4%91aja"><strong>Modificiranje događaja</strong></h3>
+<p>Možemo koristiti modifikatore događaja za dodavanje specifičnih ponašanja, kao što su sprječavanje osnovnih akcija <code>event.preventDefault()</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Modifikator</th>
+<th>Opis</th>
+<th>Primjer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.stop</code></td>
+<td>Sprječava propagaciju događaja (zaustavlja njegovo širenje na roditeljima).</td>
+<td><code>&lt;button @click.stop=&quot;handleClick&quot;&gt;Klikni me&lt;/button&gt;</code></td>
+</tr>
+<tr>
+<td><code>.prevent</code></td>
+<td>Sprječava osnovnu akciju događaja (npr. sprječava ponovno učitavanje stranice).</td>
+<td><code>&lt;form @submit.prevent=&quot;submitForm&quot;&gt;Pošaljite&lt;/form&gt;</code></td>
+</tr>
+<tr>
+<td><code>.self</code></td>
+<td>Događaj se aktivira samo ako je ciljani element sam događaj (ne na njegovim podređenim elementima).</td>
+<td><code>&lt;div @click.self=&quot;handleSelfClick&quot;&gt;Klikni me&lt;/div&gt;</code></td>
+</tr>
+<tr>
+<td><code>.once</code></td>
+<td>Događaj se poziva samo jednom i nakon toga se uklanja</td>
+<td><code>&lt;button @click.once=&quot;handleClick&quot;&gt;Klikni me&lt;/button&gt;</code></td>
+</tr>
+<tr>
+<td><code>.passive</code></td>
+<td>Događaj se registrira kao pasivan, što znači da neće pozvati <code>preventDefault()</code></td>
+<td><code>&lt;button @click.passive=&quot;handleClick&quot;&gt;Klikni me&lt;/button&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li><strong><code>prevent</code></strong> - Sprječava podrazumijevanu akciju (npr. sprječava slanje forme):</li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">form</span> @<span class="hljs-attr">submit.prevent</span>=<span class="hljs-string">"submitForm"</span>&gt;</span>Pošaljite<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+</div></code></pre>
+<ol start="2">
+<li><strong><code>stop</code></strong> - Sprječava propagaciju događaja (prekida se daljnje širenje događaja):</li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">div</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"parentClick"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click.stop</span>=<span class="hljs-string">"childClick"</span>&gt;</span>Klikni me<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</div></code></pre>
+<ol start="3">
+<li><strong><code>once</code></strong> - Događaj se poziva samo jednom:</li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click.once</span>=<span class="hljs-string">"pozdrav"</span>&gt;</span>Klikni me<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+</div></code></pre>
+<p>Evo nadopunjene sekcije koja objašnjava kako pristupiti argumentu događaja u inline handlerima:</p>
+<hr>
+<div class="page"></div>
+<h3 id="pristupanje-event-argumentu"><strong>Pristupanje <code>event</code> argumentu</strong></h3>
+<p>Ponekad je potrebno pristupiti izvornom DOM događaju. To možemo učiniti na dva načina:</p>
+<ol>
+<li>
+<p><strong>Korištenje posebne <code>$event</code> varijable</strong>:
+Vue automatski prosljeđuje izvorni DOM događaj kao argument, koji možemo koristiti u metodi.</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"warn('Form cannot be submitted yet.', $event)"</span>&gt;</span>
+  Submit
+<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+</div></code></pre>
+</li>
+<li>
+<p><strong>Korištenje inline arrow funkcije</strong>:
+Također možemo koristiti inline arrow funkciju za prosljeđivanje događaja u metodu.</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"(event) =&gt; warn('Form cannot be submitted yet.', event)"</span>&gt;</span>
+  Submit
+<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+</div></code></pre>
+</li>
+</ol>
+<p><em>Primjer metode</em>:</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">warn</span>(<span class="hljs-params">message, event</span>) </span>{
+  <span class="hljs-comment">// sada imamo pristup izvornom događaju</span>
+  <span class="hljs-keyword">if</span> (event) {
+    event.preventDefault();  <span class="hljs-comment">// sprječava osnovnu akciju</span>
+  }
+  alert(message);
+}
+</div></code></pre>
+<p><em>Podsjetnik na neke bitne evente:</em></p>
+<table>
+<thead>
+<tr>
+<th>Metoda</th>
+<th>Objašnjenje</th>
+<th>Sintaksa</th>
+<th>Primjer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>click</td>
+<td>Poziva se kada se klikne mišem na element.</td>
+<td><code>element.addEventListener('click', function() {})</code></td>
+<td><code>button.addEventListener('click', function() { console.log('Kliknuto!'); })</code></td>
+</tr>
+<tr>
+<td>dblclick</td>
+<td>Poziva se kada se dvaput klikne na element mišem.</td>
+<td><code>element.addEventListener('dblclick', function() {})</code></td>
+<td><code>image.addEventListener('dblclick', function() { console.log('Dvaput kliknuto!'); })</code></td>
+</tr>
+<tr>
+<td>focus</td>
+<td>Poziva se kada element dobije fokus.</td>
+<td><code>element.addEventListener('focus', function() {})</code></td>
+<td><code>input.addEventListener('focus', function() { console.log('Fokusiranje!'); })</code></td>
+</tr>
+<tr>
+<td>focusin</td>
+<td>Poziva se kada element ili njegovi potomci dobiju fokus.</td>
+<td><code>element.addEventListener('focusin', function() {})</code></td>
+<td><code>div.addEventListener('focusin', function() { console.log('Fokusiranje!'); })</code></td>
+</tr>
+<tr>
+<td>focusout</td>
+<td>Poziva se kada element ili njegovi potomci izgube fokus.</td>
+<td><code>element.addEventListener('focusout', function() {})</code></td>
+<td><code>input.addEventListener('focusout', function() { console.log('Izgubio fokus!'); })</code></td>
+</tr>
+<tr>
+<td>blur</td>
+<td>Poziva se kada element izgubi fokus.</td>
+<td><code>element.addEventListener('blur', function() {})</code></td>
+<td><code>input.addEventListener('blur', function() { console.log('Izgubio fokus!'); })</code></td>
+</tr>
+<tr>
+<td>mousedown</td>
+<td>Poziva se kada se pritisne miš na element.</td>
+<td><code>element.addEventListener('mousedown', function() {})</code></td>
+<td><code>div.addEventListener('mousedown', function() { console.log('Miš pritisnut!'); })</code></td>
+</tr>
+<tr>
+<td>mouseenter</td>
+<td>Poziva se kada miš uđe u element.</td>
+<td><code>element.addEventListener('mouseenter', function() {})</code></td>
+<td><code>div.addEventListener('mouseenter', function() { console.log('Miš unutar elementa!'); })</code></td>
+</tr>
+<tr>
+<td>mouseleave</td>
+<td>Poziva se kada miš napusti element.</td>
+<td><code>element.addEventListener('mouseleave', function() {})</code></td>
+<td><code>div.addEventListener('mouseleave', function() { console.log('Miš izvan elementa!'); })</code></td>
+</tr>
+<tr>
+<td>mousemove</td>
+<td>Poziva se kada se miš pomiče preko elementa.</td>
+<td><code>element.addEventListener('mousemove', function() {})</code></td>
+<td><code>div.addEventListener('mousemove', function() { console.log('Miš se pomiče!'); })</code></td>
+</tr>
+<tr>
+<td>mouseout</td>
+<td>Poziva se kada miš napusti element ili njegovog potomka.</td>
+<td><code>element.addEventListener('mouseout', function() {})</code></td>
+<td><code>div.addEventListener('mouseout', function() { console.log('Miš napustio element!'); })</code></td>
+</tr>
+<tr>
+<td>mouseover</td>
+<td>Poziva se kada miš uđe u element ili njegovog potomka.</td>
+<td><code>element.addEventListener('mouseover', function() {})</code></td>
+<td><code>div.addEventListener('mouseover', function() { console.log('Miš ušao u element!'); })</code></td>
+</tr>
+<tr>
+<td>mouseup</td>
+<td>Poziva se kada se miš otpusti iznad elementa.</td>
+<td><code>element.addEventListener('mouseup', function() {})</code></td>
+<td><code>div.addEventListener('mouseup', function() { console.log('Miš otpušten!'); })</code></td>
+</tr>
+<tr>
+<td>input</td>
+<td>Poziva se kada se promijeni vrijednost input elementa, a korisnik i dalje ostaje u polju.</td>
+<td><code>element.addEventListener('input', function() {})</code></td>
+<td><code>input.addEventListener('input', function() { console.log('Vrijednost promijenjena!'); })</code></td>
+</tr>
+<tr>
+<td>change</td>
+<td>Poziva se kada se promijeni vrijednost elementa, a korisnik se miče od polja.</td>
+<td><code>element.addEventListener('change', function() {})</code></td>
+<td><code>inputElement.addEventListener('change', function() { console.log('Vrijednost promijenjena!'); })</code></td>
+</tr>
+</tbody>
+</table>
+<div class="page"></div>
+<h2 id="samostalni-zadatak-za-vje%C5%BEbu-3">Samostalni zadatak za vježbu 3</h2>
+<p>Imate zadatak izraditi sučelje za <strong>košaricu web trgovine</strong>. Sučelje aplikacije sastoji se od polja za unos naziva i cijene proizvoda te gumba za dodavanje proizvoda u košaricu. Također, prikazuje se lista proizvoda u košarici s informacijama o nazivu, količini, cijeni po komadu te ukupnoj cijeni za taj proizvod.</p>
+<p>Kada korisnik unese naziv i cijenu proizvoda te klikne na gumb <code>Dodaj artikl</code>, proizvod se dodaje u košaricu.</p>
+<ul>
+<li>Ako proizvod nema ime, dugme se ne može kliknuti, mora biti zatamnjeno/onemogućeno</li>
+<li>Ako se proizvod s istim imenom već nalazi u košarici, količina se povećava za <code>1</code></li>
+<li>Ako je proizvod novi, dodaje se na listu</li>
+<li>Cijena proizvoda ne može ići ispod <code>0</code></li>
+</ul>
+<p>Korisnik može mijenjati količinu proizvoda u košarici koristeći gumbe <code>+</code> i <code>-</code> pored svakog proizvoda. Također, postoji opcija za uklanjanje proizvoda iz košarice klikom na gumb <code>Ukloni</code>.</p>
+<ul>
+<li>Ako nema nijednog proizvoda u košarici, treba pisati <em>&quot;Košarica je prazna!&quot;</em>.</li>
+<li>Nakon svake promjene u košarici, ukupna cijena se automatski ažurira kako bi korisnik imao uvid u trenutačni trošak.</li>
+</ul>
+<blockquote>
+<p>Potrebno je koristiti <code>vezivanje atributa</code>, <code>v-model</code>, <code>v-for</code>, <code>v-if</code>, <code>upravljanje događajima</code></p>
+</blockquote>
+<br><em>Primjer:</em>
+</br>
+<img src="Slike/kosarica.png" alt="alt text" width="90%"></p>
+<blockquote>
+<p><em>Rješenje ne mora vizualno izgledati identično kao na slici.</em></p>
+</blockquote>
+</div>
+</body>
+</html>
