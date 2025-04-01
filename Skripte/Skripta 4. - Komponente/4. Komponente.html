@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>1. Vue Osnove.md</title>
+		<meta
+			http-equiv="Content-type"
+			content="text/html;charset=UTF-8" />
+		<link
+			rel="preconnect"
+			href="https://fonts.googleapis.com" />
+		<link
+			rel="preconnect"
+			href="https://fonts.gstatic.com"
+			crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+			rel="stylesheet" />
+		<style>
+			/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+			/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+			:not(code *) {
+				font-family: "Poppins", sans-serif;
+			}
+            html {
+                display: flex;
+                justify-content: center;
+            }
+			body {
+				font-family: var(
+					--vscode-markdown-font-family,
+					-apple-system,
+					BlinkMacSystemFont,
+					"Segoe WPC",
+					"Segoe UI",
+					"Ubuntu",
+					"Droid Sans",
+					sans-serif
+				);
+				font-size: var(--vscode-markdown-font-size, 14px);
+				line-height: var(--vscode-markdown-line-height, 22px);
+				word-wrap: break-word;
+				color: #3b3b3b;
+                position: absolute;
+                display: flex;
+                justify-content: center;
+                width: full;
+			}
+			.body {
+                max-width: 1012px;
+			}
+
+			#code-csp-warning {
+				position: fixed;
+				top: 0;
+				right: 0;
+				color: white;
+				margin: 16px;
+				text-align: center;
+				font-size: 12px;
+				font-family: sans-serif;
+				background-color: #444444;
+				cursor: pointer;
+				padding: 6px;
+				box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
+			}
+
+			#code-csp-warning:hover {
+				text-decoration: none;
+				background-color: #007acc;
+				box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+			}
+
+			body.scrollBeyondLastLine {
+				margin-bottom: calc(100vh - 22px);
+			}
+
+			body.showEditorSelection .code-line {
+				position: relative;
+			}
+
+			body.showEditorSelection .code-active-line:before,
+			body.showEditorSelection .code-line:hover:before {
+				content: "";
+				display: block;
+				position: absolute;
+				top: 0;
+				left: -12px;
+				height: 100%;
+			}
+
+			body.showEditorSelection li.code-active-line:before,
+			body.showEditorSelection li.code-line:hover:before {
+				left: -30px;
+			}
+
+			.vscode-light.showEditorSelection .code-active-line:before {
+				border-left: 3px solid rgba(0, 0, 0, 0.15);
+			}
+
+			.vscode-light.showEditorSelection .code-line:hover:before {
+				border-left: 3px solid rgba(0, 0, 0, 0.4);
+			}
+
+			.vscode-light.showEditorSelection
+				.code-line
+				.code-line:hover:before {
+				border-left: none;
+			}
+
+			.vscode-dark.showEditorSelection .code-active-line:before {
+				border-left: 3px solid rgba(255, 255, 255, 0.4);
+			}
+
+			.vscode-dark.showEditorSelection .code-line:hover:before {
+				border-left: 3px solid rgba(255, 255, 255, 0.6);
+			}
+
+			.vscode-dark.showEditorSelection
+				.code-line
+				.code-line:hover:before {
+				border-left: none;
+			}
+
+			.vscode-high-contrast.showEditorSelection .code-active-line:before {
+				border-left: 3px solid rgba(255, 160, 0, 0.7);
+			}
+
+			.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+				border-left: 3px solid rgba(255, 160, 0, 1);
+			}
+
+			.vscode-high-contrast.showEditorSelection
+				.code-line
+				.code-line:hover:before {
+				border-left: none;
+			}
+
+			img {
+				max-width: 100%;
+				max-height: 100%;
+				border-radius: 8px;
+				filter: drop-shadow(-0 2px 2px rgba(0, 0, 0, 0.07));
+			}
+
+			a {
+				text-decoration: none;
+			}
+
+			a:hover {
+				text-decoration: underline;
+			}
+
+			a:focus,
+			input:focus,
+			select:focus,
+			textarea:focus {
+				outline: 1px solid -webkit-focus-ring-color;
+				outline-offset: -1px;
+			}
+
+			hr {
+				border: 0;
+				height: 2px;
+				border-bottom: 2px solid;
+			}
+
+			h1 {
+				padding-bottom: 0.3em;
+				line-height: 1.2;
+				border-bottom-width: 1px;
+				border-bottom-style: solid;
+			}
+
+			h1,
+			h2,
+			h3 {
+				font-weight: normal;
+			}
+
+			table {
+				border-collapse: collapse;
+			}
+
+			table > thead > tr > th {
+				text-align: left;
+				border-bottom: 1px solid;
+			}
+
+			table > thead > tr > th,
+			table > thead > tr > td,
+			table > tbody > tr > th,
+			table > tbody > tr > td {
+				padding: 5px 10px;
+			}
+
+			table > tbody > tr + tr > td {
+				border-top: 1px solid;
+			}
+
+			td > code {
+                word-break: break-all;
+            }
+
+			blockquote {
+				margin: 0 7px 0 5px;
+				padding: 0 16px 0 10px;
+				border-left-width: 5px;
+				border-left-style: solid;
+			}
+
+			code {
+				font-family: Menlo, Monaco, Consolas, "Droid Sans Mono",
+					"Courier New", monospace, "Droid Sans Fallback";
+				font-size: 1em;
+				line-height: 1.357em;
+			}
+
+			body.wordWrap pre {
+				white-space: pre-wrap;
+			}
+
+			pre:not(.hljs),
+			pre.hljs code > div {
+				padding: 16px;
+				border-radius: 3px;
+				overflow: auto;
+			}
+
+			pre code {
+				color: var(--vscode-editor-foreground);
+				tab-size: 4;
+			}
+
+			/** Theming */
+
+			.vscode-light pre {
+				background-color: rgba(220, 220, 220, 0.4);
+			}
+
+			.vscode-dark pre {
+				background-color: rgba(10, 10, 10, 0.4);
+			}
+
+			.vscode-high-contrast pre {
+				background-color: rgb(0, 0, 0);
+			}
+
+			.vscode-high-contrast h1 {
+				border-color: rgb(0, 0, 0);
+			}
+
+			.vscode-light table > thead > tr > th {
+				border-color: rgba(0, 0, 0, 0.69);
+			}
+
+			.vscode-dark table > thead > tr > th {
+				border-color: rgba(255, 255, 255, 0.69);
+			}
+
+			.vscode-light h1,
+			.vscode-light hr,
+			.vscode-light table > tbody > tr + tr > td {
+				border-color: rgba(0, 0, 0, 0.18);
+			}
+
+			.vscode-dark h1,
+			.vscode-dark hr,
+			.vscode-dark table > tbody > tr + tr > td {
+				border-color: rgba(255, 255, 255, 0.18);
+			}
+		</style>
+
+		<style>
+			/*
+
+Visual Studio-like style based on original C# coloring by Jason Diamond <jason@diamond.name>
+
+*/
+			.hljs {
+				background: white;
+				color: black;
+			}
+
+			.hljs-comment,
+			.hljs-quote,
+			.hljs-variable {
+				color: #008000;
+			}
+
+			.hljs-keyword,
+			.hljs-selector-tag,
+			.hljs-built_in,
+			.hljs-name,
+			.hljs-tag {
+				color: #00f;
+			}
+
+			.hljs-string,
+			.hljs-title,
+			.hljs-section,
+			.hljs-attribute,
+			.hljs-literal,
+			.hljs-template-tag,
+			.hljs-template-variable,
+			.hljs-type,
+			.hljs-addition {
+				color: #a31515;
+			}
+
+			.hljs-deletion,
+			.hljs-selector-attr,
+			.hljs-selector-pseudo,
+			.hljs-meta {
+				color: #2b91af;
+			}
+
+			.hljs-doctag {
+				color: #808080;
+			}
+
+			.hljs-attr {
+				color: #f00;
+			}
+
+			.hljs-symbol,
+			.hljs-bullet,
+			.hljs-link {
+				color: #00b0e8;
+			}
+
+			.hljs-emphasis {
+				font-style: italic;
+			}
+
+			.hljs-strong {
+				font-weight: bold;
+			}
+		</style>
+
+		<style>
+			/*
+ * Markdown PDF CSS
+ */
+
+			body {
+				font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC",
+					"Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+			}
+
+			pre {
+				background-color: #f8f8f8;
+				border: 1px solid #cccccc;
+				border-radius: 3px;
+				overflow-x: auto;
+				white-space: pre-wrap;
+				overflow-wrap: break-word;
+			}
+
+			pre:not(.hljs) {
+				padding: 23px;
+				line-height: 19px;
+			}
+
+			blockquote {
+				background: rgba(127, 127, 127, 0.1);
+				border-color: rgba(0, 122, 204, 0.5);
+			}
+
+			.emoji {
+				height: 1.4em;
+			}
+
+			code {
+				font-size: 14px;
+				line-height: 19px;
+			}
+
+			/* for inline code */
+			:not(pre):not(.hljs) > code {
+				color: #3b3b3b; /* Change the old color so it seems less like an error */
+				font-size: inherit;
+				background: #e0e0e0;
+				border-radius: 4px;
+				padding: 1px 2px;
+				margin: -1px -2px;
+			}
+
+			/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+			.page {
+				page-break-after: always;
+			}
+		</style>
+
+		<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+	</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<div class="body">
+<h1 id="programsko-in%C5%BEenjerstvo">Programsko inženjerstvo</h1>
+<p><strong>Nositelj</strong>: doc. dr. sc. Nikola Tanković<br>
+<strong>Asistent</strong>: mag. inf. Alesandro Žužić</p>
+<p><strong>Ustanova</strong>: Sveučilište Jurja Dobrile u Puli, Fakultet informatike u Puli</p>
+<p style="float: clear; display: flex; gap: 8px; align-items: center;" class="font-brioni text-sm whitespace-nowrap">
+    <img src="../Logo/fipu_logo.svg" style="height: 96px; box-shadow: none !important;" class="mr-4"></img>
+    Fakultet informatike u Puli
+</p>
+<h1 id="4-komponente">[4] Komponente</h1>
+<div style="display: flex; justify-content: space-between; text-align: justify; gap: 32px;">
+    <p>  
+        Vue komponente omogućuju razlaganje korisničkog sučelja na manje, modularne i ponovo iskoristive dijelove, čime se poboljšava organizacija i održavanje koda. Njihova upotreba omogućuje logičnu i skalabilnu izgradnju aplikacije, olakšavajući razvoj, testiranje i ponovnu upotrebu elemenata sučelja.
+    </p>
+    <img src="../Icons/Vue_4.svg" style="width: 96px; height: 96px; margin: 0px;"></img>
+</div>
+<p><strong>Posljednje ažurirano:</strong> 1. travnja 2025.</p>
+<!-- TOC -->
+<ul>
+<li><a href="#programsko-in%C5%BEenjerstvo">Programsko inženjerstvo</a></li>
+<li><a href="#4-komponente">[4] Komponente</a>
+<ul>
+<li><a href="#vue-komponente">Vue komponente</a></li>
+<li><a href="#definiranje-komponenti">Definiranje komponenti</a>
+<ul>
+<li><a href="#kori%C5%A1tenje-komponenti">Korištenje komponenti</a></li>
+</ul>
+</li>
+<li><a href="#proslje%C4%91ivanje-parametara-props">Prosljeđivanje parametara props</a>
+<ul>
+<li><a href="#defineprops">defineProps</a></li>
+<li><a href="#validacija-parametara">Validacija parametara</a></li>
+<li><a href="#stati%C4%8Dni-i-dinami%C4%8Dni-parametri">Statični i dinamični parametri</a></li>
+<li><a href="#jednosmjerna-veza">Jednosmjerna veza</a></li>
+</ul>
+</li>
+<li><a href="#doga%C4%91aji-komponenti">Događaji komponenti</a>
+<ul>
+<li><a href="#proslije%C4%91ivanje-doga%C4%91aja-emit">Proslijeđivanje događaja emit</a></li>
+<li><a href="#proslje%C4%91ivanje-argumenata-doga%C4%91ajima">Prosljeđivanje argumenata događajima</a></li>
+<li><a href="#deklaracija-proslije%C4%91enih-doga%C4%91aja">Deklaracija proslijeđenih događaja</a></li>
+</ul>
+</li>
+<li><a href="#slot-element">Slot element</a>
+<ul>
+<li><a href="#dohva%C4%87anje-konteksta-unutar-slota">Dohvaćanje konteksta unutar slota</a></li>
+<li><a href="#zadani-sadr%C5%BEaj-slota">Zadani sadržaj slota</a></li>
+<li><a href="#imenovani-slotovi">Imenovani slotovi</a></li>
+</ul>
+</li>
+<li><a href="#samostalni-zadatak-za-vje%C5%BEbu-4">Samostalni zadatak za vježbu 4</a></li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+<div class="page"></div>
+<h2 id="vue-komponente">Vue komponente</h2>
+<p>Kao što smo rekli i prije, Vue koristi <strong>komponente</strong> – modularne, višekratno iskoristive dijelove korisničkog sučelja koji sadrže vlastitu logiku, stilove i podatke. Komponente olakšavaju održavanje kôda i omogućuju lakšu skalabilnost aplikacija.</p>
+<p><img src="Slike/VueComponentsExample.png" alt="alt text"></p>
+<p>Njihova upotreba donosi brojne prednosti:</p>
+<ul>
+<li><strong>Modularnost</strong> – Sučelje se dijeli na manje cjeline koje su lakše za upravljanje i testiranje</li>
+<li><strong>Ponovna upotreba</strong> – Jednom definirane komponente mogu se koristiti na više mjesta u aplikaciji</li>
+<li><strong>Izolacija</strong> – Svaka komponenta ima vlastite podatke, metode i stilove, čime se izbjegava nepredvidivo ponašanje u aplikaciji</li>
+<li><strong>Jednostavna komunikacija</strong> – Komponente mogu razmjenjivati podatke putem <strong>parametri</strong> (<em>props</em>) i <strong>događaja</strong> (<em>events</em>)</li>
+<li><strong>Poboljšana čitljivost i održavanje</strong> – Kod je bolje organiziran i ima definiranu strukturu</li>
+</ul>
+<h2 id="definiranje-komponenti">Definiranje komponenti</h2>
+<p>Kada izrađujemo novi projekt, uvijek ćemo imati barem jednu komponentu, a to je <code>App.vue</code>. Ono što trebamo uočiti i znati jest da sve komponente u Vue-u imaju nastavak <code>.vue</code>, što također znamo i pod nazivom <strong>Single-File Component</strong> (<em>SFC</em>).</p>
+<p><em>Ponavljanje iz prve skripte:</em></p>
+<blockquote>
+<p>Komponente se obično pišu u formatu koji nalikuje HTML-u, poznatom kao <strong>Single-File Component</strong> <em>(SFC)</em>, odnosno <code>*.vue</code> datoteke. Kao što ime sugerira, SFC enkapsulira logiku komponente (JavaScript), predložak (HTML) i stilove (CSS) u jednoj datoteci.</p>
+</blockquote>
+<p>Komponente možemo izraditi bilo gdje u projektu, no u pravilu ih organiziramo prema njihovoj namjeni. Komponente koje se više puta koriste u različitim dijelovima aplikacije, ali nisu zasebne stranice, smještamo u mapu <code>components</code>.</p>
+<ul>
+<li>Ako ih koristimo kao stranice unutar aplikacije koja koristi <code>router</code>, tada ih stavljamo u mapu <code>views</code>.</li>
+</ul>
+<p><em>Smještamo komponentu unutar mape <code>components</code>:</em>
+<img src="Slike/place.png" alt="alt text"></p>
+<p>Kada želimo izraditi novu komponentu, dovoljno je kreirati datoteku s proizvoljnim, ali valjanim nazivom i nastavkom <code>.vue</code>.</p>
+<p><em>Svaka komponenta mora sadržavati <code>&lt;template&gt;</code> blok:</em></p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="actionscript">
+	<span class="hljs-comment">// opcionalno</span>
+	<span class="hljs-comment">// logika komponente</span>
+	<span class="hljs-comment">// composition api</span>
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+	<span class="hljs-comment">&lt;!--obavezno--&gt;</span>
+	<span class="hljs-comment">&lt;!--tijelo komponente--&gt;</span>
+	Ahoy!
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">scoped</span>&gt;</span>
+	// opcionalno
+	// stil komponente
+	// scoped -&gt; označava da se stil primjenjuje samo nad komponentom
+<span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+</div></code></pre>
+<h3 id="kori%C5%A1tenje-komponenti">Korištenje komponenti</h3>
+<p>Da bi koristili komponente u našem projektu, moramo je učitati.</p>
+<p><em>Možemo kreirati komponentu pod nazivom <code>Dekoracija.vue</code>:</em></p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"flex gap-1 items-center"</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-slate-950 opacity-5 h-2 w-2 rounded-full"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-slate-950 opacity-10 h-2 w-4 rounded-full"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-slate-950 opacity-20 h-2 w-8 rounded-full"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-slate-950 opacity-40 h-2 w-16 rounded-full"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-slate-950 opacity-60 h-2 w-32 rounded-full"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-slate-950 opacity-80 h-6 w-2 rounded-full"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<p><em>Te je unutar <code>App.vue</code> možemo učitati:</em></p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+	<span class="hljs-keyword">import</span> Dekoracija <span class="hljs-keyword">from</span> <span class="hljs-string">"@/components/Dekoracija.vue"</span>;
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">div</span>
+		<span class="hljs-attr">class</span>=<span class="hljs-string">"h-full flex justify-center items-center gap-4 p-16 bg-slate-200"</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">Dekoracija</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Dekoracija</span>&gt;</span>
+
+		<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-3xl font-bold text-slate-950"</span>&gt;</span>FANCY TITLE<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+
+		<span class="hljs-tag">&lt;<span class="hljs-name">Dekoracija</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"rotate-180"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Dekoracija</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<p><img src="Slike/dekoracija.png" alt="alt text"></p>
+<ul>
+<li>Možemo primijetiti da smo komponentu učitali pod nazivom <code>Dekoracija</code>, iako smo je mogli nazvati proizvoljno. Ipak, uobičajena praksa je da naziv komponente odgovara nazivu datoteke.</li>
+</ul>
+<p>Kod učitavanja i korištenja komponenti preporučuje se korištenje <strong>PascalCase</strong> naziva oznaka za komponente kako bi se razlikovale od izvornih HTML elemenata. Iako izvornim HTML oznakama nisu bitna velika i mala slova, kod Vue komponenti se mogu koristiti.</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+	<span class="hljs-keyword">import</span> MojaDekoracija <span class="hljs-keyword">from</span> <span class="hljs-string">"@/components/Dekoracija.vue"</span>;
+	<span class="hljs-keyword">import</span> mojaDekoracija <span class="hljs-keyword">from</span> <span class="hljs-string">"@/components/DekoracijaKruzici.vue"</span>;
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">div</span>
+		<span class="hljs-attr">class</span>=<span class="hljs-string">"flex justify-center items-center 
+        gap-4 p-16 bg-slate-200"</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">MojaDekoracija</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">MojaDekoracija</span>&gt;</span>
+
+		<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-3xl font-bold text-slate-950"</span>&gt;</span>FANCY TITLE<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+		<span class="hljs-comment">&lt;!--Preporuka PascalCase--&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">MojaDekoracija</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"rotate-180"</span> /&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+	<span class="hljs-tag">&lt;<span class="hljs-name">div</span>
+		<span class="hljs-attr">class</span>=<span class="hljs-string">"flex justify-center items-center 
+        gap-4 p-16 bg-slate-200"</span>&gt;</span>
+		<span class="hljs-comment">&lt;!--Izbjegavat--&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">mojaDekoracija</span> /&gt;</span>
+
+		<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-3xl font-bold text-slate-950"</span>&gt;</span>FANCY TITLE<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+
+		<span class="hljs-tag">&lt;<span class="hljs-name">mojaDekoracija</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"rotate-180"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">mojaDekoracija</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<p><img src="Slike/PascalCase.png" alt="alt text"></p>
+<p>U ovom slučaju, riječ je o dvije različite komponente koje smo učitali pod istim nazivom <code>moja dekoracija</code>, pri čemu jedan naziv počinje velikim početnim slovom, a drugi malim. Time ih Vue smatra kao dvije različite komponente. Zato se preporučuje koristiti PascalCase imenovanje i odabrati deskriptivnije nazive koji se jasno razlikuju. U ovom slučaju, bolje bi bilo koristiti nazive poput <em>DekoracijaLinije</em> i <em>DekoracijaKruzici</em>.</p>
+<blockquote>
+<p>Možemo koristiti <code>/&gt;</code> za zatvaranje oznake</p>
+</blockquote>
+<p>Kako bismo nadalje izbjegli stvaranje besmislenih primjera, koristit ćemo koncept digitalne knjižnice. Možemo je zamisliti kao vlastiti ormar s policama, gdje svaka polica predstavlja određenu kolekciju knjiga, a unutar kolekcija nalaze se serijali i pojedinačne knjige.</p>
+<ul>
+<li>ormar → polica → kolekcija → knjiga</li>
+</ul>
+<p>To znači da ćemo našu komponentnu hijerarhiju graditi od najmanjih jedinica prema složenijim strukturama. Počet ćemo s komponentom koja predstavlja <strong>knjigu</strong>, zatim ćemo je smjestiti unutar <strong>kolekcije</strong> knjiga, koje će se nalaziti na <strong>policama</strong> unutar <strong>ormara</strong>.</p>
+<ul>
+<li>Tako da krećemo s izradom komponentom <code>Knjiga.vue</code> koja će imati dva parametra: <em>slika</em> i <em>naslov</em></li>
+</ul>
+<p><em><code>Knjiga.vue</code> komponenta:</em></p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+	<span class="hljs-keyword">import</span> { ref } <span class="hljs-keyword">from</span> <span class="hljs-string">"vue"</span>;
+	<span class="hljs-keyword">const</span> slika = ref(<span class="hljs-string">"./src/assets/images/books/fantasy/lotr_1.png"</span>);
+	<span class="hljs-keyword">const</span> naslov = ref(<span class="hljs-string">"Gospodar prstenova 1: Prstenova družina"</span>);
+	<span class="hljs-keyword">const</span> selected = ref(<span class="hljs-literal">false</span>);
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">div</span>
+		<span class="hljs-attr">class</span>=<span class="hljs-string">"group/book flex flex-col gap-1 h-fit"</span>
+		<span class="hljs-attr">:class</span>=<span class="hljs-string">"{ 'active' : selected }"</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">div</span>
+			@<span class="hljs-attr">click</span>=<span class="hljs-string">"selected = true"</span>
+			@<span class="hljs-attr">mouseleave</span>=<span class="hljs-string">"selected = false"</span>
+			<span class="hljs-attr">class</span>=<span class="hljs-string">"relative flex h-64 max-w-12 items-start group-hover/book:rotate-x-10 transition-all duration-300"</span>
+			<span class="hljs-attr">:class</span>=<span class="hljs-string">"selected ? 'drop-shadow-[-4px_-4px_8px_rgba(224,212,224,1)] -translate-x-54 scale-125' :
+            'drop-shadow-lg group-hover/book:-translate-x-4 group-hover/book:scale-105'"</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">div</span>
+				<span class="hljs-attr">class</span>=<span class="hljs-string">"flex items-center justify-center text-orange-200 bg-gradient-to-b from-orange-900 to-amber-950 rounded-l
+                h-64 min-w-12 px-8 text-sm text-center text-pretty transition-all duration-300 [writing-mode:sideways-rl] origin-right"</span>
+				<span class="hljs-attr">:class</span>=<span class="hljs-string">"{ '-rotate-y-45' : selected }"</span>&gt;</span>
+				{{ naslov }}
+			<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+			<span class="hljs-tag">&lt;<span class="hljs-name">img</span>
+				<span class="hljs-attr">:src</span>=<span class="hljs-string">"slika"</span>
+				<span class="hljs-attr">:alt</span>=<span class="hljs-string">"naslov"</span>
+				<span class="hljs-attr">class</span>=<span class="hljs-string">"h-full rounded-r object-fill transition-all duration-300 origin-left"</span>
+				<span class="hljs-attr">:class</span>=<span class="hljs-string">"selected ? 'rotate-y-0 max-w-42 min-w-42' :  'rotate-y-60 max-w-24 min-w-24'"</span> /&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<div style="display: flex; gap: 16px;">
+    <img height="256px" src="./Slike/knjiga_side.png"/>
+    <img height="256px" src="./Slike/knjiga.png"/>
+</div>
+<p><em>I sada ako želimo koristiti tu komponentu knjige, učitamo je u App.vue:</em></p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+	<span class="hljs-keyword">import</span> Knjiga <span class="hljs-keyword">from</span> <span class="hljs-string">"@/components/Knjiga.vue"</span>;
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">div</span>
+		<span class="hljs-attr">class</span>=<span class="hljs-string">"h-full flex flex-col items-center p-8 bg-gradient-to-br
+        from-gray-200 via-slate-50 to-stone-300 text-gray-800"</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-3xl font-bold"</span>&gt;</span>Digitalna Knjižnica<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"flex gap-1 p-8"</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">Knjiga</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">"i in 3"</span> /&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<p><img src="Slike/books.png" alt="alt text"></p>
+<p>Međutim, sada imamo tri identične knjige, što je i očekivano jer sve imaju isti naziv i sliku definiranu u komponenti. Ako želimo prikazati tri različite knjige, umjesto da stvaramo još dvije identične komponente s različitim nazivima i slikama, možemo im proslijediti podatke kao parametre iz neke liste.</p>
+<h2 id="proslje%C4%91ivanje-parametara-props">Prosljeđivanje parametara (<em>props</em>)</h2>
+<p>U većini slučajeva, za komponente koje koristimo unutar projekta, želimo da imaju različit sadržaj. Jedan od načina kako to možemo postići je kroz prosljeđivanje podataka, a u tom kontekstu dolaze u igru <strong>parametri</strong> (<em>props</em>).</p>
+<ul>
+<li><strong>Parametri</strong> su Vue atributi koji se mogu registrirati unutar komponente. Ako želimo proslijediti podatke komponenti, trebamo deklarirati popis parametara koje komponenta može prihvatiti, koristeći funkciju <code>defineProps</code>.</li>
+</ul>
+<p><em>Funkciji <code>defineProps</code> proslijeđujemo listu parametara:</em></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">const</span> props = defineProps([<span class="hljs-string">"naslov"</span>]);
+<span class="hljs-built_in">console</span>.log(props.naslov);
+</div></code></pre>
+<p><em>Tako da u komponenti <code>Knjiga.vue</code> možemo promijeniti <code>script</code>:</em></p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="actionscript">
+	defineProps([<span class="hljs-string">"slika"</span>, <span class="hljs-string">"naslov"</span>]);
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</div></code></pre>
+<p><em>Te u <code>App.vue</code> onda proslijediti podatke parametrima kjige iz liste:</em></p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+	<span class="hljs-keyword">import</span> { ref } <span class="hljs-keyword">from</span> <span class="hljs-string">"vue"</span>;
+	<span class="hljs-keyword">import</span> Knjiga <span class="hljs-keyword">from</span> <span class="hljs-string">"@/components/Knjiga.vue"</span>;
+	<span class="hljs-keyword">const</span> knjige = ref([
+		{
+			<span class="hljs-attr">naslov</span>: <span class="hljs-string">"Gospodar prstenova - Prstenova družina"</span>,
+			<span class="hljs-attr">slika</span>: <span class="hljs-string">"./src/assets/images/books/fantasy/lotr_1.png"</span>,
+		},
+		{
+			<span class="hljs-attr">naslov</span>: <span class="hljs-string">"Gospodar prstenova - Dvije kule"</span>,
+			<span class="hljs-attr">slika</span>: <span class="hljs-string">"./src/assets/images/books/fantasy/lotr_2.png"</span>,
+		},
+		{
+			<span class="hljs-attr">naslov</span>: <span class="hljs-string">"Gospodar prstenova - Povratak kralja"</span>,
+			<span class="hljs-attr">slika</span>: <span class="hljs-string">"./src/assets/images/books/fantasy/lotr_3.png"</span>,
+		},
+	]);
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">div</span>
+		<span class="hljs-attr">class</span>=<span class="hljs-string">"h-full flex flex-col items-center p-8 bg-gradient-to-br
+        from-gray-200 via-slate-50 to-stone-300 text-gray-800"</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-3xl font-bold"</span>&gt;</span>Digitalna Knjižnica<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"flex gap-1 p-8"</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">Knjiga</span>
+				<span class="hljs-attr">v-for</span>=<span class="hljs-string">"knjiga in knjige"</span>
+				<span class="hljs-attr">:naslov</span>=<span class="hljs-string">"knjiga.naslov"</span>
+				<span class="hljs-attr">:slika</span>=<span class="hljs-string">"knjiga.slika"</span> /&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<p><img src="Slike/props.png" alt="alt text"></p>
+<p>Sada vidimo da smo uspješno proslijedili podatke komponentama, povezujući parametre kao atribute. Time svaka knjiga ima svoj jedinstveni naziv.</p>
+<h3 id="defineprops"><code>defineProps()</code></h3>
+<p>Kao što smo rekli, s pomoću funkcije <code>defineProps()</code> deklariramo parametre koje možemo proslijediti komponenti.</p>
+<ul>
+<li>Ako parametre ne spremimo u varijablu, onda im možemo pristupati samo unutar <code>&lt;template&gt;</code> bloka:</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+	defineProps([<span class="hljs-string">"mojParametar"</span>]);
+
+	<span class="hljs-built_in">console</span>.log(props.mojParametar); <span class="hljs-comment">// neće raditi</span>
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</div></code></pre>
+<ul>
+<li>Ako želimo pristupati parametrima unutar <code>&lt;script&gt;</code> bloka onda ih moramo spremiti u varijablu (u praksi tu varijablu nazivamo <em>props</em>):</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+	<span class="hljs-keyword">const</span> props = defineProps([<span class="hljs-string">"mojParametar"</span>]);
+
+	<span class="hljs-built_in">console</span>.log(props.foo); <span class="hljs-comment">// ispisat će vrijednost proslijeđene vrijednosti parametra</span>
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</div></code></pre>
+<ul>
+<li>Kada imenujemo parametre s dugačkim nazivima, u pravilu koristimo <strong>camelCase</strong></li>
+</ul>
+<pre class="hljs"><code><div>defineProps({
+	<span class="hljs-attr">nazivKnjige</span>: <span class="hljs-built_in">String</span>,
+});
+</div></code></pre>
+<ul>
+<li>Te kada proslijeđujemo vrijednosti parametrima komponenti, onda u pravilu koristimo <strong>kebab-case</strong></li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">Knjiga</span> <span class="hljs-attr">naziv-knjige</span>=<span class="hljs-string">"Gospodar prstenova - Prstenova družina"</span> /&gt;</span>
+</div></code></pre>
+<h3 id="validacija-parametara">Validacija parametara</h3>
+<p>Funkcija <code>defineProps()</code> može primiti ne samo <em>polje</em> parametara, već i <em>objekt</em> parametara. U tom slučaju omogućuje nam provjeru i validaciju proslijeđenih vrijednosti, gdje je:</p>
+<ul>
+<li><code>ključ</code> - <em>naziv</em> parametra</li>
+<li><code>vrijednost</code> - <em>tip podataka</em> ili <em>objekt s dodatnom validacijom</em></li>
+</ul>
+<pre class="hljs"><code><div>defineProps({
+	<span class="hljs-comment">// Osnovna provjera tipa</span>
+	<span class="hljs-comment">// (`null` i `undefined` vrijednosti dopuštaju bilo koji tip)</span>
+	<span class="hljs-attr">paramA</span>: <span class="hljs-built_in">Number</span>,
+
+	<span class="hljs-comment">// Više mogućih tipova</span>
+	<span class="hljs-attr">paramB</span>: [<span class="hljs-built_in">String</span>, <span class="hljs-built_in">Number</span>],
+
+	<span class="hljs-comment">// Obavezan string</span>
+	<span class="hljs-attr">paramC</span>: {
+		<span class="hljs-attr">type</span>: <span class="hljs-built_in">String</span>,
+		<span class="hljs-attr">required</span>: <span class="hljs-literal">true</span>,
+	},
+
+	<span class="hljs-comment">// Obavezan ali dopušta null vrijednost</span>
+	<span class="hljs-attr">paramD</span>: {
+		<span class="hljs-attr">type</span>: [<span class="hljs-built_in">String</span>, <span class="hljs-literal">null</span>],
+		<span class="hljs-attr">required</span>: <span class="hljs-literal">true</span>,
+	},
+
+	<span class="hljs-comment">// Broj s zadanom vrijednošću</span>
+	<span class="hljs-attr">paramE</span>: {
+		<span class="hljs-attr">type</span>: <span class="hljs-built_in">Number</span>,
+		<span class="hljs-attr">default</span>: <span class="hljs-number">100</span>,
+	},
+
+	<span class="hljs-comment">// Objekt s zadanom vrijednošću</span>
+	<span class="hljs-attr">paramF</span>: {
+		<span class="hljs-attr">type</span>: <span class="hljs-built_in">Object</span>,
+		<span class="hljs-comment">// Objekt ili polje moraju imati zadanu vrijednost</span>
+		<span class="hljs-comment">// koja se vraća iz funkcije. Funkcija prima sirove</span>
+		<span class="hljs-comment">// proslijeđene parametre kao argument.</span>
+		<span class="hljs-keyword">default</span>(rawProps) {
+			<span class="hljs-keyword">return</span> { <span class="hljs-attr">message</span>: <span class="hljs-string">"pozdrav"</span> };
+		},
+	},
+
+	<span class="hljs-comment">// Prilagođena funkcija za validaciju</span>
+	<span class="hljs-attr">paramG</span>: {
+		validator(value, props) {
+			<span class="hljs-comment">// Vrijednost mora biti jedna od navedenih opcija</span>
+			<span class="hljs-keyword">return</span> [<span class="hljs-string">"uspjeh"</span>, <span class="hljs-string">"upozorenje"</span>, <span class="hljs-string">"opasnost"</span>].includes(value);
+		},
+	},
+});
+</div></code></pre>
+<ul>
+<li>Svi parametri (<em>props</em>) su po zadanom <strong>opcionalni</strong>, osim ako nije navedeno <code>required: true</code></li>
+<li>Ako opcionalni parametar (osim Booleana) nije prisutan, njegova vrijednost će biti <code>undefined</code></li>
+<li>Boolean parametri koji nisu prisutni automatski će se postaviti na <code>false</code>. Možete promijeniti ovo ponašanje postavljanjem zadane vrijednosti, npr. <code>default: undefined</code>, kako bi se ponašao kao ne-Boolean parametar</li>
+<li>Ako je zadana vrijednost definirana, koristit će se ako je vrijednost parametra <code>undefined</code>. To uključuje situacije kada parametar nije proslijeđen ili mu je eksplicitno dodijeljena vrijednost <code>undefined</code></li>
+</ul>
+<blockquote>
+<p>Kada validacija parametra ne uspije, Vue će prikazati upozorenje u konzoli</p>
+</blockquote>
+<h3 id="stati%C4%8Dni-i-dinami%C4%8Dni-parametri">Statični i dinamični parametri</h3>
+<p>Kao i za atribute, vue dopošta parametre koji su proslijeđeni kao statične i dinamičke vrijednosti:</p>
+<pre class="hljs"><code><div><span class="hljs-comment">&lt;!-- Statičko dodjeljivanje vrijednosti varijable --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">Knjiga</span> <span class="hljs-attr">naslov</span>=<span class="hljs-string">"Gospodar prstenova - Prstenova družina"</span> /&gt;</span>
+
+<span class="hljs-comment">&lt;!-- Dinamično dodjeljivanje vrijednosti varijable --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">Knjiga</span> <span class="hljs-attr">v-bind:naslov</span>=<span class="hljs-string">"naslov"</span> /&gt;</span>
+
+<span class="hljs-comment">&lt;!-- Dinamično dodjeljivanje vrijednosti izraza --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">Knjiga</span> <span class="hljs-attr">:naslov</span>=<span class="hljs-string">"volumen + '. -' + naslov"</span> /&gt;</span>
+</div></code></pre>
+<ul>
+<li>Vue omogućuje prosljeđivanje parametara bilo kojeg tipa</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-comment">&lt;!-- Iako je `42` statična vrijednost, koristimo v-bind jer je to JS izraz --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">Knjiga</span> <span class="hljs-attr">:broj-stranica</span>=<span class="hljs-string">"423"</span> /&gt;</span>
+
+<span class="hljs-comment">&lt;!-- Ako je prop naveden bez vrijednosti, pretpostavlja se da je `true` --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">Knjiga</span> <span class="hljs-attr">objavljena</span> /&gt;</span>
+
+<span class="hljs-comment">&lt;!-- Iako je `false` statična vrijednost, koristimo v-bind --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">Knjiga</span> <span class="hljs-attr">:objavljena</span>=<span class="hljs-string">"false"</span> /&gt;</span>
+
+<span class="hljs-comment">&lt;!-- Prosljeđivanje polja --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">Knjiga</span> <span class="hljs-attr">:zanrovi</span>=<span class="hljs-string">"['avantura', 'fantazija']"</span> /&gt;</span>
+
+<span class="hljs-comment">&lt;!-- Prosljeđivanje objekta --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">Knjiga</span>
+	<span class="hljs-attr">:autor</span>=<span class="hljs-string">"{
+    ime: 'John Ronald Reuel',
+    prezime: 'Tolkien'
+  }"</span> /&gt;</span>
+</div></code></pre>
+<ul>
+<li>Ako želimo proslijediti sva svojstva objekta kao parametre, možemo koristiti <code>v-bind</code> bez argumenta</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">const</span> lotrPrvaKnjiga_info = {
+	<span class="hljs-attr">naziv</span>: <span class="hljs-string">"Gospodar prstenova - Prstenova družina"</span>,
+	<span class="hljs-attr">brojStranica</span>: <span class="hljs-number">423</span>,
+	<span class="hljs-attr">zanrovi</span>: [<span class="hljs-string">"avantura"</span>, <span class="hljs-string">"fantazija"</span>],
+	<span class="hljs-attr">autor</span>: {
+		<span class="hljs-attr">ime</span>: <span class="hljs-string">"John Ronald Reuel"</span>,
+		<span class="hljs-attr">prezime</span>: <span class="hljs-string">"Tolkien"</span>,
+	},
+	<span class="hljs-attr">objavljena</span>: <span class="hljs-literal">true</span>,
+};
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">Knjiga</span> <span class="hljs-attr">v-bind</span>=<span class="hljs-string">"lotrPrvaKnjiga_info"</span> /&gt;</span>
+</div></code></pre>
+<h3 id="jednosmjerna-veza">Jednosmjerna veza</h3>
+<p>Svi <em>parametri</em> imaju <strong>jednosmjernu vezu</strong> od roditelja prema djetetu: kada se vrijednost u roditelju promijeni, ažurira se i u djetetu, ali ne obrnuto.</p>
+<p>Svako ažuriranje roditelja ponovno prosljeđuje <em>parametar</em> djetetu. Zato <strong>nije preporučljivo</strong> mijenjati <em>parametre</em> unutar djeteta – Vue će prikazati upozorenje:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">const</span> props = defineProps([<span class="hljs-string">"naziv"</span>]);
+
+props.naziv = <span class="hljs-string">"Novi naziv"</span>; <span class="hljs-comment">// Neispravno – READONLY!</span>
+</div></code></pre>
+<ul>
+<li>Jedno rješenje je da koristimo <em>parametar</em> kao početnu vrijednost za izradu lokalne kopije:</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">const</span> props = defineProps([<span class="hljs-string">"naziv"</span>]);
+<span class="hljs-keyword">const</span> localniNaziv = ref(props.naziv); <span class="hljs-comment">// Lokalna kopija</span>
+</div></code></pre>
+<p>Komponenta ne može izravno mijenjati <em>parametre</em>, ali može mijenjati <strong>unutarnja svojstva objekata/nizova</strong> jer se prenose po referenci</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">const</span> props = defineProps([<span class="hljs-string">"autor"</span>]);
+props.autor.ime = <span class="hljs-string">"Novo ime"</span>; <span class="hljs-comment">// Radi – Nije preporučljivo</span>
+</div></code></pre>
+<blockquote>
+<p>U pravilu komponenta treba emitirati događaj, a roditelj obaviti mutaciju, no ponekad je poželjno i jednostavnije raditi mutaciju unutar komponente</p>
+</blockquote>
+<h2 id="doga%C4%91aji-komponenti">Događaji komponenti</h2>
+<p>U prethodnom poglavlju stvorili smo komponentu <code>Knjiga.vue</code>, kojoj prosljeđujemo parametre iz liste. Sada možemo kreirati novu komponentu <code>Kolekcija.vue</code>, koja će sadržavati više knjiga iz istog serijala, poput sedmologije <em>Harry Potter</em> ili trilogije <em>Gospodar prstenova</em>.</p>
+<ul>
+<li>Osim prikaza knjiga, omogućit ćemo <strong>dodavanje</strong> i <strong>brisanje</strong> knjiga iz kolekcije.
+<ul>
+<li>Svaka knjiga će imati dugme <em>Ukloni</em>.</li>
+</ul>
+</li>
+<li>Kolekcija će sadržavati <strong>parametar</strong> <code>kolekcija</code>, koji ćemo proslijeđivati iz roditeljske komponente.
+<ul>
+<li>Svaka kolekcija sadrži <em>naslov</em> i <em>popis knjiga</em>.</li>
+</ul>
+</li>
+</ul>
+<p><em>Prvi korak je implementacija funkcionalnosti za uklanjanje određene knjige iz kolekcije pritiskom na dugme <strong>Ukloni</strong>:</em></p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">div</span>
+	<span class="hljs-attr">class</span>=<span class="hljs-string">"text-red-700 font-bold opacity-0 group-hover/book:opacity-100 cursor-pointer hover:underline transition"</span>
+	@<span class="hljs-attr">click</span>=<span class="hljs-string">"$emit('ukloni')"</span>&gt;</span>
+	<span class="hljs-comment">&lt;!--prosljeđivanje događaja ukloni--&gt;</span>
+	Ukloni
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</div></code></pre>
+<p>Budući da pojedinačne knjige nemaju izravan pristup kolekciji, ne mogu ukloniti same sebe iz nje. Umjesto toga, potrebno je pozvati funkciju unutar komponente <code>Kolekcija.vue</code>, koja će se pobrinuti za uklanjanje knjige iz popisa.</p>
+<ul>
+<li>Način na koji to radimo je korištenjem <strong><code>$emit</code></strong> događaja, koji omogućuje komponenti <code>Knjiga.vue</code> da emitira vlastiti događaj prema <code>Kolekcija.vue</code>. Kada se događaj pokrene, <code>Kolekcija.vue</code> ga može presresti i ažurirati popis knjiga uklanjanjem odgovarajuće stavke.</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+	<span class="hljs-keyword">import</span> { ref } <span class="hljs-keyword">from</span> <span class="hljs-string">"vue"</span>;
+	<span class="hljs-keyword">import</span> Knjiga <span class="hljs-keyword">from</span> <span class="hljs-string">"@/components/Knjiga.vue"</span>;
+	<span class="hljs-keyword">const</span> props = defineProps([<span class="hljs-string">"kolekcija"</span>]);
+
+	<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ukloniKnjigu</span>(<span class="hljs-params">index</span>) </span>{
+		props.kolekcija.knjige.splice(index, <span class="hljs-number">1</span>);
+	}
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"relative group flex flex-col gap-2"</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-lg font-bold"</span>&gt;</span>{{ kolekcija.naslov }}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"flex gap-1"</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">Knjiga</span>
+				<span class="hljs-attr">v-for</span>=<span class="hljs-string">"(knjiga, i) in kolekcija.knjige"</span>
+				<span class="hljs-attr">:naslov</span>=<span class="hljs-string">"knjiga.naslov"</span>
+				<span class="hljs-attr">:slika</span>=<span class="hljs-string">"knjiga.slika"</span>
+				@<span class="hljs-attr">ukloni</span>=<span class="hljs-string">"ukloniKnjigu(i)"</span> /&gt;</span>
+			<span class="hljs-comment">&lt;!--presrećivanje događaja ukloni--&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<p>Dalje, kod komponente <code>Kolekcija.vue</code> možemo dodati mogućnost za dodavanje nove knjige. Definirat ćemo novu varijablu <code>novaKnjiga</code> i funkciju koja će omogućiti dodavanje knjige u kolekciju.</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">const</span> novaKnjiga = ref({
+	<span class="hljs-attr">naslov</span>: <span class="hljs-string">""</span>,
+	<span class="hljs-attr">slika</span>: <span class="hljs-string">""</span>,
+});
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">dodajKnjigu</span>(<span class="hljs-params"></span>) </span>{
+	props.kolekcija.knjige.push(novaKnjiga.value);
+}
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"flex gap-2 opacity-0 group-hover:opacity-100 text-sm transition"</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">input</span>
+		<span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span>
+		<span class="hljs-attr">class</span>=<span class="hljs-string">"ring rounded w-24 px-2 bg-amber-100/25"</span>
+		<span class="hljs-attr">v-model</span>=<span class="hljs-string">"novaKnjiga.naslov"</span>
+		<span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Naslov..."</span> /&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">input</span>
+		<span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span>
+		<span class="hljs-attr">class</span>=<span class="hljs-string">"ring rounded w-24 px-2 bg-amber-100/25"</span>
+		<span class="hljs-attr">v-model</span>=<span class="hljs-string">"novaKnjiga.slika"</span>
+		<span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Url slike..."</span> /&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">button</span>
+		<span class="hljs-attr">class</span>=<span class="hljs-string">"bg-sky-600 rounded px-2 hover:bg-sky-500 text-sky-50 cursor-pointer"</span>
+		@<span class="hljs-attr">click</span>=<span class="hljs-string">"dodajKnjigu()"</span>&gt;</span>
+		Dodaj
+	<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</div></code></pre>
+<p>Zatim u <code>App.vue</code> komponenti malo preuredimo i dodamo dvije kolekcije:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">const</span> lotrKolekcija = ref({
+    <span class="hljs-attr">naslov</span>: <span class="hljs-string">"Gospodar prstenova"</span>,
+    <span class="hljs-attr">knjige</span>: [...]
+})
+<span class="hljs-keyword">const</span> harryPotterKolekcija = ref({
+    <span class="hljs-attr">naslov</span>: <span class="hljs-string">"Harry Potter"</span>,
+    <span class="hljs-attr">knjige</span>: [...]
+})
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">div</span>
+		<span class="hljs-attr">class</span>=<span class="hljs-string">"h-full flex flex-col items-center bg-gradient-to-br from-gray-200 via-slate-50 to-stone-300 text-gray-800 px-60 pt-8 gap-8"</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-3xl font-bold"</span>&gt;</span>Digitalna Knjižnica<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">div</span>
+			<span class="hljs-attr">class</span>=<span class="hljs-string">"flex flex-col w-full pt-4 rounded-xl"</span>
+			<span class="hljs-attr">style</span>=<span class="hljs-string">"background-image: url(https://i.pinimg.com/originals/b9/ea/4e/b9ea4e526fb0fc0fd8038ac713fbb881.jpg)"</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"flex gap-8 px-8 pt-4"</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">Kolekcija</span> <span class="hljs-attr">:kolekcija</span>=<span class="hljs-string">"lotrKolekcija"</span> /&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">Kolekcija</span> <span class="hljs-attr">:kolekcija</span>=<span class="hljs-string">"harryPotterKolekcija"</span> /&gt;</span>
+			<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">div</span>
+				<span class="hljs-attr">class</span>=<span class="hljs-string">"flex items-center bg-orange-950 rounded-lg text-orange-100 text-xl px-8 py-1"</span>&gt;</span>
+				Fantazija
+			<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<p><img src="Slike/kolekcije.png" alt="alt text"></p>
+<h3 id="proslije%C4%91ivanje-doga%C4%91aja-emit">Proslijeđivanje događaja <code>emit()</code></h3>
+<p>Komponente u Vue.js mogu proslijeđivati vlastite događaje koristeći metodu <code>$emit()</code>. Ovaj mehanizam omogućava komunikaciju između komponenta roditelja i djece, na način da djete šalje signal roditelju kada se nešto dogodi.</p>
+<p>U komponenti možemo proslijeđivati događaj izravno iz <code>&lt;template&gt;</code>:</p>
+<pre class="hljs"><code><div><span class="hljs-comment">&lt;!-- MyComponent.vue --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"$emit('myEvent')"</span>&gt;</span>Klikni me<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<ul>
+<li>U ovom slučaju, kada korisnik klikne dugme, komponenta proslijedi događaj pod nazivom <em>myEvent</em></li>
+</ul>
+<p><em>Roditelj može osluškivati ovaj događaj pomoću <code>v-on</code> direktive (kraće <code>@</code>)</em>:</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">MyComponent</span> @<span class="hljs-attr">my-event</span>=<span class="hljs-string">"myFun"</span> /&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+	<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">myFun</span>(<span class="hljs-params"></span>) </span>{
+		<span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Događaj myEvent je primljen!"</span>);
+	}
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</div></code></pre>
+<ul>
+<li>Ako želimo da se događaj preslušava samo jednom, možemo koristiti <code>.once</code> modifikator:</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">MyComponent</span> @<span class="hljs-attr">my-event.once</span>=<span class="hljs-string">"myFun"</span> /&gt;</span>
+</div></code></pre>
+<p>Nakon prvog emitiranja, ovaj događaj se više neće preslušavati.</p>
+<blockquote>
+<p>Za razliku od nativnih DOM događaja, događaji koje proslijeđuje komponenta <strong>ne propagiraju se prema gore</strong> kroz hijerarhiju komponenti. Roditelj može čuti samo događaje proslijeđene izravno od svoje djece. Ako je potrebno komunicirati između neizravno povezanih komponenti, preporučuje se korištenje globalnog stanja (<em>Vuex, Pinia</em>).</p>
+</blockquote>
+<h3 id="proslje%C4%91ivanje-argumenata-doga%C4%91ajima">Prosljeđivanje argumenata događajima</h3>
+<p>Često želimo poslati dodatne podatke uz događaj. To se može postići dodavanjem argumenata u <code>$emit()</code>.</p>
+<p><em>Pretpostavimo da imamo komponentu koja omogućava povećanje broja za određenu vrijednost:</em></p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"$emit('increaseBy', 1)"</span>&gt;</span>Povećaj za 1<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<ul>
+<li>Ovdje <code>$emit('increaseBy', 1)</code> znači da će se uz događaj <code>'increaseBy'</code> poslati broj <code>1</code></li>
+</ul>
+<p><em>Roditeljska komponenta može uhvatiti taj argument i koristiti ga:</em></p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">MyButton</span> @<span class="hljs-attr">increase-by</span>=<span class="hljs-string">"(n) =&gt; count += n"</span> /&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+	<span class="hljs-keyword">import</span> { ref } <span class="hljs-keyword">from</span> <span class="hljs-string">"vue"</span>;
+
+	<span class="hljs-keyword">const</span> count = ref(<span class="hljs-number">0</span>);
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</div></code></pre>
+<ul>
+<li>Ako želimo koristiti metodu umjesto inline funkcije, možemo definirati posebnu funkciju:</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">MyButton</span> @<span class="hljs-attr">increase-by</span>=<span class="hljs-string">"increaseCount"</span> /&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+	<span class="hljs-keyword">import</span> { ref } <span class="hljs-keyword">from</span> <span class="hljs-string">"vue"</span>;
+
+	<span class="hljs-keyword">const</span> count = ref(<span class="hljs-number">0</span>);
+
+	<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">increaseCount</span>(<span class="hljs-params">n</span>) </span>{
+		count.value += n;
+	}
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</div></code></pre>
+<ul>
+<li>Ako je potrebno poslati više podataka, <code>$emit()</code> može primiti više argumenata:</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"$emit('update', 'Nova vrijednost', 42)"</span>&gt;</span>Ažuriraj<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+</div></code></pre>
+<p><em>Roditelj može primiti sve argumente:</em></p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">MyComponent</span> @<span class="hljs-attr">update</span>=<span class="hljs-string">"(msg, num) =&gt; console.log(msg, num)"</span> /&gt;</span>
+</div></code></pre>
+<hr>
+<h3 id="deklaracija-proslije%C4%91enih-doga%C4%91aja">Deklaracija proslijeđenih događaja</h3>
+<p>Možemo <strong>deklarirati događaje</strong> koje komponenta emitira. Budući da metoda <code>$emit</code>, korištena unutar <code>&lt;template&gt;</code>, nije dostupna unutar <code>&lt;script setup&gt;</code>, <code>defineEmits()</code> vraća ekvivalentnu funkciju koju možemo koristiti umjesto nje:</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="actionscript">
+	<span class="hljs-keyword">const</span> emit = defineEmits([<span class="hljs-string">"inFocus"</span>, <span class="hljs-string">"submit"</span>]);
+
+	<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">buttonClick</span><span class="hljs-params">()</span> </span>{
+		emit(<span class="hljs-string">"submit"</span>);
+	}
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</div></code></pre>
+<h2 id="slot-element">Slot element</h2>
+<p>Naučili smo da komponente mogu primati <strong>parametre</strong> (<em>props</em>), koji mogu biti JavaScript vrijednosti bilo kojeg tipa. No, što je s predloškom (<em>template</em>)? U nekim slučajevima želimo proslijediti dio predloška <strong>komponenti</strong>, kako bi ga ona mogla prikazati unutar vlastitog predloška.</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">FancyButton</span>&gt;</span>
+	Click me! <span class="hljs-comment">&lt;!-- umetnuti sadžaj--&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">FancyButton</span>&gt;</span>
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"fancy-btn"</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">slot</span>/&gt;</span> <span class="hljs-comment">&lt;!-- mjesto za umetanje sadržaja --&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+</div></code></pre>
+<p>Element <code>&lt;slot&gt;</code> predstavlja <strong>mjesto za umetanje sadržaja</strong>, označavajući gdje će se prikazati sadržaj koji je roditelj proslijedio djetetu.</p>
+<p><img src="Slike/slot.png" alt="alt text"></p>
+<ul>
+<li>Sada možemo nastaviti s izradom komponente <code>Polica.vue</code>, koja će sadržavati više kolekcija unutar istog žanra. Pomoću <code>&lt;slot/&gt;</code> elementa dinamički ćemo ubaciti žanr police.</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+    <span class="hljs-keyword">import</span> Kolekcija <span class="hljs-keyword">from</span> <span class="hljs-string">"@/components/Kolekcija.vue"</span>;
+    defineProps([<span class="hljs-string">'kolekcije'</span>])
+    
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"flex flex-col w-full pt-4 rounded-xl"</span>
+        <span class="hljs-attr">style</span>=<span class="hljs-string">"background-image: url(https://i.pinimg.com/originals/b9/ea/4e/b9ea4e526fb0fc0fd8038ac713fbb881.jpg)"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"flex gap-8 px-8 pt-4"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Kolekcija</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">"kolekcija in kolekcije"</span>
+                <span class="hljs-attr">:kolekcija</span>=<span class="hljs-string">"kolekcija"</span>/&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"flex items-center bg-orange-950 rounded-lg text-orange-100 text-xl px-8 py-1"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">slot</span>/&gt;</span> <span class="hljs-comment">&lt;!--mjesto za umetanje žanra police--&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<ul>
+<li>Zatim ćemo u skladu s tim ažurirati i <code>App.vue</code>, tako da pravilno prikaže policu s kolekcijama unutar aplikacije.</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+    <span class="hljs-keyword">import</span> { ref } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>;
+    <span class="hljs-keyword">import</span> Polica <span class="hljs-keyword">from</span> <span class="hljs-string">"@/components/Polica.vue"</span>;
+    <span class="hljs-keyword">const</span> fantazijaKolekcije = ref([
+        {
+            <span class="hljs-attr">naslov</span>: <span class="hljs-string">"Gospodar prstenova"</span>,
+            <span class="hljs-attr">knjige</span>: [...]
+        },
+        {
+            <span class="hljs-attr">naslov</span>: <span class="hljs-string">"Harry Potter"</span>,
+            <span class="hljs-attr">knjige</span>: [...]
+        }
+    ])
+    <span class="hljs-keyword">const</span> scifiKolekcije = ref([
+        {
+            <span class="hljs-attr">naslov</span>: <span class="hljs-string">"Dina"</span>,
+            <span class="hljs-attr">knjige</span>: [...]
+        },
+    ])
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"h-full flex flex-col items-center bg-gradient-to-br from-gray-200 via-slate-50 to-stone-300 text-gray-800 px-60 pt-8 gap-8"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-3xl font-bold"</span>&gt;</span>
+            Digitalna Knjižnica
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Polica</span> <span class="hljs-attr">:kolekcije</span>=<span class="hljs-string">"fantazijaKolekcije"</span>&gt;</span>
+            Fantazija
+        <span class="hljs-tag">&lt;/<span class="hljs-name">Polica</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Polica</span> <span class="hljs-attr">:kolekcije</span>=<span class="hljs-string">"scifiKolekcije"</span>&gt;</span>
+            Sci-Fi
+        <span class="hljs-tag">&lt;/<span class="hljs-name">Polica</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<h3 id="dohva%C4%87anje-konteksta-unutar-slota">Dohvaćanje konteksta unutar slota</h3>
+<p>Sadržaj unutar <strong>slota</strong> ima pristup podacima roditelja, jer je definiran unutar nje.</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>{{ message }}<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">FancyButton</span>&gt;</span>{{ message }}<span class="hljs-tag">&lt;/<span class="hljs-name">FancyButton</span>&gt;</span>
+</div></code></pre>
+<p>Obje interpolacije <code>{{ message }}</code> prikazat će isti sadržaj. Međutim, <strong>slot sadržaj nema pristup podacima djeteta</strong>. Izrazi u Vue predlošcima mogu pristupiti samo kontekstu u kojem su definirani, slično kao u JavaScriptu.</p>
+<blockquote>
+<p>Roditelj vidi samo vlastite podatke, dok dijete vidi samo svoje podatke</p>
+</blockquote>
+<h3 id="zadani-sadr%C5%BEaj-slota">Zadani sadržaj slota</h3>
+<p>Ponekad želimo postaviti <strong>zadani sadržaj slota</strong>, koji će se prikazati samo ako roditelj ne osigura sadržaj.</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">slot</span>&gt;</span>Submit<span class="hljs-tag">&lt;/<span class="hljs-name">slot</span>&gt;</span> <span class="hljs-comment">&lt;!-- zadani sadržaj --&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+</div></code></pre>
+<ul>
+<li><em>Ako koristimo ovu komponentu bez slot sadržaja:</em></li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">SubmitButton</span> /&gt;</span>
+</div></code></pre>
+<ul>
+<li><em>Tada će se prikazati zadani sadržaj:</em></li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span>&gt;</span>Submit<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+</div></code></pre>
+<ul>
+<li><em>Ali ako osiguramo vlastiti sadržaj:</em></li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">SubmitButton</span>&gt;</span>Spremi<span class="hljs-tag">&lt;/<span class="hljs-name">SubmitButton</span>&gt;</span>
+</div></code></pre>
+<ul>
+<li><em>Prikazat će se:</em></li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span>&gt;</span>Spremi<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+</div></code></pre>
+<h3 id="imenovani-slotovi"><strong>Imenovani slotovi</strong></h3>
+<p>Kada komponenta ima više mjesta za umetanje sadržaja, koristimo <strong>imenovane slotove</strong>. Na primjer, komponenta <code>BaseLayout.vue</code> može sadržavati različite sekcije:</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"container"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">header</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">slot</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"header"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">slot</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">header</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">main</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">slot</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">slot</span>&gt;</span> <span class="hljs-comment">&lt;!-- zadani slot --&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">main</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">footer</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">slot</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"footer"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">slot</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">footer</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</div></code></pre>
+<ul>
+<li>U roditelju koristimo <strong><code>v-slot</code></strong> direktivu da proslijedimo sadržaj u određeni slot (<em>skraćeno <code>#</code></em>):</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">BaseLayout</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">template</span> <span class="hljs-attr">v-slot:header</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Naslov stranice<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">template</span> #<span class="hljs-attr">default</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Glavni sadržaj.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">template</span> #<span class="hljs-attr">footer</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Kontakt informacije.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">BaseLayout</span>&gt;</span>
+</div></code></pre>
+<p><img src="Slike/slots.png" alt="alt text"></p>
+<blockquote>
+<p>Slot bez imena (<code>&lt;slot&gt;</code>) automatski postaje <strong>zadani slot</strong>, dok se ostali definiraju s <code>name</code>.</p>
+</blockquote>
+<ul>
+<li>Na kraju, preostaje nam još izraditi završnu komponentu <code>Ormar.vue</code>, koja će sadržavati više polica s različitim žanrovima. Time ćemo završiti izradu naše aplikacije.</li>
+</ul>
+<p><em><code>Ormar.vue</code> komponenta:</em></p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+    <span class="hljs-keyword">import</span> Polica <span class="hljs-keyword">from</span> <span class="hljs-string">"@/components/Polica.vue"</span>;
+    defineProps([<span class="hljs-string">'police'</span>])
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"flex flex-col gap-2"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-3xl"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">slot</span>/&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"h-full flex flex-col"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Polica</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">"polica in police"</span>
+                <span class="hljs-attr">:kolekcije</span>=<span class="hljs-string">"polica.kolekcije"</span>&gt;</span>
+                {{ polica.žanr }}
+            <span class="hljs-tag">&lt;/<span class="hljs-name">Polica</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<p><em><code>App.vue</code> komponenta:</em></p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+    <span class="hljs-keyword">import</span> { ref } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>;
+    <span class="hljs-keyword">import</span> Ormar <span class="hljs-keyword">from</span> <span class="hljs-string">'./components/Ormar.vue'</span>;
+    <span class="hljs-keyword">const</span> policaKnjiga = ref([
+        {
+            žanr: <span class="hljs-string">"Fantasy"</span>,
+            <span class="hljs-attr">kolekcije</span>: [...]
+        },
+        {
+            žanr: <span class="hljs-string">"Sci-Fi"</span>,
+            <span class="hljs-attr">kolekcije</span>: [...]
+        }
+    ])
+    <span class="hljs-keyword">const</span> policaStripova = ref([
+        {
+            žanr: <span class="hljs-string">"Dark Fantasy"</span>,
+            <span class="hljs-attr">kolekcije</span>: [...]
+        },
+        {
+            žanr: <span class="hljs-string">"Superhero"</span>,
+            <span class="hljs-attr">kolekcije</span>: [...]
+        }
+    ])
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"overflow-auto h-full flex flex-col items-center bg-gradient-to-br from-gray-200 via-slate-50 to-stone-300 text-gray-800 py-8 gap-4"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-3xl font-bold"</span>&gt;</span>
+            Digitalna Knjižnica
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"w-full px-48 flex gap-16"</span>&gt;</span>        
+            <span class="hljs-tag">&lt;<span class="hljs-name">Ormar</span> <span class="hljs-attr">:police</span>=<span class="hljs-string">"policaKnjiga"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"w-1/2"</span>&gt;</span>
+                Knjige
+            <span class="hljs-tag">&lt;/<span class="hljs-name">Ormar</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Ormar</span> <span class="hljs-attr">:police</span>=<span class="hljs-string">"policaStripova"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"w-1/2"</span>&gt;</span>
+                Stripovi
+            <span class="hljs-tag">&lt;/<span class="hljs-name">Ormar</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<p><img src="Slike/ormari.png" alt="alt text"></p>
+<p>Ako sada pogledamo Vue <strong>DevTools</strong>, vidjet ćemo da je struktura projekta organizirana točno onako kako smo na početku postavili hijerarhiju.</p>
+<div style="display: flex; gap: 16px;">
+	<img src="./Slike/graf.png"/>
+	<img src="./Slike/hijerarhija.png" style="object-fit: contain;"/>
+</div>
+<div class="page"></div>
+## Samostalni zadatak za vježbu 4
+<p>U ovom zadatku ćete izraditi Vue komponente na temelju postojeće <code>App.vue</code> datoteke iz projekta u mapi <code>Primjeri/primjer_vue_zadatak</code>.</p>
+<p>Trenutno <code>App.vue</code> sadrži veliki broj ponavljajućih elemenata, stoga ćemo ga modularizirati stvaranjem sljedećih komponenti:</p>
+<ul>
+<li>
+<p><em>Strukturne komponente</em></p>
+<ul>
+<li><code>Header.vue</code> – Zaglavlje stranice</li>
+<li><code>Footer.vue</code> – Podnožje stranice</li>
+<li><code>Navbar.vue</code> – Navigacijska traka, koja će sadržavati:
+<ul>
+<li><code>LinkItem.vue</code> – Pojedinačna stavka navigacije</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><em>Stranice</em></p>
+<ul>
+<li><code>PagePočetna.vue</code> – Početna stranica</li>
+<li><code>PageSlika.vue</code> – Stranica o izradi slike</li>
+<li><code>PageGrafika.vue</code> – Stranica o izradi grafike</li>
+</ul>
+</li>
+<li>
+<p><em>Pomoćne komponente</em></p>
+<ul>
+<li><code>Separator.vue</code> – Vizualni razdjelnik sadržaja</li>
+<li><code>JustifiedTextSection.vue</code> – Sekcija s tekstom poravnatim obostrano</li>
+</ul>
+</li>
+</ul>
+</div>
+</body>
+</html>
