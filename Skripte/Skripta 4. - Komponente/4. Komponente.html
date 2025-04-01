@@ -483,8 +483,8 @@ Visual Studio-like style based on original C# coloring by Jason Diamond <jason@d
 <ul>
 <li>Ako ih koristimo kao stranice unutar aplikacije koja koristi <code>router</code>, tada ih stavljamo u mapu <code>views</code>.</li>
 </ul>
-<p><em>Smještamo komponentu unutar mape <code>components</code>:</em>
-<img src="Slike/place.png" alt="alt text"></p>
+<p><em>Smještamo komponentu unutar mape <code>components</code>:</em></p>
+<img src="Slike/place.png" alt="alt text">
 <p>Kada želimo izraditi novu komponentu, dovoljno je kreirati datoteku s proizvoljnim, ali valjanim nazivom i nastavkom <code>.vue</code>.</p>
 <p><em>Svaka komponenta mora sadržavati <code>&lt;template&gt;</code> blok:</em></p>
 <pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="actionscript">
@@ -505,6 +505,8 @@ Visual Studio-like style based on original C# coloring by Jason Diamond <jason@d
 	// scoped -&gt; označava da se stil primjenjuje samo nad komponentom
 <span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
 </div></code></pre>
+
+<div class="page"></div>
 <h3 id="kori%C5%A1tenje-komponenti">Korištenje komponenti</h3>
 <p>Da bi koristili komponente u našem projektu, moramo je učitati.</p>
 <p><em>Možemo kreirati komponentu pod nazivom <code>Dekoracija.vue</code>:</em></p>
@@ -829,6 +831,8 @@ Visual Studio-like style based on original C# coloring by Jason Diamond <jason@d
 </div></code></pre>
 <pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">Knjiga</span> <span class="hljs-attr">v-bind</span>=<span class="hljs-string">"lotrPrvaKnjiga_info"</span> /&gt;</span>
 </div></code></pre>
+
+<div class="page"></div>
 <h3 id="jednosmjerna-veza">Jednosmjerna veza</h3>
 <p>Svi <em>parametri</em> imaju <strong>jednosmjernu vezu</strong> od roditelja prema djetetu: kada se vrijednost u roditelju promijeni, ažurira se i u djetetu, ali ne obrnuto.</p>
 <p>Svako ažuriranje roditelja ponovno prosljeđuje <em>parametar</em> djetetu. Zato <strong>nije preporučljivo</strong> mijenjati <em>parametre</em> unutar djeteta – Vue će prikazati upozorenje:</p>
@@ -849,6 +853,8 @@ props.autor.ime = <span class="hljs-string">"Novo ime"</span>; <span class="hljs
 <blockquote>
 <p>U pravilu komponenta treba emitirati događaj, a roditelj obaviti mutaciju, no ponekad je poželjno i jednostavnije raditi mutaciju unutar komponente</p>
 </blockquote>
+
+<div class="page"></div>
 <h2 id="doga%C4%91aji-komponenti">Događaji komponenti</h2>
 <p>U prethodnom poglavlju stvorili smo komponentu <code>Knjiga.vue</code>, kojoj prosljeđujemo parametre iz liste. Sada možemo kreirati novu komponentu <code>Kolekcija.vue</code>, koja će sadržavati više knjiga iz istog serijala, poput sedmologije <em>Harry Potter</em> ili trilogije <em>Gospodar prstenova</em>.</p>
 <ul>
@@ -957,6 +963,8 @@ props.autor.ime = <span class="hljs-string">"Novo ime"</span>; <span class="hljs
 <span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
 </div></code></pre>
 <p><img src="Slike/kolekcije.png" alt="alt text"></p>
+
+<div class="page"></div>
 <h3 id="proslije%C4%91ivanje-doga%C4%91aja-emit">Proslijeđivanje događaja <code>emit()</code></h3>
 <p>Komponente u Vue.js mogu proslijeđivati vlastite događaje koristeći metodu <code>$emit()</code>. Ovaj mehanizam omogućava komunikaciju između komponenta roditelja i djece, na način da djete šalje signal roditelju kada se nešto dogodi.</p>
 <p>U komponenti možemo proslijeđivati događaj izravno iz <code>&lt;template&gt;</code>:</p>
@@ -988,6 +996,8 @@ props.autor.ime = <span class="hljs-string">"Novo ime"</span>; <span class="hljs
 <blockquote>
 <p>Za razliku od nativnih DOM događaja, događaji koje proslijeđuje komponenta <strong>ne propagiraju se prema gore</strong> kroz hijerarhiju komponenti. Roditelj može čuti samo događaje proslijeđene izravno od svoje djece. Ako je potrebno komunicirati između neizravno povezanih komponenti, preporučuje se korištenje globalnog stanja (<em>Vuex, Pinia</em>).</p>
 </blockquote>
+
+<div class="page"></div>
 <h3 id="proslje%C4%91ivanje-argumenata-doga%C4%91ajima">Prosljeđivanje argumenata događajima</h3>
 <p>Često želimo poslati dodatne podatke uz događaj. To se može postići dodavanjem argumenata u <code>$emit()</code>.</p>
 <p><em>Pretpostavimo da imamo komponentu koja omogućava povećanje broja za određenu vrijednost:</em></p>
@@ -1126,6 +1136,8 @@ props.autor.ime = <span class="hljs-string">"Novo ime"</span>; <span class="hljs
 <blockquote>
 <p>Roditelj vidi samo vlastite podatke, dok dijete vidi samo svoje podatke</p>
 </blockquote>
+
+<div class="page"></div>
 <h3 id="zadani-sadr%C5%BEaj-slota">Zadani sadržaj slota</h3>
 <p>Ponekad želimo postaviti <strong>zadani sadržaj slota</strong>, koji će se prikazati samo ako roditelj ne osigura sadržaj.</p>
 <pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span>&gt;</span>
@@ -1152,6 +1164,7 @@ props.autor.ime = <span class="hljs-string">"Novo ime"</span>; <span class="hljs
 </ul>
 <pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span>&gt;</span>Spremi<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
 </div></code></pre>
+<div class="page"></div>
 <h3 id="imenovani-slotovi"><strong>Imenovani slotovi</strong></h3>
 <p>Kada komponenta ima više mjesta za umetanje sadržaja, koristimo <strong>imenovane slotove</strong>. Na primjer, komponenta <code>BaseLayout.vue</code> može sadržavati različite sekcije:</p>
 <pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"container"</span>&gt;</span>
@@ -1258,7 +1271,7 @@ props.autor.ime = <span class="hljs-string">"Novo ime"</span>; <span class="hljs
 	<img src="./Slike/hijerarhija.png" style="object-fit: contain;"/>
 </div>
 <div class="page"></div>
-## Samostalni zadatak za vježbu 4
+<h2 id="samostalni-zadatak-za-vje%C5%BEbu-4">Samostalni zadatak za vježbu 4</h2>
 <p>U ovom zadatku ćete izraditi Vue komponente na temelju postojeće <code>App.vue</code> datoteke iz projekta u mapi <code>Primjeri/primjer_vue_zadatak</code>.</p>
 <p>Trenutno <code>App.vue</code> sadrži veliki broj ponavljajućih elemenata, stoga ćemo ga modularizirati stvaranjem sljedećih komponenti:</p>
 <ul>
