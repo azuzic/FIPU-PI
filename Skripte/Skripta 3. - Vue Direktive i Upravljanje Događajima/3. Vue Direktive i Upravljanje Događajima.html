@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>1. Vue Osnove.md</title>
+		<title>3. Vue Direktive & Upravljanje Događajima</title>
 		<meta
 			http-equiv="Content-type"
 			content="text/html;charset=UTF-8" />
@@ -181,7 +181,6 @@
 			}
 
 			table {
-                width: 100%;
 				border-collapse: collapse;
 			}
 
@@ -201,7 +200,7 @@
 				border-top: 1px solid;
 			}
 
-            td > code {
+			td > code {
                 word-break: break-all;
             }
 
@@ -425,7 +424,7 @@ Visual Studio-like style based on original C# coloring by Jason Diamond <jason@d
     </p>
     <img src="../Icons/Vue_3.svg" style="width: 96px; height: 96px; margin: 0px;"></img>
 </div>
-<p style="margin-top: -4px; margin-bottom: -4px;"><strong>Posljednje ažurirano:</strong> 25. ožujka 2025.</p>
+<p style="margin-top: -8px;"><strong>Posljednje ažurirano:</strong> 6. travnja 2025.</p>
 <!-- TOC -->
 <ul>
 <li><a href="#programsko-in%C5%BEenjerstvo">Programsko inženjerstvo</a></li>
@@ -1175,13 +1174,14 @@ Visual Studio-like style based on original C# coloring by Jason Diamond <jason@d
 ]);
 </div></code></pre>
 <p><img src="Slike/studenti.png" alt="alt text"></p>
+<div class="page"></div>
 <h3 id="v-pre--v-once"><code>v-pre</code> &amp; <code>v-once</code></h3>
 <ul>
 <li>
-<p>Direktiva <code>v-pre</code> sprečava Vue.js da procesira sadržaj unutar označenog elementa, pa se koristi za statički tekst koji ne treba biti reaktivno obrađen.</p>
+<p>Direktiva <code>v-pre</code> sprječava Vue.js da procesira sadržaj unutar označenog elementa, pa se koristi za statički tekst koji ne treba biti reaktivno obrađen.</p>
 </li>
 <li>
-<p>Direktiva <code>v-once</code> osigurava da će sadržaj unutar elementa biti renderiran samo jednom, bez ponovnog renderiranja.</p>
+<p>Direktiva <code>v-once</code> osigurava da će sadržaj unutar elementa biti prikazan samo jednom, bez ponovnog procesiranja.</p>
 </li>
 </ul>
 <p><em>Primjer:</em></p>
@@ -1257,6 +1257,7 @@ Visual Studio-like style based on original C# coloring by Jason Diamond <jason@d
     <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
 </div></code></pre>
+<div class="page"></div>
 <h3 id="modificiranje-doga%C4%91aja"><strong>Modificiranje događaja</strong></h3>
 <p>Možemo koristiti modifikatore događaja za dodavanje specifičnih ponašanja, kao što su sprječavanje osnovnih akcija <code>event.preventDefault()</code>.</p>
 <table>
@@ -1465,9 +1466,8 @@ Također možemo koristiti inline arrow funkciju za prosljeđivanje događaja u 
 <blockquote>
 <p>Potrebno je koristiti <code>vezivanje atributa</code>, <code>v-model</code>, <code>v-for</code>, <code>v-if</code>, <code>upravljanje događajima</code></p>
 </blockquote>
-<br><em>Primjer:</em>
-</br>
-<img src="Slike/kosarica.png" alt="alt text" width="90%"></p>
+<p><em>Primjer:</em></p>
+<img src="Slike/kosarica.png" alt="alt text" width="90%">
 <blockquote>
 <p><em>Rješenje ne mora vizualno izgledati identično kao na slici.</em></p>
 </blockquote>
