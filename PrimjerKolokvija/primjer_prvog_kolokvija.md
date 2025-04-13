@@ -27,6 +27,7 @@ Zadatak je napraviti implementaciju jedne **To-Do** aplikacije za praćenje i ka
       - *Hint:* `new Date().getFullYear()`
 
 *Primjer:*
+
 ![alt text](Slike/App.png)
 
 ### Zadatak #2 (6 bodova)
@@ -113,6 +114,7 @@ stavke = [
    - `@focusout` na element **inputa** koji poziva funkciju `isključiUređivanje()`
 
 *Primjer:*
+
 ![alt text](Slike/ToDoItem.png)
 
 *Primjer strukture `ToDoStavka` komponente:*
@@ -183,6 +185,8 @@ stavke = [
 </template>
 ```
 
+*Primjer:*
+
 ![alt text](Slike/ToDoItems.png)
 
 ### Zadatak #5 (8 bodova)
@@ -194,6 +198,8 @@ stavke = [
 21. **(2 boda)** Napravite **composable** funkciju `useBrojačStavki()` koja ima reaktivnu varijablu **brojač** i funkciju `postavi()`
 22. **(3 boda)** Zatim napravite **watch** funkciju unutar `ToDoBody` komponente koja prati varijablu **stavke**, svaki put kad se promjeni treba ažurirati **brojač**. `Watch` funkcija se treba pokrenuti pri montiranju. Prikažite **brojač** unutar `ToDoHeader` komponente.
 23. **(2 bod)** Animirajte dodavanje i uklanjanje stavki.
+
+*Primjer:*
 
 ![alt text](Slike/Brojač.png)
 

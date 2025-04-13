@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>1. Vue Osnove.md</title>
+		<meta
+			http-equiv="Content-type"
+			content="text/html;charset=UTF-8" />
+		<link
+			rel="preconnect"
+			href="https://fonts.googleapis.com" />
+		<link
+			rel="preconnect"
+			href="https://fonts.gstatic.com"
+			crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+			rel="stylesheet" />
+		<style>
+			/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+			/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+			:not(code *) {
+				font-family: "Poppins", sans-serif;
+			}
+            html {
+                display: flex;
+                justify-content: center;
+            }
+			body {
+				font-family: var(
+					--vscode-markdown-font-family,
+					-apple-system,
+					BlinkMacSystemFont,
+					"Segoe WPC",
+					"Segoe UI",
+					"Ubuntu",
+					"Droid Sans",
+					sans-serif
+				);
+				font-size: var(--vscode-markdown-font-size, 14px);
+				line-height: var(--vscode-markdown-line-height, 22px);
+				word-wrap: break-word;
+				color: #3b3b3b;
+                position: absolute;
+                display: flex;
+                justify-content: center;
+                width: full;
+			}
+			.body {
+                max-width: 1012px;
+			}
+
+			#code-csp-warning {
+				position: fixed;
+				top: 0;
+				right: 0;
+				color: white;
+				margin: 16px;
+				text-align: center;
+				font-size: 12px;
+				font-family: sans-serif;
+				background-color: #444444;
+				cursor: pointer;
+				padding: 6px;
+				box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
+			}
+
+			#code-csp-warning:hover {
+				text-decoration: none;
+				background-color: #007acc;
+				box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+			}
+
+			body.scrollBeyondLastLine {
+				margin-bottom: calc(100vh - 22px);
+			}
+
+			body.showEditorSelection .code-line {
+				position: relative;
+			}
+
+			body.showEditorSelection .code-active-line:before,
+			body.showEditorSelection .code-line:hover:before {
+				content: "";
+				display: block;
+				position: absolute;
+				top: 0;
+				left: -12px;
+				height: 100%;
+			}
+
+			body.showEditorSelection li.code-active-line:before,
+			body.showEditorSelection li.code-line:hover:before {
+				left: -30px;
+			}
+
+			.vscode-light.showEditorSelection .code-active-line:before {
+				border-left: 3px solid rgba(0, 0, 0, 0.15);
+			}
+
+			.vscode-light.showEditorSelection .code-line:hover:before {
+				border-left: 3px solid rgba(0, 0, 0, 0.4);
+			}
+
+			.vscode-light.showEditorSelection
+				.code-line
+				.code-line:hover:before {
+				border-left: none;
+			}
+
+			.vscode-dark.showEditorSelection .code-active-line:before {
+				border-left: 3px solid rgba(255, 255, 255, 0.4);
+			}
+
+			.vscode-dark.showEditorSelection .code-line:hover:before {
+				border-left: 3px solid rgba(255, 255, 255, 0.6);
+			}
+
+			.vscode-dark.showEditorSelection
+				.code-line
+				.code-line:hover:before {
+				border-left: none;
+			}
+
+			.vscode-high-contrast.showEditorSelection .code-active-line:before {
+				border-left: 3px solid rgba(255, 160, 0, 0.7);
+			}
+
+			.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+				border-left: 3px solid rgba(255, 160, 0, 1);
+			}
+
+			.vscode-high-contrast.showEditorSelection
+				.code-line
+				.code-line:hover:before {
+				border-left: none;
+			}
+
+			img {
+				max-width: 100%;
+				max-height: 100%;
+				border-radius: 8px;
+				filter: drop-shadow(-0 2px 2px rgba(0, 0, 0, 0.07));
+			}
+
+			a {
+				text-decoration: none;
+			}
+
+			a:hover {
+				text-decoration: underline;
+			}
+
+			a:focus,
+			input:focus,
+			select:focus,
+			textarea:focus {
+				outline: 1px solid -webkit-focus-ring-color;
+				outline-offset: -1px;
+			}
+
+			hr {
+				border: 0;
+				height: 2px;
+				border-bottom: 2px solid;
+			}
+
+			h1 {
+				padding-bottom: 0.3em;
+				line-height: 1.2;
+				border-bottom-width: 1px;
+				border-bottom-style: solid;
+			}
+
+			h1,
+			h2,
+			h3 {
+				font-weight: normal;
+			}
+
+			table {
+				border-collapse: collapse;
+			}
+
+			table > thead > tr > th {
+				text-align: left;
+				border-bottom: 1px solid;
+			}
+
+			table > thead > tr > th,
+			table > thead > tr > td,
+			table > tbody > tr > th,
+			table > tbody > tr > td {
+				padding: 5px 10px;
+			}
+
+			table > tbody > tr + tr > td {
+				border-top: 1px solid;
+			}
+
+			td > code {
+                word-break: break-all;
+            }
+
+			blockquote {
+				margin: 0 7px 0 5px;
+				padding: 0 16px 0 10px;
+				border-left-width: 5px;
+				border-left-style: solid;
+			}
+
+			code {
+				font-family: Menlo, Monaco, Consolas, "Droid Sans Mono",
+					"Courier New", monospace, "Droid Sans Fallback";
+				font-size: 1em;
+				line-height: 1.357em;
+			}
+
+			body.wordWrap pre {
+				white-space: pre-wrap;
+			}
+
+			pre:not(.hljs),
+			pre.hljs code > div {
+				padding: 16px;
+				border-radius: 3px;
+				overflow: auto;
+			}
+
+			pre code {
+				color: var(--vscode-editor-foreground);
+				tab-size: 4;
+			}
+
+			/** Theming */
+
+			.vscode-light pre {
+				background-color: rgba(220, 220, 220, 0.4);
+			}
+
+			.vscode-dark pre {
+				background-color: rgba(10, 10, 10, 0.4);
+			}
+
+			.vscode-high-contrast pre {
+				background-color: rgb(0, 0, 0);
+			}
+
+			.vscode-high-contrast h1 {
+				border-color: rgb(0, 0, 0);
+			}
+
+			.vscode-light table > thead > tr > th {
+				border-color: rgba(0, 0, 0, 0.69);
+			}
+
+			.vscode-dark table > thead > tr > th {
+				border-color: rgba(255, 255, 255, 0.69);
+			}
+
+			.vscode-light h1,
+			.vscode-light hr,
+			.vscode-light table > tbody > tr + tr > td {
+				border-color: rgba(0, 0, 0, 0.18);
+			}
+
+			.vscode-dark h1,
+			.vscode-dark hr,
+			.vscode-dark table > tbody > tr + tr > td {
+				border-color: rgba(255, 255, 255, 0.18);
+			}
+		</style>
+
+		<style>
+			/*
+
+Visual Studio-like style based on original C# coloring by Jason Diamond <jason@diamond.name>
+
+*/
+			.hljs {
+				background: white;
+				color: black;
+			}
+
+			.hljs-comment,
+			.hljs-quote,
+			.hljs-variable {
+				color: #008000;
+			}
+
+			.hljs-keyword,
+			.hljs-selector-tag,
+			.hljs-built_in,
+			.hljs-name,
+			.hljs-tag {
+				color: #00f;
+			}
+
+			.hljs-string,
+			.hljs-title,
+			.hljs-section,
+			.hljs-attribute,
+			.hljs-literal,
+			.hljs-template-tag,
+			.hljs-template-variable,
+			.hljs-type,
+			.hljs-addition {
+				color: #a31515;
+			}
+
+			.hljs-deletion,
+			.hljs-selector-attr,
+			.hljs-selector-pseudo,
+			.hljs-meta {
+				color: #2b91af;
+			}
+
+			.hljs-doctag {
+				color: #808080;
+			}
+
+			.hljs-attr {
+				color: #f00;
+			}
+
+			.hljs-symbol,
+			.hljs-bullet,
+			.hljs-link {
+				color: #00b0e8;
+			}
+
+			.hljs-emphasis {
+				font-style: italic;
+			}
+
+			.hljs-strong {
+				font-weight: bold;
+			}
+		</style>
+
+		<style>
+			/*
+ * Markdown PDF CSS
+ */
+
+			body {
+				font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC",
+					"Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+			}
+
+			pre {
+				background-color: #f8f8f8;
+				border: 1px solid #cccccc;
+				border-radius: 3px;
+				overflow-x: auto;
+				white-space: pre-wrap;
+				overflow-wrap: break-word;
+			}
+
+			pre:not(.hljs) {
+				padding: 23px;
+				line-height: 19px;
+			}
+
+			blockquote {
+				background: rgba(127, 127, 127, 0.1);
+				border-color: rgba(0, 122, 204, 0.5);
+			}
+
+			.emoji {
+				height: 1.4em;
+			}
+
+			code {
+				font-size: 14px;
+				line-height: 19px;
+			}
+
+			/* for inline code */
+			:not(pre):not(.hljs) > code {
+				color: #3b3b3b; /* Change the old color so it seems less like an error */
+				font-size: inherit;
+				background: #e0e0e0;
+				border-radius: 4px;
+				padding: 1px 2px;
+				margin: -1px -2px;
+			}
+
+			/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+			.page {
+				page-break-after: always;
+			}
+		</style>
+
+		<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+	</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<div>
+<h1 id="programsko-in%C5%BEenjerstvo">Programsko inženjerstvo</h1>
+<h2 id="primjer-kolokvija-1">Primjer kolokvija #1</h2>
+<p>Kolokvij nosi ukupno <strong>40 bodova</strong> i piše se <strong>120 minuta</strong>.</p>
+<hr>
+<p>Zadatak je napraviti implementaciju jedne <strong>To-Do</strong> aplikacije za praćenje i kategorizaciju zadataka.</p>
+<h3 id="zadatak-1-6-bodova">Zadatak #1 (6 bodova)</h3>
+<ol>
+<li>
+<p><strong>(1 bod)</strong> Potrebno je kreirati <strong>novi Vue 3 projekt</strong> ili ga preuzeti sa repozitorija. Očistiti ga i opcionalno instalirati <em>Tailwind</em> ako ćete ga korisitit (<em>preporučuje se</em>).</p>
+</li>
+<li>
+<p><strong>(3 boda)</strong> U <code>App.vue</code> potrebno je ubaciti <strong>3 komponente</strong>:</p>
+<ul>
+<li><code>ToDoHeader</code> - sadrži naslov projekta</li>
+<li><code>ToDoBody</code> - sadrži To-Do liste</li>
+<li><code>ToDoFooter</code> - sadrži vaše <strong>ime</strong> i <strong>prezime</strong></li>
+</ul>
+</li>
+<li>
+<p><strong>(1 bod)</strong>  <code>ToDoHeader.vue</code> treba sadržavati <code>&lt;slot&gt;</code> element u kojem će se prikazati naslov projekta iz <code>App.vue</code>.</p>
+</li>
+<li>
+<p><strong>(1 bod)</strong>  <code>ToDoFooter.vue</code> treba sadržavati:</p>
+<ul>
+<li><code>&lt;slot&gt;</code> element u kojem će se prikazati vaše <strong>ime</strong> i <strong>prezime</strong> iz <code>App.vue</code></li>
+<li>prikaz trenutne godine, izračunate unutar <strong>Template Syntax</strong>
+<ul>
+<li><em>Hint:</em> <code>new Date().getFullYear()</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p><em>Primjer:</em></p>
+<p><img src="Slike/App.png" alt="alt text"></p>
+<div class="page"></div>
+<h3 id="zadatak-2-6-bodova">Zadatak #2 (6 bodova)</h3>
+<p>Unutar <code>ToDoBody</code> komponente treba dodati komponentu <code>ToDoStavka</code>.</p>
+<p><em>Podaci za testiranje:</em></p>
+<pre class="hljs"><code><div>stavke = [
+   {
+      <span class="hljs-attr">opis</span>: <span class="hljs-string">'Implementirati uklanjanje'</span>,
+      završeno: <span class="hljs-literal">false</span>,
+      <span class="hljs-attr">prioritet</span>: <span class="hljs-number">1</span>,
+   },
+   {
+      <span class="hljs-attr">opis</span>: <span class="hljs-string">'Dodati text edit'</span>,
+      završeno: <span class="hljs-literal">true</span>,
+      <span class="hljs-attr">prioritet</span>: <span class="hljs-number">2</span>,
+   },
+   {
+      <span class="hljs-attr">opis</span>: <span class="hljs-string">'Implementirati pomicanje'</span>,
+      završeno: <span class="hljs-literal">false</span>,
+      <span class="hljs-attr">prioritet</span>: <span class="hljs-number">4</span>,
+   },
+   {
+      <span class="hljs-attr">opis</span>: <span class="hljs-string">'Dodati date'</span>,
+      završeno: <span class="hljs-literal">false</span>,
+      <span class="hljs-attr">prioritet</span>: <span class="hljs-number">5</span>,
+   },
+   {
+      <span class="hljs-attr">opis</span>: <span class="hljs-string">'Implementirati promjenu boje'</span>,
+      završeno: <span class="hljs-literal">false</span>,
+      <span class="hljs-attr">prioritet</span>: <span class="hljs-number">6</span>,
+   }
+]
+</div></code></pre>
+<ol start="5">
+<li>
+<p><strong>(1 bod)</strong> <code>ToDoStavka</code> komponenta treba sadržavati sljedeće definirane parametre spremljene u varijablu <strong>props</strong>:</p>
+<ul>
+<li><strong>opis</strong> - string</li>
+<li><strong>završeno</strong> - boolean</li>
+<li><strong>prioritet</strong> - number</li>
+</ul>
+</li>
+<li>
+<p><strong>(1 bod)</strong> Ako je proslijeđena vrijednost parametra <strong>završeno</strong>:</p>
+<ul>
+<li><code>false</code> - prikazati prazan kvadratić s obrubom</li>
+<li><code>true</code> - prikazati ispunjen zeleni kvadratić</li>
+</ul>
+</li>
+<li>
+<p><strong>(1 bod)</strong> Prikazati <strong>opis</strong>, ako je proslijeđena vrijednost parametra <strong>završeno</strong>:</p>
+<ul>
+<li><code>false</code> - prikazati <strong>opis</strong> bez stila</li>
+<li><code>true</code> - prikazati precrtan <strong>opis</strong></li>
+</ul>
+</li>
+<li>
+<p><strong>(1 bod)</strong> Unutar <code>ToDoStavka</code> komponente treba definirati <strong>2 proslijeđena događaja</strong> (<em>emit</em>):</p>
+<ul>
+<li><code>ažurirajOpis</code></li>
+<li><code>ažurirajZavršeno</code></li>
+</ul>
+</li>
+<li>
+<p><strong>(2 bod)</strong> Ako kliknemo na kvadratić, trebamo proslijediti događaj <strong>ažurirajZavršeno</strong> sa odgovarajućom boolean vrijednošću, zatim ga trebamo dohvatiti i ažurirati vrijednost ključa <strong>završeno</strong> stavke u roditelju</p>
+<ul>
+<li><em>Hint:</em> <code>emit</code></li>
+<li>Možemo pisati i pozivati funkcije u <code>&lt;script&gt;</code> bloku ili direktno izvršiti kôd u <code>&lt;template&gt;</code> bloku</li>
+</ul>
+</li>
+</ol>
+<h3 id="zadatak-3-12-bodova">Zadatak #3 (12 bodova)</h3>
+<ol start="10">
+<li>
+<p><strong>(1 bod)</strong> Unutar <code>ToDoStavka</code> komponente treba dodati <em>input</em> element tipa <em>text</em> s <code>ref</code> atributom koji ima vrijednost <strong>unosRef</strong></p>
+</li>
+<li>
+<p><strong>(3 boda)</strong> Potrebno je dodati sljedeće unutar <code>ToDoStavka</code> komponente:</p>
+</li>
+</ol>
+<ul>
+<li>reaktivnu <em>boolean</em> varijablu <strong>uređivanje</strong></li>
+<li>reaktivnu <em>string</em> varijablu <strong>noviOpis</strong> i vezati je na input element</li>
+<li>varijablu <strong>unos</strong> koja koristi <code>useTemplateRef()</code> funckiju s vrijednosti <strong>unosRef</strong></li>
+<li><code>computed</code> funkciju <strong>dopuštenoUređivanje</strong> koja vraća:
+<ul>
+<li><code>true</code> - ako je <strong>uređivanje</strong> uključeno i stavka nije <strong>završena</strong></li>
+<li><code>false</code> - u suprotnom</li>
+</ul>
+</li>
+</ul>
+<ol start="12">
+<li><strong>(2 bod)</strong> Ako je vrijednost funkcije <strong>dopuštenoUređivanje</strong>:</li>
+</ol>
+<ul>
+<li><code>false</code> - prikazati <strong>opis</strong> koristeći <code>v-if</code> direktivu i postaviti maksimalnu širinu inputa na <code>0px</code> koristeći vezanu klasu ili stil</li>
+<li><code>true</code> - sakriti <strong>opis</strong> koristeći <code>v-if</code> direktivu i maknuti maksimalnu širinu inputa koristeći vezanu klasu ili stil</li>
+</ul>
+<ol start="13">
+<li><strong>(4 boda)</strong> Potrebno je dodati sljedeće dvije funkcije unutar <code>ToDoStavka</code> komponente:</li>
+</ol>
+<ul>
+<li><code>uključiUređivanje()</code> - omogućuje uređivanje <strong>opisa</strong> tako da postavi vrijednost <strong>novog opisa</strong> na trenutnu vrijednost i stavlja <strong>input</strong> u <em>focus</em> nakon što uključi <strong>uređivanje</strong>
+<ul>
+<li>ako je <strong>završeno</strong> <code>true</code>, treba izaći iz funkcije</li>
+<li>postavlja vrijednost varijable <code>unos</code> u fokus koristeći <code>focus()</code> metodu</li>
+</ul>
+</li>
+<li><code>isključiUređivanje()</code> - prekida uređivanje <strong>opisa</strong> tako da isključi <strong>uređivanje</strong> te proslijedi događaj <strong>ažuriraj opis</strong> roditelju koji onda ažurira vrijednost ključa <strong>opis</strong> stavke
+<ul>
+<li>proslijeđuje događaj <strong>ažurirajOpis</strong> s argumentom <strong>noviOpis</strong></li>
+</ul>
+</li>
+</ul>
+<ol start="14">
+<li><strong>(2 bod)</strong> Potrebno je dodati sljdeća dva događaja:</li>
+</ol>
+<ul>
+<li><code>@dblclick</code> na element <strong>opisa</strong> koji poziva funkciju <code>uključiUređivanje()</code></li>
+<li><code>@focusout</code> na element <strong>inputa</strong> koji poziva funkciju <code>isključiUređivanje()</code></li>
+</ul>
+<p><em>Primjer:</em></p>
+<p><img src="Slike/ToDoItem.png" alt="alt text"></p>
+<p><em>Primjer strukture <code>ToDoStavka</code> komponente:</em></p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span> <span class="hljs-comment">&lt;!--Kvadrat s obrubom--&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span> <span class="hljs-comment">&lt;!--Popunjen kvadrat--&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>
+            <span class="hljs-comment">&lt;!--Opis--&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-name">input</span>/&gt;</span> <span class="hljs-comment">&lt;!--Novi Opis--&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<h3 id="zadatak-4-8-bodova">Zadatak #4 (8 bodova)</h3>
+<ol start="15">
+<li><strong>(1 bod)</strong> U komponentu <code>ToDoBody</code> dodati reaktivno polje <strong>stavke</strong>.</li>
+<li><strong>(1 bod)</strong> Koristeći <code>v-for</code> direktivu prikazati <code>ToDoStavka</code> komponente.</li>
+<li><strong>(2 boda)</strong> Sortirati stavke po <strong>prioritetu</strong>, stavka s većim <strong>prioritetom</strong> se nalazi pri vrhu.</li>
+<li><strong>(1 bod)</strong> U komponentu <code>ToDoStavka</code> dodati prikaz <strong>prioriteta</strong> na početak. I <code>&lt;slot&gt;</code> element na kraj.</li>
+<li><strong>(3 boda)</strong> Sada možemo unutar elementa <code>ToDoStavka</code> ubaciti sljedeća <code>3</code> dugma:</li>
+</ol>
+<ul>
+<li>Dugme <code>+</code> koje povećava <strong>prioritet</strong> za jedan kada se klikne</li>
+<li>Dugme <code>-</code> koje smanjuje <strong>prioritet</strong> za jedan kada se klikne</li>
+<li>Dugme <code>x</code> koje uklanja <strong>stavku</strong> iz liste</li>
+</ul>
+<div class="page"></div>
+<p><em>Primjer strukture <code>ToDoStavka</code> komponente:</em></p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>
+         <span class="hljs-comment">&lt;!--Prioritet--&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+         <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span> <span class="hljs-comment">&lt;!--Kvadrat s obrubom--&gt;</span>
+         <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span> <span class="hljs-comment">&lt;!--Popunjen kvadrat--&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+      <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>
+         <span class="hljs-comment">&lt;!--Opis--&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+
+      <span class="hljs-tag">&lt;<span class="hljs-name">input</span>/&gt;</span> <span class="hljs-comment">&lt;!--Novi Opis--&gt;</span>
+
+      <span class="hljs-tag">&lt;<span class="hljs-name">slot</span>/&gt;</span> <span class="hljs-comment">&lt;!--Slot--&gt;</span>
+   <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<p><em>Primjer strukture <code>ToDoBody</code> komponente:</em></p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">ToDoStavka</span> <span class="hljs-attr">v-for</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">button</span>&gt;</span> + <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">button</span>&gt;</span> - <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>            
+                <span class="hljs-tag">&lt;<span class="hljs-name">button</span>&gt;</span> x <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">ToDoStavka</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>    
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<div class="page"></div>
+<p><em>Primjer:</em></p>
+<p><img src="Slike/ToDoItems.png" alt="alt text"></p>
+<h3 id="zadatak-5-8-bodova">Zadatak #5 (8 bodova)</h3>
+<ol start="20">
+<li><strong>(1 bod)</strong> Ispod <code>&lt;ToDoStavka&gt;</code> elementa dodati dugme koje će ubaciti <strong>novu praznu stavku</strong> na kraj liste s vrijednostima:</li>
+</ol>
+<ul>
+<li><strong>opis</strong>: <em>Napiši opis...</em></li>
+<li><strong>završeno</strong>: <code>false</code></li>
+<li><strong>prioritet</strong>: <code>0</code></li>
+</ul>
+<ol start="21">
+<li><strong>(2 boda)</strong> Napravite <strong>composable</strong> funkciju <code>useBrojačStavki()</code> koja ima reaktivnu varijablu <strong>brojač</strong> i funkciju <code>postavi()</code></li>
+<li><strong>(3 boda)</strong> Zatim napravite <strong>watch</strong> funkciju unutar <code>ToDoBody</code> komponente koja prati varijablu <strong>stavke</strong>, svaki put kad se promjeni treba ažurirati <strong>brojač</strong>. <code>Watch</code> funkcija se treba pokrenuti pri montiranju. Prikažite <strong>brojač</strong> unutar <code>ToDoHeader</code> komponente.</li>
+<li><strong>(2 bod)</strong> Animirajte dodavanje i uklanjanje stavki.</li>
+</ol>
+<div class="page"></div>
+<p><em>Primjer:</em></p>
+<p><img src="Slike/Brojač.png" alt="alt text"></p>
+<h2 id="predajete-sljede%C4%87u-datoteku">Predajete sljedeću datoteku:</h2>
+<ul>
+<li><strong>ZIP datoteka</strong> cijelog projekta bez <code>node_modules</code> mape</li>
+</ul>
+</div>
+</body>
+</html>

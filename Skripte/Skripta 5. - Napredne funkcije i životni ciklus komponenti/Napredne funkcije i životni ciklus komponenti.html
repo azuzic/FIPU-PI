@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>1. Vue Osnove.md</title>
+		<meta
+			http-equiv="Content-type"
+			content="text/html;charset=UTF-8" />
+		<link
+			rel="preconnect"
+			href="https://fonts.googleapis.com" />
+		<link
+			rel="preconnect"
+			href="https://fonts.gstatic.com"
+			crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+			rel="stylesheet" />
+		<style>
+			/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+			/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+			:not(code *) {
+				font-family: "Poppins", sans-serif;
+			}
+            html {
+                display: flex;
+                justify-content: center;
+            }
+			body {
+				font-family: var(
+					--vscode-markdown-font-family,
+					-apple-system,
+					BlinkMacSystemFont,
+					"Segoe WPC",
+					"Segoe UI",
+					"Ubuntu",
+					"Droid Sans",
+					sans-serif
+				);
+				font-size: var(--vscode-markdown-font-size, 14px);
+				line-height: var(--vscode-markdown-line-height, 22px);
+				word-wrap: break-word;
+				color: #3b3b3b;
+                position: absolute;
+                display: flex;
+                justify-content: center;
+                width: full;
+			}
+			.body {
+                max-width: 1012px;
+			}
+
+			#code-csp-warning {
+				position: fixed;
+				top: 0;
+				right: 0;
+				color: white;
+				margin: 16px;
+				text-align: center;
+				font-size: 12px;
+				font-family: sans-serif;
+				background-color: #444444;
+				cursor: pointer;
+				padding: 6px;
+				box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
+			}
+
+			#code-csp-warning:hover {
+				text-decoration: none;
+				background-color: #007acc;
+				box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+			}
+
+			body.scrollBeyondLastLine {
+				margin-bottom: calc(100vh - 22px);
+			}
+
+			body.showEditorSelection .code-line {
+				position: relative;
+			}
+
+			body.showEditorSelection .code-active-line:before,
+			body.showEditorSelection .code-line:hover:before {
+				content: "";
+				display: block;
+				position: absolute;
+				top: 0;
+				left: -12px;
+				height: 100%;
+			}
+
+			body.showEditorSelection li.code-active-line:before,
+			body.showEditorSelection li.code-line:hover:before {
+				left: -30px;
+			}
+
+			.vscode-light.showEditorSelection .code-active-line:before {
+				border-left: 3px solid rgba(0, 0, 0, 0.15);
+			}
+
+			.vscode-light.showEditorSelection .code-line:hover:before {
+				border-left: 3px solid rgba(0, 0, 0, 0.4);
+			}
+
+			.vscode-light.showEditorSelection
+				.code-line
+				.code-line:hover:before {
+				border-left: none;
+			}
+
+			.vscode-dark.showEditorSelection .code-active-line:before {
+				border-left: 3px solid rgba(255, 255, 255, 0.4);
+			}
+
+			.vscode-dark.showEditorSelection .code-line:hover:before {
+				border-left: 3px solid rgba(255, 255, 255, 0.6);
+			}
+
+			.vscode-dark.showEditorSelection
+				.code-line
+				.code-line:hover:before {
+				border-left: none;
+			}
+
+			.vscode-high-contrast.showEditorSelection .code-active-line:before {
+				border-left: 3px solid rgba(255, 160, 0, 0.7);
+			}
+
+			.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+				border-left: 3px solid rgba(255, 160, 0, 1);
+			}
+
+			.vscode-high-contrast.showEditorSelection
+				.code-line
+				.code-line:hover:before {
+				border-left: none;
+			}
+
+			img {
+				max-width: 100%;
+				max-height: 100%;
+				border-radius: 8px;
+				filter: drop-shadow(-0 2px 2px rgba(0, 0, 0, 0.07));
+			}
+
+			a {
+				text-decoration: none;
+			}
+
+			a:hover {
+				text-decoration: underline;
+			}
+
+			a:focus,
+			input:focus,
+			select:focus,
+			textarea:focus {
+				outline: 1px solid -webkit-focus-ring-color;
+				outline-offset: -1px;
+			}
+
+			hr {
+				border: 0;
+				height: 2px;
+				border-bottom: 2px solid;
+			}
+
+			h1 {
+				padding-bottom: 0.3em;
+				line-height: 1.2;
+				border-bottom-width: 1px;
+				border-bottom-style: solid;
+			}
+
+			h1,
+			h2,
+			h3 {
+				font-weight: normal;
+			}
+
+			table {
+				border-collapse: collapse;
+			}
+
+			table > thead > tr > th {
+				text-align: left;
+				border-bottom: 1px solid;
+			}
+
+			table > thead > tr > th,
+			table > thead > tr > td,
+			table > tbody > tr > th,
+			table > tbody > tr > td {
+				padding: 5px 10px;
+			}
+
+			table > tbody > tr + tr > td {
+				border-top: 1px solid;
+			}
+
+			td > code {
+                word-break: break-all;
+            }
+
+			blockquote {
+				margin: 0 7px 0 5px;
+				padding: 0 16px 0 10px;
+				border-left-width: 5px;
+				border-left-style: solid;
+			}
+
+			code {
+				font-family: Menlo, Monaco, Consolas, "Droid Sans Mono",
+					"Courier New", monospace, "Droid Sans Fallback";
+				font-size: 1em;
+				line-height: 1.357em;
+			}
+
+			body.wordWrap pre {
+				white-space: pre-wrap;
+			}
+
+			pre:not(.hljs),
+			pre.hljs code > div {
+				padding: 16px;
+				border-radius: 3px;
+				overflow: auto;
+			}
+
+			pre code {
+				color: var(--vscode-editor-foreground);
+				tab-size: 4;
+			}
+
+			/** Theming */
+
+			.vscode-light pre {
+				background-color: rgba(220, 220, 220, 0.4);
+			}
+
+			.vscode-dark pre {
+				background-color: rgba(10, 10, 10, 0.4);
+			}
+
+			.vscode-high-contrast pre {
+				background-color: rgb(0, 0, 0);
+			}
+
+			.vscode-high-contrast h1 {
+				border-color: rgb(0, 0, 0);
+			}
+
+			.vscode-light table > thead > tr > th {
+				border-color: rgba(0, 0, 0, 0.69);
+			}
+
+			.vscode-dark table > thead > tr > th {
+				border-color: rgba(255, 255, 255, 0.69);
+			}
+
+			.vscode-light h1,
+			.vscode-light hr,
+			.vscode-light table > tbody > tr + tr > td {
+				border-color: rgba(0, 0, 0, 0.18);
+			}
+
+			.vscode-dark h1,
+			.vscode-dark hr,
+			.vscode-dark table > tbody > tr + tr > td {
+				border-color: rgba(255, 255, 255, 0.18);
+			}
+		</style>
+
+		<style>
+			/*
+
+Visual Studio-like style based on original C# coloring by Jason Diamond <jason@diamond.name>
+
+*/
+			.hljs {
+				background: white;
+				color: black;
+			}
+
+			.hljs-comment,
+			.hljs-quote,
+			.hljs-variable {
+				color: #008000;
+			}
+
+			.hljs-keyword,
+			.hljs-selector-tag,
+			.hljs-built_in,
+			.hljs-name,
+			.hljs-tag {
+				color: #00f;
+			}
+
+			.hljs-string,
+			.hljs-title,
+			.hljs-section,
+			.hljs-attribute,
+			.hljs-literal,
+			.hljs-template-tag,
+			.hljs-template-variable,
+			.hljs-type,
+			.hljs-addition {
+				color: #a31515;
+			}
+
+			.hljs-deletion,
+			.hljs-selector-attr,
+			.hljs-selector-pseudo,
+			.hljs-meta {
+				color: #2b91af;
+			}
+
+			.hljs-doctag {
+				color: #808080;
+			}
+
+			.hljs-attr {
+				color: #f00;
+			}
+
+			.hljs-symbol,
+			.hljs-bullet,
+			.hljs-link {
+				color: #00b0e8;
+			}
+
+			.hljs-emphasis {
+				font-style: italic;
+			}
+
+			.hljs-strong {
+				font-weight: bold;
+			}
+		</style>
+
+		<style>
+			/*
+ * Markdown PDF CSS
+ */
+
+			body {
+				font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC",
+					"Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+			}
+
+			pre {
+				background-color: #f8f8f8;
+				border: 1px solid #cccccc;
+				border-radius: 3px;
+				overflow-x: auto;
+				white-space: pre-wrap;
+				overflow-wrap: break-word;
+			}
+
+			pre:not(.hljs) {
+				padding: 23px;
+				line-height: 19px;
+			}
+
+			blockquote {
+				background: rgba(127, 127, 127, 0.1);
+				border-color: rgba(0, 122, 204, 0.5);
+			}
+
+			.emoji {
+				height: 1.4em;
+			}
+
+			code {
+				font-size: 14px;
+				line-height: 19px;
+			}
+
+			/* for inline code */
+			:not(pre):not(.hljs) > code {
+				color: #3b3b3b; /* Change the old color so it seems less like an error */
+				font-size: inherit;
+				background: #e0e0e0;
+				border-radius: 4px;
+				padding: 1px 2px;
+				margin: -1px -2px;
+			}
+
+			/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+			.page {
+				page-break-after: always;
+			}
+		</style>
+
+		<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+	</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<div class="body">
+<h1 id="programsko-in%C5%BEenjerstvo">Programsko inženjerstvo</h1>
+<p><strong>Nositelj</strong>: doc. dr. sc. Nikola Tanković<br>
+<strong>Asistent</strong>: mag. inf. Alesandro Žužić</p>
+<p><strong>Ustanova</strong>: Sveučilište Jurja Dobrile u Puli, Fakultet informatike u Puli</p>
+<p style="float: clear; display: flex; gap: 8px; align-items: center;" class="font-brioni text-sm whitespace-nowrap">
+    <img src="../Logo/fipu_logo.svg" style="height: 96px; box-shadow: none !important;" class="mr-4"></img>
+    Fakultet informatike u Puli
+</p>
+<h1 id="5-napredne-funkcije-i-%C5%BEivotni-ciklus-komponenti">[5] Napredne funkcije i životni ciklus komponenti</h1>
+<div style="display: flex; justify-content: space-between; text-align: justify; gap: 32px;">
+    <p>  
+		Razumijevanje <b>životnog ciklusa</b> komponente ključno je za upravljanje njezinim ponašanjem, dok napredne funkcije poput <b>watchers</b>, <b>computed properties</b> i <b>template refs</b> poboljšavaju modularnost i fleksibilnost komponenti.
+    </p>
+    <img src="../Icons/Vue_5.svg" style="width: 96px; height: 96px; margin: 0px;"></img>
+</div>
+<p><strong>Posljednje ažurirano:</strong> 7. travnja 2025.</p>
+<!-- TOC -->
+<ul>
+<li><a href="#programsko-in%C5%BEenjerstvo">Programsko inženjerstvo</a></li>
+<li><a href="#5-napredne-funkcije-i-%C5%BEivotni-ciklus-komponenti">[5] Napredne funkcije i životni ciklus komponenti</a>
+<ul>
+<li><a href="#napredne-funkcije">Napredne funkcije</a>
+<ul>
+<li><a href="#computed">Computed</a></li>
+<li><a href="#watchers">Watchers</a></li>
+<li><a href="#template-refs">Template Refs</a>
+<ul>
+<li><a href="#defineexpose---pristup-komponentama">defineExpose - pristup komponentama</a></li>
+</ul>
+</li>
+<li><a href="#composables--utils">Composables &amp; Utils</a>
+<ul>
+<li><a href="#composables">Composables</a></li>
+<li><a href="#utils">Utils</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%C5%BEivotni-ciklus-komponenti-lifecycle-hooks">Životni ciklus komponenti Lifecycle Hooks</a></li>
+<li><a href="#animiranje-dom-elemenata">Animiranje DOM elemenata</a>
+<ul>
+<li><a href="#transition">Transition</a></li>
+<li><a href="#transitiongroup">TransitionGroup</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+<div class="page"></div>
+<h2 id="napredne-funkcije">Napredne funkcije</h2>
+<p>Dosad smo unutar komponenti koristili obične JavaScript funkcije za izračune i filtriranje podataka. No, takve funkcije imaju nedostatak kada rade s reaktivnim varijablama – izvršavaju se pri svakoj promjeni bilo koje varijable, čak i kada to nije potrebno.</p>
+<p>Ponekad želimo pratiti promjene određene varijable kako bismo pokrenuli specifičnu logiku ili dijeliti ponavljajuću logiku među više komponenti. Vue nudi ugrađena rješenja za ove probleme, omogućujući optimizirano upravljanje reaktivnošću, efikasno praćenje promjena i ponovno korištenje logike unutar različitih komponenti.</p>
+<h3 id="computed">Computed</h3>
+<p>Uzet ćemo primjer s <em>listom studenata</em> iz prethodne skripte, gdje svaki <em>student</em> ima <em>ime</em> i <em>broj bodova</em>. Također ćemo dodati jednostavan unos za dodavanje novih studenata u listu i unos za filtriranje studenata po imenu i minimalnom broju bodova.</p>
+<p><em>Primjer:</em></p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+    <span class="hljs-keyword">import</span> { ref } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
+
+    <span class="hljs-keyword">const</span> novoIme = ref(<span class="hljs-string">""</span>);
+    <span class="hljs-keyword">const</span> noviBodovi = ref(<span class="hljs-number">0</span>);
+
+    <span class="hljs-keyword">const</span> studenti = ref([
+        { <span class="hljs-attr">ime</span>: <span class="hljs-string">"Marko"</span>, <span class="hljs-attr">bodovi</span>: <span class="hljs-number">75</span> },
+        { <span class="hljs-attr">ime</span>: <span class="hljs-string">"Ana"</span>, <span class="hljs-attr">bodovi</span>: <span class="hljs-number">82</span> },
+        { <span class="hljs-attr">ime</span>: <span class="hljs-string">"Ivan"</span>, <span class="hljs-attr">bodovi</span>: <span class="hljs-number">90</span> },
+    ])
+
+    <span class="hljs-keyword">const</span> filterIme = ref(<span class="hljs-string">""</span>);
+    <span class="hljs-keyword">const</span> filterMinBodovi = ref(<span class="hljs-number">0</span>);
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">filtriraniStudent</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">const</span> tempStudenti = studenti.value.filter(<span class="hljs-function"><span class="hljs-params">student</span> =&gt;</span>             
+            student.ime.toLowerCase().includes(filterIme.value.toLowerCase()) &amp;&amp;
+            student.bodovi &gt;= filterMinBodovi.value
+        )
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"filtriranje"</span>)
+        <span class="hljs-keyword">return</span> tempStudenti;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">addStudent</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">const</span> noviStudent = {
+            <span class="hljs-attr">ime</span>: novoIme.value,
+            <span class="hljs-attr">bodovi</span>: noviBodovi.value
+        }
+        studenti.value.push(noviStudent);
+    }
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"h-full flex p-8 items-center justify-center"</span>&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"h-64"</span>&gt;</span>
+
+            <span class="hljs-tag">&lt;<span class="hljs-name">b</span>&gt;</span>Novi student:<span class="hljs-tag">&lt;/<span class="hljs-name">b</span>&gt;</span>
+
+            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"flex gap-2 items-center mt-2"</span>&gt;</span>
+                Ime <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">"novoIme"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"p-1 border rounded w-32"</span>&gt;</span>
+                Bodovi <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"number"</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">"noviBodovi"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"p-1 border rounded w-12"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"addStudent()"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"p-1 border rounded hover:bg-blue-200 bg-blue-300 cursor-pointer"</span>&gt;</span>
+                    Dodaj
+                <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+            
+            <span class="hljs-tag">&lt;<span class="hljs-name">hr</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"my-4"</span>&gt;</span>
+
+            <span class="hljs-tag">&lt;<span class="hljs-name">b</span>&gt;</span>Filter:<span class="hljs-tag">&lt;/<span class="hljs-name">b</span>&gt;</span>
+
+            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"flex gap-2 items-center mt-2"</span>&gt;</span>
+                Ime <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">"filterIme"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"p-1 border rounded w-32"</span>&gt;</span>
+                Min. Bodovi <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"number"</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">"filterMinBodovi"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"p-1 border rounded w-12"</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+            
+            <span class="hljs-tag">&lt;<span class="hljs-name">hr</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"my-4"</span>&gt;</span>
+
+            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">"student in filtriraniStudent()"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">b</span>&gt;</span>{{ student.ime }}<span class="hljs-tag">&lt;/<span class="hljs-name">b</span>&gt;</span>: {{ student.bodovi }}
+            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<p><img src="Slike/NoComputed.png" alt="alt text"></p>
+<p>Ova mini aplikacija radi ispravno, ali prilikom unosa imena novog studenta, funkcija <code>filtriraniStudent()</code> se poziva iako to nije potrebno. Naime, svaka promjena bilo koje reaktivne varijable uzrokuje njezino ponovno izvršavanje.</p>
+<ul>
+<li>Želimo da se funkcija poziva samo kada se mijenjaju varijable koje zaista utječu na njezin rezultat. Prisjetimo se principa reaktivnosti iz prethodne skripte (<em>Skripta 2. - Reaktivnost i Vezani Atributi</em>)</li>
+</ul>
+<p>Vue nudi ugrađenu funkciju <strong><code>computed()</code></strong>, koja rješava ovaj problem. Ako funkciju <code>filtriraniStudent()</code> prebacimo u <code>computed()</code>, pozivat će se samo kada se promijene varijable <code>filterIme</code> i <code>filterMinBodovi</code>.</p>
+<p><em>Primjer:</em></p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+    <span class="hljs-keyword">import</span> { ref, computed } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
+    ...
+    const filtriraniStudent = computed(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+        <span class="hljs-keyword">const</span> tempStudenti = studenti.value.filter(<span class="hljs-function"><span class="hljs-params">student</span> =&gt;</span>             
+            student.ime.toLowerCase().includes(filterIme.value.toLowerCase()) &amp;&amp;
+            student.bodovi &gt;= filterMinBodovi.value
+        )
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"filtriranje"</span>)
+        <span class="hljs-keyword">return</span> tempStudenti;
+    })
+    ...
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+    ...
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">"student in filtriraniStudent"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">b</span>&gt;</span>{{ student.ime }}<span class="hljs-tag">&lt;/<span class="hljs-name">b</span>&gt;</span>: {{ student.bodovi }}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    ...
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<ul>
+<li>Sada se <code>filtriraniStudent</code> poziva onda samo kada se promijene varijable <code>filterIme</code> i <code>filterMinBodovi</code></li>
+</ul>
+<p><em>Da bi koristili <code>computed</code> funkciju potrebno ju je učitati iz <code>vue</code> okvira kao što učitavamo <code>ref</code> funkciju:</em></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> { computed } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
+</div></code></pre>
+<p><em>Sintaksa za pisanje <code>computed</code> funkcije je sljedeća:</em></p>
+<pre class="hljs"><code><div>
+<span class="hljs-keyword">const</span> nazivFunkcije = computed(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-comment">// izračun</span>
+    <span class="hljs-keyword">return</span> vrijednost;
+})
+<span class="hljs-comment">// ILI</span>
+<span class="hljs-keyword">const</span> nazivFunkcije = computed(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> vrijednost)
+</div></code></pre>
+<p><em>I onda se koristi u <code>&lt;template&gt;</code> bloku bez običnih zagradi:</em></p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    {{ nazivFunkcije }}
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</div></code></pre>
+<ul>
+<li><code>Computed</code> funkcija prati samo reaktivne varijable koje koristi. Ako, primjerice, sadrži <code>Date.now()</code>, neće se ponovno izračunati jer ta vrijednost nije reaktivna</li>
+</ul>
+<blockquote>
+<p>Vrlo bitna razlika između obične funkcije i <code>computed</code> funkcije je to što <code>computed</code> funkcija ne može primati argumente</p>
+</blockquote>
+<div class="page"></div>
+<h3 id="watchers">Watchers</h3>
+<p>U Vue.js, <strong>watch</strong> funkcija omogućuje prilagođeno praćenje promjena reaktivnih varijabli i izvođenje dodatne logike kada se te promjene dogode. Za razliku od <code>computed</code> funkcije, koja se koristi za izračunavanje vrijednosti, <code>watch</code> je koristan kada želimo izvršiti naredbe kao što su API pozivi, ručna manipulacija DOM-om ili bilo koja asinkrona operacija kao odgovor na promjenu podataka.</p>
+<p><em>Da bismo koristili <code>watch</code>, prvo moramo učitati <code>watch</code> funkciju iz <code>vue</code> okvira:</em></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> { ref, watch } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
+</div></code></pre>
+<p><em>Sintaksa za pisanje <code>watch</code> funkcije je sljedeća:</em></p>
+<pre class="hljs"><code><div>watch(reaktivnaVarijabla, (novaVrijednost, staraVrijednost) =&gt; {
+  <span class="hljs-comment">// Izvrši neku akciju kada se reaktivnaVarijabla promijeni</span>
+})
+</div></code></pre>
+<p>Nastavimo s primjerom studenata i dodajmo watcher koji će ispisivati u konzolu kad god se promijeni vrijednost <code>filterIme</code>:</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+    <span class="hljs-keyword">import</span> { ref, computed, watch } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
+    ...
+    watch(filterIme, (newValue, oldValue) =&gt; {
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Filter imena promijenjen s "<span class="hljs-subst">${oldValue}</span>" na "<span class="hljs-subst">${newValue}</span>"`</span>)
+    })
+    ...
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</div></code></pre>
+<p><strong><code>watch(filterIme, callback)</code></strong> prati promjene u <code>filterIme</code> varijabli i poziva callback funkciju sa novom i starom vrijednošću, tako da će se aktivirati samo kada se <code>filterIme</code> stvarno promijeni (<em>npr. ako korisnik upiše nešto u input polje</em>).</p>
+<ul>
+<li>Ako želimo pratiti više reaktivnih vrijednosti odjednom, možemo koristiti niz:</li>
+</ul>
+<pre class="hljs"><code><div>watch([filterIme, filterMinBodovi], ([newIme, newBodovi], [oldIme, oldBodovi]) =&gt; {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Promjena filtra: 
+        Ime (<span class="hljs-subst">${oldIme}</span> -&gt; <span class="hljs-subst">${newIme}</span>), 
+        Bodovi (<span class="hljs-subst">${oldBodovi}</span> -&gt; <span class="hljs-subst">${newBodovi}</span>)`</span>)
+})
+</div></code></pre>
+<ul>
+<li>Ako pratimo objekt ili niz i želite da <code>watch</code> reagira na promjene unutar njih (<em>npr. promjena svojstva objekta</em>), moramo koristiti opciju <code>deep: true</code>:</li>
+</ul>
+<pre class="hljs"><code><div>watch(studenti, () =&gt; {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Lista studenata promijenjena!'</span>)
+}, { <span class="hljs-attr">deep</span>: <span class="hljs-literal">true</span> })
+</div></code></pre>
+<ul>
+<li>Ako želimo da se <code>watch</code> pokrene čim se komponenta montira (<em>bez čekanja na prvu promjenu</em>), koristimo <code>immediate: true</code>:</li>
+</ul>
+<pre class="hljs"><code><div>watch(filterIme, () =&gt; {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Watcher pokrenut!'</span>)
+}, { <span class="hljs-attr">immediate</span>: <span class="hljs-literal">true</span> })
+</div></code></pre>
+<h3 id="template-refs">Template Refs</h3>
+<p>Već znamo i koristimo <code>ref</code> funkciju za kreiranje reaktivnih varijabli. Međutim, <code>ref</code> se može koristiti kao atribut kod DOM elemenata ili Vue komponenti.</p>
+<p><strong>Template Refs</strong> tu onda omogućuju direktan pristup DOM elementima unutar <code>&lt;template&gt;</code> bloka. Ovo je korisno kada trebamo ručno upravljati DOM-om: fokusirati input polje, mjeriti veličinu elementa ili integrirati Vue s vanjskim bibliotekama koje zahtijevaju direktan pristup DOM-u.</p>
+<p><em>Prvi način korištenja je s pomoću <code>$refs</code> varijable:</em></p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">"customRef"</span>&gt;</span>
+        HELLO
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"console.log($refs.customRef.outerHTML)"</span>&gt;</span>
+        Klikni
+    <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<ul>
+<li>Referencu postavljamo dodavanjem <code>ref</code> atributa na element, slično kao kod <code>id</code> atributa. Zatim možemo pristupiti tom elementu preko <code>$refs</code> varijable</li>
+</ul>
+<div class="page"></div>
+<p><em>Drugi način korištenja je s pomoću <code>useTemplateRef()</code> funckije:</em></p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+    <span class="hljs-keyword">import</span> { useTemplateRef } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
+
+    <span class="hljs-keyword">const</span> myRef = useTemplateRef(<span class="hljs-string">'customRef'</span>);
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ispis</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-built_in">console</span>.log(myRef.value.outerHTML);
+    }
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">"customRef"</span>&gt;</span>
+        HELLO
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"ispis()"</span>&gt;</span>
+        Klikni
+    <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">"myRef"</span>&gt;</span>
+        {{ myRef.outerHTML }}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<ul>
+<li>Postavljamo <code>ref</code> atribut na element, zatim koristimo funkciju <code>useTemplateRef</code> iz Vue okvira kako bismo element mogli koristiti kao varijablu unutar drugih funkcija ili unutar <code>&lt;template&gt;</code> bloka.</li>
+</ul>
+<blockquote>
+<p>Ako želimo koristiti <strong>Template Ref</strong> unutar <code>&lt;template&gt;</code> bloka, potrebno je izvršiti provjeru na <code>null</code>, jer element još nije postavljen pri inicijalizaciji ili montiranju, što bi moglo izazvati grešku.</p>
+</blockquote>
+<h4 id="defineexpose---pristup-komponentama"><code>defineExpose()</code> - pristup komponentama</h4>
+<p>Napomenuli smo da možemo povezati komponente s pomoću <strong>Template Ref</strong>. Na taj način dobivamo pristup varijablama i funkcijama koje komponenta izlaže putem funkcije <code>defineExpose()</code>.</p>
+<div class="page"></div>
+<p><em>Prvo ćemo unutar komponente definirati izložene varijable:</em></p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+    <span class="hljs-keyword">import</span> { ref } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
+
+    <span class="hljs-keyword">const</span> a = ref(<span class="hljs-number">4</span>);
+    <span class="hljs-keyword">const</span> b = <span class="hljs-number">2</span>;
+    <span class="hljs-keyword">const</span> c = ref(<span class="hljs-string">"Izračun:"</span>);
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">pozdrav</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Ahoy!"</span>);        
+    }
+
+    defineExpose({
+        a, 
+        b,
+        pozdrav
+    })
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"number"</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">"a"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"rounded p-1 border"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+        {{ c }} {{ a }} % {{ b }} is {{ a % b == 0 }}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<blockquote>
+<p><code>defineExpose()</code> funkciju nije potrebno učitati iz vue okvira</p>
+</blockquote>
+<ul>
+<li>Pomoću funkcije <code>defineExpose()</code> izložili smo varijable <code>a</code> i <code>b</code> te funkciju <code>pozdrav</code>. Kada koristimo tu komponentu i postavimo referencu na nju, imat ćemo pristup tim izloženim varijablama i funkcijama.</li>
+</ul>
+<div class="page"></div>
+<p><em>Primjer:</em></p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+    <span class="hljs-keyword">import</span> ChildComponent <span class="hljs-keyword">from</span> <span class="hljs-string">'./ChildComponent.vue'</span>;
+    <span class="hljs-keyword">import</span> { useTemplateRef } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
+    <span class="hljs-keyword">const</span> myChild = useTemplateRef(<span class="hljs-string">'childRef'</span>);
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">ChildComponent</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">"childRef"</span>/&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">"myChild"</span>&gt;</span>
+        myChild.a: {{ myChild.a }}
+        myChild.b: {{ myChild.b }}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"myChild.pozdrav"</span>
+        <span class="hljs-attr">class</span>=<span class="hljs-string">"border hover:bg-slate-200 cursor-pointer p-1 rounded"</span>&gt;</span>
+        Klikni
+    <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<blockquote>
+<p>Kod <code>click</code> događaja nije potrebno staviti <code>null</code> provjeru jer se ne poziva pri inicijalizaciji.</p>
+</blockquote>
+<h3 id="composables--utils">Composables &amp; Utils</h3>
+<p>U Vue.js aplikacijama, <strong>Composables</strong> i <strong>Utils</strong> služe za organizaciju i ponovno korištenje logike izvan Vue komponenti.</p>
+<h4 id="composables">Composables</h4>
+<p><strong>Composables</strong> su funkcije koje koriste <strong>Vue Composition API</strong> za enkapsulaciju i ponovno korištenje logike sa stanjem.</p>
+<p>Pri izradi frontend aplikacija često nailazimo na ponavljajuće zadatke, poput formatiranja datuma na više mjesta. U takvim slučajevima logiku izdvajamo u zasebne funkcije radi bolje organizacije koda.</p>
+<ul>
+<li><strong>Composables</strong> mogu koristiti Vue reaktivne funkcije (<code>ref</code>, <code>computed</code>, <code>watch</code>, ...)</li>
+<li>Obično se organiziraju u zasebne <strong>JS datoteke</strong> unutar mape <code>composables</code></li>
+<li>Nazivi tih datoteka prate format <code>use&lt;Naziv&gt;.js</code></li>
+</ul>
+<div class="page"></div>
+<p><em>Primjer:</em></p>
+<pre class="hljs"><code><div><span class="hljs-comment">// useCounter.js</span>
+<span class="hljs-keyword">import</span> { ref } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
+
+<span class="hljs-keyword">const</span> count = ref(<span class="hljs-number">0</span>)
+
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">useCounter</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">const</span> increment = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> count.value++;
+    <span class="hljs-keyword">return</span> { count, increment }
+}
+</div></code></pre>
+<ul>
+<li>Uvijek je važno napraviti izvoz (<em>export</em>) funkcije kako bi je mogli koristiti unutar drugih djelova aplikacije</li>
+</ul>
+<p><em>Primjer:</em></p>
+<pre class="hljs"><code><div>// PrikazBrojaca.vue
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+    <span class="hljs-keyword">import</span> { useCounter } <span class="hljs-keyword">from</span> <span class="hljs-string">'@/composables/useCounter.js'</span>
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+        Count: <span class="hljs-tag">&lt;<span class="hljs-name">b</span>&gt;</span>{{ useCounter().count }}<span class="hljs-tag">&lt;/<span class="hljs-name">b</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<pre class="hljs"><code><div>// App.vue
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+    <span class="hljs-keyword">import</span> PrikazBrojaca <span class="hljs-keyword">from</span> <span class="hljs-string">'./PrikazBrojaca.vue'</span>;
+    <span class="hljs-keyword">import</span> { useCounter } <span class="hljs-keyword">from</span> <span class="hljs-string">'@/composables/useCounter.js'</span>
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">PrikazBrojaca</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"useCounter().increment"</span> 
+            <span class="hljs-attr">class</span>=<span class="hljs-string">"border hover:bg-slate-200 cursor-pointer p-1 rounded"</span>&gt;</span>
+            Increment
+        <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<div class="page"></div>
+<h4 id="utils">Utils</h4>
+<p><strong>Utils</strong> su pomoćne funkcije koje nemaju stanje i ne koriste Vue reaktivnost, ali olakšavaju ponovnu upotrebu generičke logike unutar aplikacije.</p>
+<p>Često ih koristimo za operacije poput formatiranja podataka, parsiranja stringova ili matematičkih izračuna. Primjerice, ako na više mjesta trebamo formatirati datum ili validirati e-mail adresu, takve funkcije izdvajamo u <strong>utils</strong> kako bismo ih mogli lako koristiti bilo gdje u aplikaciji.</p>
+<ul>
+<li><strong>Utils funkcije su čiste funkcije</strong> – ne ovise o stanju komponente i ne mijenjaju globalno stanje</li>
+<li>Najčešće ih organiziramo u zasebne <strong>JS datoteke</strong> unutar mape <code>utils</code></li>
+</ul>
+<p><em>Primjer:</em></p>
+<pre class="hljs"><code><div><span class="hljs-comment">// stringUtils.js</span>
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">capitalize</span>(<span class="hljs-params">str</span>) </span>{
+    <span class="hljs-keyword">return</span> str[<span class="hljs-number">0</span>].toUpperCase() + str.slice(<span class="hljs-number">1</span>)
+}
+</div></code></pre>
+<pre class="hljs"><code><div>// App.vue
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+    <span class="hljs-keyword">import</span> { ref } <span class="hljs-keyword">from</span> <span class="hljs-string">"vue"</span>;
+    <span class="hljs-keyword">import</span> { capitalize } <span class="hljs-keyword">from</span> <span class="hljs-string">'@/utils/stringUtils.js'</span>
+
+    <span class="hljs-keyword">const</span> user = ref({
+        <span class="hljs-attr">ime</span>: <span class="hljs-string">"marko"</span>,
+        <span class="hljs-attr">prezime</span>: <span class="hljs-string">"markić"</span>
+    })
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">"user.ime"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"rounded p-1 border"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">"user.prezime"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"rounded p-1 border"</span>&gt;</span>
+        {{ capitalize(user.ime) }} {{ capitalize(user.prezime) }}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<div class="page"></div>
+<p><em>Primjer kombinacije:</em></p>
+<pre class="hljs"><code><div><span class="hljs-comment">// useUserFormatter.js</span>
+<span class="hljs-keyword">import</span> { computed } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
+<span class="hljs-keyword">import</span> { capitalize } <span class="hljs-keyword">from</span> <span class="hljs-string">'./stringUtils'</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">useUserFormatter</span>(<span class="hljs-params">user</span>) </span>{
+    <span class="hljs-keyword">const</span> fullName = computed(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+        <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">${capitalize(user.ime)}</span> <span class="hljs-subst">${capitalize(user.prezime)}</span>`</span>
+    })
+
+    <span class="hljs-keyword">return</span> { fullName }
+}
+</div></code></pre>
+<pre class="hljs"><code><div>// App.vue
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+    <span class="hljs-keyword">import</span> { ref } <span class="hljs-keyword">from</span> <span class="hljs-string">"vue"</span>;
+    <span class="hljs-keyword">import</span> { useUserFormatter } <span class="hljs-keyword">from</span> <span class="hljs-string">'@/composables/useUserFormatter.js'</span>
+
+    <span class="hljs-keyword">const</span> user = ref({
+        <span class="hljs-attr">ime</span>: <span class="hljs-string">"marko"</span>,
+        <span class="hljs-attr">prezime</span>: <span class="hljs-string">"markić"</span>
+    })
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"h-full flex flex-col p-8 items-center justify-center"</span>&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">"user.ime"</span> 
+            <span class="hljs-attr">class</span>=<span class="hljs-string">"rounded p-1 border"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">"user.prezime"</span> 
+            <span class="hljs-attr">class</span>=<span class="hljs-string">"rounded p-1 border my-2"</span>&gt;</span>
+
+        {{ useUserFormatter(user) }}
+
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<div class="page"></div>
+<h2 id="%C5%BEivotni-ciklus-komponenti-lifecycle-hooks">Životni ciklus komponenti (Lifecycle Hooks)</h2>
+<p>Svaka Vue komponenta prolazi kroz niz koraka u svom životnom ciklusu - od kreiranja do uklanjanja. Vue nam nudi posebne funkcije (<strong>lifecycle hooks</strong>) koje možemo koristiti da izvršimo kôd u specifičnim trenucima tog ciklusa.</p>
+<p><img src="Slike/ŽivotniCiklus.png" width="72%" alt="alt text"></p>
+<p><em>Primjer:</em></p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+<span class="hljs-keyword">import</span> { onMounted, onUnmounted } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
+
+onMounted(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Komponenta montirana'</span>)
+})
+
+onUnmounted(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Komponenta uklonjena'</span>)
+})
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</div></code></pre>
+<ul>
+<li><strong>Lifecycle hooks</strong> se automatski pozivaju - samo ih trebate definirati kada nam trebaju</li>
+<li>Za pristup DOM elementima, uvijek koristimo <code>onMounted()</code> (ili kasnije faze)</li>
+</ul>
+<h2 id="animiranje-dom-elemenata">Animiranje DOM elemenata</h2>
+<table>
+<thead>
+<tr>
+<th>Komponenta</th>
+<th>Primarna namjena</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;Transition&gt;</code></td>
+<td>Animacije pojedinačnih elemenata</td>
+</tr>
+<tr>
+<td><code>&lt;TransitionGroup&gt;</code></td>
+<td>Animacije lista i grupa elemenata</td>
+</tr>
+</tbody>
+</table>
+<h3 id="transition">Transition</h3>
+<p>Komponenta <code>&lt;Transition&gt;</code> omogućuje jednostavno dodavanje animacija pri pojavljivanju, nestajanju i promjenama elemenata.</p>
+<p><em>Primjer:</em></p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+    <span class="hljs-keyword">import</span> { ref } <span class="hljs-keyword">from</span> <span class="hljs-string">"vue"</span>;
+    <span class="hljs-keyword">const</span> show = ref(<span class="hljs-literal">true</span>);
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"h-full flex p-8 items-center justify-center"</span>&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"flex gap-2 w-32"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"checkbox"</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">"show"</span>&gt;</span>
+
+            <span class="hljs-tag">&lt;<span class="hljs-name">Transition</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"slide-fade"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">"show"</span>&gt;</span>Animiran tekst<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">Transition</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">scoped</span>&gt;</span><span class="css">
+    <span class="hljs-selector-class">.slide-fade-enter-active</span> {
+        <span class="hljs-attribute">transition</span>: all <span class="hljs-number">0.2s</span> ease-out;
+    }
+    <span class="hljs-selector-class">.slide-fade-leave-active</span> {
+        <span class="hljs-attribute">transition</span>: all <span class="hljs-number">0.4s</span> <span class="hljs-built_in">cubic-bezier</span>(<span class="hljs-number">1</span>, <span class="hljs-number">0.5</span>, <span class="hljs-number">0.8</span>, <span class="hljs-number">1</span>);
+    }
+    <span class="hljs-selector-class">.slide-fade-enter-from</span>,
+    <span class="hljs-selector-class">.slide-fade-leave-to</span> {
+        <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateX</span>(<span class="hljs-number">20px</span>);
+        <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>;
+    }
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+</div></code></pre>
+<h3 id="transitiongroup">TransitionGroup</h3>
+<p>Komponenta <code>&lt;TransitionGroup&gt;</code> dizajnirana je za upravljanje animacijama grupe elemenata koji se dinamički mijenjaju.</p>
+<ul>
+<li>Zahtijeva unique <code>key</code> za svaki element</li>
+</ul>
+<p><em>Primjer:</em></p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+    <span class="hljs-keyword">import</span> { ref } <span class="hljs-keyword">from</span> <span class="hljs-string">"vue"</span>;
+
+    <span class="hljs-keyword">const</span> ucenici = ref([
+        { <span class="hljs-attr">ime</span>: <span class="hljs-string">"Ana"</span>, <span class="hljs-attr">bodovi</span>: <span class="hljs-number">85</span> },
+        { <span class="hljs-attr">ime</span>: <span class="hljs-string">"Marko"</span>, <span class="hljs-attr">bodovi</span>: <span class="hljs-number">92</span> },
+        { <span class="hljs-attr">ime</span>: <span class="hljs-string">"Petra"</span>, <span class="hljs-attr">bodovi</span>: <span class="hljs-number">78</span> },
+        { <span class="hljs-attr">ime</span>: <span class="hljs-string">"Ivan"</span>, <span class="hljs-attr">bodovi</span>: <span class="hljs-number">60</span> }
+    ]);
+
+    <span class="hljs-keyword">const</span> minBodovi = ref(<span class="hljs-number">70</span>);
+
+    <span class="hljs-keyword">const</span> novoIme = ref(<span class="hljs-string">''</span>);
+    <span class="hljs-keyword">const</span> noviBodovi = ref(<span class="hljs-number">0</span>);
+
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"h-full flex flex-col p-8 items-center justify-center"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"h-96"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"flex gap-1"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>
+                    Minimalan broj bodova:
+                    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"number"</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">"minBodovi"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"border p-1 rounded w-32"</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">"novoIme"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"border px-1 w-32 rounded"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Ime..."</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"number"</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">"noviBodovi"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"border px-1 w-16 rounded"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Bodovi..."</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"ucenici.push({'ime': novoIme, 'bodovi': noviBodovi})"</span>
+                    <span class="hljs-attr">class</span>=<span class="hljs-string">"p-1 bg-blue-200 hover:bg-green-200 cursor-pointer rounded"</span>&gt;</span>
+                    push()
+                <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"ucenici.pop()"</span>
+                    <span class="hljs-attr">class</span>=<span class="hljs-string">"p-1 bg-blue-200 hover:bg-green-200 cursor-pointer rounded"</span>&gt;</span>
+                    pop()
+                <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"ucenici.unshift({'ime': novoIme, 'bodovi': noviBodovi})"</span>
+                    <span class="hljs-attr">class</span>=<span class="hljs-string">"p-1 bg-blue-200 hover:bg-green-200 cursor-pointer rounded"</span>&gt;</span>
+                    unshift()
+                <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"ucenici.shift()"</span>
+                    <span class="hljs-attr">class</span>=<span class="hljs-string">"p-1 bg-blue-200 hover:bg-green-200 cursor-pointer rounded"</span>&gt;</span>
+                    shift()
+                <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">TransitionGroup</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"list"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">"ucenik, i in ucenici.filter(u =&gt; u.bodovi &gt;= minBodovi)"</span> <span class="hljs-attr">:key</span>=<span class="hljs-string">"ucenik.ime"</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">b</span>&gt;</span>{{ ucenik.ime }}<span class="hljs-tag">&lt;/<span class="hljs-name">b</span>&gt;</span> - {{ ucenik.bodovi }} bodova
+                <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">TransitionGroup</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">scoped</span>&gt;</span><span class="css">
+    <span class="hljs-selector-class">.list-enter-active</span>,
+    <span class="hljs-selector-class">.list-leave-active</span> {
+        <span class="hljs-attribute">transition</span>: all <span class="hljs-number">0.5s</span> ease;
+    }
+    <span class="hljs-selector-class">.list-enter-from</span>,
+    <span class="hljs-selector-class">.list-leave-to</span> {
+        <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>;
+        <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateY</span>(<span class="hljs-number">30px</span>);
+    }
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+</div></code></pre>
+</div>
+</body>
+</html>
