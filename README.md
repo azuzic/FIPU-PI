@@ -35,4 +35,6 @@ Kolegij slušaju:
 ## YouTube 📺
 
 1. [Uvod u Vue.js + Tailwind](https://www.youtube.com/watch?v=GxQ_rrqtgbo&list=PL3KdD7QwiDWqKtgfc-1WSPQaJB-MC_9oN&index=1) ([PI1](https://github.com/azuzic/FIPU-PI/tree/main/Skripte/Skripta%201.%20-%20Vue%20Osnove))
-2. [Reaktivnost & Vezani Atributi](https://www.youtube.com/watch?v=4zqtpAsIVNs&list=PL3KdD7QwiDWqKtgfc-1WSPQaJB-MC_9oN&index=2) ([PI2](https://github.com/azuzic/FIPU-PI/tree/main/Skripte/Skripta%202.%20-%20Reaktivnost%20i%20Vezani%20Atributi))
+2. [Reaktivnost & Vezani Atributi](https://youtu.be/4zqtpAsIVNs?list=PL3KdD7QwiDWqKtgfc-1WSPQaJB-MC_9oN) ([PI2](https://github.com/azuzic/FIPU-PI/tree/main/Skripte/Skripta%202.%20-%20Reaktivnost%20i%20Vezani%20Atributi))
+3. [Vue Direktive i Upravljanje Događajima](https://youtu.be/8u2fr3d9lFo?list=PL3KdD7QwiDWqKtgfc-1WSPQaJB-MC_9oN) ([PI3](https://github.com/azuzic/FIPU-PI/tree/main/Skripte/Skripta%203.%20-%20Vue%20Direktive%20i%20Upravljanje%20Događajima))
+4. [Komponente](https://youtu.be/eCsizLZqGYs?list=PL3KdD7QwiDWqKtgfc-1WSPQaJB-MC_9oN) ([PI4](https://github.com/azuzic/FIPU-PI/tree/main/Skripte/Skripta%204.%20-%20Komponente))
