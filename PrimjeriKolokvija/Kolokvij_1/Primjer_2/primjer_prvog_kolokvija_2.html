@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Drugi primjer kolokvija #1</title>
+		<meta
+			http-equiv="Content-type"
+			content="text/html;charset=UTF-8" />
+		<link
+			rel="preconnect"
+			href="https://fonts.googleapis.com" />
+		<link
+			rel="preconnect"
+			href="https://fonts.gstatic.com"
+			crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+			rel="stylesheet" />
+		<style>
+			/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+			/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+			:not(code *) {
+				font-family: "Poppins", sans-serif;
+			}
+            html {
+                display: flex;
+                justify-content: center;
+            }
+			body {
+				font-family: var(
+					--vscode-markdown-font-family,
+					-apple-system,
+					BlinkMacSystemFont,
+					"Segoe WPC",
+					"Segoe UI",
+					"Ubuntu",
+					"Droid Sans",
+					sans-serif
+				);
+				font-size: var(--vscode-markdown-font-size, 14px);
+				line-height: var(--vscode-markdown-line-height, 22px);
+				word-wrap: break-word;
+				color: #3b3b3b;
+                position: absolute;
+                display: flex;
+                justify-content: center;
+                width: full;
+			}
+			.body {
+                max-width: 1012px;
+			}
+
+			#code-csp-warning {
+				position: fixed;
+				top: 0;
+				right: 0;
+				color: white;
+				margin: 16px;
+				text-align: center;
+				font-size: 12px;
+				font-family: sans-serif;
+				background-color: #444444;
+				cursor: pointer;
+				padding: 6px;
+				box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
+			}
+
+			#code-csp-warning:hover {
+				text-decoration: none;
+				background-color: #007acc;
+				box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+			}
+
+			body.scrollBeyondLastLine {
+				margin-bottom: calc(100vh - 22px);
+			}
+
+			body.showEditorSelection .code-line {
+				position: relative;
+			}
+
+			body.showEditorSelection .code-active-line:before,
+			body.showEditorSelection .code-line:hover:before {
+				content: "";
+				display: block;
+				position: absolute;
+				top: 0;
+				left: -12px;
+				height: 100%;
+			}
+
+			body.showEditorSelection li.code-active-line:before,
+			body.showEditorSelection li.code-line:hover:before {
+				left: -30px;
+			}
+
+			.vscode-light.showEditorSelection .code-active-line:before {
+				border-left: 3px solid rgba(0, 0, 0, 0.15);
+			}
+
+			.vscode-light.showEditorSelection .code-line:hover:before {
+				border-left: 3px solid rgba(0, 0, 0, 0.4);
+			}
+
+			.vscode-light.showEditorSelection
+				.code-line
+				.code-line:hover:before {
+				border-left: none;
+			}
+
+			.vscode-dark.showEditorSelection .code-active-line:before {
+				border-left: 3px solid rgba(255, 255, 255, 0.4);
+			}
+
+			.vscode-dark.showEditorSelection .code-line:hover:before {
+				border-left: 3px solid rgba(255, 255, 255, 0.6);
+			}
+
+			.vscode-dark.showEditorSelection
+				.code-line
+				.code-line:hover:before {
+				border-left: none;
+			}
+
+			.vscode-high-contrast.showEditorSelection .code-active-line:before {
+				border-left: 3px solid rgba(255, 160, 0, 0.7);
+			}
+
+			.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+				border-left: 3px solid rgba(255, 160, 0, 1);
+			}
+
+			.vscode-high-contrast.showEditorSelection
+				.code-line
+				.code-line:hover:before {
+				border-left: none;
+			}
+
+			img {
+				max-width: 100%;
+				max-height: 100%;
+				border-radius: 8px;
+				filter: drop-shadow(-0 2px 2px rgba(0, 0, 0, 0.07));
+			}
+
+			a {
+				text-decoration: none;
+			}
+
+			a:hover {
+				text-decoration: underline;
+			}
+
+			a:focus,
+			input:focus,
+			select:focus,
+			textarea:focus {
+				outline: 1px solid -webkit-focus-ring-color;
+				outline-offset: -1px;
+			}
+
+			hr {
+				border: 0;
+				height: 2px;
+				border-bottom: 2px solid;
+			}
+
+			h1 {
+				padding-bottom: 0.3em;
+				line-height: 1.2;
+				border-bottom-width: 1px;
+				border-bottom-style: solid;
+			}
+
+			h1,
+			h2,
+			h3 {
+				font-weight: normal;
+			}
+
+			table {
+				border-collapse: collapse;
+			}
+
+			table > thead > tr > th {
+				text-align: left;
+				border-bottom: 1px solid;
+			}
+
+			table > thead > tr > th,
+			table > thead > tr > td,
+			table > tbody > tr > th,
+			table > tbody > tr > td {
+				padding: 5px 10px;
+			}
+
+			table > tbody > tr + tr > td {
+				border-top: 1px solid;
+			}
+
+			td > code {
+                word-break: break-all;
+            }
+
+			blockquote {
+				margin: 0 7px 0 5px;
+				padding: 0 16px 0 10px;
+				border-left-width: 5px;
+				border-left-style: solid;
+			}
+
+			code {
+				font-family: Menlo, Monaco, Consolas, "Droid Sans Mono",
+					"Courier New", monospace, "Droid Sans Fallback";
+				font-size: 1em;
+				line-height: 1.357em;
+			}
+
+			body.wordWrap pre {
+				white-space: pre-wrap;
+			}
+
+			pre:not(.hljs),
+			pre.hljs code > div {
+				padding: 16px;
+				border-radius: 3px;
+				overflow: auto;
+			}
+
+			pre code {
+				color: var(--vscode-editor-foreground);
+				tab-size: 4;
+			}
+
+			/** Theming */
+
+			.vscode-light pre {
+				background-color: rgba(220, 220, 220, 0.4);
+			}
+
+			.vscode-dark pre {
+				background-color: rgba(10, 10, 10, 0.4);
+			}
+
+			.vscode-high-contrast pre {
+				background-color: rgb(0, 0, 0);
+			}
+
+			.vscode-high-contrast h1 {
+				border-color: rgb(0, 0, 0);
+			}
+
+			.vscode-light table > thead > tr > th {
+				border-color: rgba(0, 0, 0, 0.69);
+			}
+
+			.vscode-dark table > thead > tr > th {
+				border-color: rgba(255, 255, 255, 0.69);
+			}
+
+			.vscode-light h1,
+			.vscode-light hr,
+			.vscode-light table > tbody > tr + tr > td {
+				border-color: rgba(0, 0, 0, 0.18);
+			}
+
+			.vscode-dark h1,
+			.vscode-dark hr,
+			.vscode-dark table > tbody > tr + tr > td {
+				border-color: rgba(255, 255, 255, 0.18);
+			}
+		</style>
+
+		<style>
+			/*
+
+Visual Studio-like style based on original C# coloring by Jason Diamond <jason@diamond.name>
+
+*/
+			.hljs {
+				background: white;
+				color: black;
+			}
+
+			.hljs-comment,
+			.hljs-quote,
+			.hljs-variable {
+				color: #008000;
+			}
+
+			.hljs-keyword,
+			.hljs-selector-tag,
+			.hljs-built_in,
+			.hljs-name,
+			.hljs-tag {
+				color: #00f;
+			}
+
+			.hljs-string,
+			.hljs-title,
+			.hljs-section,
+			.hljs-attribute,
+			.hljs-literal,
+			.hljs-template-tag,
+			.hljs-template-variable,
+			.hljs-type,
+			.hljs-addition {
+				color: #a31515;
+			}
+
+			.hljs-deletion,
+			.hljs-selector-attr,
+			.hljs-selector-pseudo,
+			.hljs-meta {
+				color: #2b91af;
+			}
+
+			.hljs-doctag {
+				color: #808080;
+			}
+
+			.hljs-attr {
+				color: #f00;
+			}
+
+			.hljs-symbol,
+			.hljs-bullet,
+			.hljs-link {
+				color: #00b0e8;
+			}
+
+			.hljs-emphasis {
+				font-style: italic;
+			}
+
+			.hljs-strong {
+				font-weight: bold;
+			}
+		</style>
+
+		<style>
+			/*
+ * Markdown PDF CSS
+ */
+
+			body {
+				font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC",
+					"Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+			}
+
+			pre {
+				background-color: #f8f8f8;
+				border: 1px solid #cccccc;
+				border-radius: 3px;
+				overflow-x: auto;
+				white-space: pre-wrap;
+				overflow-wrap: break-word;
+			}
+
+			pre:not(.hljs) {
+				padding: 23px;
+				line-height: 19px;
+			}
+
+			blockquote {
+				background: rgba(127, 127, 127, 0.1);
+				border-color: rgba(0, 122, 204, 0.5);
+			}
+
+			.emoji {
+				height: 1.4em;
+			}
+
+			code {
+				font-size: 14px;
+				line-height: 19px;
+			}
+
+			/* for inline code */
+			:not(pre):not(.hljs) > code {
+				color: #3b3b3b; /* Change the old color so it seems less like an error */
+				font-size: inherit;
+				background: #e0e0e0;
+				border-radius: 4px;
+				padding: 1px 2px;
+				margin: -1px -2px;
+			}
+
+			/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+			.page {
+				page-break-after: always;
+			}
+		</style>
+
+		<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+	</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<div>
+<h1 id="programsko-in%C5%BEenjerstvo">Programsko inženjerstvo</h1>
+<h2 id="drugi-primjer-kolokvija-1">Drugi primjer kolokvija #1</h2>
+<p>Kolokvij nosi ukupno <strong>40 bodova</strong> i piše se <strong>120 minuta</strong>.</p>
+<blockquote>
+<p>Potrebno je preuzet projekt drugog primjera kolokvija s Merlina.</p>
+</blockquote>
+<hr>
+<h3 id="zadatak-1---simplecalculator-14-bodova">Zadatak #1 - SimpleCalculator (14 bodova)</h3>
+<ol>
+<li>
+<p><strong>(1 boda)</strong> Potrebno je napraviti tri <strong>reaktivne</strong> varijable <code>broj1</code>, <code>broj2</code>, <code>operacija</code> i funkciju <code>provjeraOperacije()</code>.</p>
+</li>
+<li>
+<p><strong>(2 boda)</strong> Funkcija <code>provjeraOperacije()</code> treba vratiti <strong>true</strong> ako varijabla <code>operacija</code> ima neku od sljedećih vrijednost: <em>&quot;zbrajanje&quot;</em>, <em>&quot;oduzimanje&quot;</em>, <em>&quot;mnozenje&quot;</em> ili <em>&quot;dijeljenje&quot;</em>, u suprotnom vraća <strong>false</strong>.</p>
+</li>
+<li>
+<p><strong>(2 bod)</strong> Stvorite <code>&lt;input&gt;</code> element za svaku varijablu i vežite ih koristeći <code>v-model</code>.</p>
+</li>
+<li>
+<p><strong>(3 boda)</strong> Ako je rezultat funkcije <code>provjeraOperacije()</code> <strong>false</strong> onda pomoću <strong>v-if/v-else</strong> direktiva prikažite tekst <em>Nepoznata operacija!</em> u suprotnom napravite izračun varijabli <code>broj1</code> i <code>broj2</code> ovisno o vrsti operacije koristeći <code>template syntax</code> = <code>{{ }}</code></p>
+</li>
+</ol>
+<p><img src="Slike/provjeraOperacije.png" alt="alt text"></p>
+<p><img src="Slike/mnozenje.png" alt="alt text"></p>
+<ol start="5">
+<li><strong>(2 bod)</strong> Ako je u pitanju operacija <strong>dijeljenja</strong>, provjerite je li <code>broj2</code> različit od <code>0</code>, ako nije, prikažite tekst <em>&quot;Dijeljenje s 0 nije moguće!&quot;</em></li>
+</ol>
+<p><img src="Slike/dijeljenje.png" alt="alt text"></p>
+<ol start="6">
+<li><strong>(4 boda)</strong> Nadogradite kôd tako da funkciju <code>provjeraOperacije()</code> pretvorite u <strong>computed</strong> funkciju. Napišite u komentaru ispod funkcije koja je razlika između computed funckije u usporedbi s običnom funkcijom u kontekstu ovog zadatka <strong>SimpleCalculator</strong>.</li>
+</ol>
+<div class="page"></div>
+<h3 id="zadatak-2---sportasi-14-bodova">Zadatak #2 - Sportasi (14 bodova)</h3>
+<p>Definirani su sljedeći podaci:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">const</span> sportasi = ref([
+   {
+      <span class="hljs-attr">ime</span>: <span class="hljs-string">'Ivan'</span>, 
+      <span class="hljs-attr">disciplina</span>: <span class="hljs-string">'plivanje'</span>, 
+      <span class="hljs-attr">godine</span>: <span class="hljs-number">25</span>, 
+      <span class="hljs-attr">natjecanja</span>: [<span class="hljs-string">'Olimpijske igre'</span>, <span class="hljs-string">'Svjetsko prvenstvo'</span>]
+   },
+   {
+      <span class="hljs-attr">ime</span>: <span class="hljs-string">'Ana'</span>, 
+      <span class="hljs-attr">disciplina</span>: <span class="hljs-string">'atletika'</span>, 
+      <span class="hljs-attr">godine</span>: <span class="hljs-number">30</span>, 
+      <span class="hljs-attr">natjecanja</span>: [<span class="hljs-string">'Svjetsko prvenstvo'</span>, <span class="hljs-string">'Europsko prvenstvo'</span>, <span class="hljs-string">'Olimpijske igre'</span>]
+   },
+   {
+      <span class="hljs-attr">ime</span>: <span class="hljs-string">'Marko'</span>, 
+      <span class="hljs-attr">disciplina</span>: <span class="hljs-string">'odbojka'</span>, 
+      <span class="hljs-attr">godine</span>: <span class="hljs-number">22</span>, 
+      <span class="hljs-attr">natjecanja</span>: [<span class="hljs-string">'Europsko prvenstvo'</span>]
+   }
+])
+</div></code></pre>
+<ol>
+<li>
+<p><strong>(3 boda)</strong> Prikažite sve podatke sportaša i njihova natjecanja koristeći <strong>v-for</strong> direktivu. Potrebno je izlistati natjecanja.</p>
+</li>
+<li>
+<p><strong>(1 boda)</strong> Dodajte <strong>reaktivnu</strong> varijablu <code>novo_natjecanje</code> i <code>&lt;input&gt;</code> element za koji će biti vezana.</p>
+</li>
+<li>
+<p><strong>(3 boda)</strong> Implementirajte funkciju <code>dodaj_natjecanje(sportasIndex)</code> koja <strong>dodaje</strong> <code>novo_natjecanje</code> u polje <code>natjecanja</code> odabranog sportaša. Dodajte <code>&lt;button&gt;</code> element s tekstom <em>&quot;+&quot;</em> koje će pozivati tu funkciju za svakog <strong>sportaša</strong>.</p>
+</li>
+<li>
+<p><strong>(3 boda)</strong> Implementirajte funkciju <code>ukloni_natjecanje(sportasIndex, natjecanjeIndex)</code> koja <strong>uklanja</strong> natjecanje iz polja <code>natjecanja</code> odabranog sportaša. Dodajte <code>&lt;button&gt;</code> element s tekstom <em>&quot;-&quot;</em> koje će pozivati tu funkciju za svako <strong>natjecanje</strong>.</p>
+</li>
+<li>
+<p><strong>(2 boda)</strong> Sortirajte polje tako da sportaš s najviše natjecanja bude pri vrhu (<code>.sort((a, b) =&gt; a - b)</code>). Za prvog sportaša ispred imena dodajte zlatnu medalju 🥇, za drugog dodajte srebrnu medalju 🥈, za trećeg dodajte brončanu medalju 🥉.</p>
+</li>
+<li>
+<p><strong>(2 bod)</strong> Dodajte animacije za uklanjanje i dodavanje natjecanja.</p>
+</li>
+</ol>
+<div class="page"></div>
+<pre class="hljs"><code><div><span class="hljs-selector-class">.list-enter-active</span>,
+<span class="hljs-selector-class">.list-leave-active</span> {
+    <span class="hljs-attribute">transition</span>: all <span class="hljs-number">0.5s</span> ease;
+}
+<span class="hljs-selector-class">.list-enter-from</span>,
+<span class="hljs-selector-class">.list-leave-to</span> {
+    <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>;
+    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateX</span>(<span class="hljs-number">30px</span>);
+}
+</div></code></pre>
+<p><img src="Slike/sportasi.png" alt="alt text"></p>
+<div class="page"></div>
+<h3 id="zadatak-3---galerija-slika-12-bodova">Zadatak #3 - Galerija slika (12 bodova)</h3>
+<p>Definirani su sljedeći podaci:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">const</span> galerija = [    
+    {
+        <span class="hljs-attr">slikar</span>: <span class="hljs-string">"Pablo Picasso"</span>,
+        <span class="hljs-attr">godina</span>: <span class="hljs-number">1903</span>,
+        <span class="hljs-attr">naslov</span>: <span class="hljs-string">"The Old Guitarist"</span>,
+        <span class="hljs-attr">slika</span>: <span class="hljs-string">"/src/assets/slike/The Old Guitarist.png"</span>
+    },
+    {
+        <span class="hljs-attr">slikar</span>: <span class="hljs-string">"Vincent van Gogh"</span>,
+        <span class="hljs-attr">godina</span>: <span class="hljs-number">1886</span>,
+        <span class="hljs-attr">naslov</span>: <span class="hljs-string">"Le Moulin de Blute-Fin"</span>,
+        <span class="hljs-attr">slika</span>: <span class="hljs-string">"/src/assets/slike/Le Moulin de Blute-Fin.png"</span>
+    },
+    {
+        <span class="hljs-attr">slikar</span>: <span class="hljs-string">"Hokusai"</span>,
+        <span class="hljs-attr">godina</span>: <span class="hljs-number">1890</span>,
+        <span class="hljs-attr">naslov</span>: <span class="hljs-string">"Courtesan Asleep"</span>,
+        <span class="hljs-attr">slika</span>: <span class="hljs-string">"/src/assets/slike/Courtesan Asleep.png"</span>
+    },
+];
+</div></code></pre>
+<ol>
+<li>
+<p><strong>(1 boda)</strong> Kreirajte komponentu <code>Slika.vue</code> sa parametrima (<em>props</em>): <strong>slikar</strong>, <strong>godina</strong>, <strong>naslov</strong>, <strong>slika</strong></p>
+</li>
+<li>
+<p><strong>(1 bod)</strong> Unutar roditelja učitajte i prikažite komponente <code>Slika.vue</code> koristeći <strong>v-for</strong> direktivu.</p>
+</li>
+<li>
+<p><strong>(1 bod)</strong> Komponenta treba sadržavati prikaz <strong>slike</strong> visine <code>100</code> i prikaz podataka  <strong>naslov</strong>, <strong>slikar</strong>, <strong>starost</strong>.</p>
+</li>
+<li>
+<p><strong>(2 bod)</strong> Implementirajte funkciju <code>starost()</code> koja vraća starost slike u godinama.</p>
+</li>
+<li>
+<p><strong>(2 boda)</strong> Ako je starost veća od <code>136</code> godina <u>podcrtajte</u> <strong>naslov</strong> koristeći vezanu klasu (<code>:class</code>).</p>
+</li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-selector-class">.underline</span> {
+    <span class="hljs-attribute">text-decoration</span>: underline;
+}
+</div></code></pre>
+<ol start="5">
+<li>
+<p><strong>(1 boda)</strong> Pritiskom na sliku treba se proslijediti događaj <strong>povecaj</strong> roditelju (<code>$emit()</code>).</p>
+</li>
+<li>
+<p><strong>(1 boda)</strong> Unutar roditelja dodajte <strong>reaktivnu</strong> varijablu <code>povecana_slika</code> i <code>&lt;img&gt;</code> element gdje će biti vezana za <strong>src</strong> atribut.</p>
+</li>
+<li>
+<p><strong>(3 boda)</strong> Kada roditelj dohvati događaj <strong>povecaj</strong> (<code>@</code>) iz elementa <code>&lt;Slika&gt;</code> treba ažurirati varijablu <code>povecana_slika</code> s odgovarajućom slikom.</p>
+</li>
+</ol>
+<p><img src="Slike/galerija.png" alt="alt text"></p>
+<h2 id="predajete-sljede%C4%87u-datoteku">Predajete sljedeću datoteku:</h2>
+<ul>
+<li><strong>ZIP datoteka</strong> cijelog projekta bez <code>node_modules</code> mape</li>
+</ul>
+</div>
+</body>
+</html>
