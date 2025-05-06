@@ -1,0 +1,10 @@
+<template>
+    <div>
+        <h1>Posts:</h1>
+        <ol>
+            <li>Post</li>
+            <li>Post</li>
+            <li>Post</li>
+        </ol>
+    </div>
+</template>

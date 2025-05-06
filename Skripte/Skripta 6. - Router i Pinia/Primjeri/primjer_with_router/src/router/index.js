@@ -48,6 +48,10 @@ const router = createRouter({
 })
 
 router.beforeEach(async (to, from) => {
+    console.log(user.value);
+    
+
+    if (to.name == 'NotFound' && !user.value) return { name: 'Prijava' }    
     
     if (to.params.id && to.params.id != username.value || to.params.id == 'none') return { name: 'Prijava' }
 

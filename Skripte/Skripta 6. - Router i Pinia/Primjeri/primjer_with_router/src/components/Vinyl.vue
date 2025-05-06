@@ -5,7 +5,7 @@
         <!-- Vinyl Base -->
         <div class="absolute inset-0 bg-gradient-to-br from-gray-800 to-black rounded-full"></div>
         
-        <!-- Vinyl Grooves (concentric circles) -->
+        <!-- Vinyl Grooves -->
         <div class="absolute inset-0 flex items-center justify-center">
             <div v-for="i in 15" :key="i" class="absolute rounded-full border border-gray-600 opacity-6"
                 :style="`width: ${100 - (i * 3)}%; height: ${100 - (i * 3)}%; border-width: ${0.5 + (i * 0.1)}px;`"></div>
