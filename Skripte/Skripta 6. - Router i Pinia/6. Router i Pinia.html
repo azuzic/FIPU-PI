@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>1. Vue Osnove.md</title>
+		<meta
+			http-equiv="Content-type"
+			content="text/html;charset=UTF-8" />
+		<link
+			rel="preconnect"
+			href="https://fonts.googleapis.com" />
+		<link
+			rel="preconnect"
+			href="https://fonts.gstatic.com"
+			crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+			rel="stylesheet" />
+		<style>
+			/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+			/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+			:not(code *) {
+				font-family: "Poppins", sans-serif;
+			}
+            html {
+                display: flex;
+                justify-content: center;
+            }
+			body {
+				font-family: var(
+					--vscode-markdown-font-family,
+					-apple-system,
+					BlinkMacSystemFont,
+					"Segoe WPC",
+					"Segoe UI",
+					"Ubuntu",
+					"Droid Sans",
+					sans-serif
+				);
+				font-size: var(--vscode-markdown-font-size, 14px);
+				line-height: var(--vscode-markdown-line-height, 22px);
+				word-wrap: break-word;
+				color: #3b3b3b;
+                position: absolute;
+                display: flex;
+                justify-content: center;
+                width: full;
+			}
+			.body {
+                max-width: 1012px;
+			}
+
+			#code-csp-warning {
+				position: fixed;
+				top: 0;
+				right: 0;
+				color: white;
+				margin: 16px;
+				text-align: center;
+				font-size: 12px;
+				font-family: sans-serif;
+				background-color: #444444;
+				cursor: pointer;
+				padding: 6px;
+				box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
+			}
+
+			#code-csp-warning:hover {
+				text-decoration: none;
+				background-color: #007acc;
+				box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+			}
+
+			body.scrollBeyondLastLine {
+				margin-bottom: calc(100vh - 22px);
+			}
+
+			body.showEditorSelection .code-line {
+				position: relative;
+			}
+
+			body.showEditorSelection .code-active-line:before,
+			body.showEditorSelection .code-line:hover:before {
+				content: "";
+				display: block;
+				position: absolute;
+				top: 0;
+				left: -12px;
+				height: 100%;
+			}
+
+			body.showEditorSelection li.code-active-line:before,
+			body.showEditorSelection li.code-line:hover:before {
+				left: -30px;
+			}
+
+			.vscode-light.showEditorSelection .code-active-line:before {
+				border-left: 3px solid rgba(0, 0, 0, 0.15);
+			}
+
+			.vscode-light.showEditorSelection .code-line:hover:before {
+				border-left: 3px solid rgba(0, 0, 0, 0.4);
+			}
+
+			.vscode-light.showEditorSelection
+				.code-line
+				.code-line:hover:before {
+				border-left: none;
+			}
+
+			.vscode-dark.showEditorSelection .code-active-line:before {
+				border-left: 3px solid rgba(255, 255, 255, 0.4);
+			}
+
+			.vscode-dark.showEditorSelection .code-line:hover:before {
+				border-left: 3px solid rgba(255, 255, 255, 0.6);
+			}
+
+			.vscode-dark.showEditorSelection
+				.code-line
+				.code-line:hover:before {
+				border-left: none;
+			}
+
+			.vscode-high-contrast.showEditorSelection .code-active-line:before {
+				border-left: 3px solid rgba(255, 160, 0, 0.7);
+			}
+
+			.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+				border-left: 3px solid rgba(255, 160, 0, 1);
+			}
+
+			.vscode-high-contrast.showEditorSelection
+				.code-line
+				.code-line:hover:before {
+				border-left: none;
+			}
+
+			img {
+				max-width: 100%;
+				max-height: 100%;
+				border-radius: 8px;
+				filter: drop-shadow(-0 2px 2px rgba(0, 0, 0, 0.07));
+			}
+
+			a {
+				text-decoration: none;
+			}
+
+			a:hover {
+				text-decoration: underline;
+			}
+
+			a:focus,
+			input:focus,
+			select:focus,
+			textarea:focus {
+				outline: 1px solid -webkit-focus-ring-color;
+				outline-offset: -1px;
+			}
+
+			hr {
+				border: 0;
+				height: 2px;
+				border-bottom: 2px solid;
+			}
+
+			h1 {
+				padding-bottom: 0.3em;
+				line-height: 1.2;
+				border-bottom-width: 1px;
+				border-bottom-style: solid;
+			}
+
+			h1,
+			h2,
+			h3 {
+				font-weight: normal;
+			}
+
+			table {
+				border-collapse: collapse;
+			}
+
+			table > thead > tr > th {
+				text-align: left;
+				border-bottom: 1px solid;
+			}
+
+			table > thead > tr > th,
+			table > thead > tr > td,
+			table > tbody > tr > th,
+			table > tbody > tr > td {
+				padding: 5px 10px;
+			}
+
+			table > tbody > tr + tr > td {
+				border-top: 1px solid;
+			}
+
+			td > code {
+                word-break: break-all;
+            }
+
+			blockquote {
+				margin: 0 7px 0 5px;
+				padding: 0 16px 0 10px;
+				border-left-width: 5px;
+				border-left-style: solid;
+			}
+
+			code {
+				font-family: Menlo, Monaco, Consolas, "Droid Sans Mono",
+					"Courier New", monospace, "Droid Sans Fallback";
+				font-size: 1em;
+				line-height: 1.357em;
+			}
+
+			body.wordWrap pre {
+				white-space: pre-wrap;
+			}
+
+			pre:not(.hljs),
+			pre.hljs code > div {
+				padding: 16px;
+				border-radius: 3px;
+				overflow: auto;
+			}
+
+			pre code {
+				color: var(--vscode-editor-foreground);
+				tab-size: 4;
+			}
+
+			/** Theming */
+
+			.vscode-light pre {
+				background-color: rgba(220, 220, 220, 0.4);
+			}
+
+			.vscode-dark pre {
+				background-color: rgba(10, 10, 10, 0.4);
+			}
+
+			.vscode-high-contrast pre {
+				background-color: rgb(0, 0, 0);
+			}
+
+			.vscode-high-contrast h1 {
+				border-color: rgb(0, 0, 0);
+			}
+
+			.vscode-light table > thead > tr > th {
+				border-color: rgba(0, 0, 0, 0.69);
+			}
+
+			.vscode-dark table > thead > tr > th {
+				border-color: rgba(255, 255, 255, 0.69);
+			}
+
+			.vscode-light h1,
+			.vscode-light hr,
+			.vscode-light table > tbody > tr + tr > td {
+				border-color: rgba(0, 0, 0, 0.18);
+			}
+
+			.vscode-dark h1,
+			.vscode-dark hr,
+			.vscode-dark table > tbody > tr + tr > td {
+				border-color: rgba(255, 255, 255, 0.18);
+			}
+		</style>
+
+		<style>
+			/*
+
+Visual Studio-like style based on original C# coloring by Jason Diamond <jason@diamond.name>
+
+*/
+			.hljs {
+				background: white;
+				color: black;
+			}
+
+			.hljs-comment,
+			.hljs-quote,
+			.hljs-variable {
+				color: #008000;
+			}
+
+			.hljs-keyword,
+			.hljs-selector-tag,
+			.hljs-built_in,
+			.hljs-name,
+			.hljs-tag {
+				color: #00f;
+			}
+
+			.hljs-string,
+			.hljs-title,
+			.hljs-section,
+			.hljs-attribute,
+			.hljs-literal,
+			.hljs-template-tag,
+			.hljs-template-variable,
+			.hljs-type,
+			.hljs-addition {
+				color: #a31515;
+			}
+
+			.hljs-deletion,
+			.hljs-selector-attr,
+			.hljs-selector-pseudo,
+			.hljs-meta {
+				color: #2b91af;
+			}
+
+			.hljs-doctag {
+				color: #808080;
+			}
+
+			.hljs-attr {
+				color: #f00;
+			}
+
+			.hljs-symbol,
+			.hljs-bullet,
+			.hljs-link {
+				color: #00b0e8;
+			}
+
+			.hljs-emphasis {
+				font-style: italic;
+			}
+
+			.hljs-strong {
+				font-weight: bold;
+			}
+		</style>
+
+		<style>
+			/*
+ * Markdown PDF CSS
+ */
+
+			body {
+				font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC",
+					"Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+			}
+
+			pre {
+				background-color: #f8f8f8;
+				border: 1px solid #cccccc;
+				border-radius: 3px;
+				overflow-x: auto;
+				white-space: pre-wrap;
+				overflow-wrap: break-word;
+			}
+
+			pre:not(.hljs) {
+				padding: 23px;
+				line-height: 19px;
+			}
+
+			blockquote {
+				background: rgba(127, 127, 127, 0.1);
+				border-color: rgba(0, 122, 204, 0.5);
+			}
+
+			.emoji {
+				height: 1.4em;
+			}
+
+			code {
+				font-size: 14px;
+				line-height: 19px;
+			}
+
+			/* for inline code */
+			:not(pre):not(.hljs) > code {
+				color: #3b3b3b; /* Change the old color so it seems less like an error */
+				font-size: inherit;
+				background: #e0e0e0;
+				border-radius: 4px;
+				padding: 1px 2px;
+				margin: -1px -2px;
+			}
+
+			/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+			.page {
+				page-break-after: always;
+			}
+		</style>
+
+		<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+	</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<div class="body">
+<h1 id="programsko-in%C5%BEenjerstvo">Programsko inženjerstvo</h1>
+<p><strong>Nositelj</strong>: doc. dr. sc. Nikola Tanković<br>
+<strong>Asistent</strong>: mag. inf. Alesandro Žužić</p>
+<p><strong>Ustanova</strong>: Sveučilište Jurja Dobrile u Puli, Fakultet informatike u Puli</p>
+<p style="float: clear; display: flex; gap: 8px; align-items: center;" class="font-brioni text-sm whitespace-nowrap">
+    <img src="../Logo/fipu_logo.svg" style="height: 96px; box-shadow: none !important;" class="mr-4"></img>
+    Fakultet informatike u Puli
+</p>
+<h1 id="6-vue-router-i-pinia">[6] Vue Router i Pinia</h1>
+<div style="display: flex; justify-content: space-between; text-align: justify; gap: 32px;">  
+    <p>  
+        <b>Vue Router</b> omogućuje jednostavno upravljanje navigacijom i rutama u Vue aplikacijama, dok <b>Pinia</b> pruža moderan i intuitivan način upravljanja globalnim stanjem (<i>state management</i>).
+    </p>  
+    <img src="../Icons/Vue_6.svg" style="width: 96px; height: 96px; margin: 0px;"></img>  
+</div>  
+<p><strong>Posljednje ažurirano:</strong> 3. svibnja 2025.</p>
+<!-- TOC -->
+<ul>
+<li><a href="#programsko-in%C5%BEenjerstvo">Programsko inženjerstvo</a></li>
+<li><a href="#6-vue-router-i-pinia">[6] Vue Router i Pinia</a>
+<ul>
+<li><a href="#vue-router">Vue Router</a>
+<ul>
+<li><a href="#instalacija">Instalacija</a></li>
+<li><a href="#router-struktura">Router struktura</a></li>
+<li><a href="#rute">Rute</a>
+<ul>
+<li><a href="#dinami%C4%8Dke-rute">Dinamičke rute</a></li>
+<li><a href="#ugnije%C5%BE%C4%91ene-rute">Ugniježđene rute</a></li>
+<li><a href="#preusmjeravanje-i-pseudonim">Preusmjeravanje i pseudonim</a></li>
+</ul>
+</li>
+<li><a href="#navigacija">Navigacija</a>
+<ul>
+<li><a href="#routerlink">RouterLink</a></li>
+<li><a href="#router-funkcije">Router funkcije</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+<div class="page"></div>
+<h2 id="vue-router">Vue Router</h2>
+<p>Do sad nismo koristili <em>url linkove</em> za navigaciju po stranici unutar intrnetskog preglednika. Za to postoji službena <em>Vue.js</em> paket <strong>Vue Router</strong> koja omogućuje dinamičko upravljanje navigacijom, ugniježđenim rutama, uz podršku za povijest, tranzicije i naprednu kontrolu putanje s modularnom konfiguracijom.</p>
+<p>Ajmo sada postaviti situaciju u kojoj bi nam <strong>Vue Router</strong> poslužio. Imamo jednu običnu stranicu za praćenje kolekcije vinyla. Stranica ima tri komponente koje se ponašaju kao stranice: <code>LogIn.vue</code>, <code>SignUp.vue</code> i <code>Collection.vue</code>.</p>
+<p><img src="Slike/vinylist.png" alt="alt text"></p>
+<div style="width: 100%; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px;">
+    <img src="Slike/vinylist_login.png" height="100%" style="object-fit: cover;"/>
+    <img src="Slike/vinylist_signup.png" height="100%" style="object-fit: cover;"/>
+</div>
+<br/>
+<p>Unutar <code>App.vue</code> i svih tih komponenti koristimo composable funkciju <code>useUser</code> koja se ponaša kao globalni spremnik varijabli i funkcija za autentifikaciju i proslijeđivanje varijabli.</p>
+<pre class="hljs"><code><div><span class="hljs-comment">//useUser.js</span>
+<span class="hljs-keyword">import</span> { ref, computed } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>;
+
+<span class="hljs-keyword">const</span> user = ref({ <span class="hljs-attr">name</span>: <span class="hljs-string">'Markom'</span>, <span class="hljs-attr">email</span>: <span class="hljs-string">'mmarkic@gmail.com'</span> });
+<span class="hljs-keyword">const</span> registration = ref(<span class="hljs-literal">false</span>);
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">useUser</span>(<span class="hljs-params"></span>) </span>{
+    ...
+}
+</div></code></pre>
+<pre class="hljs"><code><div>//app.vue
+<span class="hljs-tag">&lt;<span class="hljs-name">Transition</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Collection</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">"user"</span>/&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">LogIn</span> <span class="hljs-attr">v-else-if</span>=<span class="hljs-string">"!registration"</span>/&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">SignUp</span> <span class="hljs-attr">v-else</span>/&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">Transition</span>&gt;</span>
+</div></code></pre>
+<p>Kombinacijom ovih metoda vršimo prijelaze između određenih prikaza koristeći <code>v-if</code> direktivu. Međutim, možemo uočiti nekoliko problema s ovim pristupom. Uvijek se nalazimo na istoj stranici, odnosno <em>URL</em> stranice se ne mijenja. Ako želimo dodati više stranica, logika za provjeru trenutne stranice postaje složenija. Također, prilikom svakog osvježavanja stranice sve varijable se resetiraju – to se može riješiti spremanjem varijabli u lokalnu pohranu (<em>local storage</em>) i ručnim učitavanjem podataka pri pokretanju. Međutim, sve ove probleme <strong>Vue Router</strong> rješava umjesto nas.</p>
+<h3 id="instalacija">Instalacija</h3>
+<p>Da bi uopće mogli koristiti paket <strong>Vue Router</strong> moramo ga instalirati.</p>
+<ol>
+<li><strong>Slučaj</strong>: ako već imamo postojeći projekt onda moramo <strong>intalirati</strong> paket:</li>
+</ol>
+<pre class="hljs"><code><div>    npm install vue-router@4
+</div></code></pre>
+<p>Prvo što treba napraviti nakon instalacije je napraviti <strong>dvije nove mape</strong> u <code>src</code> mapi:</p>
+<ul>
+<li><code>router</code> mapa - sadrži <code>index.js</code> datoteku u kojoj se nalazi logika <strong>router</strong>-a</li>
+<li><code>views</code> mapa - sadrži <code>.vue</code> datoteke koje se ponašaju kao zasebne stranice, praktički identična <code>components</code> mapi</li>
+</ul>
+<p>Napravit ćemo dvije obične komponente u <code>views</code> mapi:</p>
+<ul>
+<li><code>AboutView.vue</code></li>
+<li><code>HomeView.vue</code></li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-comment">&lt;!--AboutView.vue--&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span> This is an about page  <span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+
+<span class="hljs-comment">&lt;!--HomeView.vue--&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span> Welcome <span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<p><img src="Slike/router_folder_structure.png" alt="alt text"></p>
+<p>Zatim ćemo namjestiti logiku <strong>router</strong>-a u <code>index.js</code> datoteci unutar <code>router</code> mape:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> { createRouter, createWebHistory } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue-router'</span> <span class="hljs-comment">// učitavanje potrebnih funkcija</span>
+<span class="hljs-keyword">import</span> HomeView <span class="hljs-keyword">from</span> <span class="hljs-string">'../views/HomeView.vue'</span> <span class="hljs-comment">// učitavanje komponente</span>
+
+<span class="hljs-comment">// izrada routera</span>
+<span class="hljs-keyword">const</span> router = createRouter({
+  <span class="hljs-attr">history</span>: createWebHistory(<span class="hljs-keyword">import</span>.meta.env.BASE_URL), <span class="hljs-comment">// pamćenje navigacije/promjene stranica</span>
+  <span class="hljs-attr">routes</span>: [
+    {
+      <span class="hljs-attr">path</span>: <span class="hljs-string">'/'</span>, <span class="hljs-comment">// url link stranice</span>
+      <span class="hljs-attr">name</span>: <span class="hljs-string">'home'</span>, <span class="hljs-comment">// naziv stranice</span>
+      <span class="hljs-attr">component</span>: HomeView,  <span class="hljs-comment">// komponenta stranice</span>
+    },
+    {
+      <span class="hljs-attr">path</span>: <span class="hljs-string">'/about'</span>,
+      <span class="hljs-attr">name</span>: <span class="hljs-string">'about'</span>,
+      <span class="hljs-attr">component</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">'../views/AboutView.vue'</span>), <span class="hljs-comment">// 2. način učitavanje komponente</span>
+    },
+  ],
+})
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> router <span class="hljs-comment">// izvoz routera</span>
+</div></code></pre>
+<p>Nakon toga možemo <strong>registrirati router</strong> da radi unutar aplikacije, tako da ga učitamo u <code>main.js</code> datoteci:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> <span class="hljs-string">'./assets/main.css'</span>
+
+<span class="hljs-keyword">import</span> { createApp } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
+<span class="hljs-keyword">import</span> App <span class="hljs-keyword">from</span> <span class="hljs-string">'./App.vue'</span>
+<span class="hljs-keyword">import</span> router <span class="hljs-keyword">from</span> <span class="hljs-string">'./router'</span> <span class="hljs-comment">// učitavanje router paketa iz router mape</span>
+
+<span class="hljs-keyword">const</span> app = createApp(App)
+
+app.use(router) <span class="hljs-comment">// korištenje router paketa</span>
+
+app.mount(<span class="hljs-string">'#app'</span>)
+</div></code></pre>
+<p>Tek onda možemo omogućiti prikaz <strong>router</strong> stranica u <code>App.vue</code> datoteci:</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+    <span class="hljs-comment">// Učitavanje router komponenti iz router paketa</span>
+    <span class="hljs-keyword">import</span> { RouterLink, RouterView } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue-router'</span>
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">nav</span>&gt;</span>
+        <span class="hljs-comment">&lt;!-- RouterLink komponente se ponašaju kao &lt;a&gt;&lt;/a&gt; elementi--&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">RouterLink</span> <span class="hljs-attr">to</span>=<span class="hljs-string">"/"</span>&gt;</span>Home<span class="hljs-tag">&lt;/<span class="hljs-name">RouterLink</span>&gt;</span> 
+        <span class="hljs-tag">&lt;<span class="hljs-name">RouterLink</span> <span class="hljs-attr">to</span>=<span class="hljs-string">"/about"</span>&gt;</span>About<span class="hljs-tag">&lt;/<span class="hljs-name">RouterLink</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">nav</span>&gt;</span>
+
+    <span class="hljs-comment">&lt;!-- RouterView komponenta omogućuje prikaz stranica --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">RouterView</span> /&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">scoped</span>&gt;</span><span class="css">
+<span class="hljs-selector-tag">a</span><span class="hljs-selector-class">.router-link-exact-active</span> {
+  <span class="hljs-attribute">color</span>: blue;
+}
+<span class="hljs-selector-tag">a</span> {
+  <span class="hljs-attribute">color</span>: black;
+  <span class="hljs-attribute">display</span>: inline-block;
+  <span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span> <span class="hljs-number">1rem</span>;
+  <span class="hljs-attribute">border-left</span>: <span class="hljs-number">1px</span> solid black;
+}
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+</div></code></pre>
+<div style="width: 100%; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 64px;">
+    <img src="Slike/router_home.png" height="100%" style="object-fit: cover;"/>
+    <img src="Slike/router_about.png" height="100%" style="object-fit: cover;"/>
+</div>
+<br/>
+<ol start="2">
+<li><strong>Slučaj</strong>: ako radimo novi projekt onda možemo <strong>uključiti</strong> paket pri instalaciji:</li>
+</ol>
+<pre class="hljs"><code><div>    npm create vue@latest
+</div></code></pre>
+<p><img src="Slike/router_install.png" alt="alt text"></p>
+<ul>
+<li>U tom slučaju nam je sve namješteno što smo radili u prvom slučaju.</li>
+</ul>
+<h3 id="router-struktura">Router struktura</h3>
+<p>Kada nammjestimo početnu router logiku, ona nam može izgledati nešto ovako:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> { createRouter, createWebHistory } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue-router'</span> <span class="hljs-comment">// učitavanje potrebnih funkcija</span>
+<span class="hljs-keyword">import</span> HomeView <span class="hljs-keyword">from</span> <span class="hljs-string">'../views/HomeView.vue'</span> <span class="hljs-comment">// učitavanje komponente</span>
+
+<span class="hljs-comment">// izrada routera</span>
+<span class="hljs-keyword">const</span> router = createRouter({
+  <span class="hljs-attr">history</span>: createWebHistory(<span class="hljs-keyword">import</span>.meta.env.BASE_URL), <span class="hljs-comment">// pamćenje navigacije/promjene stranica</span>
+  <span class="hljs-attr">routes</span>: [
+    {
+      <span class="hljs-attr">path</span>: <span class="hljs-string">'/'</span>, <span class="hljs-comment">// url link stranice</span>
+      <span class="hljs-attr">name</span>: <span class="hljs-string">'home'</span>, <span class="hljs-comment">// naziv stranice</span>
+      <span class="hljs-attr">component</span>: HomeView,  <span class="hljs-comment">// komponenta stranice</span>
+    },
+    {
+      <span class="hljs-attr">path</span>: <span class="hljs-string">'/about'</span>,
+      <span class="hljs-attr">name</span>: <span class="hljs-string">'about'</span>,
+      <span class="hljs-attr">component</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">'../views/AboutView.vue'</span>), <span class="hljs-comment">// 2. način učitavanje komponente</span>
+    },
+  ],
+})
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> router <span class="hljs-comment">// izvoz routera</span>
+</div></code></pre>
+<p>Možemo vidjeti da učitavamo dvije funkcije iz <em>router paketa</em>:</p>
+<ul>
+<li><code>createRouter()</code> - služi za izradu routera prema danim opcijama</li>
+<li><code>createWebHistory()</code> - kreira HTML5 povijest za navigaciju i prikaz URL-a</li>
+</ul>
+<p>Funkcija <code>createRouter()</code> prima objekt kao argument koji sadrži opcije za izradu router-a. Nama su zasad bitne samo dvije opcije:</p>
+<ul>
+<li><strong>history</strong> - definiramo vrstu povijesti koju koristimo (najčešće <code>createWebHistory()</code> iako ima i drugih)</li>
+<li><strong>routes</strong> - definiramo <strong>rute</strong> aplikacije</li>
+</ul>
+<p>Kada koristimo <code>createWebHistory()</code>, URL će izgledati &quot;normalno&quot;, npr. <code>https://example.com/user/id</code>.</p>
+<p>Međutim, ako korisnici direktno u pregledniku otvore <code>https://example.com/apple</code>, dobit će <em>404 grešku</em> – jer server ne prepoznaje tu rutu. Da bismo riješili problem, dovoljno je dodati jednostavnu <em>catch-all</em> fallback rutu, više o tome kasnije.</p>
+<p>I na kraju imamo <code>export default router</code> čime zapravo izvozimo router objekt tako da ga možemo učitati i koristiti u <code>main.js</code> datoteci.</p>
+<h3 id="rute">Rute</h3>
+<p>U prošlom poglavlju smo spomenuli da <code>createRouter()</code> stvara router koristeći objekt s danim opcijama gdje je jedna među njima <strong>routes</strong>.</p>
+<p><strong>Routes</strong> ja zapravo lista <strong>ruta</strong> kojima korisnici mogu pristupiti u aplikaciji. Svaka <strong>ruta</strong> je isto zapravo objekt koji sadrži opcije rute, među kojima su nam bitne tri:</p>
+<ul>
+<li><strong>path</strong> - predstavlja <em>url link</em> rute (npr. <code>/</code>, <code>/about</code>, <code>/users/:username</code>, ...)</li>
+<li><strong>name</strong> - predstavlja naziv rute (npr. <em>home</em>, <em>about</em>, <em>user</em>, ...)</li>
+<li><strong>component</strong> - predstavlja komponentu koja će se učitati kad se nalazimo na toj ruti</li>
+</ul>
+<blockquote>
+<p>Komponente ruta se nalaze u <strong>views mapi</strong></p>
+</blockquote>
+<h4 id="dinami%C4%8Dke-rute">Dinamičke rute</h4>
+<p>U većini slučajeva imat ćemo određene rute koje se ponavljaju više puta ili služe za prikaz određenih promjenjivih podataka. Na primjer ako imamo rutu <code>/users/marko</code> i želimo prikazati korisnika Anu onda bi trebali imati i rutu <code>/users/ana</code>. Da ne stvaramo rutu za svakog korisnika zasebno. U tom slučaju ćemo izraditi jednu <strong>dinamičku rutu</strong> koja može primiti korisničko ime kao <strong>parametar</strong>.</p>
+<p><em>Tako da umjesto da imamo:</em></p>
+<pre class="hljs"><code><div>    {
+      <span class="hljs-attr">path</span>: <span class="hljs-string">'/users/marko'</span>,
+      <span class="hljs-attr">component</span>: UserView,
+    },
+    {
+      <span class="hljs-attr">path</span>: <span class="hljs-string">'/users/ana'</span>,
+      <span class="hljs-attr">component</span>: UserView,
+    },
+</div></code></pre>
+<p><em>Napravit ćemo:</em></p>
+<pre class="hljs"><code><div>    {
+      <span class="hljs-attr">path</span>: <span class="hljs-string">'/users/:username'</span>,
+      <span class="hljs-attr">component</span>: UserView,
+    },
+</div></code></pre>
+<p>Jedino što smo promijenili je da smo dodali <code>:username</code> umjesto pojedinačnog korisničkog imena.</p>
+<pre class="hljs"><code><div><span class="hljs-comment">&lt;!--UserView.vue--&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span> Korisnik <span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<p>Sada ako odemo na stranicu korisnika, npr. <code>/users/ivan</code> radit će kako spada.</p>
+<p><img src="Slike/route.png" alt="alt text"></p>
+<p>Međutim sada kada imamo taj <strong>parametar</strong> možemo mu i pristupiti puemt <code>$route.params.username</code> sintakse.</p>
+<pre class="hljs"><code><div><span class="hljs-comment">&lt;!--UserView.vue--&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span> Korisnik: {{ $route.params.username }} <span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<p><img src="Slike/route_user.png" alt="alt text"></p>
+<p>Drugi način na koji možemo pristupiti <strong>parametru</strong> username je da koristimo <code>defineProps()</code> funkciju:</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="actionscript">
+  defineProps([<span class="hljs-string">'username'</span>])
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span> Korisnik: {{ username }} <span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<p>Da bi to radilo trebamo u rutu nadodati opciju <strong><code>props: true</code></strong>:</p>
+<pre class="hljs"><code><div>  {
+    <span class="hljs-attr">path</span>: <span class="hljs-string">'/users/:username'</span>,
+    <span class="hljs-attr">component</span>: UserView,
+    <span class="hljs-attr">props</span>: <span class="hljs-literal">true</span>
+  },
+</div></code></pre>
+<p>Kod izrade <strong>dinamičkih ruta</strong> može se koristiti regex za definiranje ugniježđenih parametara ili definiranje svojstva parametra. Ako se prisjetimo problema <code>createWebHistory()</code> funckije, tu znamo da kod nepostojeći ruta dobivamo <em>404 grešku</em> (<em>npr. /apple</em>).</p>
+<p><img src="Slike/404.png" alt="alt text"></p>
+<p>Da korisnici ne dobivaju tu grešku, poželjno je da ih usmjerimo na stranicu koja će ih na to uputiti. Zato ćemo kreirati sljedeću dinamičku rutu:</p>
+<pre class="hljs"><code><div>{ 
+  <span class="hljs-attr">path</span>: <span class="hljs-string">'/:pathMatch(.*)*'</span>, 
+  <span class="hljs-attr">name</span>: <span class="hljs-string">'NotFound'</span>, 
+  <span class="hljs-attr">component</span>: NotFound
+},
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment">&lt;!--NotFound.vue--&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span> Stranica {{ $route.path }} ne postoji! <span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<p><img src="Slike/apple.png" alt="alt text"></p>
+<h4 id="ugnije%C5%BE%C4%91ene-rute">Ugniježđene rute</h4>
+<p>Kada radimo rute doći ćemo do situacije gdje nekoliko ruta imaju dio URL-a isti.</p>
+<pre class="hljs"><code><div>    {
+      <span class="hljs-attr">path</span>: <span class="hljs-string">'/users/:username'</span>,
+      <span class="hljs-attr">component</span>: UserView,
+    },
+    {
+      <span class="hljs-attr">path</span>: <span class="hljs-string">'/users/:username/posts'</span>,
+      <span class="hljs-attr">component</span>: UserPostsView,
+    },
+    {
+      <span class="hljs-attr">path</span>: <span class="hljs-string">'/users/:username/avatar'</span>,
+      <span class="hljs-attr">component</span>: UserAvatarView,
+    },
+</div></code></pre>
+<p>Da ne ponavljamo cijelo vrijeme <code>/users/:username</code>, možemo ugnijezditi donje dvije rute kao djeca pod prvu rutu:</p>
+<pre class="hljs"><code><div>    {
+      <span class="hljs-attr">path</span>: <span class="hljs-string">'/users/:username'</span>,
+      <span class="hljs-attr">component</span>: UserView,
+      <span class="hljs-attr">children</span>: [
+        {
+          <span class="hljs-attr">path</span>: <span class="hljs-string">'posts'</span>,
+          <span class="hljs-attr">component</span>: UserPostsView,
+        },
+        {
+          <span class="hljs-attr">path</span>: <span class="hljs-string">'avatar'</span>,
+          <span class="hljs-attr">component</span>: UserAvatarView,
+        },
+      ]
+    },
+</div></code></pre>
+<p>Onda unutar rute user isto imamo <code>&lt;RouterView/&gt;</code>:</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="actionscript">
+  defineProps([<span class="hljs-string">'username'</span>])
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">nav</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">RouterLink</span> <span class="hljs-attr">:to</span>=<span class="hljs-string">"`/users/${username}/posts`"</span>&gt;</span>User posts<span class="hljs-tag">&lt;/<span class="hljs-name">RouterLink</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">RouterLink</span> <span class="hljs-attr">:to</span>=<span class="hljs-string">"`/users/${username}/avatar`"</span>&gt;</span>User avatar<span class="hljs-tag">&lt;/<span class="hljs-name">RouterLink</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">nav</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span> Korisnik: {{ username }} <span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">RouterView</span> /&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<div style="width: 100%; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 64px;">
+    <img src="Slike/user_nest.png" style="object-fit: contain;"/>
+    <img src="Slike/user_nest_posts.png" style="object-fit: contain;"/>
+    <img src="Slike/user_nest_avatar.png" style="object-fit: contain;"/>
+</div>
+<br>
+<h4 id="preusmjeravanje-i-pseudonim">Preusmjeravanje i pseudonim</h4>
+<p>U određenim situacijama nam je poželjno da dva različita URL-a vode na istu stranicu. U tom slučaju onda stvaramo dvije rute:</p>
+<pre class="hljs"><code><div>  {
+    <span class="hljs-attr">path</span>: <span class="hljs-string">'/'</span>,
+    <span class="hljs-attr">name</span>: <span class="hljs-string">'home'</span>
+    <span class="hljs-attr">component</span>: HomeView,
+  },
+  {
+    <span class="hljs-attr">path</span>: <span class="hljs-string">'/home'</span>,
+    <span class="hljs-attr">name</span>: <span class="hljs-string">'home'</span>,
+    <span class="hljs-attr">component</span>: HomeView,
+  },
+</div></code></pre>
+<p>U ovom slučaju oba URL-a prikazuju istu stranicu, no što ako želimo da samo jedan URL predstavlja stranicu dok drugi samo preusmjerava na prvi. U tom slučaju koristimo <strong>redirect</strong> (<em>preusmjeravanje</em>) s jedne rute na drugu:</p>
+<pre class="hljs"><code><div>  {
+    <span class="hljs-attr">path</span>: <span class="hljs-string">'/'</span>,
+    <span class="hljs-attr">name</span>: <span class="hljs-string">'home'</span>,
+    <span class="hljs-attr">component</span>: HomeView,
+  },
+  {
+    <span class="hljs-attr">path</span>: <span class="hljs-string">'/home'</span>,
+    <span class="hljs-attr">redirect</span>: <span class="hljs-string">'/'</span>
+  },
+</div></code></pre>
+<ul>
+<li>Sada ako odemo na rutu <code>/home</code> preusmjerit će nas na rutu <code>/</code> što će se i prikazati i u URL-u.</li>
+</ul>
+<p>Ako nam nije bitan URL onda može koristiti <strong>alias</strong> (<em>pseudonim</em>) čime dodjeljujemo jednoj stranici više URL-ova odjednom:</p>
+<pre class="hljs"><code><div>  {
+    <span class="hljs-attr">path</span>: <span class="hljs-string">'/'</span>,
+    <span class="hljs-attr">name</span>: <span class="hljs-string">'home'</span>,
+    <span class="hljs-attr">component</span>: HomeView,
+    <span class="hljs-attr">alias</span>: <span class="hljs-string">'/home'</span>
+  },
+</div></code></pre>
+<ul>
+<li>Sada ako odemo na rutu <code>/home</code> neće nas preusmjerit na rutu <code>/</code> ali će router znati da je to trenutno aktivna ruta.</li>
+</ul>
+<h3 id="navigacija">Navigacija</h3>
+<p>Možemo na tri načina navigirati po stranici, koristeći <code>&lt;RouterLink&gt;</code> <strong>ugrađeni element</strong>, koristeći <strong>router funkcije</strong> <code>push()</code>, <code>replace()</code> i <code>go()</code>, te ručnim tipkanjem URL-a stranice.</p>
+<h4 id="routerlink">RouterLink</h4>
+<p>Vue router paket dolazi sa dva ugrađena elementa: <code>&lt;RouterLink&gt;</code> i <code>&lt;RouterView/&gt;</code>. Dok nam <strong>RouterView</strong> služi za prikaz samih ruta, <strong>RouterLink</strong> se ponaša kao običan <code>&lt;a/&gt;</code> element gdje umjesto atribut <em>href</em> koristi atribut <strong>to</strong>.</p>
+<pre class="hljs"><code><div>  <span class="hljs-tag">&lt;<span class="hljs-name">RouterLink</span> <span class="hljs-attr">to</span>=<span class="hljs-string">"/users/ivan"</span>&gt;</span>User<span class="hljs-tag">&lt;/<span class="hljs-name">RouterLink</span>&gt;</span>
+</div></code></pre>
+<p>S obzirom da koristimo Vue, znači da može atribut to vezati ko i sve druge atribute <code>v-on</code> direktivom <code>:</code> skraćeno.</p>
+<pre class="hljs"><code><div>  <span class="hljs-tag">&lt;<span class="hljs-name">RouterLink</span> <span class="hljs-attr">:to</span>=<span class="hljs-string">"`/users/${username}`"</span>&gt;</span>User<span class="hljs-tag">&lt;/<span class="hljs-name">RouterLink</span>&gt;</span>
+  <span class="hljs-comment">&lt;!--ILI--&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">RouterLink</span> <span class="hljs-attr">:to</span>=<span class="hljs-string">"{ name: 'user', params: { username: 'ivan' } }"</span>&gt;</span>User<span class="hljs-tag">&lt;/<span class="hljs-name">RouterLink</span>&gt;</span>
+</div></code></pre>
+<p><strong>Router</strong> cijelo vrijeme prati na kojoj se ruti nalazimo, što mu omogućuje da zna koji je trenutni aktivni link to jest koji <code>&lt;RouterLink&gt;</code> element je trenutno aktivan.</p>
+<p><code>RouterLink</code> se smatra aktivnim ako:</p>
+<ul>
+<li>Odgovara istom zapisu rute (tj. konfiguriranoj ruti) kao i trenutna lokacija.</li>
+<li>Ima iste vrijednosti parametara kao i trenutna lokacija.</li>
+</ul>
+<p><code>&lt;RouterLink&gt;</code> element zato ima dva argumenta za uređivanje izgleda osim <em>class</em> i <em>style</em>, a to su <strong>linkActiveClass</strong> i <strong>linkExactActiveClass</strong>.</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">RouterLink</span>
+  <span class="hljs-attr">activeClass</span>=<span class="hljs-string">"border-indigo-500"</span>
+  <span class="hljs-attr">exactActiveClass</span>=<span class="hljs-string">"border-indigo-700"</span>
+  <span class="hljs-attr">...</span>
+&gt;</span>
+</div></code></pre>
+<p>Također možemo koristiti i <code>&lt;style&gt;</code> s predefiniranim klasama za uređivanje aktivnih linkova:</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="css">
+<span class="hljs-selector-tag">a</span><span class="hljs-selector-class">.router-link-active</span> {
+  <span class="hljs-attribute">color</span>: blue;
+}
+<span class="hljs-selector-tag">a</span><span class="hljs-selector-class">.router-link-exact-active</span> {
+  <span class="hljs-attribute">color</span>: red;
+}
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+</div></code></pre>
+<p>Ako imamo dva linka:</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">RouterLink</span> <span class="hljs-attr">to</span>=<span class="hljs-string">"/users/ivan"</span>&gt;</span>
+  User
+<span class="hljs-tag">&lt;/<span class="hljs-name">RouterLink</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">RouterLink</span> <span class="hljs-attr">to</span>=<span class="hljs-string">"/users/ivan/avatar"</span>&gt;</span>
+  Role
+<span class="hljs-tag">&lt;/<span class="hljs-name">RouterLink</span>&gt;</span>
+</div></code></pre>
+<p>Ako je trenutna lokacija puta <code>/users/ivan/avatar</code>, tada se obje rute smatraju aktivnim, pa im se primijenjuje klasa <code>router-link-active</code>. No, samo je druga ruta točno aktivna (<em>exact</em>), pa bo joj se primijenila klasa <code>router-link-exact-active</code>.</p>
+<p><img src="Slike/routerlink.png" alt="alt text"></p>
+<h4 id="router-funkcije">Router funkcije</h4>
+<p>Kada želimo mjenjati rute putem funckija iz drugih djelova aplikacije bez korištenja elementa <code>RouterLink</code> u tom slučaju koristimo <strong>router funkcije</strong>.</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> { useRouter } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue-router'</span>
+
+<span class="hljs-keyword">const</span> router = useRouter()
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">goToUserIvan</span>(<span class="hljs-params"></span>) </span>{
+  router.push({ <span class="hljs-attr">path</span>: <span class="hljs-string">'/users/ivan'</span> })
+}
+</div></code></pre>
+<p><em>Primjeri korištenja:</em></p>
+<pre class="hljs"><code><div><span class="hljs-comment">// koristeći string</span>
+router.push(<span class="hljs-string">'/users/ivan'</span>)
+
+<span class="hljs-comment">// koristeći objekt s putanjom</span>
+router.push({ <span class="hljs-attr">path</span>: <span class="hljs-string">'/users/ivan'</span> })
+
+<span class="hljs-comment">// koristeći objekt s nazivom i parametrom</span>
+router.push({ <span class="hljs-attr">name</span>: <span class="hljs-string">'user'</span>, <span class="hljs-attr">params</span>: { <span class="hljs-attr">username</span>: <span class="hljs-string">'ivan'</span> } })
+</div></code></pre>
+<p>Kada koristimo <code>push()</code> funkciju onda se pamti <strong>povijest navigacije</strong> što omogućuje korisniku da ide naprijed/nazad. U slučaju da ne želimo pamtiti navigaciju u određenim slučajevima, onda koristimo <code>replace()</code> funkciju.</p>
+<pre class="hljs"><code><div>router.push({ <span class="hljs-attr">path</span>: <span class="hljs-string">'/home'</span>, <span class="hljs-attr">replace</span>: <span class="hljs-literal">true</span> })
+<span class="hljs-comment">// isto što i</span>
+router.replace({ <span class="hljs-attr">path</span>: <span class="hljs-string">'/home'</span> })
+</div></code></pre>
+<p>Ako želimo implementirati vlastitu navigaciju za ići naprijed i nazad po sučelju onda koristimo funkcije <code>forward()</code>, <code>back()</code> i <code>go()</code> koja za argument prima broj:</p>
+<pre class="hljs"><code><div><span class="hljs-comment">// idi naprijed za jedan zapis, isto kao router.forward()</span>
+router.go(<span class="hljs-number">1</span>)
+
+<span class="hljs-comment">// idi natrag za jedan zapis, isto kao router.back()</span>
+router.go(<span class="hljs-number">-1</span>)
+
+<span class="hljs-comment">// idi naprijed za tri zapisa</span>
+router.go(<span class="hljs-number">3</span>)
+
+<span class="hljs-comment">// ne prikazuje grešku ako nema toliko zapisa</span>
+router.go(<span class="hljs-number">-100</span>)
+router.go(<span class="hljs-number">100</span>)
+</div></code></pre>
+<h4 id="za%C5%A1tita-navigacije">Zaštita navigacije</h4>
+<p>Vue Router pruža funkcije koje se prvenstveno koriste za zaštitu navigacije, bilo preusmjeravanjem ili otkazivanjem. Korisno u slučaju kada želimo prikazati određene stranice samo autentificiranim korisnicima ili administratorima.</p>
+<p>U tom slučaju možemo definirati globalnu zaštitu koristeći <code>beforeEach()</code> funkciju:</p>
+<pre class="hljs"><code><div>router.beforeEach(<span class="hljs-keyword">async</span> (to, <span class="hljs-keyword">from</span>) =&gt; {
+  <span class="hljs-keyword">if</span> (
+    <span class="hljs-comment">// provjeri je li korisnik autentificiran</span>
+    !isAuthenticated &amp;&amp;
+    <span class="hljs-comment">// ❗️ Izbjegni beskonačno preusmjeravanje</span>
+    to.name !== <span class="hljs-string">'Login'</span>
+  ) {
+    <span class="hljs-comment">// preusmjeri korisnika na stranicu za prijavu</span>
+    <span class="hljs-keyword">return</span> { <span class="hljs-attr">name</span>: <span class="hljs-string">'Login'</span> }
+  }
+})
+</div></code></pre>
+<p>Ako funkcija ništa ne vrati, onda ne vrši redirekciju i nastavlja prema planiranom putu, u suprotnom ako vratimo određen naziv ili rutu, vrši se redirekcija ka novoj ruti.</p>
+<blockquote>
+<p>Vrlo je bitno paziti da kod zaštite navigacije ne izazovemo beskonačno preusmjeravanje rute u samu sebe ili cikličko preusmjeravanje!</p>
+</blockquote>
+<p>Naravno, evo ispravljenog i jasnije objašnjenog opisa argumenata funkcije <code>beforeEach</code>:</p>
+<p>Funkcija <code>beforeEach()</code> prima dva argumenta:</p>
+<ul>
+<li><strong>to</strong> – objekt koji predstavlja rutu na koju aplikacija pokušava navigirati (<em>odredišna ruta</em>)</li>
+<li><strong>from</strong> – objekt koji predstavlja trenutnu rutu iz koje korisnik dolazi (<em>polazna ruta</em>)</li>
+</ul>
+<h3 id="tranzicije">Tranzicije</h3>
+<p>Za animaciju komponenti prilikom navigacije između ruta koristi se <code>&lt;RouterView&gt;</code> s <code>v-slot</code>. Unutar njega se komponenta stavlja unutar <code>&lt;transition&gt;</code> elementa:</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">RouterView</span> <span class="hljs-attr">v-slot</span>=<span class="hljs-string">"{ Component }"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">transition</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">component</span> <span class="hljs-attr">:is</span>=<span class="hljs-string">"Component"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">transition</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">RouterView</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="css">
+<span class="hljs-selector-class">.v-leave-active</span> {
+  <span class="hljs-attribute">transition</span>: opacity <span class="hljs-number">0.5s</span> ease;
+  <span class="hljs-attribute">position</span>: absolute;
+}
+<span class="hljs-selector-class">.v-enter-active</span> {
+  <span class="hljs-attribute">transition</span>: opacity <span class="hljs-number">0.5s</span> ease;
+}
+<span class="hljs-selector-class">.v-enter-from</span>, <span class="hljs-selector-class">.v-leave-to</span> {
+  <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>;
+}
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+</div></code></pre>
+<h2 id="samostalni-zadatak-za-vje%C5%BEbu-5">Samostalni zadatak za vježbu 5</h2>
+<p>U ovom zadatku ćete izraditi Vue router na temelju prošlog <em>samostalnog zadatka za vježbu 4.</em> iz mape <code>Primjeri/primjer_vue_zadatak</code> ili preuzmite zip datoteku projekta s Merlina.</p>
+<p>Nadogradite aplikaciju tako da koristi Vue router za navigaciju između stranica.</p>
+<ul>
+<li><em>Stranice</em>
+<ul>
+<li><code>PagePočetna.vue</code> – Početna stranica
+<ul>
+<li>URL: <code>/</code> i <code>/home</code></li>
+<li>Name: <code>pocetna</code></li>
+</ul>
+</li>
+<li><code>PageSlika.vue</code> – Stranica o izradi slike
+<ul>
+<li>URL: <code>/slika</code></li>
+<li>Name: <code>slika</code></li>
+</ul>
+</li>
+<li><code>PageGrafika.vue</code> – Stranica o izradi grafike
+<ul>
+<li>URL: <code>/grafika</code></li>
+<li>Name: <code>grafika</code></li>
+</ul>
+</li>
+<li><code>NotFound.vue</code> - Stranica ako url ne postoji, <strong>potrebno izraditi i dodati stranicu</strong></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Dodajte <em>blur in/out</em> tranzicije između stranica.</p>
+</blockquote>
+<p><em>Zadatak je vrlo fleksibilan te postoje brojni načini na koji se može riješiti.</em></p>
+<div class="page"></div>
+<h2 id="pinia">Pinia</h2>
+<img src="Slike/pinia.png" style="float: right; margin-left: 32px;" height="256"/>
+<p><strong>Pinia</strong> je paket za <em>upravljanje stanjem</em> (<strong>store</strong>) u Vue aplikacijama koji omogućuje dijeljenje stanja između komponenti i stranica. Međutim ovo nam zvuči vrlo poznato, zato što smo u prošloj skripti prošli <strong>composables</strong> što nam isto omogućuje dijeljenje stanja.</p>
+<p><em>Pa čemu onda Pinia ako već postoji ugrađena funkcionalonst Composables koja radi istu stvar?</em></p>
+<p>Jedina velika razlika je da se Pinia ukomponira u <strong>Vue Devtools</strong> što omogućuje u uvid stanje aplikacije to jest možemo promatrati i mjenjati stanje aplikacije.</p>
+<p>U slučaju da želimo spremati stanje aplikacije u <strong>local storage</strong> umjesto da ručno implementiramo spremanje i dohvaćanje, postoji gotov paket <code>pinia-plugin-persistedstate</code> koji nam omogućuje efikasno i jednostavno spremanje stanja.</p>
+<p><strong>Pinia</strong> i <strong>Composables</strong> se tretiraju kao ekvivalente alati koji se mogu koristiti naizmjenično. No ta dva alata rješavaju <em>različite vrste problema</em> i odgovaraju <em>različitim slučajevima korištenja</em>.</p>
+<hr>
+<p><strong>Composables</strong> – koristimo ih kada želimo pohraniti „jednokratne” podatke koje je razumno prosljeđivati unutar jednog prikaza (<em>view</em>) ili modula. Dobar primjer bi bila stranica s detaljima proizvoda – dohvaćamo podatke u <code>onMounted()</code> funkciji, zatim ih koristimo za prikaz informacija o proizvodu. Možemo ih razumno proslijediti komponentama unutar prikaza (npr. odjeljak s opisom, galerija slika itd.), ali trebamo izbjegavati prosljeđivanje <em>unucima</em> ili <em>praunucima</em> – to je tzv. <em>prop drilling</em> što brzo postaje neuredno i nepregledno. Također, te podatke ne trebamo izvan prikaza u kojem smo ih dohvatili.</p>
+<hr>
+<p><strong>Pinia</strong> – koristimo je kada želimo pohraniti podatke koji se koriste u više prikaza ili su skupi za dohvat. Primjer bi bila pohrana korisničkih podataka nakon prijave kako bi ti podaci bili dostupni u svim dijelovima aplikacije bez ponovnog dohvaćanja. Ako se vratimo na primjer proizvoda – koristili bismo Piniu za pohranu liste proizvoda, tako da ako korisnik prelazi između liste i detalja proizvoda, ne moramo ponovno dohvaćati podatke svaki put – što znači bolje performanse aplikacije.</p>
+<p>Postoje i slučajevi kada je Pinia korisna i za podatke koji su razasuti po različitim razinama hijerarhije unutar jednog prikaza. To je prilično uobičajeno kod složenijih prikaza s više razina ugnježđivanja, gdje je nepraktično i neuredno prosljeđivati podatke s viših razina na niže. Ako dođemo do te točke, vjerojatno je bolje samo napraviti Pinia store i pristupati podacima direktno iz tih komponenti. Na taj način također izbjegavamo potrebu za proslijeđivanjem događaja prema gore kroz više razina – – to jest tzv. <em>bubble up events</em> - što je još gore od samog prosljeđivanja podataka. Jednostavno izmijenimo podatke iz duboko ugniježđene komponente direktno.</p>
+<hr>
+<p><strong>Composables i Composition API</strong> služe kao način organizacije koda prema <em>funkcionalnostima</em> (<em>feature-first</em>), a ne prema komponentama (<em>component-first</em>) – doslovno kroz kompoziciju.</p>
+<p>To znači da su <strong>Composables dijeljena funkcionalnost</strong>, a ne dijeljeno stanje.</p>
+<p>Određene funkcionalnosti mogu sadržavati unutarnje (dijeljeno; globalno) stanje, ali to <strong>nije primarna svrha</strong> Composables.</p>
+<p><strong>Pinia</strong>, s druge strane, služi <strong>isključivo za dijeljenje stanja</strong>. Može sadržavati funkcionalnosti za upravljanje tim stanjem, ali <strong>nema smisla bez samog stanja</strong>.</p>
+<blockquote>
+<p>Naravno, svi gore navedeni argumenti predstavljaju uobičajene prakse i koncepte koji se često primjenjuju u razvoju, ali to ne znači da je pogrešno koristiti samo composable funkcije za upravljanje cijelim stanjem aplikacije — ako to odgovara potrebama konkretnog projekta, takav pristup je potpuno valjan.</p>
+</blockquote>
+<h3 id="instalacija">Instalacija</h3>
+<p>Da bi uopće mogli koristiti paket <strong>Pinia</strong> moramo ga instalirati.</p>
+<ol>
+<li><strong>Slučaj</strong>: ako već imamo postojeći projekt onda moramo <strong>intalirati</strong> paket:</li>
+</ol>
+<pre class="hljs"><code><div>    npm install pinia
+</div></code></pre>
+<p>Zatim ćemo registrirati Piniu u Vue unutar <code>main.js</code> datoteke:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> <span class="hljs-string">'./assets/main.css'</span>
+
+<span class="hljs-keyword">import</span> { createApp } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
+<span class="hljs-keyword">import</span> { createPinia } <span class="hljs-keyword">from</span> <span class="hljs-string">'pinia'</span> <span class="hljs-comment">// učitavanje funkcije iz pinia paketa</span>
+<span class="hljs-keyword">import</span> App <span class="hljs-keyword">from</span> <span class="hljs-string">'./App.vue'</span>
+
+<span class="hljs-keyword">const</span> pinia = createPinia() <span class="hljs-comment">// izrada pinie</span>
+<span class="hljs-keyword">const</span> app = createApp(App)
+
+app.use(pinia) <span class="hljs-comment">// // korištenje pinie</span>
+app.mount(<span class="hljs-string">'#app'</span>)
+</div></code></pre>
+<p>Sada kada je Pinia ubačena u aplikaciju, možemo napraviti novu mapu <code>stores</code> unutar <code>src</code> mape i napraviti novu datoteku <code>counterStore.js</code>:</p>
+<p><img src="Slike/store.png" alt="alt text"></p>
+<ul>
+<li>Naziv svakog novog <strong>spremnika</strong> (<em>store</em>) uobičajeno slijedi konvenciju imenovanja u obliku <code>&lt;naziv&gt;Store</code></li>
+</ul>
+<p>Onda možemo unutar te datoteke definirati <strong>spremnik</strong> pomoću funkcije <code>defineStore()</code> koja zapravo i stvara novi <strong>spremink</strong>:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> { defineStore } <span class="hljs-keyword">from</span> <span class="hljs-string">"pinia"</span>
+<span class="hljs-keyword">import</span> { ref, computed } <span class="hljs-keyword">from</span> <span class="hljs-string">"vue"</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> useCounterStore = defineStore(<span class="hljs-string">'counterStore'</span>, () =&gt; {
+    <span class="hljs-keyword">const</span> count = ref(<span class="hljs-number">0</span>)
+    <span class="hljs-keyword">const</span> doubleCount = computed(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> count.value * <span class="hljs-number">2</span>)
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">increment</span>(<span class="hljs-params"></span>) </span>{
+        count.value++
+    }
+
+    <span class="hljs-keyword">return</span> { 
+        count, 
+        doubleCount, 
+        increment
+    }
+})
+</div></code></pre>
+<p>Sada taj novostvoreni spremnik <em>counterStore</em> možemo koristiti bilo gdje u aplikaciji:</p>
+<pre class="hljs"><code><div><span class="hljs-comment">&lt;!--App.vue--&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+    <span class="hljs-keyword">import</span> { useCounterStore } <span class="hljs-keyword">from</span> <span class="hljs-string">"@/stores/counterStore.js"</span>
+    <span class="hljs-keyword">const</span> counterStore = useCounterStore();
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+        Count: {{ counterStore.count }}
+        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"counterStore.increment()"</span>&gt;</span>Increment<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span> DoubleCount: {{ counterStore.doubleCount }}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<p><img src="Slike/counter.png" alt="alt text"></p>
+<ol start="2">
+<li><strong>Slučaj</strong>: ako radimo novi projekt onda možemo <strong>uključiti</strong> paket pri instalaciji:</li>
+</ol>
+<pre class="hljs"><code><div>    npm create vue@latest
+</div></code></pre>
+<p><img src="Slike/pinia_install.png" alt="alt text"></p>
+<ul>
+<li>U tom slučaju nam je sve namješteno što smo radili u prvom slučaju.</li>
+</ul>
+<h3 id="pinia-struktura">Pinia struktura</h3>
+<p>Kada napravimo prvi spremnik on nam može izgledati nešto ovako:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> { defineStore } <span class="hljs-keyword">from</span> <span class="hljs-string">"pinia"</span> <span class="hljs-comment">// učitavanje pinia funkcije</span>
+<span class="hljs-keyword">import</span> { ref, computed } <span class="hljs-keyword">from</span> <span class="hljs-string">"vue"</span>
+
+<span class="hljs-comment">// definiranje spremnika</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> useCounterStore = defineStore(<span class="hljs-string">'counterStore'</span>, () =&gt; {
+
+    <span class="hljs-comment">// STATE - reaktivne varijable (ref)</span>
+    <span class="hljs-keyword">const</span> count = ref(<span class="hljs-number">0</span>)
+
+    <span class="hljs-comment">// GETTERS - computed funkcije</span>
+    <span class="hljs-keyword">const</span> doubleCount = computed(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> count.value * <span class="hljs-number">2</span>)
+
+    <span class="hljs-comment">// ACTION - obične funkcije</span>
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">increment</span>(<span class="hljs-params"></span>) </span>{
+        count.value++
+    }
+
+    <span class="hljs-comment">// izvoz odabranih varijabli i funkcija</span>
+    <span class="hljs-keyword">return</span> { 
+        count, 
+        doubleCount, 
+        increment
+    }
+})
+</div></code></pre>
+<p>Ako budete gledali Pinia dokumentaciju uočit ćete da vrlo često u svojim primjerima koristi drukčiju sintaksu ove ove koju smo i napisali, to jest izgleda ovako:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> { defineStore } <span class="hljs-keyword">from</span> <span class="hljs-string">"pinia"</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> useCounterStore = defineStore(<span class="hljs-string">'counter'</span>, {
+    <span class="hljs-attr">state</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ 
+        <span class="hljs-attr">count</span>: <span class="hljs-number">0</span>
+    }),
+    <span class="hljs-attr">getters</span>: {
+        <span class="hljs-attr">doubleCount</span>: <span class="hljs-function">(<span class="hljs-params">state</span>) =&gt;</span> state.count * <span class="hljs-number">2</span>,
+    },
+    <span class="hljs-attr">actions</span>: {
+        increment() {
+            <span class="hljs-keyword">this</span>.count++
+        },
+    },
+})
+</div></code></pre>
+<p>To je zato što Pinia ima dva načina na koja se mogu definirati spremnici, putem <strong>Option Stores</strong> i <strong>Setup Stores</strong>. Gdje mi koristimo <strong>Setup Stores</strong> što je u stvari <strong>Composition API</strong> dok <strong>Option Stores</strong> više liči na <strong>Option API</strong>.</p>
+<p><strong>Composition API vs. Options API</strong></p>
+<p>Oba pristupa rade jednako dobro, ali svaki ima svoje prednosti ovisno o složenosti aplikacije i osobnim preferencijama.</p>
+<ul>
+<li><strong>Options API</strong> koristi strukturirani pristup (data, methods, computed, itd.) — čitljiv i jednostavan za manje projekte</li>
+<li><strong>Composition API</strong> omogućuje veću fleksibilnost i bolju organizaciju logike prema funkcionalnostima (<em>feature-first</em>), posebno koristan u većim ili kompleksnim aplikacijama</li>
+</ul>
+<blockquote>
+<p>Options API je baziran na Composition API-ju i koristio se u Vue 2 verziji dok nisu Vue 3 verziji uveli Composition API koji je postao standard</p>
+</blockquote>
+<p><img src="Slike/vs.png" alt="alt text"></p>
+<p>S obzirom da cijelo vrijeme koristimo Composition API, tako ćemo ga dalje nastaviti koristiti u Piniji.</p>
+<h3 id="kori%C5%A1tenje">Korištenje</h3>
+<p>Mi u pravilu možemo definirati više spremnika što se u praksi i radi. Kada želimo koristiti određen spremnik u nekoj komponenti, potrebno ju je učitati iz datoteke u kojoj se nalazi:</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+    <span class="hljs-comment">// Učitavanje useCounterStore iz datoteke counterStore.js</span>
+    <span class="hljs-keyword">import</span> { useCounterStore } <span class="hljs-keyword">from</span> <span class="hljs-string">"@/stores/counterStore.js"</span>
+    <span class="hljs-comment">// korištenje useCounterStore() funkcije za pristupanje spremniku </span>
+    <span class="hljs-keyword">const</span> counterStore = useCounterStore();
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    Count: {{ counterStore.count }} <span class="hljs-comment">&lt;!--Pristupanje reaktivnim vraijablama--&gt;</span> 
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"counterStore.increment()"</span>&gt;</span>Increment<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span> <span class="hljs-comment">&lt;!--Pristupanje funkcijama--&gt;</span> 
+    <span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span> DoubleCount: {{ counterStore.doubleCount }} <span class="hljs-comment">&lt;!--Pristupanje computed funkcijama--&gt;</span> 
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<blockquote>
+<p>Korištenje spremnika unutar <code>&lt;script setup&gt;</code> bloka isto je kao i unutar <code>&lt;template&gt;</code> bloka</p>
+</blockquote>
+<h3 id="local-storage">Local storage</h3>
+<img src="Slike/pinia_plugin.png" style="float: right; margin-left: 32px;" height="128"/>
+<p>Kada koristimo spremnike vrlo često nam je poželjno da spremimo podatke u lokalni spremnik web preglednika. Umjesto da ručno implementiramo spremanje i dohvaćanje, postoji gotov paket <code>pinia-plugin-persistedstate</code> koji nam omogućuje efikasno i jednostavno spremanje stanja.</p>
+<p>Potrebno ga je instalirati putem sljedeće naredbe:</p>
+<pre class="hljs"><code><div>    npm i pinia-plugin-persistedstate
+</div></code></pre>
+<p>Zatim ga trebamo učitati u <strong>Piniu</strong> unutar <code>main.js</code> datoteke:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> { createPinia } <span class="hljs-keyword">from</span> <span class="hljs-string">'pinia'</span>
+<span class="hljs-keyword">import</span> piniaPluginPersistedstate <span class="hljs-keyword">from</span> <span class="hljs-string">'pinia-plugin-persistedstate'</span>
+
+<span class="hljs-keyword">const</span> pinia = createPinia()
+pinia.use(piniaPluginPersistedstate)
+</div></code></pre>
+<p>I sada možemo unutar bilo kojeg spremnika nadodati opciju <strong>persist: true</strong> tako da se očuva stanje spremnika nakon bilo koje promjene.</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> { defineStore } <span class="hljs-keyword">from</span> <span class="hljs-string">"pinia"</span>
+<span class="hljs-keyword">import</span> { ref, computed } <span class="hljs-keyword">from</span> <span class="hljs-string">"vue"</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> useCounterStore = defineStore(<span class="hljs-string">'counterStore'</span>, () =&gt; {
+    <span class="hljs-keyword">const</span> count = ref(<span class="hljs-number">0</span>)
+    <span class="hljs-keyword">const</span> doubleCount = computed(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> count.value * <span class="hljs-number">2</span>)
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">increment</span>(<span class="hljs-params"></span>) </span>{
+        count.value++
+    }
+
+    <span class="hljs-keyword">return</span> { 
+        count, 
+        doubleCount, 
+        increment
+    }
+}, { <span class="hljs-attr">persist</span>: <span class="hljs-literal">true</span> })
+</div></code></pre>
+<p>Sada kada osvježimo stranicu podaci će ostati spremljeni.</p>
+<h2 id="samostalni-zadatak-za-vje%C5%BEbu-6">Samostalni zadatak za vježbu 6</h2>
+<div/>
+
+</body>
+</html>
