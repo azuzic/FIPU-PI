@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>1. Vue Osnove.md</title>
+		<meta
+			http-equiv="Content-type"
+			content="text/html;charset=UTF-8" />
+		<link
+			rel="preconnect"
+			href="https://fonts.googleapis.com" />
+		<link
+			rel="preconnect"
+			href="https://fonts.gstatic.com"
+			crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+			rel="stylesheet" />
+		<style>
+			/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+			/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+			:not(code *) {
+				font-family: "Poppins", sans-serif;
+			}
+            html {
+                display: flex;
+                justify-content: center;
+            }
+			body {
+				font-family: var(
+					--vscode-markdown-font-family,
+					-apple-system,
+					BlinkMacSystemFont,
+					"Segoe WPC",
+					"Segoe UI",
+					"Ubuntu",
+					"Droid Sans",
+					sans-serif
+				);
+				font-size: var(--vscode-markdown-font-size, 14px);
+				line-height: var(--vscode-markdown-line-height, 22px);
+				word-wrap: break-word;
+				color: #3b3b3b;
+                position: absolute;
+                display: flex;
+                justify-content: center;
+                width: full;
+			}
+			.body {
+                max-width: 1012px;
+			}
+
+			#code-csp-warning {
+				position: fixed;
+				top: 0;
+				right: 0;
+				color: white;
+				margin: 16px;
+				text-align: center;
+				font-size: 12px;
+				font-family: sans-serif;
+				background-color: #444444;
+				cursor: pointer;
+				padding: 6px;
+				box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
+			}
+
+			#code-csp-warning:hover {
+				text-decoration: none;
+				background-color: #007acc;
+				box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+			}
+
+			body.scrollBeyondLastLine {
+				margin-bottom: calc(100vh - 22px);
+			}
+
+			body.showEditorSelection .code-line {
+				position: relative;
+			}
+
+			body.showEditorSelection .code-active-line:before,
+			body.showEditorSelection .code-line:hover:before {
+				content: "";
+				display: block;
+				position: absolute;
+				top: 0;
+				left: -12px;
+				height: 100%;
+			}
+
+			body.showEditorSelection li.code-active-line:before,
+			body.showEditorSelection li.code-line:hover:before {
+				left: -30px;
+			}
+
+			.vscode-light.showEditorSelection .code-active-line:before {
+				border-left: 3px solid rgba(0, 0, 0, 0.15);
+			}
+
+			.vscode-light.showEditorSelection .code-line:hover:before {
+				border-left: 3px solid rgba(0, 0, 0, 0.4);
+			}
+
+			.vscode-light.showEditorSelection
+				.code-line
+				.code-line:hover:before {
+				border-left: none;
+			}
+
+			.vscode-dark.showEditorSelection .code-active-line:before {
+				border-left: 3px solid rgba(255, 255, 255, 0.4);
+			}
+
+			.vscode-dark.showEditorSelection .code-line:hover:before {
+				border-left: 3px solid rgba(255, 255, 255, 0.6);
+			}
+
+			.vscode-dark.showEditorSelection
+				.code-line
+				.code-line:hover:before {
+				border-left: none;
+			}
+
+			.vscode-high-contrast.showEditorSelection .code-active-line:before {
+				border-left: 3px solid rgba(255, 160, 0, 0.7);
+			}
+
+			.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+				border-left: 3px solid rgba(255, 160, 0, 1);
+			}
+
+			.vscode-high-contrast.showEditorSelection
+				.code-line
+				.code-line:hover:before {
+				border-left: none;
+			}
+
+			img {
+				max-width: 100%;
+				max-height: 100%;
+				border-radius: 8px;
+				filter: drop-shadow(-0 2px 2px rgba(0, 0, 0, 0.07));
+			}
+
+			a {
+				text-decoration: none;
+			}
+
+			a:hover {
+				text-decoration: underline;
+			}
+
+			a:focus,
+			input:focus,
+			select:focus,
+			textarea:focus {
+				outline: 1px solid -webkit-focus-ring-color;
+				outline-offset: -1px;
+			}
+
+			hr {
+				border: 0;
+				height: 2px;
+				border-bottom: 2px solid;
+			}
+
+			h1 {
+				padding-bottom: 0.3em;
+				line-height: 1.2;
+				border-bottom-width: 1px;
+				border-bottom-style: solid;
+			}
+
+			h1,
+			h2,
+			h3 {
+				font-weight: normal;
+			}
+
+			table {
+				border-collapse: collapse;
+			}
+
+			table > thead > tr > th {
+				text-align: left;
+				border-bottom: 1px solid;
+			}
+
+			table > thead > tr > th,
+			table > thead > tr > td,
+			table > tbody > tr > th,
+			table > tbody > tr > td {
+				padding: 5px 10px;
+			}
+
+			table > tbody > tr + tr > td {
+				border-top: 1px solid;
+			}
+
+			td > code {
+                word-break: break-all;
+            }
+
+			blockquote {
+				margin: 0 7px 0 5px;
+				padding: 0 16px 0 10px;
+				border-left-width: 5px;
+				border-left-style: solid;
+			}
+
+			code {
+				font-family: Menlo, Monaco, Consolas, "Droid Sans Mono",
+					"Courier New", monospace, "Droid Sans Fallback";
+				font-size: 1em;
+				line-height: 1.357em;
+			}
+
+			body.wordWrap pre {
+				white-space: pre-wrap;
+			}
+
+			pre:not(.hljs),
+			pre.hljs code > div {
+				padding: 16px;
+				border-radius: 3px;
+				overflow: auto;
+			}
+
+			pre code {
+				color: var(--vscode-editor-foreground);
+				tab-size: 4;
+			}
+
+			/** Theming */
+
+			.vscode-light pre {
+				background-color: rgba(220, 220, 220, 0.4);
+			}
+
+			.vscode-dark pre {
+				background-color: rgba(10, 10, 10, 0.4);
+			}
+
+			.vscode-high-contrast pre {
+				background-color: rgb(0, 0, 0);
+			}
+
+			.vscode-high-contrast h1 {
+				border-color: rgb(0, 0, 0);
+			}
+
+			.vscode-light table > thead > tr > th {
+				border-color: rgba(0, 0, 0, 0.69);
+			}
+
+			.vscode-dark table > thead > tr > th {
+				border-color: rgba(255, 255, 255, 0.69);
+			}
+
+			.vscode-light h1,
+			.vscode-light hr,
+			.vscode-light table > tbody > tr + tr > td {
+				border-color: rgba(0, 0, 0, 0.18);
+			}
+
+			.vscode-dark h1,
+			.vscode-dark hr,
+			.vscode-dark table > tbody > tr + tr > td {
+				border-color: rgba(255, 255, 255, 0.18);
+			}
+		</style>
+
+		<style>
+			/*
+
+Visual Studio-like style based on original C# coloring by Jason Diamond <jason@diamond.name>
+
+*/
+			.hljs {
+				background: white;
+				color: black;
+			}
+
+			.hljs-comment,
+			.hljs-quote,
+			.hljs-variable {
+				color: #008000;
+			}
+
+			.hljs-keyword,
+			.hljs-selector-tag,
+			.hljs-built_in,
+			.hljs-name,
+			.hljs-tag {
+				color: #00f;
+			}
+
+			.hljs-string,
+			.hljs-title,
+			.hljs-section,
+			.hljs-attribute,
+			.hljs-literal,
+			.hljs-template-tag,
+			.hljs-template-variable,
+			.hljs-type,
+			.hljs-addition {
+				color: #a31515;
+			}
+
+			.hljs-deletion,
+			.hljs-selector-attr,
+			.hljs-selector-pseudo,
+			.hljs-meta {
+				color: #2b91af;
+			}
+
+			.hljs-doctag {
+				color: #808080;
+			}
+
+			.hljs-attr {
+				color: #f00;
+			}
+
+			.hljs-symbol,
+			.hljs-bullet,
+			.hljs-link {
+				color: #00b0e8;
+			}
+
+			.hljs-emphasis {
+				font-style: italic;
+			}
+
+			.hljs-strong {
+				font-weight: bold;
+			}
+		</style>
+
+		<style>
+			/*
+ * Markdown PDF CSS
+ */
+
+			body {
+				font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC",
+					"Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+			}
+
+			pre {
+				background-color: #f8f8f8;
+				border: 1px solid #cccccc;
+				border-radius: 3px;
+				overflow-x: auto;
+				white-space: pre-wrap;
+				overflow-wrap: break-word;
+			}
+
+			pre:not(.hljs) {
+				padding: 23px;
+				line-height: 19px;
+			}
+
+			blockquote {
+				background: rgba(127, 127, 127, 0.1);
+				border-color: rgba(0, 122, 204, 0.5);
+			}
+
+			.emoji {
+				height: 1.4em;
+			}
+
+			code {
+				font-size: 14px;
+				line-height: 19px;
+			}
+
+			/* for inline code */
+			:not(pre):not(.hljs) > code {
+				color: #3b3b3b; /* Change the old color so it seems less like an error */
+				font-size: inherit;
+				background: #e0e0e0;
+				border-radius: 4px;
+				padding: 1px 2px;
+				margin: -1px -2px;
+			}
+
+			/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+			.page {
+				page-break-after: always;
+			}
+		</style>
+
+		<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+	</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<div class="body">
+<h1 id="programsko-in%C5%BEenjerstvo">Programsko inženjerstvo</h1>
+<p><strong>Nositelj</strong>: doc. dr. sc. Nikola Tanković<br>
+<strong>Asistent</strong>: mag. inf. Alesandro Žužić</p>
+<p><strong>Ustanova</strong>: Sveučilište Jurja Dobrile u Puli, Fakultet informatike u Puli</p>
+<p style="float: clear; display: flex; gap: 8px; align-items: center;" class="font-brioni text-sm whitespace-nowrap">
+    <img src="../Logo/fipu_logo.svg" style="height: 96px; box-shadow: none !important;" class="mr-4"></img>
+    Fakultet informatike u Puli
+</p>
+<h1 id="7-firebase">[7] Firebase</h1>
+<div style="display: flex; justify-content: space-between; text-align: justify; gap: 32px;">
+    <p>  
+        Firebase je platforma za razvoj aplikacija koja nudi brojne usluge poput baze podataka, autentifikacije, hostinga i analitike. U kombinaciji s Vue.js, Firebase omogućuje brz i jednostavan razvoj modernih web aplikacija s real-time funkcionalnostima.
+    </p>
+    <img src="../Icons/Vue_7.svg" style="width: 96px; height: 96px; margin: 0px;"></img>
+</div>
+<!-- TOC -->
+<ul>
+<li><a href="#programsko-in%C5%BEenjerstvo">Programsko inženjerstvo</a></li>
+<li><a href="#7-firebase">[7] Firebase</a>
+<ul>
+<li><a href="#uvod-u-firebase">Uvod u Firebase</a>
+<ul>
+<li><a href="#postavljanje-firebase-projekta">Postavljanje Firebase projekta</a></li>
+<li><a href="#konfiguriranje-vue-projekta">Konfiguriranje Vue projekta</a></li>
+</ul>
+</li>
+<li><a href="#firebase-autentifikacija">Firebase Autentifikacija</a>
+<ul>
+<li><a href="#registracija-korisnika">Registracija korisnika</a></li>
+<li><a href="#prijava-korisnika">Prijava korisnika</a></li>
+<li><a href="#pra%C4%87enje-stanja-autentifikacije">Praćenje stanja autentifikacije</a></li>
+</ul>
+</li>
+<li><a href="#firestore-baza-podataka">Firestore baza podataka</a>
+<ul>
+<li><a href="#osnove-firestore-a">Osnove Firestore-a</a></li>
+<li><a href="#%C4%8Ditanje-podataka">Čitanje podataka</a></li>
+<li><a href="#pisanje-podataka">Pisanje podataka</a></li>
+</ul>
+</li>
+<li><a href="#samostalni-zadatak-za-vje%C5%BEbu-6">Samostalni zadatak za vježbu 6</a></li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->alni zadatak za vježbu 6](#samostalni-zadatak-za-vje%C5%BEbu-6)
+<!-- /TOC -->
+<div class="page"></div>
+<h2 id="uvod-u-firebase">Uvod u Firebase</h2>
+<img src="Slike/FirebaseLogo.svg" style="float: right; margin-left: 32px;" height="80"/>
+<p>Firebase je sveobuhvatna platforma koju je razvio Google s ciljem da programerima omogući jednostavniji i brži razvoj mobilnih i web aplikacija. Umjesto da moramo brinuti o izgradnji i održavanju složene infrastrukture, Firebase nudi skup integriranih alata i servisa koji pokrivaju najvažnije potrebe tijekom cijelog ciklusa aplikacije – od autentifikacije korisnika, preko pohrane podataka, do praćenja performansi i analitike.</p>
+<hr>
+<h3 id="postavljanje-firebase-projekta">Postavljanje Firebase projekta</h3>
+<p>Prije nego uopće ubacimo Firebase u Vue aplikaciju trebamo napraviti i postaviti <strong>Firebase projekt</strong>. Da bi to napravili trebamo ići <strong>Firebase konzolu</strong>:</p>
+<blockquote>
+<p><a href="https://console.firebase.google.com">https://console.firebase.google.com/u/1/</a></p>
+</blockquote>
+<p><img src="Slike/CreateProject.png" alt="alt text"></p>
+<ul>
+<li>Nakon što kliknemo na <em>Get started with a Firebase project</em> trebamo napisati <strong>ime projekta</strong>:</li>
+</ul>
+<p><img src="Slike/ProjectName.png" alt="alt text"></p>
+<ul>
+<li>Zatim ćemo <strong>isključiti</strong> <em>Google Analytics</em> s obzirom da nam to za sada ne treba, uvijek se može naknadno poslije uključiti:</li>
+</ul>
+<p><img src="Slike/GoogleAnalytics.png" alt="alt text"></p>
+<ul>
+<li>Kada smo isključili, možemo <strong>kreirati projekt</strong>:</li>
+</ul>
+<p><img src="Slike/Progress.png" alt="alt text"></p>
+<ul>
+<li>Sada ima novi svježi Firebase Projekt, gdje nam je sljedeći cilj dodati ga u Vue aplikaciju. S obzirom da je Vue <strong>web aplikacija</strong> odabrati ćemo <strong>Web</strong> app:</li>
+</ul>
+<p><img src="Slike/AddFirebase.png" alt="alt text"></p>
+<h3 id="konfiguriranje-vue-projekta">Konfiguriranje Vue projekta</h3>
+<p>Sljedeći korak nam je da sada registriramo tu web aplikaciju tako da odaberemo <strong>naziv</strong>, <em>Firebase Hosting</em> nam nije potreban trenutno:</p>
+<p><img src="Slike/RegisterAppName.png" alt="alt text"></p>
+<ul>
+<li>I za kraj nam ostaje da instaliramo <strong>Firebase paket</strong> u Vue i kopiramo dani kôd u Vue projekt:</li>
+</ul>
+<pre class="hljs"><code><div>    npm install firebase
+</div></code></pre>
+<p><img src="Slike/FirebaseSDK.png" alt="alt text"></p>
+<ul>
+<li>Dani kôd je najbolje smjestiti u zasebnu <code>firebase.js</code> datoteku unutar <code>src</code> mape i učitati ju unutar <code>main.js</code> datoteke:</li>
+</ul>
+<p><img src="Slike/Structure.png" alt="alt text"></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> <span class="hljs-string">'./assets/main.css'</span>
+<span class="hljs-keyword">import</span> <span class="hljs-string">'./firebase.js'</span>
+
+<span class="hljs-keyword">import</span> { createApp } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
+<span class="hljs-keyword">import</span> App <span class="hljs-keyword">from</span> <span class="hljs-string">'./App.vue'</span>
+
+createApp(App).mount(<span class="hljs-string">'#app'</span>)
+</div></code></pre>
+<p>S obzirom da ćemo koristiti samo Firebase <strong>autentifikaciju</strong> i <strong>firestore</strong>, onda ćemo ureditit <code>firebase.js</code> datoteku tako da učitamo i namjestimo ta dva servisa:</p>
+<pre class="hljs"><code><div><span class="hljs-comment">// Učitavanje potrebnih funkcija</span>
+<span class="hljs-keyword">import</span> { initializeApp } <span class="hljs-keyword">from</span> <span class="hljs-string">"firebase/app"</span>;
+<span class="hljs-keyword">import</span> { getAuth } <span class="hljs-keyword">from</span> <span class="hljs-string">"firebase/auth"</span>;
+<span class="hljs-keyword">import</span> { getFirestore } <span class="hljs-keyword">from</span> <span class="hljs-string">"firebase/firestore"</span>;
+
+<span class="hljs-comment">// Firebase konfiguracija</span>
+<span class="hljs-keyword">const</span> firebaseConfig = {
+  <span class="hljs-attr">apiKey</span>: <span class="hljs-string">"API_KEY"</span>,
+  <span class="hljs-attr">authDomain</span>: <span class="hljs-string">"PROJECT_ID.firebaseapp.com"</span>,
+  <span class="hljs-attr">projectId</span>: <span class="hljs-string">"PROJECT_ID"</span>,
+  <span class="hljs-attr">storageBucket</span>: <span class="hljs-string">"PROJECT_ID.appspot.com"</span>,
+  <span class="hljs-attr">messagingSenderId</span>: <span class="hljs-string">"SENDER_ID"</span>,
+  <span class="hljs-attr">appId</span>: <span class="hljs-string">"APP_ID"</span>
+};
+
+<span class="hljs-comment">// Firebase inicijalizacija</span>
+<span class="hljs-keyword">const</span> app = initializeApp(firebaseConfig);
+
+<span class="hljs-comment">// Inicijalizacija servisa</span>
+<span class="hljs-keyword">const</span> auth = getAuth(app);
+<span class="hljs-keyword">const</span> db = getFirestore(app);
+
+<span class="hljs-comment">// Izvoz servisa</span>
+<span class="hljs-keyword">export</span> { auth, db };
+</div></code></pre>
+<div class="page"></div>
+<h2 id="firebase-autentifikacija">Firebase Autentifikacija</h2>
+<img src="Slike/Authentication.png" style="float: right; margin-left: 32px;" height="164"/>
+<p>Jedna od ključnih komponenti Firebasea je <strong>autentifikacija</strong>, koja omogućuje jednostavnu integraciju različitih metoda prijave korisnika, uključujući prijavu putem emaila i lozinke, kao i prijavu putem trećih strana kao što su Google, Facebook ili Apple. Ova usluga značajno smanjuje vrijeme potrebno za implementaciju sigurnog sustava za upravljanje korisničkim računima.</p>
+<br/>
+<hr>
+<p>Da bi uopće koristili <strong>autentifikaciju</strong>, trebamo je uključiti u <strong>Firebase konzoli</strong>.</p>
+<h3 id="registracija-korisnika">Registracija korisnika</h3>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+<span class="hljs-keyword">import</span> { ref } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>;
+<span class="hljs-keyword">import</span> { createUserWithEmailAndPassword } <span class="hljs-keyword">from</span> <span class="hljs-string">'firebase/auth'</span>;
+<span class="hljs-keyword">import</span> { auth } <span class="hljs-keyword">from</span> <span class="hljs-string">'@/firebase'</span>;
+
+<span class="hljs-keyword">const</span> email = ref(<span class="hljs-string">''</span>);
+<span class="hljs-keyword">const</span> password = ref(<span class="hljs-string">''</span>);
+
+<span class="hljs-keyword">const</span> register = <span class="hljs-keyword">async</span> () =&gt; {
+  <span class="hljs-keyword">try</span> {
+    <span class="hljs-keyword">const</span> userCredential = <span class="hljs-keyword">await</span> createUserWithEmailAndPassword(
+      auth,
+      email.value,
+      password.value
+    );
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Registrirani korisnik:'</span>, userCredential.user);
+  } <span class="hljs-keyword">catch</span> (error) {
+    <span class="hljs-built_in">console</span>.error(<span class="hljs-string">'Greška pri registraciji:'</span>, error.message);
+  }
+};
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">form</span> @<span class="hljs-attr">submit.prevent</span>=<span class="hljs-string">"register"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">"email"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"email"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Email"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">"password"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"password"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Lozinka"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span>&gt;</span>Registriraj se<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<h3 id="prijava-korisnika">Prijava korisnika</h3>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+<span class="hljs-keyword">import</span> { ref } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>;
+<span class="hljs-keyword">import</span> { signInWithEmailAndPassword } <span class="hljs-keyword">from</span> <span class="hljs-string">'firebase/auth'</span>;
+<span class="hljs-keyword">import</span> { auth } <span class="hljs-keyword">from</span> <span class="hljs-string">'@/firebase'</span>;
+
+<span class="hljs-keyword">const</span> email = ref(<span class="hljs-string">''</span>);
+<span class="hljs-keyword">const</span> password = ref(<span class="hljs-string">''</span>);
+
+<span class="hljs-keyword">const</span> login = <span class="hljs-keyword">async</span> () =&gt; {
+  <span class="hljs-keyword">try</span> {
+    <span class="hljs-keyword">const</span> userCredential = <span class="hljs-keyword">await</span> signInWithEmailAndPassword(
+      auth,
+      email.value,
+      password.value
+    );
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Prijavljeni korisnik:'</span>, userCredential.user);
+  } <span class="hljs-keyword">catch</span> (error) {
+    <span class="hljs-built_in">console</span>.error(<span class="hljs-string">'Greška pri prijavi:'</span>, error.message);
+  }
+};
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">form</span> @<span class="hljs-attr">submit.prevent</span>=<span class="hljs-string">"login"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">"email"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"email"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Email"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">"password"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"password"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Lozinka"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span>&gt;</span>Prijavi se<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<div class="page"></div>
+<h3 id="pra%C4%87enje-stanja-autentifikacije">Praćenje stanja autentifikacije</h3>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+<span class="hljs-keyword">import</span> { ref, onMounted } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>;
+<span class="hljs-keyword">import</span> { onAuthStateChanged } <span class="hljs-keyword">from</span> <span class="hljs-string">'firebase/auth'</span>;
+<span class="hljs-keyword">import</span> { auth } <span class="hljs-keyword">from</span> <span class="hljs-string">'@/firebase'</span>;
+
+<span class="hljs-keyword">const</span> user = ref(<span class="hljs-literal">null</span>);
+
+onMounted(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  onAuthStateChanged(auth, (currentUser) =&gt; {
+    user.value = currentUser;
+    <span class="hljs-keyword">if</span> (currentUser) {
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Prijavljen korisnik:'</span>, currentUser.email);
+    } <span class="hljs-keyword">else</span> {
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Nema prijavljenog korisnika'</span>);
+    }
+  });
+});
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">"user"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Prijavljeni ste kao: {{ user.email }}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"auth.signOut()"</span>&gt;</span>Odjavi se<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">v-else</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Niste prijavljeni<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<h2 id="firestore-baza-podataka">Firestore baza podataka</h2>
+<p>Druga važna usluga je <strong>Cloud Firestore</strong>, moderna NoSQL baza podataka dizajnirana za skalabilne aplikacije koje zahtijevaju pohranu podataka u stvarnom vremenu. Firestore omogućuje sinkronizaciju podataka između korisnika i uređaja bez potrebe za dodatnim poslužiteljima, što je posebno korisno za aplikacije koje trebaju brz odziv i aktualne podatke na svim uređajima korisnika.</p>
+<h3 id="osnove-firestore-a">Osnove Firestore-a</h3>
+<p>Firestore je NoSQL baza podataka koja organizira podatke u kolekcije i dokumente:</p>
+<ul>
+<li><strong>Kolekcije</strong>: Slično mapama, sadrže dokumente</li>
+<li><strong>Dokumenti</strong>: JSON objekti koji sadrže podatke</li>
+<li><strong>Polja</strong>: Parovi ključ-vrijednost unutar dokumenata</li>
+</ul>
+<pre class="hljs"><code><div>korisnici (kolekcija)
+├── korisnik1 (dokument)
+│   ├── ime: &quot;Ivan&quot;
+│   └── email: &quot;ivan@example.com&quot;
+└── korisnik2 (dokument)
+    ├── ime: &quot;Ana&quot;
+    └── email: &quot;ana@example.com&quot;
+</div></code></pre>
+<div class="page"></div>
+<h3 id="%C4%8Ditanje-podataka">Čitanje podataka</h3>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+<span class="hljs-keyword">import</span> { ref, onMounted } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>;
+<span class="hljs-keyword">import</span> { collection, getDocs } <span class="hljs-keyword">from</span> <span class="hljs-string">'firebase/firestore'</span>;
+<span class="hljs-keyword">import</span> { db } <span class="hljs-keyword">from</span> <span class="hljs-string">'@/firebase'</span>;
+
+<span class="hljs-keyword">const</span> posts = ref([]);
+
+onMounted(<span class="hljs-keyword">async</span> () =&gt; {
+  <span class="hljs-keyword">const</span> querySnapshot = <span class="hljs-keyword">await</span> getDocs(collection(db, <span class="hljs-string">'posts'</span>));
+  posts.value = querySnapshot.docs.map(<span class="hljs-function"><span class="hljs-params">doc</span> =&gt;</span> ({
+    <span class="hljs-attr">id</span>: doc.id,
+    ...doc.data()
+  }));
+});
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">"post in posts"</span> <span class="hljs-attr">:key</span>=<span class="hljs-string">"post.id"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>{{ post.title }}<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>{{ post.content }}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<h3 id="pisanje-podataka">Pisanje podataka</h3>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+<span class="hljs-keyword">import</span> { ref } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>;
+<span class="hljs-keyword">import</span> { collection, addDoc } <span class="hljs-keyword">from</span> <span class="hljs-string">'firebase/firestore'</span>;
+<span class="hljs-keyword">import</span> { db } <span class="hljs-keyword">from</span> <span class="hljs-string">'@/firebase'</span>;
+
+<span class="hljs-keyword">const</span> title = ref(<span class="hljs-string">''</span>);
+<span class="hljs-keyword">const</span> content = ref(<span class="hljs-string">''</span>);
+
+<span class="hljs-keyword">const</span> addPost = <span class="hljs-keyword">async</span> () =&gt; {
+  <span class="hljs-keyword">try</span> {
+    <span class="hljs-keyword">await</span> addDoc(collection(db, <span class="hljs-string">'posts'</span>), {
+      <span class="hljs-attr">title</span>: title.value,
+      <span class="hljs-attr">content</span>: content.value,
+      <span class="hljs-attr">createdAt</span>: <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>()
+    });
+    title.value = <span class="hljs-string">''</span>;
+    content.value = <span class="hljs-string">''</span>;
+  } <span class="hljs-keyword">catch</span> (error) {
+    <span class="hljs-built_in">console</span>.error(<span class="hljs-string">'Greška pri dodavanju posta:'</span>, error);
+  }
+};
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">form</span> @<span class="hljs-attr">submit.prevent</span>=<span class="hljs-string">"addPost"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">"title"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Naslov"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">textarea</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">"content"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Sadržaj"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">textarea</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span>&gt;</span>Dodaj post<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<h2 id="samostalni-zadatak-za-vje%C5%BEbu-6">Samostalni zadatak za vježbu 6</h2>
+</div>
+</body>
+</html>
