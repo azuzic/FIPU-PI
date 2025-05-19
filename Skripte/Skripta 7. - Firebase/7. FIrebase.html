@@ -451,11 +451,10 @@ Visual Studio-like style based on original C# coloring by Jason Diamond <jason@d
 </ul>
 </li>
 </ul>
-<!-- /TOC -->alni zadatak za vježbu 6](#samostalni-zadatak-za-vje%C5%BEbu-6)
 <!-- /TOC -->
 <div class="page"></div>
 <h2 id="uvod-u-firebase">Uvod u Firebase</h2>
-<img src="Slike/FirebaseLogo.svg" style="float: right; margin-left: 32px;" height="80"/>
+<img src="Slike/FirebaseLogo.svg" style="float: right; margin-left: 32px;" height="72"/>
 <p>Firebase je sveobuhvatna platforma koju je razvio Google s ciljem da programerima omogući jednostavniji i brži razvoj mobilnih i web aplikacija. Umjesto da moramo brinuti o izgradnji i održavanju složene infrastrukture, Firebase nudi skup integriranih alata i servisa koji pokrivaju najvažnije potrebe tijekom cijelog ciklusa aplikacije – od autentifikacije korisnika, preko pohrane podataka, do praćenja performansi i analitike.</p>
 <hr>
 <h3 id="postavljanje-firebase-projekta">Postavljanje Firebase projekta</h3>
@@ -534,6 +533,19 @@ createApp(App).mount(<span class="hljs-string">'#app'</span>)
 <br/>
 <hr>
 <p>Da bi uopće koristili <strong>autentifikaciju</strong>, trebamo je uključiti u <strong>Firebase konzoli</strong>.</p>
+<p><img src="Slike/AuthenticationStart.png" alt="alt text"></p>
+<ul>
+<li>Kada smo je uključili, možemo odabrati <strong>vrstu autentifikacij</strong>e, gjde ćemo za početak odabrati <code>Email/Password</code>:</li>
+</ul>
+<p><img src="Slike/AuthTypes.png" alt="alt text"></p>
+<ul>
+<li>I uključiti autentifikaciju putem <code>Email/Password</code>, registracija bez email-a nam ne treba, pa neka ostane isključeno:</li>
+</ul>
+<p><img src="Slike/EmailPassword.png" alt="alt text"></p>
+<ul>
+<li>Sada možemo vidjeti da smo uspiješno uključili <code>Email/Password</code> autentifikaciju, uvijek možemo dodati druge vrste autentifikacije.</li>
+</ul>
+<p><img src="image.png" alt="alt text"></p>
 <h3 id="registracija-korisnika">Registracija korisnika</h3>
 <pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
 <span class="hljs-keyword">import</span> { ref } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>;
@@ -544,25 +556,25 @@ createApp(App).mount(<span class="hljs-string">'#app'</span>)
 <span class="hljs-keyword">const</span> password = ref(<span class="hljs-string">''</span>);
 
 <span class="hljs-keyword">const</span> register = <span class="hljs-keyword">async</span> () =&gt; {
-  <span class="hljs-keyword">try</span> {
-    <span class="hljs-keyword">const</span> userCredential = <span class="hljs-keyword">await</span> createUserWithEmailAndPassword(
-      auth,
-      email.value,
-      password.value
-    );
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Registrirani korisnik:'</span>, userCredential.user);
-  } <span class="hljs-keyword">catch</span> (error) {
-    <span class="hljs-built_in">console</span>.error(<span class="hljs-string">'Greška pri registraciji:'</span>, error.message);
-  }
+    <span class="hljs-keyword">try</span> {
+        <span class="hljs-keyword">const</span> userCredential = <span class="hljs-keyword">await</span> createUserWithEmailAndPassword(
+            auth,
+            email.value,
+            password.value
+        );
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Registrirani korisnik:'</span>, userCredential.user);
+    } <span class="hljs-keyword">catch</span> (error) {
+        <span class="hljs-built_in">console</span>.error(<span class="hljs-string">'Greška pri registraciji:'</span>, error.message);
+    }
 };
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
 <span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">form</span> @<span class="hljs-attr">submit.prevent</span>=<span class="hljs-string">"register"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">"email"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"email"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Email"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">"password"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"password"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Lozinka"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span>&gt;</span>Registriraj se<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">form</span> @<span class="hljs-attr">submit.prevent</span>=<span class="hljs-string">"register"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">"email"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"email"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Email"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">"password"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"password"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Lozinka"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span>&gt;</span>Registriraj se<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
 </div></code></pre>
 <h3 id="prijava-korisnika">Prijava korisnika</h3>
@@ -575,25 +587,25 @@ createApp(App).mount(<span class="hljs-string">'#app'</span>)
 <span class="hljs-keyword">const</span> password = ref(<span class="hljs-string">''</span>);
 
 <span class="hljs-keyword">const</span> login = <span class="hljs-keyword">async</span> () =&gt; {
-  <span class="hljs-keyword">try</span> {
-    <span class="hljs-keyword">const</span> userCredential = <span class="hljs-keyword">await</span> signInWithEmailAndPassword(
-      auth,
-      email.value,
-      password.value
-    );
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Prijavljeni korisnik:'</span>, userCredential.user);
-  } <span class="hljs-keyword">catch</span> (error) {
-    <span class="hljs-built_in">console</span>.error(<span class="hljs-string">'Greška pri prijavi:'</span>, error.message);
-  }
+    <span class="hljs-keyword">try</span> {
+        <span class="hljs-keyword">const</span> userCredential = <span class="hljs-keyword">await</span> signInWithEmailAndPassword(
+            auth,
+            email.value,
+            password.value
+        );
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Prijavljeni korisnik:'</span>, userCredential.user);
+    } <span class="hljs-keyword">catch</span> (error) {
+        <span class="hljs-built_in">console</span>.error(<span class="hljs-string">'Greška pri prijavi:'</span>, error.message);
+    }
 };
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
 <span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">form</span> @<span class="hljs-attr">submit.prevent</span>=<span class="hljs-string">"login"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">"email"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"email"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Email"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">"password"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"password"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Lozinka"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span>&gt;</span>Prijavi se<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">form</span> @<span class="hljs-attr">submit.prevent</span>=<span class="hljs-string">"login"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">"email"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"email"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Email"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">"password"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"password"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Lozinka"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span>&gt;</span>Prijavi se<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
 </div></code></pre>
 <div class="page"></div>
@@ -606,102 +618,186 @@ createApp(App).mount(<span class="hljs-string">'#app'</span>)
 <span class="hljs-keyword">const</span> user = ref(<span class="hljs-literal">null</span>);
 
 onMounted(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
-  onAuthStateChanged(auth, (currentUser) =&gt; {
-    user.value = currentUser;
-    <span class="hljs-keyword">if</span> (currentUser) {
-      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Prijavljen korisnik:'</span>, currentUser.email);
-    } <span class="hljs-keyword">else</span> {
-      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Nema prijavljenog korisnika'</span>);
-    }
-  });
-});
-</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-
-<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">"user"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Prijavljeni ste kao: {{ user.email }}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"auth.signOut()"</span>&gt;</span>Odjavi se<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">v-else</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Niste prijavljeni<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
-</div></code></pre>
-<h2 id="firestore-baza-podataka">Firestore baza podataka</h2>
-<p>Druga važna usluga je <strong>Cloud Firestore</strong>, moderna NoSQL baza podataka dizajnirana za skalabilne aplikacije koje zahtijevaju pohranu podataka u stvarnom vremenu. Firestore omogućuje sinkronizaciju podataka između korisnika i uređaja bez potrebe za dodatnim poslužiteljima, što je posebno korisno za aplikacije koje trebaju brz odziv i aktualne podatke na svim uređajima korisnika.</p>
-<h3 id="osnove-firestore-a">Osnove Firestore-a</h3>
-<p>Firestore je NoSQL baza podataka koja organizira podatke u kolekcije i dokumente:</p>
-<ul>
-<li><strong>Kolekcije</strong>: Slično mapama, sadrže dokumente</li>
-<li><strong>Dokumenti</strong>: JSON objekti koji sadrže podatke</li>
-<li><strong>Polja</strong>: Parovi ključ-vrijednost unutar dokumenata</li>
-</ul>
-<pre class="hljs"><code><div>korisnici (kolekcija)
-├── korisnik1 (dokument)
-│   ├── ime: &quot;Ivan&quot;
-│   └── email: &quot;ivan@example.com&quot;
-└── korisnik2 (dokument)
-    ├── ime: &quot;Ana&quot;
-    └── email: &quot;ana@example.com&quot;
-</div></code></pre>
-<div class="page"></div>
-<h3 id="%C4%8Ditanje-podataka">Čitanje podataka</h3>
-<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
-<span class="hljs-keyword">import</span> { ref, onMounted } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>;
-<span class="hljs-keyword">import</span> { collection, getDocs } <span class="hljs-keyword">from</span> <span class="hljs-string">'firebase/firestore'</span>;
-<span class="hljs-keyword">import</span> { db } <span class="hljs-keyword">from</span> <span class="hljs-string">'@/firebase'</span>;
-
-<span class="hljs-keyword">const</span> posts = ref([]);
-
-onMounted(<span class="hljs-keyword">async</span> () =&gt; {
-  <span class="hljs-keyword">const</span> querySnapshot = <span class="hljs-keyword">await</span> getDocs(collection(db, <span class="hljs-string">'posts'</span>));
-  posts.value = querySnapshot.docs.map(<span class="hljs-function"><span class="hljs-params">doc</span> =&gt;</span> ({
-    <span class="hljs-attr">id</span>: doc.id,
-    ...doc.data()
-  }));
-});
-</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-
-<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">"post in posts"</span> <span class="hljs-attr">:key</span>=<span class="hljs-string">"post.id"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>{{ post.title }}<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>{{ post.content }}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
-</div></code></pre>
-<h3 id="pisanje-podataka">Pisanje podataka</h3>
-<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
-<span class="hljs-keyword">import</span> { ref } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>;
-<span class="hljs-keyword">import</span> { collection, addDoc } <span class="hljs-keyword">from</span> <span class="hljs-string">'firebase/firestore'</span>;
-<span class="hljs-keyword">import</span> { db } <span class="hljs-keyword">from</span> <span class="hljs-string">'@/firebase'</span>;
-
-<span class="hljs-keyword">const</span> title = ref(<span class="hljs-string">''</span>);
-<span class="hljs-keyword">const</span> content = ref(<span class="hljs-string">''</span>);
-
-<span class="hljs-keyword">const</span> addPost = <span class="hljs-keyword">async</span> () =&gt; {
-  <span class="hljs-keyword">try</span> {
-    <span class="hljs-keyword">await</span> addDoc(collection(db, <span class="hljs-string">'posts'</span>), {
-      <span class="hljs-attr">title</span>: title.value,
-      <span class="hljs-attr">content</span>: content.value,
-      <span class="hljs-attr">createdAt</span>: <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>()
+    onAuthStateChanged(auth, (currentUser) =&gt; {
+        user.value = currentUser;
+        <span class="hljs-keyword">if</span> (currentUser) {
+            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Prijavljen korisnik:'</span>, currentUser.email);
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Nema prijavljenog korisnika'</span>);
+        }
     });
-    title.value = <span class="hljs-string">''</span>;
-    content.value = <span class="hljs-string">''</span>;
-  } <span class="hljs-keyword">catch</span> (error) {
-    <span class="hljs-built_in">console</span>.error(<span class="hljs-string">'Greška pri dodavanju posta:'</span>, error);
-  }
+});
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">"user"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Prijavljeni ste kao: {{ user.email }}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"auth.signOut()"</span>&gt;</span>Odjavi se<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">v-else</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Niste prijavljeni<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<hr>
+<h3 id="postavljanje-email-adrese">Postavljanje email adrese</h3>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+<span class="hljs-keyword">import</span> { verifyBeforeUpdateEmail } <span class="hljs-keyword">from</span> <span class="hljs-string">'firebase/auth'</span>;
+<span class="hljs-keyword">import</span> { auth } <span class="hljs-keyword">from</span> <span class="hljs-string">'@/firebase'</span>;
+
+<span class="hljs-keyword">const</span> newEmail = <span class="hljs-string">'nova.email@primjer.com'</span>;
+
+<span class="hljs-keyword">const</span> changeEmail = <span class="hljs-keyword">async</span> () =&gt; {
+    <span class="hljs-keyword">try</span> {
+        <span class="hljs-keyword">await</span> verifyBeforeUpdateEmail(auth.currentUser, newEmail);
+        alert(<span class="hljs-string">'Verifikacijski email poslan na novu adresu. Promjena će biti aktivna nakon potvrde.'</span>);
+    } <span class="hljs-keyword">catch</span> (error) {
+        <span class="hljs-built_in">console</span>.error(<span class="hljs-string">'Greška pri ažuriranju emaila:'</span>, error.message);
+    }
 };
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
 <span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">form</span> @<span class="hljs-attr">submit.prevent</span>=<span class="hljs-string">"addPost"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">"title"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Naslov"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">textarea</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">"content"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Sadržaj"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">textarea</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span>&gt;</span>Dodaj post<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"changeEmail"</span>&gt;</span>Promijeni email adresu<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
 </div></code></pre>
-<h2 id="samostalni-zadatak-za-vje%C5%BEbu-6">Samostalni zadatak za vježbu 6</h2>
+<hr>
+<h3 id="slanje-verifikacijskog-emaila">Slanje verifikacijskog emaila</h3>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+<span class="hljs-keyword">import</span> { sendEmailVerification } <span class="hljs-keyword">from</span> <span class="hljs-string">'firebase/auth'</span>;
+<span class="hljs-keyword">import</span> { auth } <span class="hljs-keyword">from</span> <span class="hljs-string">'@/firebase'</span>;
+
+<span class="hljs-keyword">const</span> sendVerification = <span class="hljs-keyword">async</span> () =&gt; {
+    <span class="hljs-keyword">try</span> {
+        <span class="hljs-keyword">await</span> sendEmailVerification(auth.currentUser);
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Verifikacijski email poslan'</span>);
+    } <span class="hljs-keyword">catch</span> (error) {
+        <span class="hljs-built_in">console</span>.error(<span class="hljs-string">'Greška pri slanju verifikacijskog emaila:'</span>, error.message);
+    }
+};
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"sendVerification"</span>&gt;</span>Pošalji verifikacijski email<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<hr>
+<h3 id="promjena-lozinke">Promjena lozinke</h3>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+<span class="hljs-keyword">import</span> { updatePassword } <span class="hljs-keyword">from</span> <span class="hljs-string">'firebase/auth'</span>;
+<span class="hljs-keyword">import</span> { auth } <span class="hljs-keyword">from</span> <span class="hljs-string">'@/firebase'</span>;
+
+<span class="hljs-keyword">const</span> novaLozinka = <span class="hljs-string">'novaTajna123'</span>;
+
+<span class="hljs-keyword">const</span> changePassword = <span class="hljs-keyword">async</span> () =&gt; {
+    <span class="hljs-keyword">try</span> {
+        <span class="hljs-keyword">await</span> updatePassword(auth.currentUser, novaLozinka);
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Lozinka uspješno promijenjena'</span>);
+    } <span class="hljs-keyword">catch</span> (error) {
+        <span class="hljs-built_in">console</span>.error(<span class="hljs-string">'Greška pri promjeni lozinke:'</span>, error.message);
+    }
+};
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"changePassword"</span>&gt;</span>Promijeni lozinku<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<hr>
+<h3 id="slanje-emaila-za-resetiranje-lozinke">Slanje emaila za resetiranje lozinke</h3>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+<span class="hljs-keyword">import</span> { ref } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>;
+<span class="hljs-keyword">import</span> { sendPasswordResetEmail } <span class="hljs-keyword">from</span> <span class="hljs-string">'firebase/auth'</span>;
+<span class="hljs-keyword">import</span> { auth } <span class="hljs-keyword">from</span> <span class="hljs-string">'@/firebase'</span>;
+
+<span class="hljs-keyword">const</span> resetEmail = ref(<span class="hljs-string">''</span>);
+
+<span class="hljs-keyword">const</span> resetPassword = <span class="hljs-keyword">async</span> () =&gt; {
+    <span class="hljs-keyword">try</span> {
+        <span class="hljs-keyword">await</span> sendPasswordResetEmail(auth, resetEmail.value);
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Email za resetiranje lozinke poslan'</span>);
+    } <span class="hljs-keyword">catch</span> (error) {
+        <span class="hljs-built_in">console</span>.error(<span class="hljs-string">'Greška pri slanju emaila za reset lozinke:'</span>, error.message);
+    }
+};
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">"resetEmail"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"email"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Unesite email za reset"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"resetPassword"</span>&gt;</span>Pošalji reset lozinke<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<hr>
+<h3 id="brisanje-korisnika">Brisanje korisnika</h3>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+<span class="hljs-keyword">import</span> { deleteUser } <span class="hljs-keyword">from</span> <span class="hljs-string">'firebase/auth'</span>;
+<span class="hljs-keyword">import</span> { auth } <span class="hljs-keyword">from</span> <span class="hljs-string">'@/firebase'</span>;
+
+<span class="hljs-keyword">const</span> removeUser = <span class="hljs-keyword">async</span> () =&gt; {
+    <span class="hljs-keyword">try</span> {
+        <span class="hljs-keyword">await</span> deleteUser(auth.currentUser);
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Korisnički račun obrisan'</span>);
+    } <span class="hljs-keyword">catch</span> (error) {
+        <span class="hljs-built_in">console</span>.error(<span class="hljs-string">'Greška pri brisanju korisnika:'</span>, error.message);
+    }
+};
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"removeUser"</span>&gt;</span>Obriši korisnički račun<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<hr>
+<h3 id="ponovna-autentifikacija-korisnika">Ponovna autentifikacija korisnika</h3>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+<span class="hljs-keyword">import</span> { EmailAuthProvider, reauthenticateWithCredential } <span class="hljs-keyword">from</span> <span class="hljs-string">'firebase/auth'</span>;
+<span class="hljs-keyword">import</span> { ref } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>;
+<span class="hljs-keyword">import</span> { auth } <span class="hljs-keyword">from</span> <span class="hljs-string">'@/firebase'</span>;
+
+<span class="hljs-keyword">const</span> email = ref(<span class="hljs-string">''</span>);
+<span class="hljs-keyword">const</span> password = ref(<span class="hljs-string">''</span>);
+
+<span class="hljs-keyword">const</span> reauthenticate = <span class="hljs-keyword">async</span> () =&gt; {
+    <span class="hljs-keyword">try</span> {
+        <span class="hljs-keyword">const</span> credential = EmailAuthProvider.credential(email.value, password.value);
+        <span class="hljs-keyword">await</span> reauthenticateWithCredential(auth.currentUser, credential);
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Ponovna autentifikacija uspješna'</span>);
+    } <span class="hljs-keyword">catch</span> (error) {
+        <span class="hljs-built_in">console</span>.error(<span class="hljs-string">'Greška pri ponovnoj autentifikaciji:'</span>, error.message);
+    }
+};
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">"email"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"email"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Email"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">"password"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"password"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Lozinka"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"reauthenticate"</span>&gt;</span>Ponovno se autentificiraj<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
+<h3 id="prijava-putem-google-ra%C4%8Duna">Prijava putem Google računa</h3>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="javascript">
+<span class="hljs-keyword">import</span> { ref } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>;
+<span class="hljs-keyword">import</span> { GoogleAuthProvider, signInWithPopup } <span class="hljs-keyword">from</span> <span class="hljs-string">'firebase/auth'</span>;
+<span class="hljs-keyword">import</span> { auth } <span class="hljs-keyword">from</span> <span class="hljs-string">'@/firebase'</span>;
+
+<span class="hljs-keyword">const</span> user = ref(auth.currentUser);
+
+<span class="hljs-keyword">const</span> loginWithGoogle = <span class="hljs-keyword">async</span> () =&gt; {
+    <span class="hljs-keyword">try</span> {
+        <span class="hljs-keyword">const</span> provider = <span class="hljs-keyword">new</span> GoogleAuthProvider();
+        <span class="hljs-keyword">const</span> result = <span class="hljs-keyword">await</span> signInWithPopup(auth, provider);
+        user.value = result.user;
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Prijavljen s Google računom:'</span>, result.user.email);
+    } <span class="hljs-keyword">catch</span> (error) {
+        <span class="hljs-built_in">console</span>.error(<span class="hljs-string">'Greška pri Google prijavi:'</span>, error.message);
+    }
+};
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"loginWithGoogle"</span>&gt;</span>Prijavi se putem Google računa<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</div></code></pre>
 </div>
 </body>
 </html>
