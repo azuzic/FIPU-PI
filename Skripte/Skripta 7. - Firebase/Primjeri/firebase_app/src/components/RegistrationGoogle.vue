@@ -25,7 +25,7 @@ const register = async () => {
         <h2>Google registracija</h2> 
         <hr>
 
-        <GoogleButton/>
+        <GoogleButton>Sign in with Google</GoogleButton>
 
         <span v-if="response.error" class="text-rose-600">{{ response.message }}</span>
         <Message v-else class="text-emerald-600" :data="response.message"/>

@@ -6,7 +6,8 @@ html, body, #app {
     margin: 0;
 }
 form {
-    @apply flex flex-col gap-2 bg-gray-50/90 p-8 rounded-lg shadow-md shadow-slate-200 max-w-sm
+    @apply flex flex-col gap-2 bg-gray-50/90 p-8 rounded-lg shadow-md shadow-slate-200
+        w-76 self-start overflow-y-auto overflow-x-hidden resize-y h-full
 }
 h2 {
     @apply text-xl
@@ -15,12 +16,16 @@ hr {
     @apply border-gray-300
 }
 input {
-    @apply bg-white px-3 py-1 rounded transition-all border border-gray-300 hover:border-gray-500
+    @apply bg-white px-3 py-1 rounded transition-all border border-gray-300 hover:border-gray-500 focus:outline
 }
 button {
     @apply bg-sky-200/75 hover:bg-sky-300 py-1 rounded text-sky-700 hover:text-sky-900 shadow
-        transition-all cursor-pointer shadow-sky-950/15
+        transition-all cursor-pointer shadow-sky-950/15 w-full
 }
 span {
     @apply text-xs
+}
+
+img {
+    @apply size-8 rounded-full
 }
