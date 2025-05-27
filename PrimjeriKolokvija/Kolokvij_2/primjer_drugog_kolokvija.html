@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>1. Vue Osnove.md</title>
+		<meta
+			http-equiv="Content-type"
+			content="text/html;charset=UTF-8" />
+		<link
+			rel="preconnect"
+			href="https://fonts.googleapis.com" />
+		<link
+			rel="preconnect"
+			href="https://fonts.gstatic.com"
+			crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+			rel="stylesheet" />
+		<style>
+			/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+			/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+			:not(code *) {
+				font-family: "Poppins", sans-serif;
+			}
+            html {
+                display: flex;
+                justify-content: center;
+            }
+			body {
+				font-family: var(
+					--vscode-markdown-font-family,
+					-apple-system,
+					BlinkMacSystemFont,
+					"Segoe WPC",
+					"Segoe UI",
+					"Ubuntu",
+					"Droid Sans",
+					sans-serif
+				);
+				font-size: var(--vscode-markdown-font-size, 14px);
+				line-height: var(--vscode-markdown-line-height, 22px);
+				word-wrap: break-word;
+				color: #3b3b3b;
+                position: absolute;
+                display: flex;
+                justify-content: center;
+                width: full;
+			}
+			.body {
+                max-width: 1012px;
+			}
+
+			#code-csp-warning {
+				position: fixed;
+				top: 0;
+				right: 0;
+				color: white;
+				margin: 16px;
+				text-align: center;
+				font-size: 12px;
+				font-family: sans-serif;
+				background-color: #444444;
+				cursor: pointer;
+				padding: 6px;
+				box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
+			}
+
+			#code-csp-warning:hover {
+				text-decoration: none;
+				background-color: #007acc;
+				box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+			}
+
+			body.scrollBeyondLastLine {
+				margin-bottom: calc(100vh - 22px);
+			}
+
+			body.showEditorSelection .code-line {
+				position: relative;
+			}
+
+			body.showEditorSelection .code-active-line:before,
+			body.showEditorSelection .code-line:hover:before {
+				content: "";
+				display: block;
+				position: absolute;
+				top: 0;
+				left: -12px;
+				height: 100%;
+			}
+
+			body.showEditorSelection li.code-active-line:before,
+			body.showEditorSelection li.code-line:hover:before {
+				left: -30px;
+			}
+
+			.vscode-light.showEditorSelection .code-active-line:before {
+				border-left: 3px solid rgba(0, 0, 0, 0.15);
+			}
+
+			.vscode-light.showEditorSelection .code-line:hover:before {
+				border-left: 3px solid rgba(0, 0, 0, 0.4);
+			}
+
+			.vscode-light.showEditorSelection
+				.code-line
+				.code-line:hover:before {
+				border-left: none;
+			}
+
+			.vscode-dark.showEditorSelection .code-active-line:before {
+				border-left: 3px solid rgba(255, 255, 255, 0.4);
+			}
+
+			.vscode-dark.showEditorSelection .code-line:hover:before {
+				border-left: 3px solid rgba(255, 255, 255, 0.6);
+			}
+
+			.vscode-dark.showEditorSelection
+				.code-line
+				.code-line:hover:before {
+				border-left: none;
+			}
+
+			.vscode-high-contrast.showEditorSelection .code-active-line:before {
+				border-left: 3px solid rgba(255, 160, 0, 0.7);
+			}
+
+			.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+				border-left: 3px solid rgba(255, 160, 0, 1);
+			}
+
+			.vscode-high-contrast.showEditorSelection
+				.code-line
+				.code-line:hover:before {
+				border-left: none;
+			}
+
+			img {
+				max-width: 100%;
+				max-height: 100%;
+				border-radius: 8px;
+				filter: drop-shadow(-0 2px 2px rgba(0, 0, 0, 0.07));
+			}
+
+			a {
+				text-decoration: none;
+			}
+
+			a:hover {
+				text-decoration: underline;
+			}
+
+			a:focus,
+			input:focus,
+			select:focus,
+			textarea:focus {
+				outline: 1px solid -webkit-focus-ring-color;
+				outline-offset: -1px;
+			}
+
+			hr {
+				border: 0;
+				height: 2px;
+				border-bottom: 2px solid;
+			}
+
+			h1 {
+				padding-bottom: 0.3em;
+				line-height: 1.2;
+				border-bottom-width: 1px;
+				border-bottom-style: solid;
+			}
+
+			h1,
+			h2,
+			h3 {
+				font-weight: normal;
+			}
+
+			table {
+				border-collapse: collapse;
+			}
+
+			table > thead > tr > th {
+				text-align: left;
+				border-bottom: 1px solid;
+			}
+
+			table > thead > tr > th,
+			table > thead > tr > td,
+			table > tbody > tr > th,
+			table > tbody > tr > td {
+				padding: 5px 10px;
+			}
+
+			table > tbody > tr + tr > td {
+				border-top: 1px solid;
+			}
+
+			td > code {
+                word-break: break-all;
+            }
+
+			blockquote {
+				margin: 0 7px 0 5px;
+				padding: 0 16px 0 10px;
+				border-left-width: 5px;
+				border-left-style: solid;
+			}
+
+			code {
+				font-family: Menlo, Monaco, Consolas, "Droid Sans Mono",
+					"Courier New", monospace, "Droid Sans Fallback";
+				font-size: 1em;
+				line-height: 1.357em;
+			}
+
+			body.wordWrap pre {
+				white-space: pre-wrap;
+			}
+
+			pre:not(.hljs),
+			pre.hljs code > div {
+				padding: 16px;
+				border-radius: 3px;
+				overflow: auto;
+			}
+
+			pre code {
+				color: var(--vscode-editor-foreground);
+				tab-size: 4;
+			}
+
+			/** Theming */
+
+			.vscode-light pre {
+				background-color: rgba(220, 220, 220, 0.4);
+			}
+
+			.vscode-dark pre {
+				background-color: rgba(10, 10, 10, 0.4);
+			}
+
+			.vscode-high-contrast pre {
+				background-color: rgb(0, 0, 0);
+			}
+
+			.vscode-high-contrast h1 {
+				border-color: rgb(0, 0, 0);
+			}
+
+			.vscode-light table > thead > tr > th {
+				border-color: rgba(0, 0, 0, 0.69);
+			}
+
+			.vscode-dark table > thead > tr > th {
+				border-color: rgba(255, 255, 255, 0.69);
+			}
+
+			.vscode-light h1,
+			.vscode-light hr,
+			.vscode-light table > tbody > tr + tr > td {
+				border-color: rgba(0, 0, 0, 0.18);
+			}
+
+			.vscode-dark h1,
+			.vscode-dark hr,
+			.vscode-dark table > tbody > tr + tr > td {
+				border-color: rgba(255, 255, 255, 0.18);
+			}
+		</style>
+
+		<style>
+			/*
+
+Visual Studio-like style based on original C# coloring by Jason Diamond <jason@diamond.name>
+
+*/
+			.hljs {
+				background: white;
+				color: black;
+			}
+
+			.hljs-comment,
+			.hljs-quote,
+			.hljs-variable {
+				color: #008000;
+			}
+
+			.hljs-keyword,
+			.hljs-selector-tag,
+			.hljs-built_in,
+			.hljs-name,
+			.hljs-tag {
+				color: #00f;
+			}
+
+			.hljs-string,
+			.hljs-title,
+			.hljs-section,
+			.hljs-attribute,
+			.hljs-literal,
+			.hljs-template-tag,
+			.hljs-template-variable,
+			.hljs-type,
+			.hljs-addition {
+				color: #a31515;
+			}
+
+			.hljs-deletion,
+			.hljs-selector-attr,
+			.hljs-selector-pseudo,
+			.hljs-meta {
+				color: #2b91af;
+			}
+
+			.hljs-doctag {
+				color: #808080;
+			}
+
+			.hljs-attr {
+				color: #f00;
+			}
+
+			.hljs-symbol,
+			.hljs-bullet,
+			.hljs-link {
+				color: #00b0e8;
+			}
+
+			.hljs-emphasis {
+				font-style: italic;
+			}
+
+			.hljs-strong {
+				font-weight: bold;
+			}
+		</style>
+
+		<style>
+			/*
+ * Markdown PDF CSS
+ */
+
+			body {
+				font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC",
+					"Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+			}
+
+			pre {
+				background-color: #f8f8f8;
+				border: 1px solid #cccccc;
+				border-radius: 3px;
+				overflow-x: auto;
+				white-space: pre-wrap;
+				overflow-wrap: break-word;
+			}
+
+			pre:not(.hljs) {
+				padding: 23px;
+				line-height: 19px;
+			}
+
+			blockquote {
+				background: rgba(127, 127, 127, 0.1);
+				border-color: rgba(0, 122, 204, 0.5);
+			}
+
+			.emoji {
+				height: 1.4em;
+			}
+
+			code {
+				font-size: 14px;
+				line-height: 19px;
+			}
+
+			/* for inline code */
+			:not(pre):not(.hljs) > code {
+				color: #3b3b3b; /* Change the old color so it seems less like an error */
+				font-size: inherit;
+				background: #e0e0e0;
+				border-radius: 4px;
+				padding: 1px 2px;
+				margin: -1px -2px;
+			}
+
+			/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+			.page {
+				page-break-after: always;
+			}
+		</style>
+
+		<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+	</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<div>
+<h1 id="programsko-in%C5%BEenjerstvo">Programsko inženjerstvo</h1>
+<h2 id="primjer-kolokvija-2">Primjer kolokvija #2</h2>
+<p>Kolokvij nosi ukupno <strong>60 bodova</strong> i piše se <strong>120 minuta</strong>.</p>
+<blockquote>
+<p>Potrebno je preuzet projekt primjera drugog kolokvija s Merlina.</p>
+</blockquote>
+<hr>
+<h3 id="zadatak-1---solarsystem-30-bodova">Zadatak #1 - SolarSystem (30 bodova)</h3>
+<ol>
+<li>
+<p><strong>(8 boda)</strong> Napravite <strong>router</strong> i definirajte sljedeće <strong>rute</strong>:</p>
+<ul>
+<li><code>/</code> redirect na <code>/solarsystem</code></li>
+<li><code>/solarsystem</code> - lista planeta,</li>
+<li><code>/solarsystem/:planet</code> – opis planeta i lista satelita</li>
+<li><code>/solarsystem/:planet/:satellite</code> – opis satelita</li>
+</ul>
+</li>
+<li>
+<p>Izradite sljedeće <strong>komponente</strong> (<em>views</em>):</p>
+</li>
+</ol>
+<ul>
+<li><strong>(4 boda)</strong> <strong><code>SolarSystemView</code> - početna stranica</strong>
+<ul>
+<li>Prikaz svih planeta (<em>slike i nazivi</em>)</li>
+<li>Kad se klikne na <strong>naziv</strong> planeta, treba <strong>navigirati</strong> na rutu <code>/solarsystem/:planet</code></li>
+</ul>
+</li>
+</ul>
+<p><img src="Slike/SolarSystem.png" alt="alt text"></p>
+<ul>
+<li><strong>(6 boda)</strong> <strong><code>PlanetView</code> - prikaz planeta i njegovih satelita</strong>
+<ul>
+<li>Link za ići <strong>nazad</strong> na prethodnu stranicu</li>
+<li>Prikaz <strong>naziva</strong> i <strong>opisa</strong> planeta</li>
+<li>Ako planet <strong>ima</strong> satelite:
+<ul>
+<li>prikaz svih satelita (<em>slike i nazivi</em>)</li>
+<li>kad se klikne na <strong>naziv</strong> satelita, treba <strong>navigirati</strong> na rutu <code>/solarsystem/:planet/:satellite</code></li>
+</ul>
+</li>
+<li>Ako planet <strong>nema</strong> satelite:
+<ul>
+<li>prikazat text: <code>No satellites...</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div style="display: flex; align-items: flex-start; gap: 100px; width: 100%;">
+  <img src="Slike/Planet.png" style="width: calc(50% - 50px); object-fit: contain;">
+  <img src="Slike/PlanetNoSatellites.png" style="width: calc(50% - 50px); object-fit: contain;">
+</div>
+<ul>
+<li><strong>(4 boda)</strong> <strong><code>MoonView</code> - prikaz satelita</strong>
+<ul>
+<li>Link za ići <strong>nazad</strong> na prethodnu stranicu</li>
+<li>Prikaz <strong>naziva</strong> i <strong>opisa</strong> satelita</li>
+</ul>
+</li>
+</ul>
+<p><img src="Slike/Satellite.png" alt="alt text"></p>
+<ol start="3">
+<li><strong>(8 boda)</strong> Napravite <strong>pinia</strong> spremnik (<em>store</em>) i definirajte sljedeće:
+<ul>
+<li><code>getPlanets()</code> funkciju koja vraća <strong>sve planete</strong> iz datoteke <code>solarSystemData.js</code></li>
+<li><code>getPlanet(planetName)</code> funkciju koja vraća <strong>planet</strong> po danom <em>nazivu</em></li>
+<li><code>getSatellite(planetName, satelliteName)</code> funkciju koja vraća <strong>satelit</strong> po danom <em>nazivu planeta</em> i <em>satelita</em></li>
+</ul>
+</li>
+</ol>
+<div class="page"></div>
+<hr>
+<h3 id="zadatak-2---maliducan-30-bodova">Zadatak #2 - MaliDucan (30 bodova)</h3>
+<ol>
+<li>
+<p><strong>(6 bodova)</strong> Napravite <strong>router</strong> i definirajte sljedeće <strong>rute</strong>:</p>
+<ul>
+<li><code>/shop</code> – pregled proizvoda</li>
+<li><code>/cart</code> – prikaz košarice</li>
+<li><code>/admin</code> – lista svih proizvoda</li>
+<li><code>/admin/add</code> – forma za dodavanje novog proizvoda</li>
+</ul>
+</li>
+<li>
+<p>Izradite sljedeće <strong>komponente</strong> (<em>views</em> i <em>components</em>):</p>
+</li>
+</ol>
+<ul>
+<li><strong>(4 boda)</strong> <strong><code>ShopView</code> - pregled proizvoda:</strong>
+<ul>
+<li>Prikaz svih proizvoda (<em>naziv, cijena, slika</em>)</li>
+<li>Gumb <strong>&quot;Dodaj u košaricu&quot;</strong> za svaki proizvod</li>
+</ul>
+</li>
+</ul>
+<p><img src="Slike/Trgovina.png" alt="alt text"></p>
+<ul>
+<li><strong>(3 boda)</strong> <strong><code>CartView</code> - prikaz košarice:</strong>
+<ul>
+<li>Prikaz dodanih proizvoda</li>
+<li>Ukupna cijena na dnu stranice</li>
+<li>Gumb <strong>&quot;Ukloni&quot;</strong> za svaki proizvod</li>
+</ul>
+</li>
+</ul>
+<p><img src="Slike/Košarica.png" alt="alt text"></p>
+<ul>
+<li><strong>(3 boda)</strong> <strong><code>AdminView</code> - prikaz svih proizvoda:</strong>
+<ul>
+<li>Prikaz svih proizvoda</li>
+<li>Gumb <strong>Obriši</strong> za svaki proizvod</li>
+<li>Link za otići na <code>/admin/add</code></li>
+</ul>
+</li>
+</ul>
+<p><img src="Slike/Admin.png" alt="alt text"></p>
+<ul>
+<li><strong>(4 boda)</strong> <strong><code>AddProductView</code> - forma za dodavanje proizvoda:</strong>
+<ul>
+<li>Link za ići <strong>nazad</strong> na prethodnu stranicu</li>
+<li>Polja za unos (<em>naziva, cijene i slike (URL)</em>)</li>
+<li>Gumb <strong>&quot;Dodaj proizvod&quot;</strong></li>
+<li>Testni podaci:
+<ul>
+<li>Naziv: <code>Lubenica</code></li>
+<li>Cijena: <code>4.35</code></li>
+<li>Slika: <code>https://img.jelposkupilo.eu/?id=lubenica-mini</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="Slike/AddProduct.png" alt="alt text"></p>
+<ol start="3">
+<li>
+<p><strong>(7 bodova)</strong> Napravite <strong>pinia</strong> spremnik (<em>store</em>) i definirajte sljedeće:</p>
+<ul>
+<li><code>products</code> - reaktivna <strong>lista proizvoda</strong>
+<ul>
+<li>proizvode učitajte iz datoteke <code>proizvodiData.js</code></li>
+</ul>
+</li>
+<li><code>cart</code> - reaktivna <strong>lista proizvoda</strong> koje je korisnik dodao u <strong>košaricu</strong></li>
+<li><code>addToCart(product)</code> - <strong>dodaje</strong> proizvod u <code>cart</code></li>
+<li><code>removeFromCart(index)</code> - <strong>uklanja</strong> proizvod iz <code>cart</code></li>
+<li><code>addProduct(product)</code> - <strong>dodaje</strong> proizvod u <code>products</code></li>
+<li><code>removeProduct(index)</code> - <strong>uklanja</strong> proizvod iz <code>products</code></li>
+</ul>
+</li>
+<li>
+<p><strong>(3 boda)</strong> Dodajte <strong>zaglavlje</strong> koje sadrži:</p>
+<ul>
+<li>Linkove: <code>Trgovina</code>, <code>Admin</code>, <code>Košarica</code>
+<ul>
+<li><strong>aktivni link</strong> treba biti zelene boje</li>
+</ul>
+</li>
+<li><strong>Broj</strong> proizvoda u košarici</li>
+</ul>
+</li>
+</ol>
+<p><img src="Slike/Header.png" alt="alt text"></p>
+<h2 id="predajete-sljede%C4%87u-datoteku">Predajete sljedeću datoteku:</h2>
+<ul>
+<li><strong>ZIP datoteka</strong> cijelog projekta bez <code>node_modules</code> mape</li>
+</ul>
+</div>
+</body>
+</html>
