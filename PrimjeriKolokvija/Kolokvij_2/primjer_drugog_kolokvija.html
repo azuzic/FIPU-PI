@@ -417,7 +417,7 @@ Visual Studio-like style based on original C# coloring by Jason Diamond <jason@d
 <h3 id="zadatak-1---solarsystem-30-bodova">Zadatak #1 - SolarSystem (30 bodova)</h3>
 <ol>
 <li>
-<p><strong>(8 boda)</strong> Napravite <strong>router</strong> i definirajte sljedeće <strong>rute</strong>:</p>
+<p>Napravite <strong>router</strong> i definirajte sljedeće <strong>rute</strong>:</p>
 <ul>
 <li><code>/</code> redirect na <code>/solarsystem</code></li>
 <li><code>/solarsystem</code> - lista planeta,</li>
@@ -426,11 +426,19 @@ Visual Studio-like style based on original C# coloring by Jason Diamond <jason@d
 </ul>
 </li>
 <li>
+<p>Napravite <strong>pinia</strong> spremnik (<em>store</em>) i definirajte sljedeće:</p>
+<ul>
+<li><code>getPlanets()</code> funkciju koja vraća <strong>sve planete</strong> iz datoteke <code>solarSystemData.js</code></li>
+<li><code>getPlanet(planetName)</code> funkciju koja vraća <strong>planet</strong> po danom <em>nazivu</em></li>
+<li><code>getSatellite(planetName, satelliteName)</code> funkciju koja vraća <strong>satelit</strong> po danom <em>nazivu planeta</em> i <em>satelita</em></li>
+</ul>
+</li>
+<li>
 <p>Izradite sljedeće <strong>komponente</strong> (<em>views</em>):</p>
 </li>
 </ol>
 <ul>
-<li><strong>(4 boda)</strong> <strong><code>SolarSystemView</code> - početna stranica</strong>
+<li><strong><code>SolarSystemView</code> - početna stranica</strong>
 <ul>
 <li>Prikaz svih planeta (<em>slike i nazivi</em>)</li>
 <li>Kad se klikne na <strong>naziv</strong> planeta, treba <strong>navigirati</strong> na rutu <code>/solarsystem/:planet</code></li>
@@ -439,7 +447,7 @@ Visual Studio-like style based on original C# coloring by Jason Diamond <jason@d
 </ul>
 <p><img src="Slike/SolarSystem.png" alt="alt text"></p>
 <ul>
-<li><strong>(6 boda)</strong> <strong><code>PlanetView</code> - prikaz planeta i njegovih satelita</strong>
+<li><strong><code>PlanetView</code> - prikaz planeta i njegovih satelita</strong>
 <ul>
 <li>Link za ići <strong>nazad</strong> na prethodnu stranicu</li>
 <li>Prikaz <strong>naziva</strong> i <strong>opisa</strong> planeta</li>
@@ -462,7 +470,7 @@ Visual Studio-like style based on original C# coloring by Jason Diamond <jason@d
   <img src="Slike/PlanetNoSatellites.png" style="width: calc(50% - 50px); object-fit: contain;">
 </div>
 <ul>
-<li><strong>(4 boda)</strong> <strong><code>MoonView</code> - prikaz satelita</strong>
+<li><strong><code>MoonView</code> - prikaz satelita</strong>
 <ul>
 <li>Link za ići <strong>nazad</strong> na prethodnu stranicu</li>
 <li>Prikaz <strong>naziva</strong> i <strong>opisa</strong> satelita</li>
@@ -470,21 +478,12 @@ Visual Studio-like style based on original C# coloring by Jason Diamond <jason@d
 </li>
 </ul>
 <p><img src="Slike/Satellite.png" alt="alt text"></p>
-<ol start="3">
-<li><strong>(8 boda)</strong> Napravite <strong>pinia</strong> spremnik (<em>store</em>) i definirajte sljedeće:
-<ul>
-<li><code>getPlanets()</code> funkciju koja vraća <strong>sve planete</strong> iz datoteke <code>solarSystemData.js</code></li>
-<li><code>getPlanet(planetName)</code> funkciju koja vraća <strong>planet</strong> po danom <em>nazivu</em></li>
-<li><code>getSatellite(planetName, satelliteName)</code> funkciju koja vraća <strong>satelit</strong> po danom <em>nazivu planeta</em> i <em>satelita</em></li>
-</ul>
-</li>
-</ol>
 <div class="page"></div>
 <hr>
 <h3 id="zadatak-2---maliducan-30-bodova">Zadatak #2 - MaliDucan (30 bodova)</h3>
 <ol>
 <li>
-<p><strong>(6 bodova)</strong> Napravite <strong>router</strong> i definirajte sljedeće <strong>rute</strong>:</p>
+<p>Napravite <strong>router</strong> i definirajte sljedeće <strong>rute</strong>:</p>
 <ul>
 <li><code>/shop</code> – pregled proizvoda</li>
 <li><code>/cart</code> – prikaz košarice</li>
@@ -493,11 +492,26 @@ Visual Studio-like style based on original C# coloring by Jason Diamond <jason@d
 </ul>
 </li>
 <li>
+<p>Napravite <strong>pinia</strong> spremnik (<em>store</em>) i definirajte sljedeće:</p>
+<ul>
+<li><code>products</code> - reaktivna <strong>lista proizvoda</strong>
+<ul>
+<li>proizvode učitajte iz datoteke <code>proizvodiData.js</code></li>
+</ul>
+</li>
+<li><code>cart</code> - reaktivna <strong>lista proizvoda</strong> koje je korisnik dodao u <strong>košaricu</strong></li>
+<li><code>addToCart(product)</code> - <strong>dodaje</strong> proizvod u <code>cart</code></li>
+<li><code>removeFromCart(index)</code> - <strong>uklanja</strong> proizvod iz <code>cart</code></li>
+<li><code>addProduct(product)</code> - <strong>dodaje</strong> proizvod u <code>products</code></li>
+<li><code>removeProduct(index)</code> - <strong>uklanja</strong> proizvod iz <code>products</code></li>
+</ul>
+</li>
+<li>
 <p>Izradite sljedeće <strong>komponente</strong> (<em>views</em> i <em>components</em>):</p>
 </li>
 </ol>
 <ul>
-<li><strong>(4 boda)</strong> <strong><code>ShopView</code> - pregled proizvoda:</strong>
+<li><strong><code>ShopView</code> - pregled proizvoda:</strong>
 <ul>
 <li>Prikaz svih proizvoda (<em>naziv, cijena, slika</em>)</li>
 <li>Gumb <strong>&quot;Dodaj u košaricu&quot;</strong> za svaki proizvod</li>
@@ -506,7 +520,7 @@ Visual Studio-like style based on original C# coloring by Jason Diamond <jason@d
 </ul>
 <p><img src="Slike/Trgovina.png" alt="alt text"></p>
 <ul>
-<li><strong>(3 boda)</strong> <strong><code>CartView</code> - prikaz košarice:</strong>
+<li><strong><code>CartView</code> - prikaz košarice:</strong>
 <ul>
 <li>Prikaz dodanih proizvoda</li>
 <li>Ukupna cijena na dnu stranice</li>
@@ -516,7 +530,7 @@ Visual Studio-like style based on original C# coloring by Jason Diamond <jason@d
 </ul>
 <p><img src="Slike/Košarica.png" alt="alt text"></p>
 <ul>
-<li><strong>(3 boda)</strong> <strong><code>AdminView</code> - prikaz svih proizvoda:</strong>
+<li><strong><code>AdminView</code> - prikaz svih proizvoda:</strong>
 <ul>
 <li>Prikaz svih proizvoda</li>
 <li>Gumb <strong>Obriši</strong> za svaki proizvod</li>
@@ -526,7 +540,7 @@ Visual Studio-like style based on original C# coloring by Jason Diamond <jason@d
 </ul>
 <p><img src="Slike/Admin.png" alt="alt text"></p>
 <ul>
-<li><strong>(4 boda)</strong> <strong><code>AddProductView</code> - forma za dodavanje proizvoda:</strong>
+<li><strong><code>AddProductView</code> - forma za dodavanje proizvoda:</strong>
 <ul>
 <li>Link za ići <strong>nazad</strong> na prethodnu stranicu</li>
 <li>Polja za unos (<em>naziva, cijene i slike (URL)</em>)</li>
@@ -542,24 +556,8 @@ Visual Studio-like style based on original C# coloring by Jason Diamond <jason@d
 </li>
 </ul>
 <p><img src="Slike/AddProduct.png" alt="alt text"></p>
-<ol start="3">
-<li>
-<p><strong>(7 bodova)</strong> Napravite <strong>pinia</strong> spremnik (<em>store</em>) i definirajte sljedeće:</p>
-<ul>
-<li><code>products</code> - reaktivna <strong>lista proizvoda</strong>
-<ul>
-<li>proizvode učitajte iz datoteke <code>proizvodiData.js</code></li>
-</ul>
-</li>
-<li><code>cart</code> - reaktivna <strong>lista proizvoda</strong> koje je korisnik dodao u <strong>košaricu</strong></li>
-<li><code>addToCart(product)</code> - <strong>dodaje</strong> proizvod u <code>cart</code></li>
-<li><code>removeFromCart(index)</code> - <strong>uklanja</strong> proizvod iz <code>cart</code></li>
-<li><code>addProduct(product)</code> - <strong>dodaje</strong> proizvod u <code>products</code></li>
-<li><code>removeProduct(index)</code> - <strong>uklanja</strong> proizvod iz <code>products</code></li>
-</ul>
-</li>
-<li>
-<p><strong>(3 boda)</strong> Dodajte <strong>zaglavlje</strong> koje sadrži:</p>
+<ol start="4">
+<li>Dodajte <strong>zaglavlje</strong> koje sadrži:
 <ul>
 <li>Linkove: <code>Trgovina</code>, <code>Admin</code>, <code>Košarica</code>
 <ul>
