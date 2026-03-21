@@ -893,42 +893,33 @@ Svojstva možemo definirati kao <em>objekte</em> unutar <code>:style</code> atri
 <li>Stavku s najvećom ukupnom cijenom obojiti crvenom bojom</li>
 </ul>
 <p><em>JSON podaci:</em></p>
-<pre class="hljs"><code><div>slike = {
+<pre class="hljs"><code style="font-size: 12px; line-height: 17px;"><div>slike = {
     <span class="hljs-string">"Jabuka"</span>: <span class="hljs-string">"https://www.svgrepo.com/show/530203/apple.svg"</span>,
     <span class="hljs-string">"Mrkva"</span>: <span class="hljs-string">"https://www.svgrepo.com/show/530216/carrot.svg"</span>,
     <span class="hljs-string">"Sir"</span>: <span class="hljs-string">"https://www.svgrepo.com/show/530219/cake.svg"</span>,
     <span class="hljs-string">"Kruh"</span>: <span class="hljs-string">"https://www.svgrepo.com/show/530223/bread.svg"</span>,
 }
-
 proizvodi = [
-    { <span class="hljs-attr">naziv</span>: <span class="hljs-string">"Jabuka"</span>, <span class="hljs-attr">cijena</span>: <span class="hljs-number">0.25</span> },
-    { <span class="hljs-attr">naziv</span>: <span class="hljs-string">"Mrkva"</span>, <span class="hljs-attr">cijena</span>: <span class="hljs-number">0.12</span> },
-    { <span class="hljs-attr">naziv</span>: <span class="hljs-string">"Kruh"</span>, <span class="hljs-attr">cijena</span>: <span class="hljs-number">2.00</span> },
-    { <span class="hljs-attr">naziv</span>: <span class="hljs-string">"Sir"</span>, <span class="hljs-attr">cijena</span>: <span class="hljs-number">4.48</span> }
+    { <span class="hljs-attr">naziv</span>: <span class="hljs-string">"Jabuka"</span>, <span class="hljs-attr">cijena</span>: <span class="hljs-number">0.25</span> }, { <span class="hljs-attr">naziv</span>: <span class="hljs-string">"Mrkva"</span>, <span class="hljs-attr">cijena</span>: <span class="hljs-number">0.12</span> }, 
+    { <span class="hljs-attr">naziv</span>: <span class="hljs-string">"Kruh"</span>, <span class="hljs-attr">cijena</span>: <span class="hljs-number">2.00</span> }, { <span class="hljs-attr">naziv</span>: <span class="hljs-string">"Sir"</span>, <span class="hljs-attr">cijena</span>: <span class="hljs-number">4.48</span> }
 ]
-
 korisnik = {
     <span class="hljs-attr">jeAdmin</span>: <span class="hljs-literal">true</span>,
     <span class="hljs-attr">osobni_podaci</span>: {
         <span class="hljs-attr">ime</span>: <span class="hljs-string">"Marko"</span>,
         <span class="hljs-attr">prezime</span>: <span class="hljs-string">"Krivić"</span>,
-        <span class="hljs-attr">adresa</span>: {
-            <span class="hljs-attr">grad</span>: <span class="hljs-string">"Pula"</span>,
-            <span class="hljs-attr">ulica</span>: <span class="hljs-string">"Veruda"</span>,
-            <span class="hljs-attr">broj</span>: <span class="hljs-number">32</span>
-        },
+        <span class="hljs-attr">adresa</span>: { <span class="hljs-attr">grad</span>: <span class="hljs-string">"Pula"</span>, <span class="hljs-attr">ulica</span>: <span class="hljs-string">"Veruda"</span>, <span class="hljs-attr">broj</span>: <span class="hljs-number">32</span> },
         <span class="hljs-attr">broj_telefona</span>: <span class="hljs-string">"+091-123-456"</span>
     },
     <span class="hljs-attr">kosarica</span>: [
-        { <span class="hljs-attr">naziv</span>: <span class="hljs-string">"Jabuka"</span>, količina: <span class="hljs-number">4</span> },
-        { <span class="hljs-attr">naziv</span>: <span class="hljs-string">"Mrkva"</span>, količina: <span class="hljs-number">12</span> },
-        { <span class="hljs-attr">naziv</span>: <span class="hljs-string">"Sir"</span>, količina: <span class="hljs-number">1</span> },
-        { <span class="hljs-attr">naziv</span>: <span class="hljs-string">"Kruh"</span>, količina: <span class="hljs-number">3</span> },
+        { <span class="hljs-attr">naziv</span>: <span class="hljs-string">"Jabuka"</span>, količina: <span class="hljs-number">4</span> }, { <span class="hljs-attr">naziv</span>: <span class="hljs-string">"Mrkva"</span>, količina: <span class="hljs-number">12</span> },
+        { <span class="hljs-attr">naziv</span>: <span class="hljs-string">"Sir"</span>, količina: <span class="hljs-number">1</span> }, { <span class="hljs-attr">naziv</span>: <span class="hljs-string">"Kruh"</span>, količina: <span class="hljs-number">3</span> },
     ]
 }
 </div></code></pre>
+<div class="page"></div>
 <p><em>Primjer rješenja:</em></p>
-<p><img src="Slike/solution.png" alt="solution"></p>
-
+<p><img src="./Slike/solution.png" alt="solution"></p>
+</div>
 </body>
 </html>
